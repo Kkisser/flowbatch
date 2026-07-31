@@ -7,8 +7,9 @@ screenshots/
 *.out
 *.err
 *.log
-# Локальный кэш uuid референсов и текст, вставленный в панель
+# Локальный кэш uuid референсов, текст из панели и её настройки
 .flowbatch_refcache.json
+.flowbatch_ui.json
 prompts_pasted.flow.txt
 *.png
 *.jpg

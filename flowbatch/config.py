@@ -28,6 +28,14 @@ class Config:
         cfg._validate()
         return cfg
 
+    def set(self, dotted: str, value: Any) -> None:
+        """Переопределить значение по точечному пути (например, из веб-панели)."""
+        node = self._data
+        parts = dotted.split(".")
+        for part in parts[:-1]:
+            node = node.setdefault(part, {})
+        node[parts[-1]] = value
+
     def get(self, dotted: str, default: Any = None) -> Any:
         """Достать значение по пути вида 'antiban.concurrency'."""
         node: Any = self._data

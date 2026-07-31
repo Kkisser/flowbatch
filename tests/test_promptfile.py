@@ -13,6 +13,7 @@ from flowbatch.promptfile import parse
 
 GOOD = """
 # очередь эпизода
+@project Тестовый проект S01
 
 === IMG K1
 @ref C:\\refs\\geroi.png
@@ -62,15 +63,21 @@ Video referencing video.
 
 === IMG EMPTY
 @ref C:\\x.png
+
+=== IMG LATE_PROJECT
+@project Опоздавший
+Prompt text.
 """
 
 
 def main() -> int:
     failures: list[str] = []
 
-    jobs, errors = parse(GOOD, out_dir="out")
+    jobs, errors, meta = parse(GOOD, out_dir="out")
     if errors:
         failures.append(f"GOOD дал ошибки: {errors}")
+    if meta.get("project") != "Тестовый проект S01":
+        failures.append(f"GOOD: @project не распознан: {meta}")
     if [j.id for j in jobs] != ["K1", "K2", "K1_anim", "K2_anim"]:
         failures.append(f"GOOD: неверные id: {[j.id for j in jobs]}")
     k1 = jobs[0]
@@ -89,7 +96,7 @@ def main() -> int:
     if k2a.output_name != "K2_final":
         failures.append(f"GOOD: @out не применился: {k2a.output_name}")
 
-    jobs, errors = parse(BAD, out_dir="out")
+    jobs, errors, _ = parse(BAD, out_dir="out")
     expected_bits = [
         "текст вне блока",
         "@ref без пути",
@@ -99,6 +106,7 @@ def main() -> int:
         "@duration 7",
         "указывает на видео",
         "без текста промпта",
+        "@project ставится в начале файла",
     ]
     for bit in expected_bits:
         if not any(bit in e for e in errors):
@@ -107,7 +115,7 @@ def main() -> int:
     # @use на файл прошлого прогона: кладём файл на диск и убеждаемся, что найден.
     with tempfile.TemporaryDirectory() as td:
         (Path(td) / "OLD.jpg").write_bytes(b"x")
-        jobs, errors = parse("=== VID V\n@use OLD\nAnimate.", out_dir=td)
+        jobs, errors, _ = parse("=== VID V\n@use OLD\nAnimate.", out_dir=td)
         if errors:
             failures.append(f"@use по файлу с диска дал ошибки: {errors}")
         elif not jobs[0].refs or not jobs[0].refs[0].endswith("OLD.jpg"):

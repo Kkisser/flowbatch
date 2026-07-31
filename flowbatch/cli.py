@@ -242,10 +242,12 @@ def cmd_run(args: argparse.Namespace) -> int:
 
     sheet: SheetQueue | None = None
     sheet_by_id: dict[str, Any] = {}
+    queue_project: str | None = args.project or None
     try:
         if args.prompts:
             text = Path(args.prompts).read_text(encoding="utf-8-sig")
-            jobs, errors = parse_prompts(text, out_dir=cfg.out_dir())
+            jobs, errors, meta = parse_prompts(text, out_dir=cfg.out_dir())
+            queue_project = queue_project or meta.get("project")
             if errors:
                 console.print(
                     Panel(
@@ -271,6 +273,7 @@ def cmd_run(args: argparse.Namespace) -> int:
             )
             sheet_by_id = {r.job.id: r for r in rows}
             jobs = [r.job for r in rows]
+            queue_project = queue_project or sheet.project_name
         else:
             jobs = load_jobs(args.jobs)
             if args.kind:
@@ -295,9 +298,11 @@ def cmd_run(args: argparse.Namespace) -> int:
         args.no_resume = True
         console.print("[dim]--sheet: резюм идёт по колонке 03_STATUS, а не по runs.jsonl[/dim]")
 
-    # Резюм: пропускаем то, что уже успешно сделано по логу.
-    skipped_resume: list[str] = []
-    if not args.no_resume and not args.dry_run:
+    # Резюм: пропускаем то, что уже успешно сделано по логу. Если очередь
+    # привязана к проекту, фильтр применяется ПОСЛЕ открытия проекта — id
+    # проекта известен только тогда, а «сделано в другом проекте» не считается.
+    resume_after_connect = bool(queue_project)
+    if not args.no_resume and not args.dry_run and not resume_after_connect:
         done = log.completed_ids()
         before = len(jobs)
         skipped_resume = [j.id for j in jobs if j.id in done]
@@ -330,6 +335,25 @@ def cmd_run(args: argparse.Namespace) -> int:
             console.print(Panel(escape(str(exc)), title="[bold red]Новый проект[/bold red]", border_style="red"))
             return 2
         console.print(f"{OK} создан проект {pid} — {client.project_name()!r}")
+    elif queue_project:
+        try:
+            how = client.ensure_project(queue_project)
+        except Exception as exc:  # noqa: BLE001
+            client.close()
+            console.print(Panel(escape(str(exc)), title="[bold red]Проект очереди[/bold red]", border_style="red"))
+            return 2
+        verb = {"current": "уже открыт", "opened": "открыт", "created": "создан"}[how]
+        console.print(f"{OK} проект {queue_project!r} {verb} ({client.current_project_id()})")
+        if resume_after_connect and not args.no_resume and not args.dry_run:
+            done = log.completed_ids(project=client.current_project_id())
+            before = len(jobs)
+            jobs = [j for j in jobs if j.id not in done]
+            if before != len(jobs):
+                console.print(f"[cyan]Резюм:[/cyan] в этом проекте уже сделано {before - len(jobs)}")
+            if not jobs:
+                client.close()
+                console.print("[yellow]Все задачи очереди уже выполнены в этом проекте.[/yellow]")
+                return 0
     elif client.current_project_id() is None:
         client.close()
         console.print(
@@ -469,6 +493,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="создать новый пустой проект и прогнать очередь в нём (резюм отключается)",
     )
     r.add_argument("--project-name", help="имя нового проекта для --new-project")
+    r.add_argument(
+        "--project",
+        help="открыть (или создать) проект Flow с этим именем перед прогоном; "
+        "перебивает @project из файла промптов и PROJECT_NAME из xlsx",
+    )
     r.set_defaults(func=cmd_run)
 
     return p

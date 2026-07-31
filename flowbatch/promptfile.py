@@ -23,6 +23,9 @@
 Заголовок блока: `=== IMG <id>` или `=== VID <id>` (русские синонимы
 КАРТИНКА/ФОТО/ВИДЕО тоже понимаются). Директивы — строки, начинающиеся с @:
 
+    @project <имя>    В НАЧАЛЕ ФАЙЛА, до первого блока: к какому проекту Flow
+                      относится очередь. Перед прогоном программа откроет этот
+                      проект (или создаст, если его нет).
     @ref <путь>       прикрепить локальный файл референсом (можно несколько)
     @use <id>         прикрепить РЕЗУЛЬТАТ другой задачи этого файла;
                       если задача не в файле — ищется out/<id>.* от прошлых
@@ -54,6 +57,7 @@ ALLOWED_DURATIONS = {4, 6, 8, 10}
 
 # Короткая справка для панели — показывается рядом с полем ввода.
 SYNTAX_HELP = (
+    "@project <имя> — первой строкой: проект Flow этой очереди (откроется/создастся сам).\n"
     "=== IMG <id> — блок картинки, === VID <id> — блок видео. Дальше директивы и промпт.\n"
     "@ref <путь> — прикрепить файл референсом; @use <id> — прикрепить результат другой задачи;\n"
     "@duration 4|6|8|10 — длительность видео; @out <имя> — имя файла результата.\n"
@@ -75,20 +79,37 @@ class _Block:
     prompt_lines: list[str] = field(default_factory=list)
 
 
-def parse(text: str, out_dir: str | Path = "out") -> tuple[list[Job], list[str]]:
-    """Разобрать текст в список Job. Возвращает (задачи, ошибки).
+def parse(
+    text: str, out_dir: str | Path = "out"
+) -> tuple[list[Job], list[str], dict[str, str | None]]:
+    """Разобрать текст в список Job. Возвращает (задачи, ошибки, мета).
 
+    мета: {"project": имя проекта Flow из @project или None}.
     При непустом списке ошибок задачи использовать нельзя: разбор атомарный,
     чтобы кривой блок не прошёл молча.
     """
     out_dir = Path(out_dir)
     blocks: list[_Block] = []
     errors: list[str] = []
+    meta: dict[str, str | None] = {"project": None}
     cur: _Block | None = None
 
     for n, raw in enumerate(text.splitlines(), start=1):
         line = raw.rstrip("\r")
         stripped = line.strip()
+
+        # @project — файловая директива, живёт до первого блока.
+        if stripped.lower().startswith("@project"):
+            rest = stripped[len("@project"):].strip()
+            if cur is not None or blocks:
+                errors.append(f"строка {n}: @project ставится в начале файла, до первого блока")
+            elif not rest:
+                errors.append(f"строка {n}: @project без имени проекта")
+            elif meta["project"] is not None:
+                errors.append(f"строка {n}: @project указан повторно")
+            else:
+                meta["project"] = rest
+            continue
 
         m = HEADER_RE.match(stripped)
         if m:
@@ -123,7 +144,7 @@ def parse(text: str, out_dir: str | Path = "out") -> tuple[list[Job], list[str]]
         cur.prompt_lines.append(line)
 
     jobs = _blocks_to_jobs(blocks, out_dir, errors)
-    return jobs, errors
+    return jobs, errors, meta
 
 
 def _parse_directive(block: _Block, line: str, n: int, errors: list[str]) -> None:

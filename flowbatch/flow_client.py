@@ -317,6 +317,73 @@ class FlowClient:
             self.rename_project(name)
         return self.current_project_id() or ""
 
+    def _find_project_href(self, name: str) -> str | None:
+        """href карточки проекта с точным именем (на странице списка).
+
+        Карточка устроена так: <a href="/fx/.../project/<id>"> с превью, а имя —
+        в соседнем <span>. Кликабельна ссылка, не имя, поэтому ищем href.
+        """
+        js = r"""
+        (name) => {
+          const spans = Array.from(document.querySelectorAll('span'))
+            .filter(e => Array.from(e.childNodes)
+              .some(n => n.nodeType === 3 && n.textContent.trim() === name));
+          for (const s of spans) {
+            let e = s;
+            for (let i = 0; e && i < 8; i++) {
+              const a = e.querySelector && e.querySelector('a[href*="/flow/project/"]');
+              if (a) return a.getAttribute('href');
+              e = e.parentElement;
+            }
+          }
+          return null;
+        }
+        """
+        return self.page.evaluate(js, name)
+
+    def ensure_project(self, name: str, max_scrolls: int = 30) -> str:
+        """Открыть проект Flow с этим именем; нет такого — создать.
+
+        Возвращает 'current' | 'opened' | 'created'. Список проектов
+        виртуализирован, поэтому при поиске скроллим его.
+        """
+        name = name.strip()
+        if not name:
+            raise FlowError(ERR_UNKNOWN, "Пустое имя проекта")
+        if self.current_project_id() and (self.project_name() or "").strip() == name:
+            return "current"
+
+        self.goto_projects_list()
+        href: str | None = None
+        for _ in range(max_scrolls):
+            href = self._find_project_href(name)
+            if href:
+                break
+            at_end = self.page.evaluate(
+                "(sel) => { const s = document.querySelector(sel); if (!s) return true;"
+                " const end = s.scrollTop + s.clientHeight >= s.scrollHeight - 4;"
+                " s.scrollTop += s.clientHeight * 0.8; return end; }",
+                self.cfg.selectors["virtuoso_scroller"],
+            )
+            self.page.wait_for_timeout(400)
+            if at_end:
+                break
+
+        if href is None:
+            self.create_project(name)
+            return "created"
+
+        self.page.locator(f'a[href="{href}"]').first.click()
+        self.page.wait_for_selector(self.cfg.selectors["prompt_editor"], timeout=60_000)
+        self.page.wait_for_timeout(800)
+        actual = (self.project_name() or "").strip()
+        if actual != name:
+            raise FlowError(
+                ERR_UNKNOWN,
+                f"Открылся не тот проект: ожидался {name!r}, в шапке {actual!r}",
+            )
+        return "opened"
+
     def rename_project(self, name: str) -> str:
         """Переименовать текущий проект и проверить, что имя применилось."""
         loc = self.page.locator(self.cfg.selectors["project_title"])

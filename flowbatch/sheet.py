@@ -123,6 +123,11 @@ class SheetQueue:
         self._rows = rows
         return rows
 
+    @property
+    def project_name(self) -> str | None:
+        """Имя проекта Flow из SETTINGS (ключ PROJECT_NAME), если задано."""
+        return self.settings.get("PROJECT_NAME") or None
+
     @staticmethod
     def _read_settings(wb: Any) -> dict[str, str]:
         if SHEET_SETTINGS not in wb.sheetnames:

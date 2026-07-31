@@ -198,12 +198,19 @@ class RunLog:
                 found = m.group(1)  # берём самую свежую запись
         return found
 
-    def completed_ids(self) -> set[str]:
-        """id задач, уже успешно выполненных — их при резюме пропускаем."""
+    def completed_ids(self, project: str | None = None) -> set[str]:
+        """id задач, уже успешно выполненных — их при резюме пропускаем.
+
+        project — id проекта Flow: результат в проекте A не считается
+        выполненным для проекта B (медиа и uuid там другие).
+        """
         done: set[str] = set()
         for rec in self.records():
-            if rec.get("status") == STATUS_OK and rec.get("id"):
-                done.add(str(rec["id"]))
+            if rec.get("status") != STATUS_OK or not rec.get("id"):
+                continue
+            if project is not None and rec.get("project") != project:
+                continue
+            done.add(str(rec["id"]))
         return done
 
     def append(self, record: dict[str, Any]) -> None:
