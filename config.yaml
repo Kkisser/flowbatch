@@ -1,0 +1,106 @@
+# Конфигурация flowbatch. Ничего не хардкодится в коде — всё правится здесь.
+
+cdp:
+  # Браузер запускается вручную. Подойдёт любой на Chromium (Edge, Chrome) —
+  # скрипту важен только порт, а не марка браузера.
+  #
+  #   Edge:   & "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" `
+  #             --remote-debugging-port=9222 --user-data-dir="C:\edge-flow-profile"
+  #   Chrome: chrome.exe --remote-debugging-port=9222 --user-data-dir="C:\chrome-flow-profile"
+  #
+  # ВАЖНО: --user-data-dir обязан быть НЕ дефолтным. Chromium 136+ (и Edge 136+)
+  # игнорируют --remote-debugging-port на профиле по умолчанию. Отсюда следствие:
+  # это отдельный чистый профиль, и в Google в нём нужно залогиниться один раз
+  # руками. Дальше сессия живёт в этой папке.
+  endpoint: "http://localhost:9222"
+  # По какой подстроке искать нужную вкладку среди уже открытых.
+  # Скрипт НЕ навигирует и НЕ открывает новых вкладок — работает с тем, что открыл ты.
+  page_url_match: "labs.google/fx"
+
+# Русский интерфейс. При смене локали правь только этот блок.
+# Всё остальное селектится по ролям и стабильным data-/aria-атрибутам,
+# от языка не зависит.
+locale:
+  create_button: "Создать"          # и «+», и кнопка отправки — различаются по aria-haspopup
+  clear_request: "Очистить запрос"  # чистит и промпт, и прикреплённые референсы
+  add_to_request: "Добавить в запрос"
+  create_project: "Создать проект"
+  back_button: "Назад"
+
+selectors:
+  prompt_editor: '[data-slate-editor="true"]'
+
+  # Общий на всё приложение input. ВНИМАНИЕ: он грузит файл в БИБЛИОТЕКУ проекта,
+  # а не прикрепляет референс к запросу. Прикрепление — отдельный flow через «+».
+  file_input: 'input[type=file][accept="image/*"]'
+
+  # Прикреплённые референсы: чипы над редактором, у каждого <i>cancel</i>.
+  ref_chip: 'button[data-card-open]'
+
+  # Пикер медиа за кнопкой «+» (единственная кнопка с aria-haspopup=dialog).
+  add_dialog_trigger: 'button[aria-haspopup="dialog"]'
+  add_dialog: '[role=dialog]'
+  add_search: '#add-menu-input'
+  add_row: '[role=dialog] [data-testid="virtuoso-item-list"] > div'
+  add_scroller: '[role=dialog] [data-testid="virtuoso-scroller"]'
+
+  # Триггер меню настроек. НЕ по имени модели: в режиме «Видео» модель другая
+  # (Omni Flash), и button:has-text("Nano Banana") даёт 0 совпадений.
+  # Общий признак обоих режимов — токен crop_ в тексте кнопки. Проверено: ровно 1.
+  settings_trigger: 'button[aria-haspopup="menu"]:has-text("crop_")'
+  settings_menu: '[role=menu][data-radix-menu-content]'
+
+  # Табы внутри меню настроек. Собственные id вида radix-:r7i: генерируются
+  # заново при каждом рендере — селектить по ним нельзя, как и по классам sc-*.
+  # Стабилен хвост aria-controls: ...-content-PORTRAIT, ...-content-VIDEO и т.д.
+  tab_template: '[role=tab][aria-controls$="-content-{token}"]'
+
+  # Имя проекта в шапке. id настоящий, не radix-хэш. Поиск по библиотеке лежит
+  # в <form> внутри той же шапки, а имя — в <nav>, поэтому пересечения нет
+  # и локаль-зависимый aria-label не нужен.
+  project_title: '#flow-desktop-header nav input[type="text"]'
+
+  search_input: '[data-testid="search-input"]'
+  virtuoso_scroller: '[data-testid="virtuoso-scroller"]'
+  virtuoso_item_list: '[data-testid="virtuoso-item-list"]'
+  result_video: 'video[src*="getMediaUrlRedirect"]'
+  result_image: 'img[src*="getMediaUrlRedirect"]'
+
+generation:
+  # Обязательная проверка перед каждым запуском: если формат не этот — не запускаем.
+  required_aspect: "crop_9_16"
+  # Таб, соответствующий required_aspect (хвост aria-controls).
+  aspect_tab: "PORTRAIT"
+  # Сколько результатов за запуск. Спека рассчитана на 1 файл = 1 задача.
+  batch: 1
+
+  # Табы типа генерации.
+  kind_tabs:
+    image: "IMAGE"
+    video: "VIDEO"
+
+  # Подрежим видео: VIDEO_REFERENCES («Образцы», картинка как референс)
+  # или VIDEO_FRAMES («Кадры», картинка как первый кадр).
+  video_mode: "VIDEO_REFERENCES"
+  # Длительность видео по умолчанию. Перебивается полем duration в jobs.yaml.
+  video_duration_sec: 8
+  allowed_durations: [4, 6, 8, 10]
+
+  image_timeout_sec: 180
+  video_timeout_sec: 900
+  poll_interval_sec: 3
+  # Ждём, пока кнопка «Создать» станет aria-disabled="false"
+  ready_timeout_sec: 60
+
+antiban:
+  pause_between_jobs_sec: 30
+  pause_jitter_sec: 10      # итоговая пауза = pause ± jitter
+  concurrency: 1            # жёсткий потолок 3, выше не поднимается
+  long_pause_every: 10      # после каждых N задач — длинная пауза
+  long_pause_sec: 300
+  max_retries: 3            # для 429/5xx, экспоненциальный бэкофф
+
+paths:
+  out_dir: "out"
+  runs_log: "runs.jsonl"
+  screenshots_dir: "screenshots"

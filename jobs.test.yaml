@@ -1,0 +1,25 @@
+# Тестовая очередь для шага 4: батч из 3 задач + проверка резюма.
+# Только картинки — они стоят 0 бонусов, так что тест ничего не жжёт.
+
+- id: b01_corridor
+  kind: image
+  prompt: >-
+    Vertical 9:16 still. Empty noir dental clinic corridor at night, single
+    flickering ceiling lamp, teal fog, wet floor reflections, cinematic 3D render.
+  refs: []
+
+- id: b02_device
+  kind: image
+  prompt: >-
+    Vertical 9:16 still. A sleek black water flosser stands on a wet reflective
+    surface, dramatic amber rim light from the left, deep teal background,
+    product photography, cinematic 3D render.
+  refs: []
+
+- id: b03_tooth
+  kind: image
+  prompt: >-
+    Vertical 9:16 still. A small cartoon tooth character in a detective coat
+    tips his hat, warm amber key light, dark teal clinic background,
+    cinematic 3D render.
+  refs: []

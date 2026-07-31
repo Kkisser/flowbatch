@@ -1,0 +1,36 @@
+# Очередь задач flowbatch.
+#
+#   id      — уникальный, используется как имя файла в out/
+#   kind    — image | video
+#   prompt  — текст запроса
+#   refs    — список путей к локальным файлам-референсам (для video обычно
+#             результат предыдущей image-задачи)
+#   duration — только для video: 4 | 6 | 8 | 10 секунд.
+#             Не указан — берётся generation.video_duration_sec из config.yaml.
+#
+# Если ref указывает на файл, скачанный прошлой задачей, flowbatch найдёт его
+# в библиотеке Flow по media-uuid из runs.jsonl и НЕ будет заливать повторно.
+
+- id: t01_hero
+  kind: image
+  prompt: >-
+    Vertical 9:16 advertising still. A tiny cartoon tooth character with a worried
+    face stands in a dark noir dental clinic corridor, dramatic teal and amber
+    rim light, volumetric fog, cinematic depth of field, photoreal 3D render.
+  refs: []
+
+- id: t01_anim
+  kind: video
+  prompt: >-
+    The camera slowly pushes in on the tooth character while the fog drifts and
+    the amber light flickers. Subtle, cinematic, no cuts.
+  refs: ["out/t01_hero.png"]
+  duration: 8
+
+- id: t02_hero
+  kind: image
+  prompt: >-
+    Vertical 9:16 advertising still. Two hunters in long coats and hats walk down
+    a neon-lit clinic hallway carrying a sleek black water flosser device,
+    backlit silhouettes, teal fog, cinematic 3D render.
+  refs: []

@@ -1,0 +1,232 @@
+"""Текстовая очередь: промпты с @-директивами.
+
+Сценарий использования: промпты для сцен и видео пишет LLM, человек вставляет
+их одним куском в панель (или сохраняет в .txt) — и очередь собирается сама.
+Чтобы программа знала, какой кадр каким референсом прикреплять, в тексте
+ставятся флаги-директивы.
+
+Формат:
+
+    # комментарий — игнорируется
+
+    === IMG K1
+    @ref C:\\RVL\\ZASTRYALO\\S01E02\\refs\\E01_0A_geroi4.png
+    @ref C:\\RVL\\ZASTRYALO\\S01E02\\refs\\E02_0C_kost.png
+    Vertical 9:16 frame. Многострочный промпт как есть,
+    переводы строк сохраняются и уходят в Flow дословно.
+
+    === VID K1_anim
+    @use K1
+    @duration 8
+    Animate this image. ...
+
+Заголовок блока: `=== IMG <id>` или `=== VID <id>` (русские синонимы
+КАРТИНКА/ФОТО/ВИДЕО тоже понимаются). Директивы — строки, начинающиеся с @:
+
+    @ref <путь>       прикрепить локальный файл референсом (можно несколько)
+    @use <id>         прикрепить РЕЗУЛЬТАТ другой задачи этого файла;
+                      если задача не в файле — ищется out/<id>.* от прошлых
+                      прогонов. Работает и для видео, и для картинок.
+    @duration N       длительность видео: 4 | 6 | 8 | 10
+    @out <имя>        имя выходного файла (по умолчанию — id задачи)
+
+Директивы вычищаются из промпта до отправки — во Flow уходит только текст.
+Неизвестная @-строка — это ошибка, а не часть промпта: иначе опечатка в
+директиве молча утекла бы в генерацию.
+"""
+
+from __future__ import annotations
+
+import re
+from dataclasses import dataclass, field
+from pathlib import Path
+
+from .queue import Job
+
+HEADER_RE = re.compile(r"^===\s*(?P<kind>\S+)\s+(?P<id>[\w.\-]+)\s*$")
+
+KIND_MAP = {
+    "img": "image", "image": "image", "картинка": "image", "фото": "image", "кадр": "image",
+    "vid": "video", "video": "video", "видео": "video",
+}
+
+ALLOWED_DURATIONS = {4, 6, 8, 10}
+
+# Короткая справка для панели — показывается рядом с полем ввода.
+SYNTAX_HELP = (
+    "=== IMG <id> — блок картинки, === VID <id> — блок видео. Дальше директивы и промпт.\n"
+    "@ref <путь> — прикрепить файл референсом; @use <id> — прикрепить результат другой задачи;\n"
+    "@duration 4|6|8|10 — длительность видео; @out <имя> — имя файла результата.\n"
+    "Директивы в Flow не уходят — только текст промпта. Строки с # — комментарии."
+)
+
+
+@dataclass
+class _Block:
+    """Промежуточное представление одного блока при разборе."""
+
+    kind: str
+    id: str
+    line: int
+    refs: list[str] = field(default_factory=list)
+    uses: list[str] = field(default_factory=list)
+    duration: int | None = None
+    out: str | None = None
+    prompt_lines: list[str] = field(default_factory=list)
+
+
+def parse(text: str, out_dir: str | Path = "out") -> tuple[list[Job], list[str]]:
+    """Разобрать текст в список Job. Возвращает (задачи, ошибки).
+
+    При непустом списке ошибок задачи использовать нельзя: разбор атомарный,
+    чтобы кривой блок не прошёл молча.
+    """
+    out_dir = Path(out_dir)
+    blocks: list[_Block] = []
+    errors: list[str] = []
+    cur: _Block | None = None
+
+    for n, raw in enumerate(text.splitlines(), start=1):
+        line = raw.rstrip("\r")
+        stripped = line.strip()
+
+        m = HEADER_RE.match(stripped)
+        if m:
+            kind_raw = m.group("kind").lower()
+            kind = KIND_MAP.get(kind_raw)
+            if kind is None:
+                errors.append(
+                    f"строка {n}: неизвестный тип {m.group('kind')!r} — жду IMG или VID"
+                )
+                cur = None
+                continue
+            cur = _Block(kind=kind, id=m.group("id"), line=n)
+            blocks.append(cur)
+            continue
+
+        if stripped.startswith("#") and (cur is None or not cur.prompt_lines):
+            # Комментарии — только вне промпта: внутри текста решётка может
+            # быть частью промпта, её не трогаем.
+            continue
+
+        if not stripped and cur is None:
+            continue
+
+        if cur is None:
+            errors.append(f"строка {n}: текст вне блока — сначала заголовок === IMG/VID <id>")
+            continue
+
+        if stripped.startswith("@"):
+            _parse_directive(cur, stripped, n, errors)
+            continue
+
+        cur.prompt_lines.append(line)
+
+    jobs = _blocks_to_jobs(blocks, out_dir, errors)
+    return jobs, errors
+
+
+def _parse_directive(block: _Block, line: str, n: int, errors: list[str]) -> None:
+    parts = line.split(None, 1)
+    keyword = parts[0].lower()
+    rest = parts[1].strip() if len(parts) > 1 else ""
+
+    if keyword == "@ref":
+        if not rest:
+            errors.append(f"строка {n}: @ref без пути")
+        else:
+            block.refs.append(rest)
+    elif keyword == "@use":
+        if not rest or len(rest.split()) != 1:
+            errors.append(f"строка {n}: @use ждёт ровно один id задачи")
+        else:
+            block.uses.append(rest)
+    elif keyword == "@duration":
+        try:
+            dur = int(rest)
+        except ValueError:
+            errors.append(f"строка {n}: @duration ждёт число, получено {rest!r}")
+            return
+        if dur not in ALLOWED_DURATIONS:
+            errors.append(
+                f"строка {n}: @duration {dur} — допустимы {sorted(ALLOWED_DURATIONS)}"
+            )
+        elif block.kind != "video":
+            errors.append(f"строка {n}: @duration имеет смысл только в блоке VID")
+        else:
+            block.duration = dur
+    elif keyword == "@out":
+        if not rest:
+            errors.append(f"строка {n}: @out без имени")
+        else:
+            block.out = rest
+    else:
+        errors.append(
+            f"строка {n}: неизвестная директива {keyword!r} "
+            "(знаю @ref, @use, @duration, @out)"
+        )
+
+
+def _blocks_to_jobs(blocks: list[_Block], out_dir: Path, errors: list[str]) -> list[Job]:
+    # Карта id -> (позиция, тип, основа имени результата) для проверки @use.
+    seen: dict[str, tuple[int, str, str]] = {}
+    for i, b in enumerate(blocks):
+        if b.id in seen:
+            errors.append(f"строка {b.line}: повтор id {b.id!r} — id должны быть уникальны")
+        else:
+            stem = Path(b.out).stem if b.out else b.id
+            seen[b.id] = (i, b.kind, stem)
+
+    jobs: list[Job] = []
+    for i, b in enumerate(blocks):
+        prompt = "\n".join(b.prompt_lines).strip()
+        if not prompt:
+            errors.append(f"строка {b.line}: блок {b.id!r} без текста промпта")
+
+        refs: list[str] = []
+        for use in b.uses:
+            target = seen.get(use)
+            if target is not None:
+                pos, kind, stem = target
+                if kind == "video":
+                    errors.append(
+                        f"блок {b.id!r}: @use {use} указывает на видео — "
+                        "референсом может быть только картинка"
+                    )
+                    continue
+                if pos >= i:
+                    errors.append(
+                        f"блок {b.id!r}: @use {use} указывает на задачу, которая "
+                        "генерится позже него — поставь её выше в файле"
+                    )
+                    continue
+                refs.append(str(out_dir / stem))
+            else:
+                # Не в этом файле — может быть результат прошлого прогона.
+                matches = sorted(out_dir.glob(f"{use}.*"))
+                if matches:
+                    refs.append(str(matches[0]))
+                else:
+                    errors.append(
+                        f"блок {b.id!r}: @use {use} — такой задачи нет ни в файле, "
+                        f"ни готовым файлом в {out_dir}/"
+                    )
+
+        refs += b.refs
+        # дубли убираем, порядок сохраняем
+        dedup: list[str] = []
+        for r in refs:
+            if r not in dedup:
+                dedup.append(r)
+
+        jobs.append(
+            Job(
+                id=b.id,
+                kind=b.kind,  # type: ignore[arg-type]
+                prompt=prompt,
+                refs=dedup,
+                duration=b.duration,
+                output_name=b.out,
+            )
+        )
+    return jobs

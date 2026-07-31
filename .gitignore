@@ -1,0 +1,18 @@
+.env
+out/
+runs.jsonl
+screenshots/
+# Перенаправленный вывод процессов: туда попадают трассировки Playwright,
+# а в них — заголовок Cookie с session-token.
+*.out
+*.err
+*.log
+# Локальный кэш uuid референсов и текст, вставленный в панель
+.flowbatch_refcache.json
+prompts_pasted.flow.txt
+*.png
+*.jpg
+*.mp4
+.venv/
+__pycache__/
+*.pyc

@@ -1,0 +1,21 @@
+# Демо-очередь: проверка @ref (внешний файл) и @use (результат другой задачи).
+# Обе картинки используют ОДИН файл-референс — вторая должна взять его из кэша.
+
+=== IMG demo_k1
+@ref out/b03_tooth.jpg
+Vertical 9:16 still. The same small cartoon tooth character in a detective coat
+from the reference image, now standing in a bright pastel-blue bathroom,
+soft morning light through a round window, gentle steam, cinematic 3D render,
+Pixar-style, no photorealism.
+
+=== IMG demo_k2
+@ref out/b03_tooth.jpg
+Vertical 9:16 still. Close-up portrait of the same cartoon tooth character
+from the reference image, warm amber rim light on the enamel, dark teal
+background with soft bokeh, cinematic 3D render, Pixar-style.
+
+=== VID demo_anim
+@use demo_k1
+@duration 8
+Animate this image. Very slow push-in on the tooth character, steam drifts,
+the light gently shifts. Calm, cozy, no cuts, no camera shake.
