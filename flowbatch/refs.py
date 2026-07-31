@@ -20,7 +20,32 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
 
+from .promptfile import LIB_PREFIX, LIB_PROJECT_SEP
 from .queue import RunLog, resolve_ref
+
+
+@dataclass
+class RefHandle:
+    """Разрешённый референс, готовый к прикреплению.
+
+    uuid задан      -> прикреплять по uuid (файл уже в библиотеке);
+    uuid пуст       -> прикреплять поиском по имени (search) в библиотеке
+                       проекта picker_project (None = текущий).
+    """
+
+    label: str
+    uuid: str | None = None
+    search: str | None = None
+    picker_project: str | None = None
+
+
+def parse_lib_spec(spec: str) -> tuple[str, str | None]:
+    """Разобрать 'lib:имя' / 'lib:проект :: имя' -> (имя, проект|None)."""
+    body = spec[len(LIB_PREFIX):].strip()
+    if LIB_PROJECT_SEP in body:
+        project, name = body.split(LIB_PROJECT_SEP, 1)
+        return name.strip(), project.strip() or None
+    return body, None
 
 
 @dataclass
@@ -94,22 +119,34 @@ class RefResolver:
         self.uploads = 0
         self.reused = 0
 
-    def resolve(self, raw: str | Path) -> str:
-        """Путь -> uuid. Бросает FileNotFoundError, если файла нет на диске."""
+    def resolve(self, raw: str | Path) -> RefHandle:
+        """Спека -> RefHandle. Бросает FileNotFoundError для отсутствующих файлов.
+
+        Порядок для путей: журнал этого проекта -> кэш заливок -> загрузка.
+        Спеки lib: не трогают диск вовсе — прикрепление пойдёт поиском по
+        библиотеке (текущего или указанного проекта) на фазе attach.
+        """
+        if isinstance(raw, str) and raw.startswith(LIB_PREFIX):
+            name, project = parse_lib_spec(raw)
+            if not name:
+                raise ValueError(f"Пустое имя в референсе библиотеки: {raw!r}")
+            self.reused += 1  # из библиотеки — по определению без загрузки
+            return RefHandle(label=raw, search=name, picker_project=project)
+
         path = resolve_ref(raw)
 
         # 1. Результат прошлой задачи в этом же проекте.
         uuid = self.log.uuid_for_file(path, project=self.project_id)
         if uuid:
             self.reused += 1
-            return uuid
+            return RefHandle(label=path.name, uuid=uuid)
 
         # 2. Уже заливали в этот проект и файл с тех пор не менялся.
         stat = RefStat.of(path)
         uuid = self.cache.get(self.project_id, stat)
         if uuid:
             self.reused += 1
-            return uuid
+            return RefHandle(label=path.name, uuid=uuid)
 
         # 3. Заливаем и запоминаем.
         if self.on_upload:
@@ -117,4 +154,4 @@ class RefResolver:
         uuid = self.client.upload_to_library(path)
         self.cache.put(self.project_id, stat, uuid)
         self.uploads += 1
-        return uuid
+        return RefHandle(label=path.name, uuid=uuid)

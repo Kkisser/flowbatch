@@ -25,6 +25,8 @@ Third paragraph after blank line.
 
 === КАРТИНКА K2
 @ref C:\\refs\\geroi.png
+@lib Эталон героев
+@lib ЗАСТРЯЛО :: Эталон Языка
 Another prompt.
 
 === VID K1_anim
@@ -67,6 +69,10 @@ Video referencing video.
 === IMG LATE_PROJECT
 @project Опоздавший
 Prompt text.
+
+=== IMG BADLIB
+@lib Проект ::Имя
+Prompt.
 """
 
 
@@ -87,6 +93,17 @@ def main() -> int:
         failures.append("GOOD: директивы попали в промпт или текст потерялся")
     if k1.prompt.count("\n") < 3:
         failures.append("GOOD: переводы строк промпта не сохранились")
+    k2 = jobs[1]
+    if k2.refs[1:] != ["lib:Эталон героев", "lib:ЗАСТРЯЛО :: Эталон Языка"]:
+        failures.append(f"GOOD: @lib разобран неверно: {k2.refs}")
+    from flowbatch.refs import parse_lib_spec
+    if parse_lib_spec("lib:Эталон героев") != ("Эталон героев", None):
+        failures.append("parse_lib_spec: простая форма сломана")
+    if parse_lib_spec("lib:ЗАСТРЯЛО :: Эталон Языка") != ("Эталон Языка", "ЗАСТРЯЛО"):
+        failures.append("parse_lib_spec: форма с проектом сломана")
+    if parse_lib_spec("lib:Проект :: Имя :: с двоеточиями") != ("Имя :: с двоеточиями", "Проект"):
+        failures.append("parse_lib_spec: ' :: ' внутри имени должен резаться один раз")
+
     anim = jobs[2]
     if anim.kind != "video" or anim.duration != 8:
         failures.append(f"GOOD: K1_anim разобран неверно: {anim}")
@@ -107,6 +124,7 @@ def main() -> int:
         "указывает на видео",
         "без текста промпта",
         "@project ставится в начале файла",
+        "разделитель проекта пишется как ' :: '",
     ]
     for bit in expected_bits:
         if not any(bit in e for e in errors):

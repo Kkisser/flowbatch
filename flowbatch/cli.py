@@ -12,7 +12,7 @@ from rich.panel import Panel
 from rich.table import Table
 
 from .config import Config
-from .flow_client import FlowClient, FlowClientError
+from .flow_client import FlowClient, FlowClientError, FlowError
 from .notify import Notifier
 from pathlib import Path
 
@@ -440,6 +440,65 @@ def cmd_run(args: argparse.Namespace) -> int:
     return 1 if outcome.failed else 0
 
 
+# -------------------------------------------------------------------- library
+
+
+def cmd_library(args: argparse.Namespace) -> int:
+    """Показать элементы библиотеки Flow по имени — чтобы писать @lib не вслепую."""
+    cfg = Config.load(args.config)
+    client = FlowClient(cfg)
+    try:
+        client.connect()
+    except FlowClientError as exc:
+        console.print(Panel(escape(str(exc)), border_style="red", title="Что делать"))
+        return 2
+
+    client.focus()
+    lib_project = args.library_project
+    try:
+        if client.current_project_id() is None:
+            # На списке проектов пикера нет физически. С --project честно
+            # открываем этот проект; без него — просим открыть хоть какой-то.
+            if not lib_project:
+                console.print("[red]Открыт список проектов — открой проект или укажи --project[/red]")
+                return 2
+            client.ensure_project(lib_project)
+            lib_project = None  # теперь это текущий проект
+
+        where = lib_project or client.project_name()
+        console.print(f"Библиотека проекта [bold]{where}[/bold]"
+                      + (f", поиск {args.query!r}" if args.query else "") + ":")
+        items = client.list_library(
+            args.query or "",
+            project=lib_project,
+            only_images=not args.all_types,
+        )
+    except (FlowError, FlowClientError) as exc:
+        console.print(Panel(escape(str(exc)), title="[bold red]Библиотека[/bold red]", border_style="red"))
+        return 1
+    finally:
+        try:
+            client.close_add_dialog()
+        except Exception:  # noqa: BLE001 — диалога могло и не быть
+            pass
+        client.close()
+
+    if not items:
+        console.print("  [yellow]ничего не найдено[/yellow]")
+        return 1
+
+    table = Table(header_style="bold")
+    table.add_column("Имя")
+    table.add_column("Тип")
+    table.add_column("uuid", style="dim")
+    for it in sorted(items, key=lambda x: x["name"].lower()):
+        table.add_row(escape(it["name"]), it["type"], it["uuid"][:8])
+    console.print(table)
+    console.print(f"[dim]всего: {len(items)}. В промпте: @lib <имя>"
+                  f"{'  или  @lib ' + where + ' :: <имя>' if args.library_project else ''}[/dim]")
+    return 0
+
+
 # ------------------------------------------------------------------------- ui
 
 
@@ -465,6 +524,12 @@ def build_parser() -> argparse.ArgumentParser:
 
     d = sub.add_parser("doctor", help="проверить подключение, селекторы, настройки, Telegram")
     d.set_defaults(func=cmd_doctor)
+
+    lb = sub.add_parser("library", help="список элементов библиотеки Flow (для @lib)")
+    lb.add_argument("query", nargs="?", default="", help="подстрока имени")
+    lb.add_argument("--project", dest="library_project", help="смотреть библиотеку другого проекта")
+    lb.add_argument("--all-types", action="store_true", help="не только картинки")
+    lb.set_defaults(func=cmd_library)
 
     w = sub.add_parser("ui", help="локальная веб-панель управления очередью")
     w.add_argument("--source", default="jobs.yaml", help="очередь по умолчанию: .xlsx или jobs.yaml")

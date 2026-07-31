@@ -27,6 +27,9 @@
                       относится очередь. Перед прогоном программа откроет этот
                       проект (или создаст, если его нет).
     @ref <путь>       прикрепить локальный файл референсом (можно несколько)
+    @lib <имя>        прикрепить картинку ИЗ БИБЛИОТЕКИ Flow по имени —
+                      без файла на диске. Форма `@lib <проект> :: <имя>`
+                      берёт её из библиотеки другого проекта.
     @use <id>         прикрепить РЕЗУЛЬТАТ другой задачи этого файла;
                       если задача не в файле — ищется out/<id>.* от прошлых
                       прогонов. Работает и для видео, и для картинок.
@@ -59,10 +62,15 @@ ALLOWED_DURATIONS = {4, 6, 8, 10}
 SYNTAX_HELP = (
     "@project <имя> — первой строкой: проект Flow этой очереди (откроется/создастся сам).\n"
     "=== IMG <id> — блок картинки, === VID <id> — блок видео. Дальше директивы и промпт.\n"
-    "@ref <путь> — прикрепить файл референсом; @use <id> — прикрепить результат другой задачи;\n"
-    "@duration 4|6|8|10 — длительность видео; @out <имя> — имя файла результата.\n"
+    "@ref <путь> — файл с диска; @lib <имя> — картинка из библиотеки Flow по имени\n"
+    "(@lib <проект> :: <имя> — из библиотеки другого проекта); @use <id> — результат\n"
+    "другой задачи; @duration 4|6|8|10 — длительность видео; @out <имя> — имя результата.\n"
     "Директивы в Flow не уходят — только текст промпта. Строки с # — комментарии."
 )
+
+# Внутренний префикс referencе-спеки «из библиотеки». Разбирается в refs.py.
+LIB_PREFIX = "lib:"
+LIB_PROJECT_SEP = " :: "
 
 
 @dataclass
@@ -157,6 +165,25 @@ def _parse_directive(block: _Block, line: str, n: int, errors: list[str]) -> Non
             errors.append(f"строка {n}: @ref без пути")
         else:
             block.refs.append(rest)
+    elif keyword == "@lib":
+        if not rest:
+            errors.append(f"строка {n}: @lib без имени элемента библиотеки")
+        elif LIB_PROJECT_SEP in rest:
+            project, name = rest.split(LIB_PROJECT_SEP, 1)
+            if not project.strip() or not name.strip():
+                errors.append(f"строка {n}: @lib — пустое имя проекта или элемента вокруг ' :: '")
+            else:
+                block.refs.append(LIB_PREFIX + rest)
+        elif "::" in rest:
+            # '::' без пробелов не является разделителем — почти наверняка
+            # опечатка, которая молча превратила бы «проект :: имя» в имя.
+            errors.append(
+                f"строка {n}: @lib — разделитель проекта пишется как ' :: ' "
+                f"(с пробелами с обеих сторон), получено {rest!r}"
+            )
+        else:
+            # Внутри refs живёт спека с префиксом lib: — её разбирает resolver.
+            block.refs.append(LIB_PREFIX + rest)
     elif keyword == "@use":
         if not rest or len(rest.split()) != 1:
             errors.append(f"строка {n}: @use ждёт ровно один id задачи")
@@ -184,7 +211,7 @@ def _parse_directive(block: _Block, line: str, n: int, errors: list[str]) -> Non
     else:
         errors.append(
             f"строка {n}: неизвестная директива {keyword!r} "
-            "(знаю @ref, @use, @duration, @out)"
+            "(знаю @project, @ref, @lib, @use, @duration, @out)"
         )
 
 

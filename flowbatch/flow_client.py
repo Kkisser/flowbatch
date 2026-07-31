@@ -736,6 +736,209 @@ class FlowClient:
         self.page.keyboard.press("Escape")
         self.page.wait_for_timeout(500)
 
+    # ------------------------------------------- пикер: проект, поиск, имена
+
+    def _picker_project_button(self):  # noqa: ANN202 — Locator
+        """Кнопка выбора проекта в шапке пикера (первый haspopup=menu в диалоге)."""
+        return self.page.locator(
+            f'{self.cfg.selectors["add_dialog"]} button[aria-haspopup="menu"]'
+        ).first
+
+    def set_picker_project(self, name: str) -> None:
+        """Переключить пикер на библиотеку другого проекта. No-op, если уже там."""
+        name = name.strip()
+        btn = self._picker_project_button()
+        if btn.count() == 0:
+            raise FlowError(ERR_UNKNOWN, "В пикере не найдена кнопка выбора проекта")
+        current = (btn.inner_text() or "").split("\n")[0].strip()
+        if current == name:
+            return
+        btn.click()
+        self.page.wait_for_timeout(800)
+        # Точное совпадение имени в приоритете: подстрочный поиск не смог бы
+        # выбрать проект, чьё имя — префикс другого («Дыхание» и «Дыхание(старое)»).
+        idx = self.page.evaluate(
+            r"""
+            (name) => {
+              const items = Array.from(document.querySelectorAll(
+                '[role=menu] [role=menuitem], [role=menu] [role=menuitemradio]'));
+              const texts = items.map(i => (i.innerText || '').replace(/\s+/g, ' ').trim());
+              let hit = texts.findIndex(t => t === name);
+              if (hit === -1) {
+                const subs = texts.map((t, i) => t.includes(name) ? i : -1).filter(i => i >= 0);
+                hit = subs.length === 1 ? subs[0] : -1;
+              }
+              return hit;
+            }
+            """,
+            name,
+        )
+        if idx < 0:
+            self.page.keyboard.press("Escape")
+            raise FlowError(
+                ERR_UNKNOWN,
+                f"В меню пикера нет проекта с точным именем {name!r} (или подстрока неоднозначна)",
+                detail="Проверь имя — список проектов виден в выпадашке «+»-диалога.",
+            )
+        self.page.locator(
+            '[role=menu] [role=menuitem], [role=menu] [role=menuitemradio]'
+        ).nth(idx).click()
+        self.page.wait_for_timeout(1500)
+        now = (self._picker_project_button().inner_text() or "").split("\n")[0].strip()
+        if now != name:
+            raise FlowError(ERR_UNKNOWN, f"Пикер не переключился: ожидался {name!r}, показан {now!r}")
+
+    def _picker_tab(self, kind: str) -> None:
+        """Включить таб типа в пикере: kind = 'all' | 'images'.
+
+        Подписи берутся из locale-блока конфига, как и остальные надписи UI.
+        Промах не фатален (останется активный таб), но это сузит только
+        видимую выборку, а не сломает выбор по uuid/имени.
+        """
+        label = self.cfg.locale.get(
+            "picker_tab_images" if kind == "images" else "picker_tab_all",
+            "Изображения" if kind == "images" else "Все",
+        )
+        tab = self.page.locator(f'{self.cfg.selectors["add_dialog"]} [role=tab]').filter(
+            has_text=label
+        )
+        if tab.count() == 0:
+            return
+        if tab.first.get_attribute("aria-selected") == "true":
+            return
+        tab.first.click()
+        self.page.wait_for_timeout(800)
+
+    def _locate_row_scrolling(self, uuid: str, max_scrolls: int = 25) -> bool:
+        """Доскроллить пикер до строки с uuid. True, если строка на экране.
+
+        Конец списка подтверждаем дважды: виртуализированный список может
+        дорисовывать хвост после того, как scrollTop уже упёрся в низ.
+        """
+        scroller = self.cfg.selectors["add_scroller"]
+        end_hits = 0
+        for _ in range(max_scrolls):
+            if uuid in self._dialog_rows_uuids():
+                return True
+            at_end = self.page.evaluate(
+                "(sel) => { const s = document.querySelector(sel);"
+                " if (!s) return true;"
+                " const end = s.scrollTop + s.clientHeight >= s.scrollHeight - 4;"
+                " s.scrollTop += s.clientHeight * 0.8; return end; }",
+                scroller,
+            )
+            self.page.wait_for_timeout(500)
+            end_hits = end_hits + 1 if at_end else 0
+            if end_hits >= 2:
+                break
+        return uuid in self._dialog_rows_uuids()
+
+    def picker_search(self, query: str) -> None:
+        """Ввести запрос в поиск пикера (контролируемый React-инпут — посимвольно)."""
+        inp = self.page.locator(self.cfg.selectors["add_search"]).first
+        inp.click()
+        self.page.keyboard.press("Control+A")
+        self.page.keyboard.press("Delete")
+        if query:
+            inp.type(query, delay=30)
+        self.page.wait_for_timeout(1200)
+
+    def picker_rows(self) -> list[dict[str, str]]:
+        """Видимые строки пикера: имя, тип, uuid."""
+        js = r"""
+        (sel) => Array.from(document.querySelectorAll(sel)).map(r => {
+          const img = r.querySelector('img');
+          const lines = (r.innerText || '').split('\n').map(s => s.trim()).filter(Boolean);
+          return { name: lines[0] || '', type: lines[1] || '', src: img ? (img.src || '') : '' };
+        })
+        """
+        rows = self.page.evaluate(js, self.cfg.selectors["add_row"]) or []
+        out = []
+        for r in rows:
+            m = _MEDIA_NAME_RE.search(r["src"])
+            out.append({"name": r["name"], "type": r["type"], "uuid": m.group(1) if m else ""})
+        return out
+
+    def list_library(self, query: str = "", project: str | None = None,
+                     only_images: bool = True, max_scrolls: int = 20) -> list[dict[str, str]]:
+        """Список элементов библиотеки (текущего или другого проекта) по имени."""
+        self.open_add_dialog()
+        if project:
+            self.set_picker_project(project)
+        else:
+            current = (self.project_name() or "").strip()
+            if current:
+                self.set_picker_project(current)
+        self._picker_tab("images" if only_images else "all")
+        self.picker_search(query)
+
+        seen: dict[str, dict[str, str]] = {}
+        scroller = self.cfg.selectors["add_scroller"]
+        end_hits = 0
+        for _ in range(max_scrolls):
+            before = len(seen)
+            for r in self.picker_rows():
+                if r["uuid"]:
+                    seen[r["uuid"]] = r
+            at_end = self.page.evaluate(
+                "(sel) => { const s = document.querySelector(sel); if (!s) return true;"
+                " const end = s.scrollTop + s.clientHeight >= s.scrollHeight - 4;"
+                " s.scrollTop += s.clientHeight * 0.8; return end; }",
+                scroller,
+            )
+            self.page.wait_for_timeout(400)
+            # Конец подтверждаем дважды И без прироста элементов: хвост
+            # виртуализированного списка может дорисоваться с опозданием.
+            end_hits = end_hits + 1 if (at_end and len(seen) == before) else 0
+            if end_hits >= 2:
+                break
+        return list(seen.values())
+
+    def attach_from_library(self, query: str, project: str | None = None) -> str:
+        """Найти картинку в библиотеке по имени и прикрепить к запросу.
+
+        Правило выбора: единственное вхождение подстроки, либо точное совпадение
+        имени, если вхождений несколько. Иначе — ошибка со списком кандидатов.
+        Возвращает uuid прикреплённого элемента.
+        """
+        items = self.list_library(query, project=project, only_images=True)
+        matches = [i for i in items if query.lower() in i["name"].lower()]
+        exact = [i for i in matches if i["name"] == query]
+        where = f"в проекте {project!r}" if project else "в текущем проекте"
+
+        if not matches:
+            self.close_add_dialog()
+            raise FlowError(
+                ERR_UNKNOWN,
+                f"@lib: {where} нет картинки с именем содержащим {query!r}",
+                detail="Имена видны в «+»-диалоге Flow или через команду library.",
+            )
+        if len(exact) == 1:
+            target = exact[0]
+        elif len(matches) == 1:
+            target = matches[0]
+        else:
+            names = ", ".join(repr(i["name"]) for i in matches[:6])
+            self.close_add_dialog()
+            raise FlowError(
+                ERR_UNKNOWN,
+                f"@lib: {where} по запросу {query!r} найдено {len(matches)} картинок — уточни имя",
+                detail=f"кандидаты: {names}",
+            )
+
+        # После сбора список мог уехать скроллом — возвращаем поиск и
+        # доскролливаем до нужной строки (точное совпадение может лежать
+        # глубже первого экрана).
+        if target["uuid"] not in self._dialog_rows_uuids():
+            self.picker_search(query)
+        if not self._locate_row_scrolling(target["uuid"]):
+            self.close_add_dialog()
+            raise FlowError(ERR_UNKNOWN, f"@lib: строка {target['name']!r} пропала из пикера")
+        uuids = self._dialog_rows_uuids()
+        self._select_dialog_row(uuids.index(target["uuid"]))
+        self._confirm_add()
+        return target["uuid"]
+
     def _dialog_rows_uuids(self) -> list[str]:
         """uuid видимых строк пикера, в порядке отображения."""
         js = r"""
@@ -775,26 +978,25 @@ class FlowClient:
         btn.first.click()
         self.page.wait_for_timeout(1500)
 
-    def attach_ref_by_uuid(self, uuid: str, max_scrolls: int = 25) -> None:
-        """Прикрепить элемент библиотеки по его media-uuid. Без повторной загрузки."""
+    def attach_ref_by_uuid(self, uuid: str, project: str | None = None,
+                           max_scrolls: int = 25) -> None:
+        """Прикрепить элемент библиотеки по его media-uuid. Без повторной загрузки.
+
+        Пикер запоминает последний выбранный проект, поэтому явно возвращаем его
+        на нужный: иначе после @lib из чужого проекта uuid текущего проекта
+        в списке не найдётся.
+        """
         self.open_add_dialog()
-        scroller = self.cfg.selectors["add_scroller"]
-        for _ in range(max_scrolls):
+        want = (project or self.project_name() or "").strip()
+        if want:
+            self.set_picker_project(want)
+        self._picker_tab("all")
+        self.picker_search("")
+        if self._locate_row_scrolling(uuid, max_scrolls=max_scrolls):
             uuids = self._dialog_rows_uuids()
-            if uuid in uuids:
-                self._select_dialog_row(uuids.index(uuid))
-                self._confirm_add()
-                return
-            at_end = self.page.evaluate(
-                "(sel) => { const s = document.querySelector(sel);"
-                " if (!s) return true;"
-                " const end = s.scrollTop + s.clientHeight >= s.scrollHeight - 4;"
-                " s.scrollTop += s.clientHeight * 0.8; return end; }",
-                scroller,
-            )
-            self.page.wait_for_timeout(500)
-            if at_end:
-                break
+            self._select_dialog_row(uuids.index(uuid))
+            self._confirm_add()
+            return
         self.close_add_dialog()
         raise FlowError(ERR_UNKNOWN, f"В пикере не найден элемент с uuid {uuid}")
 
@@ -828,31 +1030,39 @@ class FlowClient:
     def attach_refs(self, refs: Iterable[str | Path], resolver: Any) -> list[str]:
         """Прикрепить референсы к запросу. Возвращает список прикреплённых uuid.
 
-        resolver отвечает за путь -> uuid: он решает, можно ли переиспользовать
-        уже существующий элемент библиотеки, или файл надо залить (см. refs.py).
+        resolver превращает каждую спеку (путь или lib:имя) в RefHandle: либо
+        готовый uuid (файл залит/переиспользован), либо задание «найти в
+        библиотеке по имени» (см. refs.py).
 
-        Сначала разрешаем ВСЕ uuid, и только потом открываем пикер: разрешение
+        Сначала разрешаем ВСЁ, и только потом открываем пикер: разрешение
         может включать загрузку файла в библиотеку, а загрузка при открытом
         пикере — это гонка между его списком и списком библиотеки.
         """
-        paths = list(refs)
+        specs = list(refs)
+        try:
+            handles = [resolver.resolve(s) for s in specs]
+        except (FileNotFoundError, ValueError) as exc:
+            raise FlowError(ERR_UNKNOWN, str(exc)) from exc
+
         attached: list[str] = []
-        for p in paths:
-            try:
-                attached.append(resolver.resolve(p))
-            except (FileNotFoundError, ValueError) as exc:
-                raise FlowError(ERR_UNKNOWN, str(exc)) from exc
-        for uuid in attached:
-            self.attach_ref_by_uuid(uuid)
+        for h in handles:
+            if h.uuid:
+                self.attach_ref_by_uuid(h.uuid, project=h.picker_project)
+                attached.append(h.uuid)
+            else:
+                attached.append(self.attach_from_library(h.search or "", project=h.picker_project))
 
         self.close_add_dialog()
 
-        # Верификация: сколько чипов реально висит в панели.
+        # Верификация: и количество чипов, и их состав. Сверка по uuid ловит
+        # случай «прикрепилось что-то не то», который счётчик пропустил бы.
         got = self.attached_refs()
-        if len(got) < len(paths):
+        missing = [u for u in attached if u not in set(got)]
+        if len(got) < len(specs) or missing:
             raise FlowError(
                 ERR_UNKNOWN,
-                f"Прикрепилось {len(got)} референсов из {len(paths)}",
+                f"Прикрепилось {len(got)} референсов из {len(specs)}"
+                + (f", не хватает {[m[:8] for m in missing]}" if missing else ""),
                 detail=f"ожидались {attached}, в панели {got}",
             )
         return attached

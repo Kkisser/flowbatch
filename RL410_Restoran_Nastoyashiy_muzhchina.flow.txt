@@ -1,0 +1,135 @@
+# «НАСТОЯЩИЙ МУЖЧИНА» — ирригатор Revyline RL 410 слайдер + приложение (промокод 20608)
+# Адаптировано из Ирригатор_RL410_Ресторан_Настоящий_мужчина.md. Сценарий один — файл один.
+@project RL410 Настоящий мужчина
+
+# ВАЖНО, реф-фото продукта: у RL 410 реф-фото в библиотеке Flow НЕТ (в каталоге
+# ссылки тоже нет — взять с revyline.ru или у куратора, см. бриф). Положи файл в
+#   refs\rl410.jpg
+# рядом с этим файлом — сцены 3 и 4 прикрепляют его через @ref. Если фото уже
+# залито в какой-то проект Flow — замени обе строки @ref на
+#   @lib <имя проекта> :: <имя файла в библиотеке>
+#
+# ТАЙМИНГИ: Flow умеет только 4/6/8/10 сек. Сценарные 5-сек сцены идут как 6s
+# (финальный бит растянут на секунду), продукт-херо 12s сжат до 10s — биты
+# промпта перетаймированы пропорционально, реплики не тронуты.
+#
+# Канон персонажей фиксируется кадром 1 (Кира, Тёма, официант) — дальше он
+# цепляется через @use. Мужчина появляется в кадре 5 и цепляется из него.
+#
+# Порядок: сначала IMG_01, утвердить канон внешности; потом остальные картинки;
+# кадры 3–4 (продукт) проверить поштучно; потом видео. Финальный экран с
+# промокодом надёжнее собрать композитом в CapCut (см. заметку у сцены 7).
+
+# ---------- БЛОК 1: ИЗОБРАЖЕНИЯ (nano banana) ----------
+
+# СЦЕНА 1 — Хук: счёт на стол. КАНОН ПЕРСОНАЖЕЙ — генерить и утверждать первым.
+=== IMG RL410_IMG_01
+Pixar-style 3D cartoon, cinematic vertical 9:16 shot. Interior of a cozy upscale evening restaurant, warm golden lighting, candles, blurred guests in background. A young couple sits at a table by the window. GIRL: slim, ~25, long wavy chestnut hair, expressive green eyes, elegant powder-pink satin dress, small gold earrings, dazzling white smile, small beige handbag on her lap. GUY (Tyoma): ~27, skinny, dark messy hair, light stubble, wrinkled grey polo shirt, shifty guilty expression. An elderly WAITER with a mustache, black vest, white shirt and bow tie places a leather bill folder on the table between them. Girl looks at Tyoma expectantly. All environmental text in Russian only. Soft depth of field, warm cinematic color grade.
+
+# СЦЕНА 2 — «Я на мели»
+=== IMG RL410_IMG_02
+@use RL410_IMG_01
+Pixar-style 3D cartoon, vertical 9:16, same restaurant table, same warm evening lighting. Medium close-up two-shot. Tyoma (reference image) leans slightly across the table with a guilty pleading smile, one hand pressed to his chest. The girl (reference image) looks at him with a disappointed, tired expression, eyebrows slightly raised, lips pressed together. The leather bill folder lies on the table between them. All environmental text in Russian only.
+
+# СЦЕНА 3 — Сумочка: листики, хомяк, помада и ирригатор
+=== IMG RL410_IMG_03
+@ref refs\rl410.jpg
+Pixar-style 3D cartoon, vertical 9:16. Extreme close-up TOP-DOWN shot INSIDE an open small beige handbag on the girl's lap, warm restaurant light falling inside. Contents clearly visible: a few crumpled green leaves (like play-money leaves), a tiny chubby ginger-and-white HAMSTER sitting in the corner cheerfully chewing sunflower seeds with puffed cheeks, a pink lipstick, and a compact Revyline RL 410 portable slider oral irrigator lying neatly inside, closed compact position. PRODUCT LOCK: the irrigator must exactly match the attached reference photo — body shape, color, and the Latin lettering "Revyline" on the device; never translate or alter the branding. Cute, comedic, highly detailed. All environmental text in Russian only (except product branding).
+
+# СЦЕНА 4 — ПРОДУКТ-ХЕРО: туалет, демо ирригатора. Проверять поштучно!
+=== IMG RL410_IMG_04
+@use RL410_IMG_01
+@ref refs\rl410.jpg
+Pixar-style 3D cartoon, vertical 9:16. Elegant restaurant restroom: marble sink, large round mirror with warm sconce lighting, soft neutral tones. The girl (reference image, powder-pink satin dress) stands at the sink facing the camera as if it were the mirror, holding the Revyline RL 410 portable slider oral irrigator up at chest level in one hand, presenting it toward the camera. Confident, slightly conspiratorial expression. PRODUCT LOCK: the irrigator must exactly match the attached reference photo — slider body, reservoir, nozzle, and Latin "Revyline" lettering preserved exactly, never translated. The product is the visual focus of the frame. All environmental text in Russian only (except product branding).
+
+# СЦЕНА 5 — Комплимент (появляется МУЖЧИНА — канон фиксируется здесь)
+=== IMG RL410_IMG_05
+@use RL410_IMG_01
+Pixar-style 3D cartoon, vertical 9:16, warm evening restaurant interior. The girl (reference image) walks gracefully between tables, radiant confident smile. At a table for one sits the MAN: ~35, fit, dark neatly styled hair with light grey at the temples, navy suit, white shirt, no tie, expensive watch, warm confident smile. He turns toward her, one hand slightly raised to catch her attention. Blurred candle-lit background. All environmental text in Russian only.
+
+# СЦЕНА 6 — Панчлайн: «А это, Тём, настоящий мужчина»
+=== IMG RL410_IMG_06
+@use RL410_IMG_01
+@use RL410_IMG_05
+Pixar-style 3D cartoon, vertical 9:16. The couple's table. Tyoma (reference) sits confused, pointing a finger at the MAN in the navy suit who stands beside the girl. The girl stands next to the man, chin slightly raised, serene victorious smile. The bill folder still on the table. Warm evening restaurant light, blurred guests behind. All environmental text in Russian only.
+
+# СЦЕНА 7 — ФИНАЛ: приложение + промокод 20608
+# ⚠ Продакшн: экран с UI и промокодом надёжнее собрать композитом — сгенерить
+# кадр с телефоном, а интерфейс «ПРОМОКОД 20608» + QR наложить в CapCut статикой.
+=== IMG RL410_IMG_07
+@use RL410_IMG_05
+Pixar-style 3D cartoon, vertical 9:16. Close-up: the girl's elegant hand holds a modern smartphone toward the camera, filling most of the frame. The screen shows the Revyline mobile app: clean white-and-blue interface, header «РевиЛайн», a promo banner with large text «ПРОМОКОД 20608» and a QR code below, a blue button «Получить бонусы». Behind the phone, softly blurred: the girl and the man walking out of the restaurant together, warm evening light. SCREEN TEXT LOCK: render the on-screen text exactly as specified, in Russian, no spelling changes: «РевиЛайн», «ПРОМОКОД 20608», «Получить бонусы». All environmental text in Russian only.
+
+# ---------- БЛОК 2: ВИДЕО (Veo / omni flash) ----------
+
+# СЦЕНА 1 — Хук (сценарные 5s -> 6s)
+=== VID RL410_VID_01
+@use RL410_IMG_01
+@duration 6
+Pixar-style 3D animation, 6 seconds, vertical 9:16. CHARACTER LOCK: characters must exactly match the reference image — girl in powder-pink satin dress with chestnut wavy hair, guy in wrinkled grey polo, elderly mustached waiter. Do not change faces, hair, outfits.
+0–2s: waiter gently places the leather bill folder on the table, gives a polite nod, walks away.
+2–6s: Tyoma glances at the bill, his eyes widen slightly, he nervously scratches his neck and looks up at the girl. Hold on his guilty face to the end.
+No dialogue in this scene. AUDIO: soft restaurant ambience only — quiet murmur of guests, gentle clink of cutlery and glasses. STRICTLY NO MUSIC.
+
+# СЦЕНА 2 — «Я на мели» (5s -> 6s)
+=== VID RL410_VID_02
+@use RL410_IMG_02
+@duration 6
+Pixar-style 3D animation, 6 seconds, vertical 9:16. CHARACTER LOCK: match reference image exactly.
+0–3s: Tyoma leans in, presses a hand to his chest and says in a pleading, unhurried voice, clearly articulated, do not rush the line: «Слушай… я щас на мели. Оплати. Я верну. Обязательно.»
+3–6s: the girl slowly exhales, her shoulders drop, she gives him a long disappointed look and glances down at her handbag on her lap.
+VOICE: Tyoma — young male voice, slightly whiny, apologetic. Calm measured pacing. AUDIO: soft restaurant ambience, quiet cutlery. STRICTLY NO MUSIC.
+
+# СЦЕНА 3 — Сумочка (5s -> 6s)
+=== VID RL410_VID_03
+@use RL410_IMG_03
+@ref refs\rl410.jpg
+@duration 6
+Pixar-style 3D animation, 6 seconds, vertical 9:16. PRODUCT LOCK: irrigator must exactly match reference photo including Latin "Revyline" lettering. Do not redraw, deform or translate branding; keep device proportions constant.
+0–2s: the handbag opens toward camera revealing the contents; the hamster keeps chewing seeds, cheeks moving, a tiny seed shell falls.
+2–6s: camera slowly pushes in toward the irrigator; girl's voice off-screen, sweet and composed, unhurried, clearly articulated: «Одну минуту. Выйду попудрить носик.»
+VOICE: young female, soft, polite, with a hidden sigh. AUDIO: faint restaurant ambience, tiny cute hamster nibbling sounds. STRICTLY NO MUSIC.
+
+# СЦЕНА 4 — ПРОДУКТ-ХЕРО (сценарные 12s -> 10s, максимум Flow; биты сжаты,
+# реплики не тронуты). Держать девайс крупно и почти статично — движется рука
+# и слайдер, не камера. После генерации смотреть поштучно; если корпус плывёт —
+# композит реальных футажей поверх.
+=== VID RL410_VID_04
+@use RL410_IMG_04
+@ref refs\rl410.jpg
+@duration 10
+Pixar-style 3D animation, 10 seconds, vertical 9:16. CHARACTER LOCK: girl must match reference exactly. PRODUCT LOCK: irrigator must match reference photo exactly, Latin "Revyline" lettering unchanged, device proportions constant, no morphing.
+0–1.5s: girl looks into the mirror (camera), rolls her eyes and says with tired irony, unhurried, clearly articulated: «И почему мне такие попадаются?!»
+1.5–3s: she lifts the irrigator, looks at it warmly: «Хотя бы ты меня не подводишь.»
+3–5.5s: with one smooth satisfying motion she slides the reservoir open — the device extends; she says in a measured, confident tone, do not rush the lines: «Ирригатор Ревилайн Эр-Эль четыреста десять. Слайдер. Двести грамм — живёт в сумочке.»
+5.5–8s: she holds it up, slight turn of the wrist to show it off: «Струя мощная — вычищает там, где щётка сдаётся. И заряда — на месяц.»
+8–10s: she flashes a dazzling white smile at the mirror; a subtle sparkle glint on her teeth. Final line, warm and self-assured: «Улыбка — моё лучшее вложение.»
+VOICE: young female, velvet, confident, slow calm pacing, every word clearly articulated. AUDIO: quiet restroom ambience, soft reverb, a satisfying soft click when the slider opens. STRICTLY NO MUSIC.
+
+# СЦЕНА 5 — Комплимент (5s -> 6s)
+=== VID RL410_VID_05
+@use RL410_IMG_05
+@duration 6
+Pixar-style 3D animation, 6 seconds, vertical 9:16. CHARACTER LOCK: match references exactly — girl in powder-pink dress, man in navy suit with grey temples.
+0–2s: girl walks past the tables, her smile literally glowing; the man notices her, his eyes light up.
+2–6s: he rises slightly from his chair and says with warm admiration, unhurried, clearly articulated: «Девушка… у вас такая красивая улыбка. Позвольте оплатить ваш счёт.»
+The girl stops, pleasantly surprised. Hold on her surprised smile to the end.
+VOICE: adult male, deep, warm, respectful. Calm pacing. AUDIO: restaurant ambience. STRICTLY NO MUSIC.
+
+# СЦЕНА 6 — Панчлайн (6s — как в сценарии)
+=== VID RL410_VID_06
+@use RL410_IMG_06
+@duration 6
+Pixar-style 3D animation, 6 seconds, vertical 9:16. CHARACTER LOCK: match all three references exactly.
+0–2s: Tyoma looks up at them, points at the man and says, confused, unhurried, clearly articulated: «Рассчитайся и пошли. А это кто?»
+2–5s: the girl tilts her head, smiles calmly and answers with cool dignity, measured pacing, do not rush: «А это, Тём, настоящий мужчина. Не звони мне больше.»
+5–6s: she turns and walks away with the man; Tyoma freezes with the bill folder in his hands, jaw slightly dropped.
+VOICE: Tyoma — whiny confused male; girl — calm, cool, satisfied female. AUDIO: restaurant ambience, a fork clinks on a plate. STRICTLY NO MUSIC.
+
+# СЦЕНА 7 — ФИНАЛ: приложение + промокод (5s -> 6s)
+=== VID RL410_VID_07
+@use RL410_IMG_07
+@duration 6
+Pixar-style 3D animation, 6 seconds, vertical 9:16. SCREEN LOCK: the phone screen content must remain perfectly static and legible — «РевиЛайн», «ПРОМОКОД 20608», QR code. Do not warp or change any letters or digits.
+0–6s: very slow gentle push-in on the phone screen, subtle light glint across the glass. Girl's voice off-screen, warm, confident, unhurried, every digit clearly articulated: «Скачивай приложение Ревилайн. Вводи промокод два-ноль-шесть-ноль-восемь — и забирай бонусы на первый заказ.»
+VOICE: same young female, velvet, calm. AUDIO: soft street-evening ambience, faint door chime. STRICTLY NO MUSIC.

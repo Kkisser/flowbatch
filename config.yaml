@@ -26,6 +26,8 @@ locale:
   add_to_request: "Добавить в запрос"
   create_project: "Создать проект"
   back_button: "Назад"
+  picker_tab_all: "Все"             # табы типов в «+»-пикере
+  picker_tab_images: "Изображения"
 
 selectors:
   prompt_editor: '[data-slate-editor="true"]'

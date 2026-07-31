@@ -41,7 +41,7 @@ from .notify import Notifier
 from .promptfile import SYNTAX_HELP
 from .promptfile import parse as parse_prompts
 from .queue import RunLog, load_jobs
-from .refs import RefCache, RefResolver
+from .refs import RefCache, RefResolver, parse_lib_spec
 from .runner import Runner
 from .sheet import ST_DONE, ST_ERROR, SheetQueue
 
@@ -574,13 +574,19 @@ class AppState:
 
     @staticmethod
     def _row_dict(job: Any, batch: str = "") -> dict[str, Any]:
+        def pretty(ref: str) -> str:
+            if ref.startswith("lib:"):
+                name, project = parse_lib_spec(ref)
+                return f"библиотека: {name}" + (f" (проект {project})" if project else "")
+            return ref
+
         return {
             "id": job.id,
             "kind": job.kind,
             "batch": batch,
             "duration": job.duration,
             "refs": len(job.refs),
-            "refs_list": [str(r) for r in job.refs],
+            "refs_list": [pretty(str(r)) for r in job.refs],
             "out": job.out_stem if (job.output_name or "") else "",
             "prompt": job.prompt[:300],
         }

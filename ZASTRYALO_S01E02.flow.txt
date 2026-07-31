@@ -2,12 +2,14 @@
 # Адаптировано из ZASTRYALO_S01E02_KOST_PROMPTS.md (правки реплик уже внесены).
 @project ZASTRYALO_S01E02
 #
-# Эталоны первой серии и фото продукта — файлами, проверь что лежат по путям:
-#   C:\RVL\ZASTRYALO\S01E02\refs\E01_0A_geroi4.png   — эталон 4 героев (0A из E01)
-#   C:\RVL\ZASTRYALO\S01E02\refs\E01_0B_yazyk.png    — эталон Языка (0B из E01)
-#   C:\RVL\ZASTRYALO\S01E02\refs\product_RL230.jpg   — фото продукта RL 230
+# Референсы тянутся ПРЯМО ИЗ БИБЛИОТЕКИ Flow, файлы на диске не нужны:
+#   @lib ЗАСТРЯЛО :: ЭТАЛОН ПЕРСОНАЖЕЙ — эталон 4 героев (кадр 0A из E01)
+#   @lib ЗАСТРЯЛО :: ЭТАЛОН ЯЗЫКА      — эталон Языка (кадр 0B из E01)
+#   @lib ЗАСТРЯЛО :: rl230.jpeg        — фото продукта RL 230 (загружено в E01)
 #
-# Эталон Кости — НЕ файл: его генерит кадр 0C, дальше он цепляется через @use.
+# Эталон Кости — не из библиотеки: его генерит кадр 0C, дальше он цепляется
+# через @use. Список имён любого проекта: python -m flowbatch.cli library
+# --project "ЗАСТРЯЛО" (или глазами в «+»-диалоге Flow).
 #
 # Порядок работы:
 #   1) прогнать ТОЛЬКО 0C (галочкой в панели), утвердить внешность Кости;
@@ -42,7 +44,7 @@ All visible text or signage anywhere in the frame must be in RUSSIAN only, no En
 
 # КАДР 1 — ХОЛОДНОЕ ОТКРЫТИЕ
 === IMG S01E02_IMG_01
-@ref C:\RVL\ZASTRYALO\S01E02\refs\E01_0A_geroi4.png
+@lib ЗАСТРЯЛО :: ЭТАЛОН ПЕРСОНАЖЕЙ
 @use S01E02_IMG_0C
 @out S01E02_IMG_K1
 Vertical 9:16 frame. Cinematic 3D animated cartoon, Pixar-style semi-stylized render: soft rounded shapes, friendly expressive cartoon faces, subsurface scattering in the enamel, no photorealism, no horror.
@@ -61,7 +63,7 @@ All visible text or signage anywhere in the frame must be in RUSSIAN only, no En
 
 # КАДР 2 — ПЕРЕГОВОРЫ + «ШЕСТЬ СЕМЬ»
 === IMG S01E02_IMG_02
-@ref C:\RVL\ZASTRYALO\S01E02\refs\E01_0A_geroi4.png
+@lib ЗАСТРЯЛО :: ЭТАЛОН ПЕРСОНАЖЕЙ
 @use S01E02_IMG_0C
 @out S01E02_IMG_K2
 Vertical 9:16 frame. Cinematic 3D animated cartoon, Pixar-style semi-stylized render: soft rounded shapes, friendly expressive cartoon faces, subsurface scattering in the enamel, no photorealism, no horror.
@@ -84,8 +86,8 @@ All visible text or signage anywhere in the frame must be in RUSSIAN only, no En
 
 # КАДР 3 — ПРОВАЛ ВЫСЕЛЕНИЯ + «ЗУБ ДАЮ»
 === IMG S01E02_IMG_03
-@ref C:\RVL\ZASTRYALO\S01E02\refs\E01_0A_geroi4.png
-@ref C:\RVL\ZASTRYALO\S01E02\refs\E01_0B_yazyk.png
+@lib ЗАСТРЯЛО :: ЭТАЛОН ПЕРСОНАЖЕЙ
+@lib ЗАСТРЯЛО :: ЭТАЛОН ЯЗЫКА
 @use S01E02_IMG_0C
 @out S01E02_IMG_K3
 Vertical 9:16 frame. Cinematic 3D animated cartoon, Pixar-style semi-stylized render: soft rounded shapes, friendly expressive cartoon faces, subsurface scattering in the enamel, no photorealism, no horror, nothing gory.
@@ -108,9 +110,9 @@ All visible text or signage anywhere in the frame must be in RUSSIAN only, no En
 
 # КАДР 5 — ПРОДУКТ, Ч.2 / ВЫСЕЛЕНИЕ
 === IMG S01E02_IMG_05
-@ref C:\RVL\ZASTRYALO\S01E02\refs\E01_0A_geroi4.png
+@lib ЗАСТРЯЛО :: ЭТАЛОН ПЕРСОНАЖЕЙ
 @use S01E02_IMG_0C
-@ref C:\RVL\ZASTRYALO\S01E02\refs\product_RL230.jpg
+@lib ЗАСТРЯЛО :: rl230.jpeg
 @out S01E02_IMG_K5
 Vertical 9:16 frame. Cinematic 3D animated cartoon, Pixar-style semi-stylized render: soft rounded shapes, friendly expressive cartoon faces, subsurface scattering in the enamel, no photorealism, no horror.
 
@@ -136,7 +138,7 @@ All visible text or signage anywhere in the frame must be in RUSSIAN only, no En
 
 # КАДР 6 — ТЕГ
 === IMG S01E02_IMG_06
-@ref C:\RVL\ZASTRYALO\S01E02\refs\E01_0A_geroi4.png
+@lib ЗАСТРЯЛО :: ЭТАЛОН ПЕРСОНАЖЕЙ
 @out S01E02_IMG_K6
 Vertical 9:16 frame. Cinematic 3D animated cartoon, Pixar-style semi-stylized render: soft rounded shapes, friendly expressive cartoon faces, subsurface scattering in the enamel, no photorealism, no horror.
 
@@ -160,9 +162,9 @@ All visible text or signage anywhere in the frame must be in RUSSIAN only, no En
 
 # КАДР 4 — ПРОДУКТ, Ч.1 (СЛОМ РИТМА). Отдельным дублем, не в общем батче!
 === IMG S01E02_IMG_04
-@ref C:\RVL\ZASTRYALO\S01E02\refs\E01_0A_geroi4.png
+@lib ЗАСТРЯЛО :: ЭТАЛОН ПЕРСОНАЖЕЙ
 @use S01E02_IMG_0C
-@ref C:\RVL\ZASTRYALO\S01E02\refs\product_RL230.jpg
+@lib ЗАСТРЯЛО :: rl230.jpeg
 @out S01E02_IMG_K4
 Vertical 9:16 frame. Cinematic 3D animated cartoon, Pixar-style semi-stylized render: soft rounded shapes, friendly expressive cartoon faces, subsurface scattering in the enamel, no photorealism, no horror.
 
@@ -287,7 +289,7 @@ NO on-screen text of any kind: no captions, no subtitles, no titles, no watermar
 # КАДР 5 — ПРОДУКТ, Ч.2 / ВЫСЕЛЕНИЕ
 === VID S01E02_VID_05
 @use S01E02_IMG_05
-@ref C:\RVL\ZASTRYALO\S01E02\refs\product_RL230.jpg
+@lib ЗАСТРЯЛО :: rl230.jpeg
 @duration 8
 @out S01E02_VID_K5
 Animate this image. Vertical 9:16, duration 8 seconds. Cinematic 3D animated cartoon look, identical to the source image.
@@ -357,7 +359,7 @@ ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical s
 # КАДР 4 — ПРОДУКТ, Ч.1. Генерить отдельным дублем, не в батче!
 === VID S01E02_VID_04
 @use S01E02_IMG_04
-@ref C:\RVL\ZASTRYALO\S01E02\refs\product_RL230.jpg
+@lib ЗАСТРЯЛО :: rl230.jpeg
 @duration 8
 @out S01E02_VID_K4
 Animate this image. Vertical 9:16, duration 8 seconds. Cinematic 3D animated cartoon look, identical to the source image.
