@@ -1,0 +1,390 @@
+# ЗАСТРЯЛО — S01E02 «КОСТЬ» — очередь flowbatch
+# Адаптировано из ZASTRYALO_S01E02_KOST_PROMPTS.md (правки реплик уже внесены).
+#
+# Эталоны первой серии и фото продукта — файлами, проверь что лежат по путям:
+#   C:\RVL\ZASTRYALO\S01E02\refs\E01_0A_geroi4.png   — эталон 4 героев (0A из E01)
+#   C:\RVL\ZASTRYALO\S01E02\refs\E01_0B_yazyk.png    — эталон Языка (0B из E01)
+#   C:\RVL\ZASTRYALO\S01E02\refs\product_RL230.jpg   — фото продукта RL 230
+#
+# Эталон Кости — НЕ файл: его генерит кадр 0C, дальше он цепляется через @use.
+#
+# Порядок работы:
+#   1) прогнать ТОЛЬКО 0C (галочкой в панели), утвердить внешность Кости;
+#      не утвердил — перегенерить той же галочкой, @use подхватит свежий файл;
+#   2) прогнать остальные картинки; кадр 4 идёт последним — проверить продукт
+#      отдельно, прежде чем пускать видео;
+#   3) прогнать видео; кадр 4 — тоже отдельным прогоном.
+#
+# Текст на экране (плашки, артикулы) не генерится — накладывается в DaVinci.
+# Блок «Агент-режим» из исходника сюда не входит: он вводится в Flow вручную.
+
+# ---------- БЛОК 1: ИЗОБРАЖЕНИЯ (nano banana) ----------
+
+# КАДР 0C — ЭТАЛОН КОСТИ (референс, в ролик не идёт). Генерить ПЕРВЫМ.
+=== IMG S01E02_IMG_0C
+@out S01E02_IMG_K0C
+Vertical 9:16 frame. Cinematic 3D animated cartoon, Pixar-style semi-stylized render: soft rounded shapes, friendly expressive cartoon face, gentle subsurface scattering, slightly matte surfaces, absolutely NO photorealism, NO horror, nothing gory or anatomical.
+
+CHARACTER REFERENCE: a single fully anthropomorphic FISH BONE character, standing upright on wet enamel ground, turned three-quarter toward the camera, FULL BODY visible from head to feet, face clearly readable, even soft key light so every design detail is legible. Neutral cool ambient background with a warm fill, mild haze, shallow depth of field on the background only.
+
+DESIGN: his body is a long, tall, narrow fish spine, yellowish-white and slightly translucent like old ivory, with smooth rounded ends. Symmetrical pairs of short curved spines stick out sideways from his torso like ribs, blunt and rounded at the tips, cartoon-safe, never sharp or threatening. His head is the widened top of the spine with a calm relaxed face: half-lidded lazy eyes, thick low eyebrows, a small easy smirk, slight stubble.
+
+He is FULLY anthropomorphic: real arms with shoulders, elbows and five-fingered hands, real legs with knees and feet, natural relaxed human standing posture. No stumps, no floating limbs.
+
+CLOTHING AND PROPS: he wears a stretched-out white ribbed sleeveless undershirt, worn thin and slightly yellowed, hanging loose on him. A small worn towel is draped over one of his side spines. A cheap framed picture hangs from another side spine by a string. In one hand he holds a chipped enamel mug of tea, casually, at chest height. His whole attitude is unbothered, settled, at home.
+
+At his feet: a small threadbare rug and a white enamel kettle with a thin curl of steam. Above him, hanging on a wire, a warm yellow bare bulb casting a cozy pool of amber light on him, contrasting with the cold ambient background.
+
+He must read as a laid-back tenant who is absolutely certain he cannot be evicted. Never a villain, never menacing.
+
+All visible text or signage anywhere in the frame must be in RUSSIAN only, no English text anywhere. The framed picture must contain a simple abstract landscape, no lettering. No captions, no subtitles, no watermarks.
+
+# КАДР 1 — ХОЛОДНОЕ ОТКРЫТИЕ
+=== IMG S01E02_IMG_01
+@ref C:\RVL\ZASTRYALO\S01E02\refs\E01_0A_geroi4.png
+@use S01E02_IMG_0C
+@out S01E02_IMG_K1
+Vertical 9:16 frame. Cinematic 3D animated cartoon, Pixar-style semi-stylized render: soft rounded shapes, friendly expressive cartoon faces, subsurface scattering in the enamel, no photorealism, no horror.
+
+Characters' appearance is LOCKED to the attached reference image(s) — same head/body shape, same proportions, same colors, same outfit, same face design. Do not alter or reinterpret their design.
+
+LOW ANGLE VERTICAL COMPOSITION inside the same location as the reference: the interior of a giant mouth built like an abandoned underground mine bunker. Wet pale enamel walls streaked with condensation, dripping water, pebbles on the floor, humid air.
+
+UPPER TWO THIRDS OF THE FRAME: the narrow ceiling crevice between two enormous molars, and wedged across it DIAGONALLY, the anthropomorphic FISH BONE character, locked to his attached reference. He has clearly moved in and settled: he lounges in the gap with one arm resting on the enamel edge, a chipped enamel mug of tea in his other hand raised near his face. A small threadbare rug is laid out on the ledge under him, a cheap framed picture hangs from one of his side spines, a worn towel from another, and a white enamel kettle stands beside him with a thin curl of steam. A warm yellow bare bulb hangs on a wire next to him, pooling cozy amber light over his little home and leaving the rest of the cavern cold.
+
+LOWER THIRD OF THE FRAME, seen from behind and slightly to the side, small in frame against the huge space: SHESTYORKA, the wide molar in the orange miner's helmet and blue jumpsuit with suspenders. His helmet is pushed back on the top of his head, his arms are folded across his chest, and he is looking straight up at the bone. Motionless. Resigned.
+
+LIGHTING: two zones fighting each other. Warm homey amber up in the crevice, cold bluish-teal submarine light everywhere else. Volumetric steam and dust, wet reflections, shallow depth of field, high detail. The mood is quiet and domestic, not alarming. The disaster is over, this is now normal.
+
+All visible text or signage anywhere in the frame must be in RUSSIAN only, no English text anywhere. No captions, no subtitles, no on-screen titles, no watermarks.
+
+# КАДР 2 — ПЕРЕГОВОРЫ + «ШЕСТЬ СЕМЬ»
+=== IMG S01E02_IMG_02
+@ref C:\RVL\ZASTRYALO\S01E02\refs\E01_0A_geroi4.png
+@use S01E02_IMG_0C
+@out S01E02_IMG_K2
+Vertical 9:16 frame. Cinematic 3D animated cartoon, Pixar-style semi-stylized render: soft rounded shapes, friendly expressive cartoon faces, subsurface scattering in the enamel, no photorealism, no horror.
+
+Characters' appearance is LOCKED to the attached reference image(s) — same head/body shape, same proportions, same colors, same outfit, same face design. Do not alter or reinterpret their design.
+
+Same mine-bunker mouth interior, same two-zone lighting: warm amber pool up in the ceiling crevice from the hanging bulb, cold bluish-teal everywhere else.
+
+UPPER PART OF THE FRAME: the FISH BONE character wedged diagonally across the ceiling gap, locked to his reference, lounging with his mug of tea, rug, kettle, framed picture on one spine, towel on another. He is looking down at Valera with lazy half-lidded eyes, completely unbothered, not getting up.
+
+MIDDLE OF THE FRAME, standing on the wet floor, three-quarter to camera, full body, lit from above by the amber pool and from the side by cold light: VALERA THE FANG, the tall chipped canine in the striped sailor shirt with the anchor tattoo, wooden toothpick in the corner of his mouth. A worn cardboard document folder is tucked under one arm, and he is straightening the hem of his shirt with the other hand while tilting his head far back to look up at the bone. Bureaucratic, dry, official body language. This is an inspection, not a fight.
+
+LEFT EDGE OF THE FRAME, half hidden behind a corner of enamel rock, only his head, one shoulder and one hand visible: VOSMYORKA, the crooked young wisdom tooth in the oversized hoodie with big over-ear headphones, peeking around the corner, eyes already lighting up, about to burst out.
+
+BACKGROUND RIGHT, blurred: SHESTYORKA in the orange helmet, arms folded, watching.
+
+All characters fully anthropomorphic with real arms, elbows, hands, legs and knees. Volumetric dust, wet reflections, shallow depth of field, high detail.
+
+All visible text or signage anywhere in the frame must be in RUSSIAN only, no English text anywhere. The cardboard folder must have no lettering on it at all. No captions, no subtitles, no on-screen titles, no watermarks.
+
+# КАДР 3 — ПРОВАЛ ВЫСЕЛЕНИЯ + «ЗУБ ДАЮ»
+=== IMG S01E02_IMG_03
+@ref C:\RVL\ZASTRYALO\S01E02\refs\E01_0A_geroi4.png
+@ref C:\RVL\ZASTRYALO\S01E02\refs\E01_0B_yazyk.png
+@use S01E02_IMG_0C
+@out S01E02_IMG_K3
+Vertical 9:16 frame. Cinematic 3D animated cartoon, Pixar-style semi-stylized render: soft rounded shapes, friendly expressive cartoon faces, subsurface scattering in the enamel, no photorealism, no horror, nothing gory.
+
+Characters' appearance is LOCKED to the attached reference image(s) — same head/body shape, same proportions, same colors, same outfit, same face design. Do not alter or reinterpret their design. This applies to the TONGUE and to the FISH BONE character as well, each locked to its own attached reference.
+
+Same mine-bunker mouth interior. Warm amber pool up in the crevice, cold teal light below, condensation, dripping, dusty air.
+
+UPPER FRAME: the FISH BONE character still wedged diagonally in the ceiling gap with his rug, kettle, framed picture and towel, holding his mug, watching what is about to happen with mild lazy curiosity. Completely relaxed.
+
+FOREGROUND LEFT, three-quarter to camera, full body: VALERA THE FANG in the striped sailor shirt, in the act of snapping the cardboard folder shut with both hands, chin lifted, giving a short confident nod off to one side. Toothpick in the corner of his mouth. Absolute certainty on his face.
+
+MIDGROUND CENTER: SEMYORKA, the narrower greyish molar in the knitted pointed beanie and baggy tracksuit, hands at his chest, watching upward, skeptical and quiet.
+
+RIGHT SIDE OF THE FRAME, surging in from the deep background and already filling the entire right third: THE TONGUE, the huge soft pink creature with the wet velvety surface, two small dot eyes and no mouth, rearing upward toward the bone, eager and dopey, softly out of focus at its nearest edge. Cute and harmless, never scary.
+
+Strong depth staging: Valera sharp in front, Tongue soft on the right, the bone's warm little home backlit above. Volumetric light, wet reflections, shallow depth of field, high detail.
+
+All visible text or signage anywhere in the frame must be in RUSSIAN only, no English text anywhere. No captions, no subtitles, no on-screen titles, no watermarks.
+
+# КАДР 5 — ПРОДУКТ, Ч.2 / ВЫСЕЛЕНИЕ
+=== IMG S01E02_IMG_05
+@ref C:\RVL\ZASTRYALO\S01E02\refs\E01_0A_geroi4.png
+@use S01E02_IMG_0C
+@ref C:\RVL\ZASTRYALO\S01E02\refs\product_RL230.jpg
+@out S01E02_IMG_K5
+Vertical 9:16 frame. Cinematic 3D animated cartoon, Pixar-style semi-stylized render: soft rounded shapes, friendly expressive cartoon faces, subsurface scattering in the enamel, no photorealism, no horror.
+
+Characters' appearance is LOCKED to the attached reference image(s) — same head/body shape, same proportions, same colors, same outfit, same face design. Do not alter or reinterpret their design.
+
+The product's appearance is LOCKED to the attached product reference photo — exact same shape, proportions, color, materials, and logo/branding as in the reference image. Do not redesign, restyle, resize, recolor, or reinterpret the product in any way. The Latin lettering on the device body must match the reference photo exactly.
+
+Same mouth interior, still lit with the clean bright white light of the previous shot, wet enamel polished and reflective, air clear.
+
+LOW THREE-QUARTER SHOT, camera looking up past Valera toward the ceiling crevice.
+
+FOREGROUND LEFT: VALERA THE FANG, the tall chipped canine in the striped sailor shirt, standing in a calm braced stance, both hands on the portable Revyline RL 230 oral irrigator, arms raised, aiming the nozzle diagonally up at the crevice. His thumb rests on the button, not yet pressed. No aggression on his face, just procedure. The whole device is fully visible inside the frame at medium distance, sharp, correctly proportioned, branding readable, never cropped and never extreme macro.
+
+UPPER FRAME: the FISH BONE character wedged in the ceiling gap, locked to his reference, in the middle of very slowly lowering his enamel mug from his mouth, eyes widening slightly for the first time. His rug, kettle, framed picture and hanging towel are all still in place around him, the bulb above him dark.
+
+MIDGROUND RIGHT: SHESTYORKA, the wide molar in the orange helmet, standing solidly with his arms slightly out to the sides. Behind his broad back, peeking out on either side: SEMYORKA in the knitted beanie and VOSMYORKA in the hoodie, ducking.
+
+A few water droplets already hang near the nozzle, catching the white light.
+
+Volumetric light, wet reflective surfaces, shallow depth of field, high detail. Staged like a serious action moment, played entirely deadpan.
+
+All visible text or signage anywhere in the frame must be in RUSSIAN only, no English text anywhere, EXCEPT the product's own branding on the device body. No captions, no subtitles, no on-screen titles, no watermarks.
+
+# КАДР 6 — ТЕГ
+=== IMG S01E02_IMG_06
+@ref C:\RVL\ZASTRYALO\S01E02\refs\E01_0A_geroi4.png
+@out S01E02_IMG_K6
+Vertical 9:16 frame. Cinematic 3D animated cartoon, Pixar-style semi-stylized render: soft rounded shapes, friendly expressive cartoon faces, subsurface scattering in the enamel, no photorealism, no horror.
+
+Characters' appearance is LOCKED to the attached reference image(s) — same head/body shape, same proportions, same colors, same outfit, same face design. Do not alter or reinterpret their design.
+
+Same mine-bunker mouth interior. The lighting has settled back to the calm cold bluish-teal of the series default: no amber, no white studio light, just one narrow shaft coming down through the now EMPTY ceiling crevice. The gap above is completely clear: no bone, no rug, no kettle, no picture, no bulb, only bare wet enamel and a couple of dangling wire ends. Fine dust and water droplets drift in the beam.
+
+MEDIUM WIDE GROUP SHOT, camera at eye level, all four characters in frame, full or nearly full body, three-quarter to camera.
+
+LEFT: VALERA THE FANG, the tall chipped canine in the striped sailor shirt, standing relaxed, the portable irrigator now lowered and held loosely in one hand at his side, small in frame and not the subject. Toothpick back in the corner of his mouth. Completely neutral face, eyes just beginning to slide toward the background.
+
+CENTER: SHESTYORKA, the wide molar in the orange helmet, brushing dust off his blue jumpsuit with one gloved hand while extending his other gloved hand toward Valera, palm up and open, waiting. Heavy-lidded, patient, deadpan.
+
+RIGHT: SEMYORKA in the knitted beanie, shaking out his tracksuit sleeve. Slightly behind him, VOSMYORKA the crooked wisdom tooth, headphones on both ears, absorbed in his phone, completely unaware.
+
+ON THE FLOOR in the foreground, lying on its side on the wet enamel: a single chipped enamel mug, intact, the last trace of the evicted tenant.
+
+Calm after-the-eviction mood. Cold teal key light, deep soft shadows, wet reflections, volumetric dust in the beam, shallow depth of field, high detail.
+
+All visible text or signage anywhere in the frame must be in RUSSIAN only, no English text anywhere. No captions, no subtitles, no on-screen titles, no watermarks.
+
+# КАДР 4 — ПРОДУКТ, Ч.1 (СЛОМ РИТМА). Отдельным дублем, не в общем батче!
+=== IMG S01E02_IMG_04
+@ref C:\RVL\ZASTRYALO\S01E02\refs\E01_0A_geroi4.png
+@use S01E02_IMG_0C
+@ref C:\RVL\ZASTRYALO\S01E02\refs\product_RL230.jpg
+@out S01E02_IMG_K4
+Vertical 9:16 frame. Cinematic 3D animated cartoon, Pixar-style semi-stylized render: soft rounded shapes, friendly expressive cartoon faces, subsurface scattering in the enamel, no photorealism, no horror.
+
+Characters' appearance is LOCKED to the attached reference image(s) — same head/body shape, same proportions, same colors, same outfit, same face design. Do not alter or reinterpret their design.
+
+The product's appearance is LOCKED to the attached product reference photo — exact same shape, proportions, color, materials, and logo/branding as in the reference image. Do not redesign, restyle, resize, recolor, or reinterpret the product in any way. The Latin lettering of the brand name on the device body must be reproduced exactly as in the reference photo, never translated, never replaced with Cyrillic.
+
+HARD TONAL SWITCH from the previous shots: the warm yellow bulb up in the crevice is OFF and dark, the cozy amber pool is gone, the haze has cleared. The same mine-bunker mouth interior is now lit with clean bright white glossy studio-like light, the wet enamel reads as polished and premium instead of grim, crisp highlights, calm and controlled mood. Same architecture, completely different register. Played straight and deadpan, never like a cheesy TV commercial.
+
+MEDIUM SHOT, camera at chest height, slightly low angle.
+
+CENTER FRAME: VALERA THE FANG, the tall chipped canine in the striped sailor shirt with the anchor tattoo, three-quarter to camera, upper body and thighs in frame. His cardboard folder now lies closed on a flat enamel ledge in front of him. He has just set the portable Revyline RL 230 oral irrigator upright on that same ledge, standing on its base like a stamped document, and he keeps one hand resting flat beside it while turning it with the other so its front face and branding point straight at the camera. Dry, official, unhurried expression, looking into the lens.
+
+THE DEVICE IS THE VISUAL ANCHOR: the entire irrigator stands fully inside the frame with clear margin around it, at medium-close distance, sharp and in focus, evenly lit, body, nozzle, reservoir and branding all clearly readable in a single clean read. Do NOT crop the device, do NOT zoom extremely close on any single detail.
+
+UPPER FRAME, smaller and softly out of focus: the FISH BONE character in the ceiling crevice, in the middle of sitting up straight for the first time, his mug frozen halfway to his mouth, his lazy expression starting to falter.
+
+BACKGROUND, blurred: SHESTYORKA in the orange helmet, watching.
+
+All characters fully anthropomorphic with real arms, elbows, hands, legs and knees.
+
+All visible text or signage anywhere in the frame must be in RUSSIAN only, no English text anywhere, EXCEPT the product's own branding on the device body, which stays exactly as in the product reference photo. The cardboard folder has no lettering. No captions, no subtitles, no on-screen titles, no watermarks, no added marketing text.
+
+# ---------- БЛОК 2: ВИДЕО (Veo / omni flash), все по 8 секунд ----------
+
+# КАДР 1 — ХОЛОДНОЕ ОТКРЫТИЕ
+=== VID S01E02_VID_01
+@use S01E02_IMG_01
+@duration 8
+@out S01E02_VID_K1
+Animate this image. Vertical 9:16, duration 8 seconds. Cinematic 3D animated cartoon look, identical to the source image.
+
+CAMERA: begins low on Shestyorka's back, slowly cranes upward along the wet enamel wall to reveal the bone's little home in the crevice, then settles and holds. Very slow, calm, no shake. One continuous move, no cuts.
+
+ACTION TIMING:
+0.0 to 2.0 — Slow crane up the wall. Water drips down the enamel. The kettle releases a thin curl of steam. The warm bulb sways very slightly on its wire, making the amber light shift across the rug and the framed picture. The bone lounges in the gap, lifting his mug for an unhurried sip.
+2.0 to 3.5 — The camera settles so that both the bone above and Shestyorka below are in frame. Shestyorka does not move at all. Arms folded, head tilted back, staring up.
+3.5 to 5.0 — The bone lowers his mug, glances down at Shestyorka and greets him lazily, barely bothering.
+5.0 to 6.5 — Shestyorka answers without moving a single muscle, not even his arms. Flat, tired.
+6.5 to 8.0 — The bone shrugs almost imperceptibly and takes another calm sip. Water drips. Steam curls. The silence hangs. Hold to the end.
+
+DIALOGUE, in Russian, unhurried, clearly articulated, do not rush the lines:
+At 3.7s THE BONE, relaxed mid-pitch male voice, slightly drawling, completely calm, lazy, mid-sip: «Доброе.»
+At 5.2s SHESTYORKA, low male voice, tired, flat, motionless: «Не доброе.»
+
+CRITICAL — CHARACTER LOCK: Do not redesign, restyle, morph, or reinterpret any character during animation. Every character must keep EXACTLY the same shape, proportions, colors, outfit, and facial design as in the source image throughout the entire clip — no drift, no stylization changes, no added/removed details. The fish bone character must stay a soft cartoon design, never sharp, never gory, never anatomical.
+
+SOUND: steady water drops with cave echo, the quiet hiss of the kettle, the faint creak of the lamp wire swaying, a soft sip, deep hollow room tone. Voices dry, no reverb or pitch effects on the voices.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+NO on-screen text of any kind: no captions, no subtitles, no titles, no watermarks. Any incidental signage in the environment must be in Russian only, never English.
+
+# КАДР 2 — ПЕРЕГОВОРЫ + «ШЕСТЬ СЕМЬ»
+=== VID S01E02_VID_02
+@use S01E02_IMG_02
+@duration 8
+@out S01E02_VID_K2
+Animate this image. Vertical 9:16, duration 8 seconds. Cinematic 3D animated cartoon look, identical to the source image.
+
+CAMERA: slow steady dolly in on Valera as he plants himself, then at 5.2s a quick snap-focus rack to Vosmyorka bursting out from behind the corner, then back to Valera at 6.8s. Subtle handheld float throughout.
+
+ACTION TIMING:
+0.0 to 1.2 — Valera steps forward, boots splashing on the wet enamel, plants his feet, tugs the hem of his striped shirt straight with one hand and tilts his head far back to look up at the bone. The cardboard folder stays clamped under his arm. His toothpick rolls to the other corner of his mouth.
+1.2 to 2.2 — He asks his question upward, dry and official.
+2.2 to 3.2 — The bone does not get up, does not even shift his weight. He answers from his gap while swirling the tea in his mug.
+3.2 to 4.0 — Valera fires back, one flat line, still looking up.
+4.0 to 5.2 — The bone lazily jerks his thumb upward at the enamel above him, as if pointing at an address on a wall, and answers without any urgency at all.
+5.2 to 6.8 — Vosmyorka bursts out from behind the corner of rock, rocking side to side, pumping both open palms up and down in front of his chest, grinning wide, shouting.
+6.8 to 8.0 — Valera shuts him down with one word without turning his head even slightly. Vosmyorka deflates instantly and slides back behind the corner. The bone takes another sip, entertained.
+
+DIALOGUE, in Russian, unhurried, clearly articulated, do not rush the lines:
+At 1.4s VALERA, hoarse, slow, dry low male voice, official and clipped: «Документы есть?»
+At 2.4s THE BONE, relaxed mid-pitch male voice, drawling, lazy, unbothered: «Я по прописке.»
+At 3.3s VALERA, same hoarse dry voice, flat: «Какая прописка?»
+At 4.3s THE BONE, same lazy drawling voice, stating an address as a simple fact: «Шестая седьмая.»
+At 5.4s VOSMYORKA, teenage male voice, bright, cracking, stretching the vowel, loud shout: «Шееесть… СЕМЬ!»
+At 6.9s VALERA, hoarse, slow, absolutely flat, no anger, one word: «Заткнись.»
+
+CRITICAL — CHARACTER LOCK: Do not redesign, restyle, morph, or reinterpret any character during animation. Every character must keep EXACTLY the same shape, proportions, colors, outfit, and facial design as in the source image throughout the entire clip — no drift, no stylization changes, no added/removed details.
+
+SOUND: wet footsteps on stone, the rustle and creak of the cardboard folder, the creak of the toothpick, dripping water, the quiet hiss of the kettle, the rustle of the hoodie fabric, hollow room echo. Voices dry, no reverb or pitch effects on the voices.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+NO on-screen text of any kind: no captions, no subtitles, no titles, no watermarks. Any incidental signage in the environment must be in Russian only, never English.
+
+# КАДР 3 — ПРОВАЛ ВЫСЕЛЕНИЯ + «ЗУБ ДАЮ»
+# Если модель нарисует повреждение Языка — перегенерить, в батч не пускать.
+=== VID S01E02_VID_03
+@use S01E02_IMG_03
+@duration 8
+@out S01E02_VID_K3
+Animate this image. Vertical 9:16, duration 8 seconds. Cinematic 3D animated cartoon look, identical to the source image.
+
+CAMERA: static medium wide on Valera for the first two seconds, then a smooth pull-back and tilt up as the Tongue floods into frame, a small bounce on the recoil at 4.5s, ending with a slow push toward Semyorka.
+
+ACTION TIMING:
+0.0 to 1.0 — Valera snaps the cardboard folder shut with both hands, tucks it under his arm and gives a short confident nod off to the side, as if signalling someone to begin.
+1.0 to 2.0 — He speaks, casual and certain, not even looking up.
+2.0 to 2.8 — He points one finger down at the floor to stamp the promise, dead serious for a single beat.
+2.8 to 4.5 — THE TONGUE surges up from below and swallows the right half of the frame, pressing upward into the bone from underneath, dot eyes wide and eager, letting out a long muffled hum. The bone barely reacts.
+4.5 to 5.5 — One of the bone's blunt side spines presses into the Tongue. The Tongue instantly recoils downward out of the crevice, shrinks back, and squeezes the sore spot with a short muffled yelp. Entirely comedic and bouncy, cartoon slapstick, NO injury, no marks, no blood, no damage of any kind.
+5.5 to 6.5 — The bone has not shifted a millimetre. He calmly lifts the enamel kettle and tops up his own mug, tea pouring in a thin steady stream. Steam rises.
+6.5 to 8.0 — Semyorka stares up at him, lowers his voice and speaks almost admiringly. Hold on his face.
+
+DIALOGUE, in Russian, unhurried, clearly articulated, do not rush the lines:
+At 1.2s VALERA, hoarse, slow, dry low male voice, dismissive certainty: «Пять минут. И его нет.»
+At 2.1s VALERA, same voice, harder, stamping the words down: «Зуб даю.»
+At 3.0s THE TONGUE, no words, only a long muffled friendly hum, no lips, wet and muffled: «Мнэээ!»
+At 4.7s THE TONGUE, no words, a short high muffled yelp of surprise: «МНЭ!»
+At 6.7s SEMYORKA, mid-pitch male voice, quiet, almost respectful, slightly stunned: «Он даже чай не пролил.»
+
+CRITICAL — CHARACTER LOCK: Do not redesign, restyle, morph, or reinterpret any character during animation. Every character must keep EXACTLY the same shape, proportions, colors, outfit, and facial design as in the source image throughout the entire clip — no drift, no stylization changes, no added/removed details. The Tongue stays a soft friendly cartoon shape with dot eyes and no mouth. The fish bone stays soft-edged and cartoon-safe, his spines are blunt and never cause visible damage.
+
+SOUND: a wet heavy slap as the Tongue lands, a short dry creak of the bone, a muffled squeak of surprise, tea pouring into an enamel mug, the hiss of the kettle, dripping water, hollow room echo. Voices dry, no reverb or pitch effects on the voices.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+NO on-screen text of any kind: no captions, no subtitles, no titles, no watermarks. Any incidental signage in the environment must be in Russian only, never English.
+
+# КАДР 5 — ПРОДУКТ, Ч.2 / ВЫСЕЛЕНИЕ
+=== VID S01E02_VID_05
+@use S01E02_IMG_05
+@ref C:\RVL\ZASTRYALO\S01E02\refs\product_RL230.jpg
+@duration 8
+@out S01E02_VID_K5
+Animate this image. Vertical 9:16, duration 8 seconds. Cinematic 3D animated cartoon look, identical to the source image.
+
+CAMERA: low three-quarter, slight arc around Valera as he braces, then a fast tilt up following the water jet, a slow-motion hold while everything hangs in the air, then the bone and his belongings fly straight at the lens and the camera settles back down onto the empty crevice and the floor.
+
+ACTION TIMING:
+0.0 to 1.0 — Valera raises the irrigator with both hands and lines the nozzle up with the crevice. Up above, the bone very slowly lowers his mug from his mouth, realising.
+1.0 to 2.5 — He presses the button. A tight powerful jet of water fires up into the gap. TIME SLOWS DOWN: the rug, the framed picture, the towel and the kettle tear loose and hang suspended in the air, rotating gently, droplets frozen around them, white light refracting through the spray.
+2.5 to 4.0 — The fish bone character wrenches free of the crevice and tumbles through the air together with all his belongings, straight toward the camera, then speed snaps back to normal and the whole cloud of household junk rockets past the lens and out of frame.
+4.0 to 5.0 — From far off screen, already distant, the bone shouts back, stretching the word, echoing.
+5.0 to 6.0 — Valera lowers the nozzle, unhurried, and answers the empty air, calm and final.
+6.0 to 7.0 — The light settles to an even clean white. The crevice above is bare wet enamel, empty. Shestyorka pulls off his orange helmet and wipes his forehead with the back of his glove.
+7.0 to 8.0 — A single chipped enamel mug drops to the floor in the foreground. It does NOT break. It lands, wobbles, and spins slowly on the wet stone. Hold on it.
+
+DIALOGUE, in Russian, unhurried, clearly articulated, do not rush the lines:
+At 4.1s THE BONE, relaxed mid-pitch male voice, shouting from far away, stretched out and echoing into the distance: «Я вернууусь!»
+At 5.2s VALERA, hoarse, slow, dry low male voice, completely calm, final, not raising his voice at all: «Не вернёшься.»
+
+CRITICAL — CHARACTER LOCK: Do not redesign, restyle, morph, or reinterpret any character during animation. Every character must keep EXACTLY the same shape, proportions, colors, outfit, and facial design as in the source image throughout the entire clip — no drift, no stylization changes, no added/removed details. The fish bone must stay intact and undamaged as he flies out, cartoon slapstick only, no breakage, no gore.
+
+CRITICAL — PRODUCT LOCK: A reference photo of the real product is attached separately. The device must match that reference photo EXACTLY — same silhouette, proportions, color, materials, nozzle/button placement, logo and branding — in every frame. Do NOT redesign, morph, resize, recolor, or reinterpret the product at any point, including while it moves, rotates, or catches light.
+
+FRAMING LIMIT ON THE PRODUCT: keep the device fully inside the frame at medium distance while it is visible, never crop it and never go to extreme macro on the nozzle.
+
+SOUND: a button click, a strong pressurized water jet, a low hollow whoosh during the slow motion, a clattering rush of household junk flying past, a distant echoing shout, water spattering on enamel, dripping, then the dull knock of the mug landing and the dry scrape of it spinning on stone. Voices dry, no reverb or pitch effects on the voices.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+NO on-screen text of any kind: no captions, no subtitles, no titles, no watermarks. The only lettering permitted in the frame is the product's own branding on the device body, exactly as in the reference photo.
+
+# КАДР 6 — ТЕГ / КРЮЧОК НА СЛЕДУЮЩУЮ СЕРИЮ
+# Волокна в финале — длинные, тонкие, мокрые, но НЕ похожие на волосы (7-я серия).
+# Проверить кружку: лежит на полу, целая.
+=== VID S01E02_VID_06
+@use S01E02_IMG_06
+@duration 8
+@out S01E02_VID_K6
+Animate this image. Vertical 9:16, duration 8 seconds. Cinematic 3D animated cartoon look, identical to the source image.
+
+CAMERA: slow gentle push-in on the group, completely locked and still through the pause at 2.2s, then a slow tilt up toward the ceiling crevice from 5.0s, ending locked on the gap.
+
+ACTION TIMING:
+0.0 to 1.2 — Everyone dusts themselves off. Semyorka shakes out his sleeve, Vosmyorka scrolls his phone with his headphones on. Shestyorka brushes his jumpsuit, then turns to Valera and extends one gloved hand toward him, palm up and open, waiting.
+1.2 to 2.2 — Shestyorka speaks, flat and patient, two short words, not even a question.
+2.2 to 3.2 — DEAD PAUSE. Valera does not move for a beat, then very slowly turns only his eyes, and then his head, toward Vosmyorka in the background. Nothing else in the frame moves. One water drop falls.
+3.2 to 4.2 — Valera answers, perfectly even, still looking at Vosmyorka.
+4.2 to 5.0 — Vosmyorka finally looks up from his phone and pulls one earcup off his ear, confused, having heard nothing.
+5.0 to 6.5 — The light from above dies. Long thin pale fibres slowly descend into the crevice and hang there, swaying gently, wet and stringy, backlit. Everyone slowly looks up.
+6.5 to 7.3 — Semyorka whispers, staring upward, eyes huge.
+7.3 to 8.0 — Hard cut to black. All sound cuts off dead.
+
+DIALOGUE, in Russian, unhurried, clearly articulated, do not rush the lines:
+At 1.4s SHESTYORKA, low male voice, tired, flat, patient, purely factual: «Валер. Зуб.»
+At 3.3s VALERA, hoarse, slow, dry low male voice, totally unbothered, looking straight at Vosmyorka: «Я не уточнял чей.»
+At 4.3s VOSMYORKA, teenage male voice, bright, confused, having missed everything: «Чего?»
+At 6.6s SEMYORKA, mid-pitch male voice, a frightened whisper: «Это… мясо?»
+
+CRITICAL — CHARACTER LOCK: Do not redesign, restyle, morph, or reinterpret any character during animation. Every character must keep EXACTLY the same shape, proportions, colors, outfit, and facial design as in the source image throughout the entire clip — no drift, no stylization changes, no added/removed details.
+
+SOUND: fabric rustle and dust being brushed off, a single water drop in the silence of the pause, the creak of the toothpick, the soft slide of a headphone earcup, a wet slow swaying of the fibres above, then an abrupt cut to total silence on the black. Voices dry, no reverb or pitch effects on the voices.
+
+NO on-screen text of any kind: no captions, no subtitles, no titles, no watermarks. Any incidental signage in the environment must be in Russian only, never English.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+# КАДР 4 — ПРОДУКТ, Ч.1. Генерить отдельным дублем, не в батче!
+=== VID S01E02_VID_04
+@use S01E02_IMG_04
+@ref C:\RVL\ZASTRYALO\S01E02\refs\product_RL230.jpg
+@duration 8
+@out S01E02_VID_K4
+Animate this image. Vertical 9:16, duration 8 seconds. Cinematic 3D animated cartoon look, identical to the source image.
+
+CAMERA: slow smooth push-in from medium to medium-close on Valera and the device standing on the ledge, ending with the product centered and fully in frame. Absolutely no whip pans, no shaky cam, no macro zoom onto a single part of the device.
+
+ACTION TIMING:
+0.0 to 1.0 — Valera lays the cardboard folder flat on the enamel ledge in front of him. On that beat the lighting hard-switches: the warm bulb above the crevice goes dark, the amber pool vanishes, and clean bright white glossy light floods the room. He looks up at the bone with no expression at all.
+1.0 to 2.0 — He speaks, calm and procedural, like a man citing a regulation.
+2.0 to 3.5 — Without hurrying, he sets the portable Revyline RL 230 irrigator upright on the ledge with a soft solid thunk, the way a notary sets down a stamp, then turns it with two fingers so the body, nozzle, reservoir and branding face the camera dead on, fully in focus. The device stands on its own base from here on.
+3.5 to 5.3 — Valera keeps one hand resting flat on the ledge beside the device and names the model, clearly, syllable by syllable, looking into the lens. The device stays perfectly still and readable throughout this line.
+5.3 to 6.2 — Up in the crevice the bone sits bolt upright for the first time in the whole episode, his mug frozen halfway to his mouth, and asks, his lazy confidence cracking.
+6.2 to 8.0 — Valera clicks the button with his thumb. A mode indicator lights up on the device body, a faint motor hum starts. He answers without looking up.
+
+DIALOGUE, in Russian, unhurried, clearly articulated, do not rush the lines:
+At 1.2s VALERA, hoarse, slow, dry low male voice, calm and procedural: «Тогда по закону.»
+At 3.7s VALERA, same voice, deliberately clear, separating the syllables: «Ревилайн Эр Эль двести тридцать.»
+At 5.4s THE BONE, relaxed mid-pitch male voice, but for the first time genuinely uncertain, the drawl faltering: «Это чего?»
+At 6.4s VALERA, same voice, flat and factual, delivered as a normal line of conversation and NOT as an advertising monologue: «Выселение. Десять уровней давления.»
+
+CRITICAL — CHARACTER LOCK: Do not redesign, restyle, morph, or reinterpret any character during animation. Every character must keep EXACTLY the same shape, proportions, colors, outfit, and facial design as in the source image throughout the entire clip — no drift, no stylization changes, no added/removed details.
+
+CRITICAL — PRODUCT LOCK: A reference photo of the real product is attached separately. The device must match that reference photo EXACTLY — same silhouette, proportions, color, materials, nozzle/button placement, logo and branding — in every frame. Do NOT redesign, morph, resize, recolor, or reinterpret the product at any point, including while it moves, rotates, or catches light. The Latin brand lettering on the body stays exactly as in the reference photo and is never translated or replaced.
+
+FRAMING LIMIT ON THE PRODUCT: keep the shot medium-close. The entire device must remain inside the frame with clear margin at all times. Never crop it, never cut to an extreme macro close-up of a single detail, never let it leave focus. Once it is standing on the ledge it must not wobble, drift, tip, or change scale.
+
+SOUND: a soft slap of cardboard on stone, a solid dull thunk as the device is set down, a crisp button click, one short electronic indicator beep, a light steady motor hum, distant dripping, subtle room tone. Voices dry, no reverb or pitch effects on the voices.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+NO on-screen text of any kind: no captions, no subtitles, no titles, no watermarks, no added marketing graphics. The only lettering permitted in the entire frame is the product's own branding on the device body, exactly as in the reference photo.
