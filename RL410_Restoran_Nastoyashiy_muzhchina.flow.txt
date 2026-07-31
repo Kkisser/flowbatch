@@ -2,12 +2,11 @@
 # Адаптировано из Ирригатор_RL410_Ресторан_Настоящий_мужчина.md. Сценарий один — файл один.
 @project RL410 Настоящий мужчина
 
-# ВАЖНО, реф-фото продукта: у RL 410 реф-фото в библиотеке Flow НЕТ (в каталоге
-# ссылки тоже нет — взять с revyline.ru или у куратора, см. бриф). Положи файл в
-#   refs\rl410.jpg
-# рядом с этим файлом — сцены 3 и 4 прикрепляют его через @ref. Если фото уже
-# залито в какой-то проект Flow — замени обе строки @ref на
-#   @lib <имя проекта> :: <имя файла в библиотеке>
+# ВАЖНО, реф-фото продукта: сцены 3–4 берут его из БАЗЫ ПРОДУКТОВ через
+# @product rl410. Положи фото (с revyline.ru или от куратора, см. бриф) в
+#   products\rl410\
+# — при прогоне оно само зальётся в проект Flow, один раз. Пока папка пуста,
+# разбор честно скажет об этом и подскажет путь.
 #
 # ТАЙМИНГИ: Flow умеет только 4/6/8/10 сек. Сценарные 5-сек сцены идут как 6s
 # (финальный бит растянут на секунду), продукт-херо 12s сжат до 10s — биты
@@ -33,13 +32,13 @@ Pixar-style 3D cartoon, vertical 9:16, same restaurant table, same warm evening 
 
 # СЦЕНА 3 — Сумочка: листики, хомяк, помада и ирригатор
 === IMG RL410_IMG_03
-@ref refs\rl410.jpg
+@product rl410
 Pixar-style 3D cartoon, vertical 9:16. Extreme close-up TOP-DOWN shot INSIDE an open small beige handbag on the girl's lap, warm restaurant light falling inside. Contents clearly visible: a few crumpled green leaves (like play-money leaves), a tiny chubby ginger-and-white HAMSTER sitting in the corner cheerfully chewing sunflower seeds with puffed cheeks, a pink lipstick, and a compact Revyline RL 410 portable slider oral irrigator lying neatly inside, closed compact position. PRODUCT LOCK: the irrigator must exactly match the attached reference photo — body shape, color, and the Latin lettering "Revyline" on the device; never translate or alter the branding. Cute, comedic, highly detailed. All environmental text in Russian only (except product branding).
 
 # СЦЕНА 4 — ПРОДУКТ-ХЕРО: туалет, демо ирригатора. Проверять поштучно!
 === IMG RL410_IMG_04
 @use RL410_IMG_01
-@ref refs\rl410.jpg
+@product rl410
 Pixar-style 3D cartoon, vertical 9:16. Elegant restaurant restroom: marble sink, large round mirror with warm sconce lighting, soft neutral tones. The girl (reference image, powder-pink satin dress) stands at the sink facing the camera as if it were the mirror, holding the Revyline RL 410 portable slider oral irrigator up at chest level in one hand, presenting it toward the camera. Confident, slightly conspiratorial expression. PRODUCT LOCK: the irrigator must exactly match the attached reference photo — slider body, reservoir, nozzle, and Latin "Revyline" lettering preserved exactly, never translated. The product is the visual focus of the frame. All environmental text in Russian only (except product branding).
 
 # СЦЕНА 5 — Комплимент (появляется МУЖЧИНА — канон фиксируется здесь)
@@ -83,7 +82,7 @@ VOICE: Tyoma — young male voice, slightly whiny, apologetic. Calm measured pac
 # СЦЕНА 3 — Сумочка (5s -> 6s)
 === VID RL410_VID_03
 @use RL410_IMG_03
-@ref refs\rl410.jpg
+@product rl410
 @duration 6
 Pixar-style 3D animation, 6 seconds, vertical 9:16. PRODUCT LOCK: irrigator must exactly match reference photo including Latin "Revyline" lettering. Do not redraw, deform or translate branding; keep device proportions constant.
 0–2s: the handbag opens toward camera revealing the contents; the hamster keeps chewing seeds, cheeks moving, a tiny seed shell falls.
@@ -96,7 +95,7 @@ VOICE: young female, soft, polite, with a hidden sigh. AUDIO: faint restaurant a
 # композит реальных футажей поверх.
 === VID RL410_VID_04
 @use RL410_IMG_04
-@ref refs\rl410.jpg
+@product rl410
 @duration 10
 Pixar-style 3D animation, 10 seconds, vertical 9:16. CHARACTER LOCK: girl must match reference exactly. PRODUCT LOCK: irrigator must match reference photo exactly, Latin "Revyline" lettering unchanged, device proportions constant, no morphing.
 0–1.5s: girl looks into the mirror (camera), rolls her eyes and says with tired irony, unhurried, clearly articulated: «И почему мне такие попадаются?!»

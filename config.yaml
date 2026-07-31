@@ -106,3 +106,8 @@ paths:
   out_dir: "out"
   runs_log: "runs.jsonl"
   screenshots_dir: "screenshots"
+  # База продуктов: подпапка на продукт, внутри — его фото.
+  #   products/rl410/front.jpg  ->  в промпте: @product rl410
+  # При прогоне фото заливаются в текущий проект Flow автоматически
+  # (один раз на проект, дальше берутся из кэша по uuid).
+  products_dir: "products"

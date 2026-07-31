@@ -217,6 +217,16 @@ display:none;z-index:9;box-shadow:0 8px 30px #000a}
       <button class="btn primary" id="start">▶ Старт</button>
       <button class="btn danger" id="stop" disabled>■ Стоп</button>
     </div>
+    <details id="prodbox">
+      <summary>База продуктов</summary>
+      <div class="row" id="prodlist" style="gap:6px"></div>
+      <div class="helpgrid" style="margin-top:8px">
+        <b>как это работает</b><span>подпапка = продукт: <code id="proddir"></code>\rl410\фото.jpg.
+        В промпте — <b>@product rl410</b> (все фото продукта) или
+        <b>@product rl410/front.jpg</b> (одно). При прогоне фото сами заливаются
+        в текущий проект Flow — один раз, дальше из кэша по uuid.</span>
+      </div>
+    </details>
     <details>
       <summary>Справка: галочки, dry-run, BATCH, лимит</summary>
       <div class="helpgrid">
@@ -345,6 +355,12 @@ function render(st){
   const stick = log.scrollHeight - log.scrollTop - log.clientHeight < 40;
   log.textContent = (st.log||[]).join('\n') || '—';
   if (stick) log.scrollTop = log.scrollHeight;
+
+  $('#proddir').textContent = st.products_dir || 'products';
+  $('#prodlist').innerHTML = (st.products || []).length
+    ? st.products.map(p => `<span class="pill" title="@product ${esc(p.name)}">
+        📦 <b>${esc(p.name)}</b>&nbsp;· ${p.files} фото</span>`).join('')
+    : '<span class="pill">пока пусто — создай подпапку с фото продукта</span>';
 
   const rc = $('#rescount');
   rc.style.display = (st.results||[]).length ? '' : 'none';
@@ -529,7 +545,10 @@ class AppState:
             self.sheet = None
             self.sheet_by_id = {}
             if suffix in (".txt", ".text", ".prompts"):
-                jobs, errors, meta = parse_prompts(p.read_text(encoding="utf-8-sig"), self.cfg.out_dir())
+                jobs, errors, meta = parse_prompts(
+                    p.read_text(encoding="utf-8-sig"),
+                    self.cfg.out_dir(), self.cfg.products_dir(),
+                )
                 if errors:
                     raise ValueError("ошибки разбора промптов:\n" + "\n".join(f"• {e}" for e in errors))
                 self.queue_project = meta.get("project")
@@ -556,7 +575,7 @@ class AppState:
         if not (text or "").strip():
             raise ValueError("пустой текст — нечего разбирать")
         # Сначала валидируем, потом сохраняем: битый текст файл не перетирает.
-        _, errors, _ = parse_prompts(text, self.cfg.out_dir())
+        _, errors, _ = parse_prompts(text, self.cfg.out_dir(), self.cfg.products_dir())
         if errors:
             raise ValueError("ошибки разбора:\n" + "\n".join(f"• {e}" for e in errors))
         Path(PASTED_FILE).write_text(text, encoding="utf-8")
@@ -754,6 +773,22 @@ class AppState:
 
     # ------------------------------------------------------------- состояние
 
+    def products(self) -> list[dict[str, Any]]:
+        """База продуктов: подпапки products/ и число фото в каждой."""
+        base = self.cfg.products_dir()
+        if not base.is_dir():
+            return []
+        from .promptfile import PRODUCT_IMAGE_EXTS
+
+        out = []
+        for d in sorted(base.iterdir(), key=lambda p: p.name.lower()):
+            if not d.is_dir():
+                continue
+            n = sum(1 for f in d.iterdir()
+                    if f.is_file() and f.suffix.lower() in PRODUCT_IMAGE_EXTS)
+            out.append({"name": d.name, "files": n})
+        return out
+
     def results(self) -> list[dict[str, Any]]:
         """Файлы из out/, свежие сверху."""
         out = self.cfg.out_dir()
@@ -791,6 +826,8 @@ class AppState:
             "removed": len(self.removed),
             "log": self.sink.snapshot()[-250:],
             "results": self.results(),
+            "products": self.products(),
+            "products_dir": str(self.cfg.products_dir()),
             "refs": self.refs_stat,
         }
 

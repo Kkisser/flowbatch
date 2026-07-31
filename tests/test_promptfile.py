@@ -139,6 +139,37 @@ def main() -> int:
         elif not jobs[0].refs or not jobs[0].refs[0].endswith("OLD.jpg"):
             failures.append(f"@use по файлу с диска дал не тот путь: {jobs[0].refs}")
 
+    # @product: раскрытие папки, конкретный файл, ошибки базы.
+    with tempfile.TemporaryDirectory() as td:
+        prod = Path(td) / "rl410"
+        prod.mkdir()
+        (prod / "b_side.png").write_bytes(b"x")
+        (prod / "a_front.jpg").write_bytes(b"x")
+        (prod / "note.txt").write_bytes(b"x")  # не изображение — игнорируется
+
+        jobs, errors, _ = parse("=== IMG X\n@product rl410\nPrompt.", products_dir=td)
+        names = [Path(r).name for r in jobs[0].refs] if jobs else []
+        if errors or names != ["a_front.jpg", "b_side.png"]:
+            failures.append(f"@product: раскрытие папки неверно: {names}, ошибки {errors}")
+
+        jobs, errors, _ = parse("=== IMG X\n@product rl410/b_side.png\nPrompt.", products_dir=td)
+        if errors or [Path(r).name for r in jobs[0].refs] != ["b_side.png"]:
+            failures.append(f"@product: конкретный файл неверно: {jobs[0].refs}, {errors}")
+
+        _, errors, _ = parse("=== IMG X\n@product net_takogo\nPrompt.", products_dir=td)
+        if not any("нет папки" in e and "rl410" in e for e in errors):
+            failures.append(f"@product: несуществующий продукт не пойман/без подсказки: {errors}")
+
+        empty = Path(td) / "pustoy"
+        empty.mkdir()
+        _, errors, _ = parse("=== IMG X\n@product pustoy\nPrompt.", products_dir=td)
+        if not any("нет изображений" in e for e in errors):
+            failures.append(f"@product: пустая папка не поймана: {errors}")
+
+        _, errors, _ = parse("=== IMG X\n@product rl410/net.jpg\nPrompt.", products_dir=td)
+        if not any("файла" in e for e in errors):
+            failures.append(f"@product: пропавший файл не пойман: {errors}")
+
     if failures:
         print("FAIL")
         for f in failures:

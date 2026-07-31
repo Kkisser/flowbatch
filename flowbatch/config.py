@@ -73,3 +73,6 @@ class Config:
 
     def runs_log(self) -> Path:
         return Path(self.get("paths.runs_log", "runs.jsonl"))
+
+    def products_dir(self) -> Path:
+        return Path(self.get("paths.products_dir", "products"))

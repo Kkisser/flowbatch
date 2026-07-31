@@ -27,6 +27,9 @@
                       относится очередь. Перед прогоном программа откроет этот
                       проект (или создаст, если его нет).
     @ref <путь>       прикрепить локальный файл референсом (можно несколько)
+    @product <имя>    прикрепить ВСЕ фото продукта из базы products/<имя>/
+                      (или одно: @product rl410/front.jpg). При прогоне фото
+                      сами заливаются в текущий проект Flow, один раз на проект.
     @lib <имя>        прикрепить картинку ИЗ БИБЛИОТЕКИ Flow по имени —
                       без файла на диске. Форма `@lib <проект> :: <имя>`
                       берёт её из библиотеки другого проекта.
@@ -62,11 +65,15 @@ ALLOWED_DURATIONS = {4, 6, 8, 10}
 SYNTAX_HELP = (
     "@project <имя> — первой строкой: проект Flow этой очереди (откроется/создастся сам).\n"
     "=== IMG <id> — блок картинки, === VID <id> — блок видео. Дальше директивы и промпт.\n"
-    "@ref <путь> — файл с диска; @lib <имя> — картинка из библиотеки Flow по имени\n"
-    "(@lib <проект> :: <имя> — из библиотеки другого проекта); @use <id> — результат\n"
-    "другой задачи; @duration 4|6|8|10 — длительность видео; @out <имя> — имя результата.\n"
+    "@ref <путь> — файл с диска; @product <имя> — все фото продукта из products/<имя>/;\n"
+    "@lib <имя> — картинка из библиотеки Flow по имени (@lib <проект> :: <имя> — из\n"
+    "другого проекта); @use <id> — результат другой задачи; @duration 4|6|8|10 —\n"
+    "длительность видео; @out <имя> — имя результата.\n"
     "Директивы в Flow не уходят — только текст промпта. Строки с # — комментарии."
 )
+
+# Расширения файлов, которые считаем фотографиями продукта.
+PRODUCT_IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp"}
 
 # Внутренний префикс referencе-спеки «из библиотеки». Разбирается в refs.py.
 LIB_PREFIX = "lib:"
@@ -82,13 +89,16 @@ class _Block:
     line: int
     refs: list[str] = field(default_factory=list)
     uses: list[str] = field(default_factory=list)
+    products: list[tuple[int, str]] = field(default_factory=list)  # (строка, спека)
     duration: int | None = None
     out: str | None = None
     prompt_lines: list[str] = field(default_factory=list)
 
 
 def parse(
-    text: str, out_dir: str | Path = "out"
+    text: str,
+    out_dir: str | Path = "out",
+    products_dir: str | Path = "products",
 ) -> tuple[list[Job], list[str], dict[str, str | None]]:
     """Разобрать текст в список Job. Возвращает (задачи, ошибки, мета).
 
@@ -97,6 +107,7 @@ def parse(
     чтобы кривой блок не прошёл молча.
     """
     out_dir = Path(out_dir)
+    products_dir = Path(products_dir)
     blocks: list[_Block] = []
     errors: list[str] = []
     meta: dict[str, str | None] = {"project": None}
@@ -151,7 +162,7 @@ def parse(
 
         cur.prompt_lines.append(line)
 
-    jobs = _blocks_to_jobs(blocks, out_dir, errors)
+    jobs = _blocks_to_jobs(blocks, out_dir, products_dir, errors)
     return jobs, errors, meta
 
 
@@ -184,6 +195,12 @@ def _parse_directive(block: _Block, line: str, n: int, errors: list[str]) -> Non
         else:
             # Внутри refs живёт спека с префиксом lib: — её разбирает resolver.
             block.refs.append(LIB_PREFIX + rest)
+    elif keyword == "@product":
+        if not rest:
+            errors.append(f"строка {n}: @product без имени продукта")
+        else:
+            # Раскрытие в файлы — на этапе сборки: там же и валидация базы.
+            block.products.append((n, rest))
     elif keyword == "@use":
         if not rest or len(rest.split()) != 1:
             errors.append(f"строка {n}: @use ждёт ровно один id задачи")
@@ -211,11 +228,51 @@ def _parse_directive(block: _Block, line: str, n: int, errors: list[str]) -> Non
     else:
         errors.append(
             f"строка {n}: неизвестная директива {keyword!r} "
-            "(знаю @project, @ref, @lib, @use, @duration, @out)"
+            "(знаю @project, @ref, @product, @lib, @use, @duration, @out)"
         )
 
 
-def _blocks_to_jobs(blocks: list[_Block], out_dir: Path, errors: list[str]) -> list[Job]:
+def _expand_product(spec: str, products_dir: Path, line: int, errors: list[str]) -> list[str]:
+    """Раскрыть @product в список путей к фото.
+
+    'rl410'            -> все изображения из products/rl410/, по алфавиту
+    'rl410/front.jpg'  -> конкретный файл
+    """
+    spec = spec.replace("\\", "/").strip("/")
+    if "/" in spec:
+        path = products_dir / Path(spec)
+        if not path.is_file():
+            errors.append(f"строка {line}: @product — файла {path} нет")
+            return []
+        return [str(path)]
+
+    folder = products_dir / spec
+    if not folder.is_dir():
+        have = sorted(p.name for p in products_dir.iterdir() if p.is_dir()) \
+            if products_dir.is_dir() else []
+        errors.append(
+            f"строка {line}: @product {spec!r} — нет папки {folder}"
+            + (f"; есть продукты: {', '.join(have)}" if have else
+               f"; создай {folder} и положи туда фото")
+        )
+        return []
+    files = sorted(
+        (p for p in folder.iterdir()
+         if p.is_file() and p.suffix.lower() in PRODUCT_IMAGE_EXTS),
+        key=lambda p: p.name.lower(),
+    )
+    if not files:
+        errors.append(
+            f"строка {line}: @product {spec!r} — в {folder} нет изображений "
+            f"({'/'.join(sorted(e.lstrip('.') for e in PRODUCT_IMAGE_EXTS))})"
+        )
+        return []
+    return [str(p) for p in files]
+
+
+def _blocks_to_jobs(
+    blocks: list[_Block], out_dir: Path, products_dir: Path, errors: list[str]
+) -> list[Job]:
     # Карта id -> (позиция, тип, основа имени результата) для проверки @use.
     seen: dict[str, tuple[int, str, str]] = {}
     for i, b in enumerate(blocks):
@@ -261,6 +318,8 @@ def _blocks_to_jobs(blocks: list[_Block], out_dir: Path, errors: list[str]) -> l
                     )
 
         refs += b.refs
+        for line, spec in b.products:
+            refs += _expand_product(spec, products_dir, line, errors)
         # дубли убираем, порядок сохраняем
         dedup: list[str] = []
         for r in refs:

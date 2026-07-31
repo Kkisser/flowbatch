@@ -246,7 +246,9 @@ def cmd_run(args: argparse.Namespace) -> int:
     try:
         if args.prompts:
             text = Path(args.prompts).read_text(encoding="utf-8-sig")
-            jobs, errors, meta = parse_prompts(text, out_dir=cfg.out_dir())
+            jobs, errors, meta = parse_prompts(
+                text, out_dir=cfg.out_dir(), products_dir=cfg.products_dir()
+            )
             queue_project = queue_project or meta.get("project")
             if errors:
                 console.print(
@@ -499,6 +501,44 @@ def cmd_library(args: argparse.Namespace) -> int:
     return 0
 
 
+# ------------------------------------------------------------------- products
+
+
+def cmd_products(args: argparse.Namespace) -> int:
+    """Показать базу продуктов (папка products/). Без браузера."""
+    from .promptfile import PRODUCT_IMAGE_EXTS
+
+    cfg = Config.load(args.config)
+    base = cfg.products_dir()
+    if not base.is_dir():
+        console.print(
+            f"[yellow]Базы продуктов ещё нет.[/yellow] Создай папку {base}\\<продукт>\\ "
+            "и положи туда фото — в промпте это будет @product <продукт>."
+        )
+        return 1
+
+    table = Table(header_style="bold")
+    table.add_column("Продукт")
+    table.add_column("Фото", justify="right")
+    table.add_column("Файлы", overflow="fold", style="dim")
+    total = 0
+    for d in sorted(base.iterdir(), key=lambda p: p.name.lower()):
+        if not d.is_dir():
+            continue
+        files = sorted(
+            f.name for f in d.iterdir()
+            if f.is_file() and f.suffix.lower() in PRODUCT_IMAGE_EXTS
+        )
+        total += 1
+        table.add_row(d.name, str(len(files)), ", ".join(files) or "[red]пусто[/red]")
+    if not total:
+        console.print(f"[yellow]{base} пуста — создай подпапку с фото продукта.[/yellow]")
+        return 1
+    console.print(table)
+    console.print("[dim]в промпте: @product <продукт>  или  @product <продукт>/<файл>[/dim]")
+    return 0
+
+
 # ------------------------------------------------------------------------- ui
 
 
@@ -524,6 +564,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     d = sub.add_parser("doctor", help="проверить подключение, селекторы, настройки, Telegram")
     d.set_defaults(func=cmd_doctor)
+
+    pr = sub.add_parser("products", help="база продуктов на диске (для @product)")
+    pr.set_defaults(func=cmd_products)
 
     lb = sub.add_parser("library", help="список элементов библиотеки Flow (для @lib)")
     lb.add_argument("query", nargs="?", default="", help="подстрока имени")

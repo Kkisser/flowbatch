@@ -11,6 +11,12 @@ screenshots/
 .flowbatch_refcache.json
 .flowbatch_ui.json
 prompts_pasted.flow.txt
+# Фото продуктов — бинарные бренд-активы, в репозиторий не идут.
+# Структура папок и README остаются (.gitkeep не подпадает под маски медиа).
+products/**/*.jpg
+products/**/*.jpeg
+products/**/*.png
+products/**/*.webp
 *.png
 *.jpg
 *.mp4
