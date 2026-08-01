@@ -115,7 +115,10 @@ moderation:
     # auto — Gemini при наличии GEMINI_API_KEY в .env, иначе Claude при наличии
     # ANTHROPIC_API_KEY, иначе правила. Можно зафиксировать: rules | gemini | claude
     backend: "auto"
-    gemini_model: "gemini-2.0-flash"
+    # Алиас на актуальную flash-модель: не протухнет, когда Google снимет
+    # конкретную версию. Проверено: у gemini-2.0-flash бесплатной квоты уже
+    # нет (429), у 2.5 — 404. Список моделей своего ключа: soften-test.
+    gemini_model: "gemini-flash-latest"
     claude_model: "claude-opus-5"
 
     # Бэкенд «rules» (офлайн): замены слов + смягчающая добавка к промпту.
