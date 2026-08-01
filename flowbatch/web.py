@@ -43,7 +43,7 @@ from .promptfile import parse as parse_prompts
 from .queue import RunLog, load_jobs
 from .refs import RefCache, RefResolver, parse_lib_spec
 from .runner import Runner
-from .soften import build_softener
+from .soften import backend_status, build_softener
 from .sheet import ST_DONE, ST_ERROR, SheetQueue
 
 # Файл, куда сохраняется текст, вставленный в панель.
@@ -190,6 +190,23 @@ display:none;z-index:9;box-shadow:0 8px 30px #000a}
       <textarea id="ptext" spellcheck="false" placeholder="@project Название проекта&#10;&#10;=== IMG K1&#10;@ref C:\путь\референс.png&#10;Текст промпта...&#10;&#10;=== VID K1_anim&#10;@use K1&#10;@duration 8&#10;Animate this image..."></textarea>
       <div class="hint" id="syntax"></div>
       <div class="row"><button class="btn" id="parse">Разобрать и загрузить</button></div>
+    </details>
+    <details id="softenbox">
+      <summary>Смягчение промптов при модерации</summary>
+      <div class="row">
+        <select id="softenBackend" style="min-width:230px"></select>
+        <button class="btn" id="saveSoften">Применить</button>
+        <span class="muted" id="softenNow"></span>
+      </div>
+      <div id="softenList" style="margin-top:8px"></div>
+      <div class="helpgrid" style="margin-top:8px">
+        <b>зачем</b><span>если Flow завернул промпт («может нарушать наши правила»),
+        программа перепишет его безобиднее и запустит задачу заново. Реплики,
+        имена персонажей и бренд при этом не трогаются.</span>
+        <b>авто</b><span>берёт первый доступный: Ollama (локально, бесплатно, без сети)
+        → Gemini → Claude → правила. Правила работают всегда и служат запасным
+        вариантом, если LLM недоступна.</span>
+      </div>
     </details>
     <details id="settingsbox">
       <summary>Подключение к браузеру</summary>
@@ -357,6 +374,22 @@ function render(st){
   log.textContent = (st.log||[]).join('\n') || '—';
   if (stick) log.scrollTop = log.scrollHeight;
 
+  const sb = st.soften || {};
+  const sel = $('#softenBackend');
+  if (sel.dataset.filled !== '1' && (sb.backends || []).length) {
+    sel.innerHTML = '<option value="auto">авто — первый доступный</option>'
+      + sb.backends.map(b =>
+          `<option value="${b.id}"${b.available?'':' disabled'}>${esc(b.title)}${b.available?'':' — недоступен'}</option>`
+        ).join('');
+    sel.value = sb.backend || 'auto';
+    sel.dataset.filled = '1';
+  }
+  $('#softenNow').textContent = sb.active ? ('сейчас: ' + sb.active) : '';
+  $('#softenList').innerHTML = (sb.backends || []).map(b =>
+    `<div style="font-size:12.5px;color:var(--dim);padding:2px 0">
+       <span style="color:${b.available?'var(--ok)':'var(--dim2)'}">${b.available?'✓':'○'}</span>
+       <b style="color:var(--fg)">${esc(b.title)}</b> — ${esc(b.detail)}</div>`).join('');
+
   $('#proddir').textContent = st.products_dir || 'products';
   $('#prodlist').innerHTML = (st.products || []).length
     ? st.products.map(p => `<span class="pill" title="@product ${esc(p.name)}">
@@ -437,6 +470,13 @@ $('#parse').onclick = async () => {
 $('#delsel').onclick = async () => {
   try { await api('/api/remove', {ids:[...sel]}); sel.clear(); }
   catch(e){ toast(e.message); }
+  tick();
+};
+$('#saveSoften').onclick = async () => {
+  try {
+    const r = await api('/api/soften', {backend: $('#softenBackend').value});
+    toast('Смягчение: ' + r.active, 'ok');
+  } catch(e){ toast(e.message); }
   tick();
 };
 $('#saveep').onclick = async () => {
@@ -613,6 +653,41 @@ class AppState:
 
     # ------------------------------------------------------------ настройки
 
+    def set_soften_backend(self, backend: str) -> str:
+        """Сменить бэкенд смягчения. Возвращает фактически выбранный."""
+        self._require_idle()
+        backend = (backend or "auto").strip().lower()
+        allowed = {"auto", "rules", "ollama", "gemini", "claude"}
+        if backend not in allowed:
+            raise ValueError(f"неизвестный бэкенд {backend!r}; доступны: {', '.join(sorted(allowed))}")
+        self.cfg.set("moderation.soften.backend", backend)
+        self._save_ui({"soften_backend": backend})
+        s = build_softener(self.cfg)
+        active = s.name if s else "выключено"
+        self.console.print(f"смягчение переключено: {backend} (сейчас работает: {active})")
+        return active
+
+    def _save_ui(self, patch: dict[str, Any]) -> None:
+        """Дописать настройки панели, не затирая уже сохранённые."""
+        data: dict[str, Any] = {}
+        try:
+            data = json.loads(Path(UI_FILE).read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            pass
+        data.update(patch)
+        try:
+            Path(UI_FILE).write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        except OSError:
+            pass
+
+    def soften_state(self) -> dict[str, Any]:
+        s = build_softener(self.cfg)
+        return {
+            "backend": str(self.cfg.get("moderation.soften.backend", "auto")),
+            "active": s.name if s else None,
+            "backends": backend_status(self.cfg),
+        }
+
     def set_endpoint(self, endpoint: str) -> str:
         """Сменить CDP endpoint. Возвращает имя браузера после проверки."""
         self._require_idle()
@@ -628,12 +703,7 @@ class AppState:
                 "Запусти его с --remote-debugging-port и НЕдефолтным --user-data-dir."
             ) from exc
         self.cfg.set("cdp.endpoint", endpoint)
-        try:
-            Path(UI_FILE).write_text(
-                json.dumps({"endpoint": endpoint}, ensure_ascii=False), encoding="utf-8"
-            )
-        except OSError:
-            pass
+        self._save_ui({"endpoint": endpoint})
         return browser
 
     # --------------------------------------------------------------- прогон
@@ -836,6 +906,7 @@ class AppState:
             "results": self.results(),
             "products": self.products(),
             "products_dir": str(self.cfg.products_dir()),
+            "soften": self.soften_state(),
             "refs": self.refs_stat,
         }
 
@@ -921,6 +992,9 @@ def make_handler(state: AppState) -> type[BaseHTTPRequestHandler]:
                 elif u.path == "/api/settings":
                     browser = state.set_endpoint(payload.get("endpoint") or "")
                     self._json({"ok": True, "browser": browser})
+                elif u.path == "/api/soften":
+                    active = state.set_soften_backend(payload.get("backend") or "auto")
+                    self._json({"ok": True, "active": active})
                 else:
                     self._json({"error": "not found"}, 404)
             except Exception as exc:  # noqa: BLE001 — ошибку показываем в панели
@@ -936,6 +1010,8 @@ def serve(cfg: Config, source: str, port: int = 8765, open_browser: bool = True)
         saved = json.loads(Path(UI_FILE).read_text(encoding="utf-8"))
         if saved.get("endpoint"):
             cfg.set("cdp.endpoint", saved["endpoint"])
+        if saved.get("soften_backend"):
+            cfg.set("moderation.soften.backend", saved["soften_backend"])
     except (OSError, json.JSONDecodeError):
         pass
 

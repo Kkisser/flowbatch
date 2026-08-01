@@ -188,6 +188,89 @@ def _api_error(body: str) -> str:
         return body[:180]
 
 
+class OllamaSoftener:
+    """Переписывание локальной моделью через Ollama.
+
+    Бесплатно и без сети наружу: ни квот, ни ключей, ни утечки промптов
+    на чужие серверы. Цена — время: модель считает на твоей видеокарте,
+    поэтому она должна целиком влезать в VRAM, иначе часть слоёв уходит
+    в оперативку и скорость падает в разы.
+    """
+
+    name = "ollama"
+
+    def __init__(self, cfg: Config) -> None:
+        self.model = str(cfg.get("moderation.soften.ollama_model", "gemma4:12b"))
+        self.host = str(
+            cfg.get("moderation.soften.ollama_host", "") or os.getenv("OLLAMA_HOST", "")
+            or "http://localhost:11434"
+        ).rstrip("/")
+        if not self.host.startswith(("http://", "https://")):
+            self.host = f"http://{self.host}"
+        self.timeout = int(cfg.get("moderation.soften.ollama_timeout_sec", 300))
+
+    @property
+    def available(self) -> bool:
+        """Сервер отвечает И нужная модель скачана."""
+        try:
+            return self.model in self.list_models()
+        except SoftenError:
+            return False
+
+    def list_models(self) -> list[str]:
+        try:
+            r = httpx.get(f"{self.host}/api/tags", timeout=10)
+        except Exception as exc:  # noqa: BLE001
+            raise SoftenError(
+                f"Ollama не отвечает на {self.host} ({type(exc).__name__}) — "
+                "запусти `ollama serve`"
+            ) from exc
+        if r.status_code != 200:
+            raise SoftenError(f"Ollama HTTP {r.status_code}")
+        return sorted(m.get("name", "") for m in r.json().get("models", []))
+
+    def soften(self, prompt: str, attempt: int) -> tuple[str, str]:
+        harder = (
+            "\nЭто уже НЕ ПЕРВАЯ попытка — предыдущее смягчение модерация тоже "
+            "отклонила. Переписывай агрессивнее." if attempt >= 2 else ""
+        )
+        try:
+            r = httpx.post(
+                f"{self.host}/api/chat",
+                json={
+                    "model": self.model,
+                    "stream": False,
+                    "messages": [
+                        {"role": "system", "content": LLM_INSTRUCTION + harder},
+                        {"role": "user", "content": prompt},
+                    ],
+                    # Низкая температура: нам нужна точечная правка, а не
+                    # творческий пересказ — иначе поедут реплики и имена.
+                    "options": {"temperature": 0.3},
+                },
+                timeout=self.timeout,
+            )
+        except Exception as exc:  # noqa: BLE001
+            raise SoftenError(f"Ollama недоступна: {type(exc).__name__}") from exc
+        if r.status_code != 200:
+            raise SoftenError(f"Ollama HTTP {r.status_code}: {r.text[:180]}")
+        text = str((r.json().get("message") or {}).get("content", "")).strip()
+        if not text:
+            raise SoftenError("Ollama вернула пустой текст")
+        return _strip_fence(text), f"переписано Ollama ({self.model})"
+
+
+def _strip_fence(text: str) -> str:
+    """Снять ```-обёртку, которую локальные модели любят добавлять."""
+    lines = text.splitlines()
+    if lines and lines[0].lstrip().startswith("```"):
+        lines = lines[1:]
+        if lines and lines[-1].strip().startswith("```"):
+            lines = lines[:-1]
+        return "\n".join(lines).strip()
+    return text
+
+
 class ClaudeSoftener:
     """Переписывание через Anthropic Claude API (платный, опционально)."""
 
@@ -267,12 +350,48 @@ def build_softener(cfg: Config, log: Callable[[str], None] | None = None) -> Sof
     if backend == "rules":
         return Softener(None, rules, log)
 
+    ollama = OllamaSoftener(cfg)
     gemini = GeminiSoftener(cfg)
     claude = ClaudeSoftener(cfg)
+    if backend == "ollama":
+        return Softener(ollama if ollama.available else None, rules, log)
     if backend == "gemini":
         return Softener(gemini if gemini.available else None, rules, log)
     if backend == "claude":
         return Softener(claude if claude.available else None, rules, log)
-    # auto: бесплатный Gemini в приоритете, Claude вторым, правила всегда в запасе.
-    primary = gemini if gemini.available else (claude if claude.available else None)
-    return Softener(primary, rules, log)
+
+    # auto: локальная Ollama первой — бесплатно, без квот и без отправки
+    # промптов наружу; затем Gemini, затем Claude; правила всегда в запасе.
+    for candidate in (ollama, gemini, claude):
+        if candidate.available:
+            return Softener(candidate, rules, log)
+    return Softener(None, rules, log)
+
+
+def backend_status(cfg: Config) -> list[dict[str, object]]:
+    """Состояние всех бэкендов — для панели и soften-test."""
+    out: list[dict[str, object]] = [
+        {"id": "rules", "title": "Правила (офлайн)", "available": True,
+         "detail": "работает всегда, без сети и ключей"},
+    ]
+    ollama = OllamaSoftener(cfg)
+    try:
+        models = ollama.list_models()
+        if ollama.model in models:
+            detail = f"модель {ollama.model} готова"
+            ok = True
+        else:
+            ok = False
+            detail = (f"сервер есть, но модели {ollama.model} нет"
+                      + (f" (скачаны: {', '.join(models[:4])})" if models else " (ничего не скачано)"))
+    except SoftenError as exc:
+        ok, detail = False, str(exc)
+    out.append({"id": "ollama", "title": f"Ollama ({ollama.model})", "available": ok, "detail": detail})
+
+    gem = GeminiSoftener(cfg)
+    out.append({"id": "gemini", "title": f"Gemini ({gem.model})", "available": gem.available,
+                "detail": "ключ в .env" if gem.available else "нет GEMINI_API_KEY"})
+    cl = ClaudeSoftener(cfg)
+    out.append({"id": "claude", "title": f"Claude ({cl.model})", "available": cl.available,
+                "detail": "ключ в .env" if cl.available else "нет ANTHROPIC_API_KEY или пакета anthropic"})
+    return out

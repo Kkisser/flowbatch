@@ -653,11 +653,19 @@ def cmd_soften_test(args: argparse.Namespace) -> int:
         else:
             console.print(f"{WARN} [bold]{label}[/bold]: ключа нет ({env_name} пуст)")
 
+    from .soften import backend_status
+
+    console.print("\n[bold]Доступные бэкенды:[/bold]")
+    for b in backend_status(cfg):
+        mark = OK if b["available"] else f"{WARN}"
+        console.print(f"  {mark} [bold]{b['title']}[/bold] — {escape(str(b['detail']))}")
+
     softener = build_softener(cfg, log=lambda s: console.print(f"[dim]{s}[/dim]"))
     if softener is None:
         console.print(f"{BAD} смягчение выключено в config.yaml (moderation.soften.enabled)")
         return 1
-    console.print(f"{OK} [bold]Выбран бэкенд[/bold]: {softener.name}")
+    chosen = str(cfg.get("moderation.soften.backend", "auto"))
+    console.print(f"\n{OK} [bold]Настройка[/bold]: {chosen} → работает [cyan]{softener.name}[/cyan]")
 
     # 2. Для Gemini — живая проверка ключа и список доступных моделей.
     if softener.name == "gemini":
