@@ -756,6 +756,29 @@ def cmd_products(args: argparse.Namespace) -> int:
 # ------------------------------------------------------------------------- ui
 
 
+def cmd_browser(args: argparse.Namespace) -> int:
+    """Поднять браузер с отладочным портом на профиле из конфига."""
+    from .browser import BrowserError, launch
+
+    cfg = Config.load(args.config)
+    try:
+        r = launch(cfg, tabs=args.tabs, on_step=lambda s: console.print(f"  [dim]{s}[/dim]"))
+    except BrowserError as exc:
+        console.print(Panel(str(exc), title="[bold red]Браузер не запустился[/bold red]",
+                            border_style="red"))
+        return 2
+    console.print(
+        f"[green]{'запущен' if r['started'] else 'уже работал'}[/green]: {r['browser']}, "
+        f"вкладок Flow {r['tabs']}, профиль {r['profile']}"
+    )
+    if r["started"]:
+        console.print(
+            "[dim]Если открылась страница входа — войди в Google один раз руками, "
+            "дальше сессия живёт в профиле.[/dim]"
+        )
+    return 0
+
+
 def cmd_ui(args: argparse.Namespace) -> int:
     """Поднять локальную веб-панель."""
     from .web import serve
@@ -794,6 +817,11 @@ def build_parser() -> argparse.ArgumentParser:
     lb.add_argument("--project", dest="library_project", help="смотреть библиотеку другого проекта")
     lb.add_argument("--all-types", action="store_true", help="не только картинки")
     lb.set_defaults(func=cmd_library)
+
+    br = sub.add_parser("browser", help="запустить браузер с отладочным портом")
+    br.add_argument("--tabs", type=int, default=1,
+                    help="сколько вкладок Flow открыть (для параллельного режима)")
+    br.set_defaults(func=cmd_browser)
 
     w = sub.add_parser("ui", help="локальная веб-панель управления очередью")
     w.add_argument("--source", default="jobs.yaml", help="очередь по умолчанию: .xlsx или jobs.yaml")

@@ -435,10 +435,17 @@ function renderTabs(st){
   if (!tabs.length){
     $('#tabs').innerHTML = '<div class="note">'
       + (st.tabs_error
-         ? 'браузер на ' + esc(st.endpoint || '') + ' не отвечает — запусти его с отладочным портом'
-         : 'нет открытых вкладок Flow — открой проект в браузере и нажми «обновить»')
-      + '</div>';
-    note.innerHTML = '';
+         ? 'браузер на ' + esc(st.endpoint || '') + ' не отвечает'
+         : 'нет открытых вкладок Flow')
+      + '</div>'
+      + '<div class="row" style="margin-top:9px">'
+      + '<button class="btn" id="launch">Запустить браузер</button>'
+      + '<select id="ltabs" style="flex:0"><option value="1">1 вкладка</option>'
+      + '<option value="2">2 вкладки</option><option value="3" selected>3 вкладки</option>'
+      + '</select></div>';
+    note.innerHTML = '<div class="note">Откроется твой Edge на отдельном профиле'
+      + ' с отладочным портом. Логин не автоматизируется: сессия берётся из профиля,'
+      + ' где ты вошёл сам.</div>';
     return;
   }
   $('#tabs').innerHTML = tabs.map((t, i) => `
@@ -591,6 +598,16 @@ document.body.addEventListener('click', async e => {
     if (sortK === k) { if (sortDir === 1) sortDir = -1; else { sortK = null; sortDir = 1; } }
     else { sortK = k; sortDir = 1; }
     tick(); return;
+  }
+  if (e.target.id === 'launch') {
+    const b = e.target;
+    b.disabled = true; b.textContent = 'запускаю…';
+    try {
+      const r = await api('/api/browser', {tabs: +($('#ltabs')||{value:1}).value});
+      toast('Браузер: ' + r.browser + ', вкладок ' + r.tabs, 'ok');
+    } catch(err){ toast(err.message); }
+    tick();
+    return;
   }
   const del = e.target.closest('.del');
   if (del) {
@@ -857,6 +874,21 @@ class AppState:
         if self._tabs_cache and not self.running:
             self.tabs_selected = [t for t in self.tabs_selected if t in alive]
         return self._tabs_cache
+
+    def launch_browser(self, tabs: int = 1) -> dict[str, Any]:
+        """Поднять браузер с отладочным портом прямо из панели."""
+        from .browser import launch
+
+        self._require_idle()
+        r = launch(
+            self.cfg, tabs=int(tabs or 1),
+            on_step=lambda s: self.console.print(f"[dim]{s}[/dim]"),
+        )
+        self._tabs_at = 0.0  # список вкладок устарел — перечитать на следующем опросе
+        self.console.print(
+            f"браузер: {r['browser']}, вкладок Flow {r['tabs']}, профиль {r['profile']}"
+        )
+        return r
 
     def set_tabs(self, ids: list[str]) -> list[str]:
         """Запомнить, в каких вкладках гонять очередь."""
@@ -1327,6 +1359,8 @@ def make_handler(state: AppState) -> type[BaseHTTPRequestHandler]:
                     self._json({"ok": True, "active": active})
                 elif u.path == "/api/tabs":
                     self._json({"ok": True, "tabs": state.set_tabs(payload.get("ids") or [])})
+                elif u.path == "/api/browser":
+                    self._json({"ok": True, **state.launch_browser(payload.get("tabs") or 1)})
                 else:
                     self._json({"error": "not found"}, 404)
             except Exception as exc:  # noqa: BLE001 — ошибку показываем в панели
