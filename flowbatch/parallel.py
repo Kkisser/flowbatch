@@ -194,11 +194,14 @@ class ParallelRunner:
         resolver_factory: Callable[[Any, str], Any] | None = None,
         queue_project: str | None = None,
         on_upload: Callable[[Any], None] | None = None,
+        pacer: Pacer | None = None,
+        project_lock: Any = None,
+        bring_front: bool = True,
     ) -> None:
         if not target_ids:
             raise ValueError("не выбрано ни одной вкладки")
         if len(target_ids) > MAX_TABS:
-            raise ValueError(f"больше {MAX_TABS} вкладок нельзя — это потолок антибана")
+            raise ValueError(f"больше {MAX_TABS} вкладок на один проект нельзя")
         self.cfg = cfg
         self.target_ids = target_ids
         self.notifier = notifier
@@ -210,10 +213,16 @@ class ParallelRunner:
         self.resolver_factory = resolver_factory
         self.queue_project = queue_project
         self.on_upload = on_upload
+        # Панель гоняет несколько ПРОЕКТОВ одновременно, и у неё pacer и замок
+        # проектов общие на все прогоны: паузы считаются на аккаунт, а не на
+        # проект, и два прогона не создадут одноимённые проекты наперегонки.
+        # bring_front=False — когда прогонов несколько, тянуть вкладку на
+        # передний план нельзя вообще: они дёргали бы браузер друг у друга.
+        self.bring_front = bring_front
 
         self.arbiter = MediaArbiter()
-        self.pacer = Pacer(cfg)
-        self.project_lock = threading.Lock()   # открытие/создание проекта — по одному
+        self.pacer = pacer or Pacer(cfg)
+        self.project_lock = project_lock or threading.Lock()
         self.refs_lock = threading.Lock()      # заливка референсов — по одному
         self.stop_requested = False
         self.tabs: list[TabState] = [
@@ -261,6 +270,8 @@ class ParallelRunner:
             out.failures.extend(o.failures)
             if o.stopped_reason and not out.stopped_reason:
                 out.stopped_reason = o.stopped_reason
+            if o.stop_kind and not out.stop_kind:
+                out.stop_kind = o.stop_kind
         out.skipped = max(0, total - out.done - out.failed)
         out.elapsed_sec = time.time() - started
         out.per_tab = self.tab_states()
@@ -285,10 +296,10 @@ class ParallelRunner:
     def _worker(self, idx: int, tab: TabState, total: int) -> None:
         console = LabeledConsole(self.console, tab.label, self.COLORS[idx % len(self.COLORS)])
         client = FlowClient(self.cfg, target_id=tab.target_id)
-        # Передний план достаётся только первой вкладке: остальные держатся
-        # «живыми» через CDP, иначе три потока непрерывно перещёлкивали бы
-        # вкладки друг у друга прямо под руками у пользователя.
-        client.bring_to_front = idx == 0
+        # Передний план достаётся максимум первой вкладке — и только если этот
+        # прогон в панели один (bring_front). Остальные держатся «живыми»
+        # через CDP, иначе потоки перещёлкивали бы вкладки друг у друга.
+        client.bring_to_front = self.bring_front and idx == 0
         tab.status = "подключаюсь"
         try:
             client.connect()

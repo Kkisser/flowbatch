@@ -1,23 +1,25 @@
-"""Локальная веб-панель управления очередью.
+"""Локальная веб-панель: несколько независимых прогонов в одном окне.
 
-Стандартная библиотека, ноль зависимостей. Очередь крутится в фоновом потоке,
-страница опрашивает /api/state и показывает таблицу, живой лог и результаты.
+Главная единица — «прогон» (слот): своя очередь (.xlsx / .yaml / .txt /
+вставленный текст), свои вкладки браузера, свой проект Flow, свой Старт/Стоп
+и свой статус. Прогонов до 7, и они работают одновременно: пока в одном
+проекте генерится видео, соседний проект спокойно гонит свою очередь.
 
-Источники очереди:
-  - .xlsx (листы IMG_QUEUE/VID_QUEUE) — статусы пишутся обратно в книгу;
-  - .yaml (формат jobs.yaml);
-  - .txt / вставленный текст с @-директивами (@project/@ref/@use/@duration/@out).
+Что при этом общее на все прогоны (и почему):
+  - ритм пауз (Pacer): антибан считается на аккаунт, а не на проект. Семь
+    прогонов дают ту же частоту запросов, что и один, — быстрее становится
+    только за счёт ожидания результатов внахлёст;
+  - журнал runs.jsonl и кэш референсов: оба под замками;
+  - замок создания проектов: два прогона не создадут одноимённые проекты
+    наперегонки.
 
-Правило выбора: отмеченные галочками строки запускаются ровно как отмечены
-(даже если уже DONE — это явное «перегенерить»). Без галочек идут все строки
-в статусе TODO. Фильтры тип/батч/лимит применяются поверх.
+Чего общего НЕТ: два прогона не могут работать в одном проекте Flow.
+Готовность определяется диффом списка медиа проекта, и второй прогон в том
+же проекте перепутал бы чужие результаты со своими. Панель это проверяет
+и останавливает второй прогон с объяснением.
 
-Проект: если очередь объявила @project (текст) или PROJECT_NAME (xlsx),
-перед прогоном этот проект Flow открывается, а при отсутствии — создаётся.
-Резюм в таком случае считается в рамках проекта.
-
-Сервер намеренно слушает только 127.0.0.1 и отдаёт файлы только из out/ и
-screenshots/: он управляет твоим браузером, наружу его выставлять нельзя.
+Сервер слушает только 127.0.0.1 и отдаёт файлы только из out/ и screenshots/:
+он управляет твоим браузером, наружу его выставлять нельзя.
 """
 
 from __future__ import annotations
@@ -30,27 +32,30 @@ import webbrowser
 from collections import deque
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 from urllib.parse import parse_qs, urlparse
 
 import httpx
 from rich.console import Console
 
+from .browser import BrowserError, launch, open_more_tabs, version as browser_version
 from .config import Config
 from .flow_client import FlowClient, FlowClientError, list_flow_tabs
 from .notify import Notifier
-from .parallel import MAX_TABS, ParallelRunner
+from .parallel import MAX_TABS, Pacer, ParallelRunner
 from .promptfile import SYNTAX_HELP
 from .promptfile import parse as parse_prompts
 from .queue import RunLog, load_jobs
 from .refs import RefCache, RefResolver, parse_lib_spec
-from .runner import Runner
-from .soften import backend_status, build_softener
+from .runner import STOP_QUEUE
 from .sheet import ST_DONE, ST_ERROR, SheetQueue
+from .soften import backend_status, build_softener, ensure_ollama
 
-# Файл, куда сохраняется текст, вставленный в панель.
-PASTED_FILE = "prompts_pasted.flow.txt"
-# Локальные настройки панели (endpoint CDP). В git не попадает.
+# Потолки. MAX_TABS (3) — вкладок на ОДИН проект; здесь — сколько всего
+# прогонов и сколько всего вкладок суммарно на аккаунт.
+MAX_SLOTS = 7
+TOTAL_TAB_CAP = 7
+
 UI_FILE = ".flowbatch_ui.json"
 
 STATUS_DISPLAY = {"ok": "DONE", "failed": "ERROR", "dry_run": "DRY", "IN_PROGRESS": "IN_PROGRESS"}
@@ -60,643 +65,777 @@ HTML = r"""<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>flowbatch</title>
 <style>
-:root{--bg:#0a0c11;--panel:#12161f;--panel2:#181d28;--line:#222a38;--line2:#2d3747;
---fg:#e9edf4;--dim:#98a3b6;--dim2:#5f6a7d;--ok:#3fb950;--err:#f85149;--run:#e3a008;
---todo:#7d8899;--dry:#a371f7;--accent:#5b9dff;--accent2:#2f6fd0;
---w1:#38bec9;--w2:#c678dd;--w3:#4ec26a;
---r:12px;--r-sm:8px;font-synthesis:none}
+:root{
+--bg:#07090e;--panel:#0e1219;--panel2:#151b26;--line:#1d2533;--line2:#2b3648;
+--fg:#e9eef7;--dim:#94a2ba;--dim2:#5b6880;--ok:#3fb950;--err:#f85149;--run:#e3a008;
+--todo:#7d8ba0;--dry:#a371f7;--accent:#4f9cff;
+--p1:#38bdf8;--p2:#c084fc;--p3:#4ade80;--p4:#fbbf24;--p5:#f472b6;--p6:#2dd4bf;--p7:#fb923c;
+--r:14px;--rs:9px;font-synthesis:none}
 *{box-sizing:border-box}
 ::selection{background:#26456e}
 ::-webkit-scrollbar{width:10px;height:10px}
-::-webkit-scrollbar-thumb{background:#242c3a;border-radius:6px;border:2px solid var(--bg)}
-::-webkit-scrollbar-thumb:hover{background:#313b4d}
+::-webkit-scrollbar-thumb{background:#232c3c;border-radius:6px;border:2px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:#313d52}
 ::-webkit-scrollbar-track{background:transparent}
-body{margin:0;background:var(--bg);color:var(--fg);
-font:13.5px/1.55 -apple-system,"Segoe UI Variable Text","Segoe UI",Roboto,sans-serif;
+body{margin:0;background:radial-gradient(1200px 500px at 50% -180px,#101a2c 0%,var(--bg) 60%) fixed,var(--bg);
+color:var(--fg);font:13.5px/1.55 -apple-system,"Segoe UI Variable Text","Segoe UI",Roboto,sans-serif;
 -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
 
-/* ---------------------------------------------------------------- шапка */
-header{padding:0 18px;height:52px;border-bottom:1px solid var(--line);display:flex;gap:10px;
-align-items:center;background:linear-gradient(180deg,#151a25,#0f131b);
-position:sticky;top:0;z-index:6;box-shadow:0 1px 0 #0006}
-h1{font-size:15px;margin:0;font-weight:650;letter-spacing:-.01em;flex:none}
-h1 b{color:var(--accent);font-weight:650}
-.sep{width:1px;height:22px;background:var(--line);flex:none;margin:0 2px}
+/* ------------------------------------------------------------------ шапка */
+header{padding:0 16px;height:54px;border-bottom:1px solid var(--line);display:flex;gap:10px;
+align-items:center;position:sticky;top:0;z-index:6;
+background:#0b0f16d9;backdrop-filter:blur(10px)}
+h1{font-size:16px;margin:0 2px 0 0;font-weight:700;letter-spacing:-.01em;flex:none}
+h1 b{background:linear-gradient(90deg,#5b9dff,#a78bfa);-webkit-background-clip:text;
+background-clip:text;color:transparent}
+.sep{width:1px;height:22px;background:var(--line);flex:none}
 .grow{flex:1}
 
-/* ------------------------------------------------------------- примитивы */
-.pill{display:inline-flex;gap:6px;align-items:center;background:#161b25;
+.pill{display:inline-flex;gap:7px;align-items:center;background:#141a26;
 border:1px solid var(--line);border-radius:99px;padding:3px 11px;font-size:12px;
 color:var(--dim);white-space:nowrap}
 .pill b{color:var(--fg);font-weight:600}
-.dot{width:7px;height:7px;border-radius:50%;flex:none;box-shadow:0 0 0 3px #ffffff08}
+.dot{width:7px;height:7px;border-radius:50%;flex:none;box-shadow:0 0 0 3px #ffffff09}
 .dot.live{animation:pulse 1.2s infinite alternate}
-@keyframes pulse{from{opacity:.45}to{opacity:1}}
+@keyframes pulse{from{opacity:.4}to{opacity:1}}
 
-main{display:grid;grid-template-columns:minmax(0,1fr) 400px;height:calc(100vh - 52px)}
-@media(max-width:1180px){main{display:block;height:auto}}
-section{overflow:auto;padding:16px 18px 48px;min-width:0}
-aside{border-left:1px solid var(--line);overflow:auto;padding:16px;background:#0c0f16}
-@media(max-width:1180px){aside{border-left:none;border-top:1px solid var(--line)}}
+main{display:grid;grid-template-columns:minmax(0,1fr) 396px;height:calc(100vh - 54px)}
+@media(max-width:1200px){main{display:block;height:auto}}
+section{overflow:auto;padding:16px 16px 60px;min-width:0}
+aside{border-left:1px solid var(--line);overflow:auto;padding:14px;background:#0b0e15}
+@media(max-width:1200px){aside{border-left:none;border-top:1px solid var(--line)}}
 
-.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
-padding:14px;margin-bottom:12px}
-.card>.ttl{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--dim2);
-font-weight:700;margin:0 0 10px;display:flex;align-items:center;gap:8px}
-.card>.ttl .grow{flex:1}
-.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.row+.row{margin-top:9px}
-
-input,select,textarea{font:inherit;background:#0f131b;color:var(--fg);
-border:1px solid var(--line2);border-radius:var(--r-sm);padding:7px 11px;outline:none;
+/* -------------------------------------------------------------- примитивы */
+input,select,textarea{font:inherit;background:#0d121b;color:var(--fg);
+border:1px solid var(--line2);border-radius:var(--rs);padding:7px 11px;outline:none;
 transition:border-color .12s,box-shadow .12s}
-input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px #5b9dff22}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px #4f9cff22}
 input::placeholder{color:var(--dim2)}
-input[type=text]{flex:1;min-width:200px}
-input[type=number]{width:92px}
-input[type=checkbox]{accent-color:var(--accent);width:15px;height:15px;cursor:pointer}
-textarea{width:100%;min-height:180px;resize:vertical;
+input[type=text]{flex:1;min-width:180px}
+input[type=number]{width:88px}
+input[type=checkbox]{accent-color:var(--accent);width:15px;height:15px;cursor:pointer;margin:0}
+textarea{width:100%;min-height:170px;resize:vertical;
 font:12px/1.55 ui-monospace,Consolas,monospace;white-space:pre;tab-size:2}
+select{cursor:pointer}
 
-.btn{font:inherit;font-weight:500;cursor:pointer;border-radius:var(--r-sm);padding:7px 14px;
-background:#1b2130;color:var(--fg);border:1px solid var(--line2);white-space:nowrap;
+.btn{font:inherit;font-weight:500;cursor:pointer;border-radius:var(--rs);padding:7px 14px;
+background:#1a2130;color:var(--fg);border:1px solid var(--line2);white-space:nowrap;
 transition:background .12s,border-color .12s,opacity .12s;display:inline-flex;
-align-items:center;gap:6px}
-.btn:hover:not(:disabled){background:#222a3b;border-color:#3b4759}
+align-items:center;gap:6px;line-height:1.3}
+.btn:hover:not(:disabled){background:#222b3d;border-color:#3c4a61}
 .btn:disabled{opacity:.35;cursor:not-allowed}
-.btn.primary{background:linear-gradient(180deg,#5b9dff,#3576dd);border-color:#3d7ad6;
-color:#fff;font-weight:600;box-shadow:0 1px 10px #3576dd40}
+.btn.primary{background:linear-gradient(180deg,#549aff,#3272d9);border-color:#3d7ad6;
+color:#fff;font-weight:600;box-shadow:0 1px 12px #3576dd3d}
 .btn.primary:hover:not(:disabled){filter:brightness(1.08)}
 .btn.danger{background:#2a1417;border-color:#5c2b2b;color:#ff9d96}
 .btn.danger:hover:not(:disabled){background:#38191d;border-color:#7a3838}
 .btn.ghost{background:transparent;border-color:transparent;color:var(--dim)}
-.btn.ghost:hover:not(:disabled){background:#1b2130;color:var(--fg)}
-.btn.sm{padding:3px 9px;font-size:12px;border-radius:6px}
+.btn.ghost:hover:not(:disabled){background:#1a2130;color:var(--fg)}
+.btn.sm{padding:3px 10px;font-size:12px;border-radius:7px}
 .btn.icon{padding:7px 10px}
 label.chk{display:inline-flex;gap:7px;align-items:center;color:var(--dim);cursor:pointer;
-user-select:none}
+user-select:none;white-space:nowrap}
 label.chk:hover{color:var(--fg)}
+.note{font-size:12px;color:var(--dim);line-height:1.55}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.row+.row{margin-top:8px}
 
-details{border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
-details:first-of-type{border-top:none;padding-top:0;margin-top:0}
-details summary{cursor:pointer;color:var(--dim);user-select:none;list-style:none;
-display:flex;align-items:center;gap:7px;padding:2px 0}
-details summary::-webkit-details-marker{display:none}
-details summary::before{content:"›";color:var(--dim2);font-size:16px;line-height:1;
-transition:transform .15s;display:inline-block}
-details[open] summary::before{transform:rotate(90deg)}
-details summary:hover{color:var(--fg)}
-details[open] summary{margin-bottom:10px;color:var(--fg)}
-.hint{font:11.5px/1.65 ui-monospace,Consolas,monospace;color:var(--dim);
-white-space:pre-wrap;background:#0a0d13;border:1px solid var(--line);
-border-radius:var(--r-sm);padding:10px 12px;margin:8px 0}
-.helpgrid{display:grid;grid-template-columns:auto 1fr;gap:7px 14px;font-size:12.5px;
-color:var(--dim);margin:6px 0 2px}
-.helpgrid b{color:var(--fg);font-weight:600;white-space:nowrap}
-.note{font-size:12px;color:var(--dim);line-height:1.5}
-.note.warn{color:#e8c07a;background:#2a220f;border:1px solid #4a3a15;
-border-radius:var(--r-sm);padding:8px 10px;margin-top:8px}
-
-/* -------------------------------------------------------------- вкладки */
-.tab{display:flex;gap:9px;align-items:flex-start;padding:9px 10px;border-radius:var(--r-sm);
-border:1px solid var(--line);background:#10141d;margin-bottom:7px;transition:border-color .12s}
-.tab:hover{border-color:var(--line2)}
-.tab.on{border-color:#33507e;background:#121a28}
-.tab .body{min-width:0;flex:1}
-.tab .name{font-size:12.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;
-white-space:nowrap}
-.tab .meta{font:11px/1.5 ui-monospace,Consolas,monospace;color:var(--dim2);
-overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tab .wlabel{font-weight:700;font-size:11px;padding:1px 6px;border-radius:5px;flex:none;
-background:#1b2130}
-.worker{display:flex;gap:9px;align-items:center;padding:8px 10px;border-radius:var(--r-sm);
-background:#10141d;border:1px solid var(--line);margin-bottom:7px}
-.worker .jid{font:12px ui-monospace,Consolas,monospace;flex:1;min-width:0;
-overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.worker .el{font-size:11.5px;color:var(--dim);flex:none}
-
-/* -------------------------------------------------------------- таблица */
-.stat{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 10px;align-items:center}
-table{width:100%;border-collapse:collapse}
-thead th{position:sticky;top:-16px;background:var(--bg);z-index:2;
-text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;
-color:var(--dim2);font-weight:700;padding:9px 8px;border-bottom:1px solid var(--line);
-white-space:nowrap}
-thead th.sortable{cursor:pointer;user-select:none}
-thead th.sortable:hover{color:var(--fg)}
-thead th .arr{color:var(--accent);margin-left:3px}
-td{padding:9px 8px;border-bottom:1px solid #161b25;vertical-align:top}
-tbody tr{transition:background .1s}
-tbody tr:hover td{background:#121722}
-tr.active td{background:#141d2c;box-shadow:inset 2px 0 0 var(--run)}
-.id{font-family:ui-monospace,Consolas,monospace;font-size:12px;white-space:nowrap}
-.prompt{color:var(--dim);font-size:12px;max-width:560px;overflow:hidden;cursor:pointer;
-display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.5}
-.prompt.full{-webkit-line-clamp:unset}
+/* ------------------------------------------------------------------ слоты */
+#gstats{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.slot{position:relative;background:linear-gradient(180deg,var(--panel),#0b0f16);
+border:1px solid var(--line);border-radius:var(--r);padding:13px 15px 12px 18px;
+margin-bottom:14px;box-shadow:0 8px 28px #00000052;transition:border-color .15s}
+.slot:hover{border-color:#26314a}
+.slot::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;
+border-radius:0 3px 3px 0;background:var(--sc)}
+.shead{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.sbadge{font-weight:800;font-size:12px;padding:2px 9px;border-radius:7px;flex:none;
+color:var(--sc);background:color-mix(in srgb,var(--sc) 14%,transparent);
+border:1px solid color-mix(in srgb,var(--sc) 35%,transparent)}
+.sname{font-weight:650;font-size:14px;overflow:hidden;text-overflow:ellipsis;
+white-space:nowrap;max-width:34%}
+.sel-t{font-size:12px;color:var(--dim)}
 .badge{display:inline-flex;gap:5px;align-items:center;padding:2px 9px;border-radius:99px;
 font-size:11px;font-weight:600;white-space:nowrap}
 .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
-.s-TODO{background:#1a202a;color:var(--todo)}
+.s-TODO{background:#1a202b;color:var(--todo)}
 .s-IN_PROGRESS{background:#33270d;color:var(--run)}
 .s-IN_PROGRESS::before{animation:pulse 1.1s infinite alternate}
 .s-DONE{background:#10281a;color:var(--ok)}
 .s-ERROR{background:#2e161a;color:var(--err)}
 .s-DRY{background:#221936;color:var(--dry)}
-.s-SKIP{background:#1a202a;color:var(--todo)}
-.err{color:var(--err);font-size:11px;margin-top:4px;max-width:560px;line-height:1.45}
-.del{opacity:0;transition:opacity .12s,color .12s;color:var(--dim2);background:none;
-border:none;cursor:pointer;font-size:14px;padding:0 4px;line-height:1}
+.s-SKIP{background:#1a202b;color:var(--todo)}
+
+.tchips{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:9px}
+.tchips .lbl{font-size:11.5px;color:var(--dim2);text-transform:uppercase;letter-spacing:.06em}
+.tchip{font:12px/1.3 inherit;border-radius:8px;padding:4px 10px;cursor:pointer;
+border:1px solid var(--line2);background:#0e141f;color:var(--dim);transition:all .12s}
+.tchip:hover:not(.busy):not(:disabled){border-color:var(--sc);color:var(--fg)}
+.tchip.mine{border-color:var(--sc);color:var(--sc);
+background:color-mix(in srgb,var(--sc) 11%,transparent);font-weight:600}
+.tchip.busy{opacity:.4;cursor:not-allowed}
+.tchip:disabled{cursor:not-allowed;opacity:.5}
+
+.pbwrap{margin-top:10px}
+.pb{height:7px;border-radius:5px;background:#141b28;overflow:hidden;display:flex}
+.pb span{height:100%;transition:width .4s}
+.pb .ok{background:linear-gradient(90deg,#2ea043,#3fb950)}
+.pb .er{background:#c93c37}
+.pb .dr{background:#8957e5}
+.worker{display:flex;gap:9px;align-items:center;padding:6px 10px;border-radius:8px;
+background:#0d1119;border:1px solid var(--line);margin-top:7px;font-size:12px}
+.worker .wl{font-weight:700;font-size:11px;flex:none}
+.worker .jid{font-family:ui-monospace,Consolas,monospace;flex:1;min-width:0;
+overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.worker .el{color:var(--dim);flex:none}
+.snote{margin-top:9px;font-size:12.5px}
+.snote .okc{color:#7ee29a}.snote .erc{color:#ff9d96}
+.stail{margin-top:7px;font:11px/1.5 ui-monospace,Consolas,monospace;color:var(--dim2);
+white-space:pre-wrap;word-break:break-word}
+
+.qwrap{margin-top:10px;border:1px solid var(--line);border-radius:10px;
+max-height:44vh;overflow:auto;background:#0b0f16}
+table{width:100%;border-collapse:collapse}
+thead th{position:sticky;top:0;background:#10151f;z-index:2;text-align:left;
+font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim2);
+font-weight:700;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
+thead th.sortable{cursor:pointer;user-select:none}
+thead th.sortable:hover{color:var(--fg)}
+thead th .arr{color:var(--accent);margin-left:3px}
+td{padding:8px;border-bottom:1px solid #141a25;vertical-align:top}
+tbody tr:hover td{background:#101724}
+tr.active td{background:#131c2c;box-shadow:inset 2px 0 0 var(--run)}
+.id{font-family:ui-monospace,Consolas,monospace;font-size:12px;white-space:nowrap}
+.prompt{color:var(--dim);font-size:12px;max-width:520px;overflow:hidden;cursor:pointer;
+display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.5}
+.prompt.full{-webkit-line-clamp:unset}
+.err{color:var(--err);font-size:11px;margin-top:4px;max-width:520px;line-height:1.45}
+.del{opacity:0;transition:opacity .12s;color:var(--dim2);background:none;border:none;
+cursor:pointer;font-size:14px;padding:0 4px;line-height:1}
 tbody tr:hover .del{opacity:1}
 .del:hover{color:var(--err)}
-.empty{color:var(--dim2);padding:22px 8px;text-align:center}
+.empty{color:var(--dim2);padding:20px 8px;text-align:center}
+#addslot{width:100%;padding:13px;border:1px dashed var(--line2);background:transparent;
+border-radius:var(--r);color:var(--dim);font:inherit;cursor:pointer;transition:all .15s}
+#addslot:hover{border-color:var(--accent);color:var(--accent);background:#4f9cff0d}
 
-/* ------------------------------------------------------- лог и результаты */
-pre#log{background:#080a0f;border:1px solid var(--line);border-radius:var(--r-sm);
-padding:11px;font:11.5px/1.6 ui-monospace,Consolas,monospace;white-space:pre-wrap;
-word-break:break-word;max-height:34vh;min-height:120px;overflow:auto;margin:0;color:#c6cedb}
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
-.gallery a{display:block;border:1px solid var(--line);border-radius:var(--r-sm);
-overflow:hidden;background:#000;transition:border-color .12s}
+/* ------------------------------------------------------------------ aside */
+.apanel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+padding:12px 13px;margin-bottom:12px}
+h2{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--dim2);
+margin:0 0 9px;font-weight:700;display:flex;align-items:center;gap:8px}
+.atab{display:flex;gap:8px;align-items:center;padding:7px 9px;border-radius:8px;
+background:#0d1119;border:1px solid var(--line);margin-bottom:6px;font-size:12px}
+.atab .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atab .own{font-weight:700;font-size:11px;flex:none}
+pre#log{background:#080b11;border:1px solid var(--line);border-radius:9px;padding:10px;
+font:11.5px/1.6 ui-monospace,Consolas,monospace;white-space:pre-wrap;word-break:break-word;
+max-height:32vh;min-height:110px;overflow:auto;margin:0;color:#c4cddc}
+pre#log .lt{font-weight:700}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px}
+.gallery a{display:block;border:1px solid var(--line);border-radius:9px;overflow:hidden;
+background:#000;transition:border-color .12s}
 .gallery a:hover{border-color:var(--accent)}
-.gallery img,.gallery video{width:100%;height:140px;object-fit:cover;display:block}
+.gallery img,.gallery video{width:100%;height:136px;object-fit:cover;display:block}
 .gallery span{display:block;font-size:10px;color:var(--dim);padding:4px 6px;
 overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-h2{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--dim2);
-margin:18px 0 8px;font-weight:700;display:flex;align-items:center;gap:8px}
-h2:first-child{margin-top:0}
+
+/* ----------------------------------------------------------------- диалог */
+dialog{background:var(--panel);color:var(--fg);border:1px solid var(--line2);
+border-radius:16px;padding:0;width:min(680px,92vw);max-height:84vh}
+dialog::backdrop{background:#000000a8;backdrop-filter:blur(3px)}
+.dhead{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);
+font-weight:650;font-size:14px}
+.dtabs{display:flex;gap:4px;padding:10px 14px 0}
+.dtabs button{font:inherit;font-size:12.5px;background:none;border:none;color:var(--dim);
+padding:7px 12px;cursor:pointer;border-radius:8px 8px 0 0;border-bottom:2px solid transparent}
+.dtabs button.on{color:var(--fg);border-bottom-color:var(--accent)}
+.dbody{padding:14px 18px 18px;overflow:auto;max-height:60vh}
+.dsec{display:none}.dsec.on{display:block}
+.helpgrid{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:12.5px;
+color:var(--dim);margin:6px 0}
+.helpgrid b{color:var(--fg);font-weight:600;white-space:nowrap}
+.hint{font:11.5px/1.65 ui-monospace,Consolas,monospace;color:var(--dim);
+white-space:pre-wrap;background:#0a0d13;border:1px solid var(--line);
+border-radius:9px;padding:10px 12px;margin:8px 0 0}
+.bkrow{font-size:12.5px;color:var(--dim);padding:3px 0}
+.bkrow b{color:var(--fg)}
 
 #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
 border-radius:10px;padding:11px 18px;font-size:13px;max-width:640px;white-space:pre-wrap;
-display:none;z-index:9;box-shadow:0 10px 34px #000b}
+display:none;z-index:99;box-shadow:0 10px 34px #000c}
 #toast.err{background:#2d1518;border:1px solid #5c2b2b;color:#ff9d96}
 #toast.ok{background:#122a1c;border:1px solid #2b5c3b;color:#7ee29a}
-.settings-status{font-size:12px;color:var(--dim);margin-top:8px}
+.mut{font-size:12px;color:var(--dim2)}
 </style></head><body>
 <header>
   <h1>flow<b>batch</b></h1>
   <span class="sep"></span>
-  <span class="pill" id="conn"><span class="dot" style="background:var(--todo)"></span>…</span>
-  <span class="pill" id="qproj" style="display:none"></span>
-  <span class="pill" id="proj" style="display:none"></span>
+  <span class="pill" id="bstat"><span class="dot" style="background:var(--todo)"></span>…</span>
+  <button class="btn sm" id="bbtn">Запустить браузер</button>
+  <select id="bcount" class="sm" title="сколько вкладок Flow должно быть открыто" style="padding:4px 8px">
+    <option>1</option><option>2</option><option selected>3</option><option>5</option><option>7</option>
+  </select>
   <span class="grow"></span>
-  <label class="chk" title="репетиция: всё, кроме нажатия «Создать» — генерации не тратятся">
-    <input type="checkbox" id="dry"> dry-run</label>
-  <button class="btn icon" id="gear" title="настройки">⚙</button>
-  <button class="btn primary" id="start">▶&nbsp; Старт</button>
-  <button class="btn danger" id="stop" disabled>■&nbsp; Стоп</button>
+  <span class="pill" title="кто переписывает промпт, если Flow завернул его по модерации">
+    <span class="dot" id="softdot" style="background:var(--todo)"></span>
+    смягчение
+    <select id="soft" style="border:none;background:transparent;padding:2px 4px;color:var(--fg)"></select>
+  </span>
+  <button class="btn danger sm" id="stopall" style="display:none">■ Стоп всё</button>
+  <button class="btn icon" id="gear" title="настройки и справка">⚙</button>
 </header>
 <main>
 <section>
-  <div class="card" id="settings" hidden>
-    <div class="ttl">Настройки<span class="grow"></span>
-      <button class="btn ghost sm" id="gearclose">закрыть</button></div>
-    <details id="settingsbox">
-      <summary>Подключение к браузеру</summary>
+  <div id="gstats"></div>
+  <div id="slots"></div>
+  <button id="addslot">＋ Новый прогон — свой проект, своя очередь, своя вкладка</button>
+</section>
+<aside>
+  <div class="apanel">
+    <h2>Вкладки браузера <span class="pill" id="tabcount">0</span>
+        <span class="grow"></span>
+        <button class="btn ghost sm" id="rescan" title="перечитать список вкладок">↻</button></h2>
+    <div id="atabs"></div>
+    <div class="row" style="margin-top:9px">
+      <button class="btn sm" id="aaddtab">＋ вкладка Flow</button>
+      <span class="mut">каждому прогону — своя</span>
+    </div>
+  </div>
+  <div class="apanel">
+    <h2>Лог <span class="grow"></span>
+      <select id="logf" style="padding:3px 8px;font-size:12px"><option value="">все</option></select></h2>
+    <pre id="log">—</pre>
+  </div>
+  <div class="apanel">
+    <h2>Результаты <span class="pill" id="rescount" style="display:none"></span></h2>
+    <div class="gallery" id="gal"></div>
+  </div>
+</aside>
+</main>
+
+<dialog id="dlg">
+  <div class="dhead">Настройки <span class="grow"></span>
+    <button class="btn ghost sm" id="dclose">✕</button></div>
+  <div class="dtabs">
+    <button data-t="conn" class="on">Подключение</button>
+    <button data-t="soft">Смягчение</button>
+    <button data-t="prod">Продукты</button>
+    <button data-t="help">Справка</button>
+  </div>
+  <div class="dbody">
+    <div class="dsec on" id="d-conn">
       <div class="row">
         <input type="text" id="endpoint" placeholder="http://localhost:9222">
         <button class="btn" id="saveep">Сохранить и проверить</button>
       </div>
-      <div class="settings-status" id="epstatus"></div>
-      <div class="helpgrid" style="margin-top:8px">
-        <b>чужой доступ</b><span>токен вставлять не нужно и негде: авторизация — это залогиненный
-        браузер. Другой человек запускает свой Edge/Chrome со своим профилем
-        (команда в README), логинится в Google один раз и указывает здесь порт своего браузера.</span>
+      <div class="note" id="epstatus" style="margin-top:8px"></div>
+      <div class="helpgrid" style="margin-top:12px">
+        <b>браузер</b><span>кнопка «Запустить браузер» в шапке поднимает твой Edge на
+        отдельном профиле с отладочным портом. Логин не автоматизируется: сессия
+        берётся из профиля, где ты один раз вошёл сам.</span>
+        <b>чужой доступ</b><span>токены не нужны: авторизация — это залогиненный браузер.
+        Другой человек запускает свой браузер со своим профилем и указывает здесь порт.</span>
       </div>
-    </details>
-    <details id="softenbox">
-      <summary>Смягчение промптов при модерации</summary>
-      <div class="row">
-        <select id="softenBackend" style="min-width:230px"></select>
-        <button class="btn" id="saveSoften">Применить</button>
-        <span class="note" id="softenNow"></span>
-      </div>
-      <div id="softenList" style="margin-top:9px"></div>
-      <div class="helpgrid" style="margin-top:9px">
+    </div>
+    <div class="dsec" id="d-soft">
+      <div id="softlist"></div>
+      <div class="helpgrid" style="margin-top:12px">
         <b>зачем</b><span>если Flow завернул промпт («может нарушать наши правила»),
-        программа перепишет его безобиднее и запустит задачу заново. Реплики,
-        имена персонажей и бренд при этом не трогаются.</span>
-        <b>авто</b><span>берёт первый доступный: Ollama (локально, бесплатно, без сети)
-        → Gemini → Claude → правила. Правила работают всегда и служат запасным
-        вариантом, если LLM недоступна.</span>
+        программа перепишет его безобиднее и перезапустит задачу. Реплики, имена
+        персонажей и бренд не трогаются.</span>
+        <b>выбор</b><span>переключатель в шапке. Ollama — локально и бесплатно, сервер
+        поднимется сам при выборе. Gemini — по API-ключу из .env. «Авто» берёт первое
+        доступное: Ollama → Gemini → Claude → правила.</span>
       </div>
-    </details>
-    <details id="prodbox">
-      <summary>База продуктов</summary>
+    </div>
+    <div class="dsec" id="d-prod">
       <div class="row" id="prodlist" style="gap:6px"></div>
-      <div class="helpgrid" style="margin-top:9px">
+      <div class="helpgrid" style="margin-top:12px">
         <b>как это работает</b><span>подпапка = продукт: <code id="proddir"></code>\rl410\фото.jpg.
-        В промпте — <b>@product rl410</b> (все фото продукта) или
-        <b>@product rl410/front.jpg</b> (одно). При прогоне фото сами заливаются
-        в текущий проект Flow — один раз, дальше из кэша по uuid.</span>
+        В промпте — <b>@product rl410</b> (все фото) или <b>@product rl410/front.jpg</b> (одно).
+        Фото заливаются в проект автоматически, один раз, дальше из кэша.</span>
       </div>
-    </details>
-    <details>
-      <summary>Справка: галочки, dry-run, BATCH, лимит, вкладки</summary>
+    </div>
+    <div class="dsec" id="d-help">
       <div class="helpgrid">
-        <b>галочки</b><span>отмеченные строки идут в прогон ровно как отмечены — даже со статусом
-        DONE (это явная перегенерация). Ничего не отмечено — идут все TODO.</span>
-        <b>dry-run</b><span>полная репетиция без траты генераций: откроется проект, выставятся
-        формат и настройки, введётся промпт, прикрепятся референсы, сохранится скриншот —
-        но кнопка «Создать» нажата не будет. Проверяй так новые очереди и референсы.</span>
-        <b>BATCH</b><span>фильтр по колонке 04_BATCH Excel-очереди (BATCH_A, SOLO…).
-        Для yaml и текста не используется.</span>
-        <b>лимит</b><span>взять не больше N первых строк после всех фильтров.</span>
-        <b>✕ у строки</b><span>убирает строку из текущей очереди панели. Исходный файл не меняется;
-        «Загрузить» возвращает всё обратно.</span>
-        <b>проект</b><span>если очередь объявила @project (текст) или PROJECT_NAME (xlsx),
-        перед стартом этот проект Flow откроется, а при отсутствии — создастся.</span>
-        <b>вкладки</b><span>отметь 2–3 вкладки справа — очередь пойдёт в них параллельно.
-        Пока одна ждёт результат, другая уже запускает следующую задачу.</span>
+        <b>прогоны</b><span>каждый прогон — отдельный проект Flow в отдельной вкладке браузера.
+        До 7 одновременно. Два прогона в одном проекте не разрешаются — результаты
+        перепутались бы.</span>
+        <b>галочки</b><span>отмеченные строки идут в прогон ровно как отмечены — даже DONE
+        (перегенерация). Ничего не отмечено — идут все TODO.</span>
+        <b>dry</b><span>репетиция: всё, кроме нажатия «Создать». Генерации не тратятся.</span>
+        <b>BATCH</b><span>фильтр по колонке 04_BATCH Excel-очереди.</span>
+        <b>лимит</b><span>не больше N строк после фильтров.</span>
+        <b>✕ у строки</b><span>убирает строку из очереди панели, файл не меняется.</span>
+        <b>паузы</b><span>общие на все прогоны: запросов в минуту столько же, сколько в один
+        поток. Ускорение — за счёт ожидания генераций внахлёст.</span>
       </div>
-    </details>
-  </div>
-
-  <div class="card">
-    <div class="ttl">Очередь</div>
-    <div class="row">
-      <input type="text" id="src" placeholder="очередь: .xlsx / .yaml / .txt с @-директивами">
-      <button class="btn" id="reload" title="перечитать файл очереди; убранные строки вернутся">Загрузить</button>
-    </div>
-    <div class="row">
-      <select id="kind" title="фильтр по типу задач">
-        <option value="">все типы</option>
-        <option value="image">только image</option><option value="video">только video</option></select>
-      <input type="text" id="batch" placeholder="BATCH" style="min-width:100px;flex:0"
-             title="фильтр по колонке 04_BATCH из Excel-очереди (например BATCH_A)">
-      <input type="number" id="limit" placeholder="лимит" title="взять не больше N строк после фильтров">
-      <span class="grow"></span>
-      <button class="btn danger sm" id="delsel" style="display:none">✕ убрать отмеченные</button>
-    </div>
-    <details id="pastebox">
-      <summary>Вставить промпты текстом</summary>
-      <textarea id="ptext" spellcheck="false" placeholder="@project Название проекта&#10;&#10;=== IMG K1&#10;@ref C:\путь\референс.png&#10;Текст промпта...&#10;&#10;=== VID K1_anim&#10;@use K1&#10;@duration 8&#10;Animate this image..."></textarea>
       <div class="hint" id="syntax"></div>
-      <div class="row"><button class="btn" id="parse">Разобрать и загрузить</button></div>
-    </details>
+    </div>
   </div>
-
-  <div class="stat" id="stat"></div>
-  <table><thead><tr id="headrow">
-    <th style="width:26px"><input type="checkbox" id="selall" title="выбрать все видимые"></th>
-    <th class="sortable" data-k="id">ID</th>
-    <th class="sortable" data-k="kind">тип</th>
-    <th class="sortable" data-k="batch">batch</th>
-    <th class="sortable" data-k="duration">сек</th>
-    <th class="sortable" data-k="refs">реф</th>
-    <th class="sortable" data-k="out">файл</th>
-    <th>промпт</th>
-    <th class="sortable" data-k="status">статус</th>
-    <th style="width:26px"></th>
-  </tr></thead><tbody id="rows"></tbody></table>
-</section>
-<aside>
-  <h2>Вкладки браузера <span class="pill" id="tabcount" style="display:none"></span>
-      <span class="grow"></span>
-      <button class="btn ghost sm" id="rescan" title="перечитать список вкладок">обновить</button></h2>
-  <div id="tabs"></div>
-  <div id="tabnote"></div>
-  <h2>Лог</h2>
-  <pre id="log">—</pre>
-  <h2>Результаты <span class="pill" id="rescount" style="display:none"></span></h2>
-  <div class="gallery" id="gal"></div>
-</aside>
-</main>
+</dialog>
 <div id="toast"></div>
+
 <script>
 const $ = s => document.querySelector(s);
-const sel = new Set();          // отмеченные строки очереди
-let knownIds = [];
-let sortK = null, sortDir = 1;
-let tabsSel = [];               // выбранные вкладки браузера (хранит сервер)
-let maxTabs = 3;
-const WCOLOR = ['var(--w1)', 'var(--w2)', 'var(--w3)'];
+const S = { sel:{}, sort:{}, q:{}, logSlots:'' };
+let LAST = null;
 
-function mmss(sec){
-  const m = Math.floor(sec / 60), s = sec % 60;
-  return m + ':' + String(s).padStart(2, '0');
-}
+const PAL = 7;
+const pcol = sid => `var(--p${((sid-1)%PAL)+1})`;
 
+function esc(s){ return (s??'').toString().replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function base(p){ return (p||'').split(/[\\/]/).pop(); }
+function mmss(sec){ const m=Math.floor(sec/60),s=sec%60; return m+':'+String(s).padStart(2,'0'); }
 function toast(msg, kind){
-  const t = $('#toast'); t.textContent = msg;
-  t.className = kind || 'err'; t.style.display = 'block';
-  clearTimeout(t._h); t._h = setTimeout(() => t.style.display = 'none', kind==='ok'?3500:7000);
+  const t=$('#toast'); t.textContent=msg; t.className=kind||'err'; t.style.display='block';
+  clearTimeout(t._h); t._h=setTimeout(()=>t.style.display='none', kind==='ok'?3500:8000);
 }
 async function api(path, body){
-  const opt = body ? {method:'POST',headers:{'Content-Type':'application/json'},
-                      body:JSON.stringify(body)} : {};
-  const r = await fetch(path, opt);
-  const j = await r.json();
+  const opt = body ? {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)} : {};
+  const r = await fetch(path, opt); const j = await r.json();
   if (j.error) throw new Error(j.error);
   return j;
 }
-function esc(s){ return (s||'').toString().replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+async function tick(fresh){
+  try { LAST = await api('/api/state'+(fresh?'?fresh=1':'')); render(LAST); } catch(e){}
+}
 
-function sortRows(rows){
-  if (!sortK) return rows;
+/* ------------------------------------------------------------------ шапка */
+function renderHeader(st){
+  const ok = st.browser_ok, n = (st.tabs||[]).length;
+  $('#bstat').innerHTML = `<span class="dot${st.slots.some(s=>s.running)?' live':''}" style="background:${ok?'var(--ok)':'var(--err)'}"></span>`
+    + (ok ? `${esc(st.browser_name||'браузер')} · <b>${n}</b>&nbsp;вкладок` : 'браузер не запущен');
+  $('#bbtn').textContent = ok ? '＋ вкладки' : '▶ Запустить браузер';
+  $('#stopall').style.display = st.slots.some(s=>s.running) ? '' : 'none';
+
+  const sb = st.soften||{};
+  const sel = $('#soft');
+  if (sel.dataset.filled !== '1' && (sb.backends||[]).length){
+    sel.innerHTML = '<option value="auto">авто</option>' + sb.backends.map(b=>
+      `<option value="${b.id}">${esc(b.title)}${b.available?'':' ✗'}</option>`).join('');
+    sel.value = sb.backend||'auto'; sel.dataset.filled='1';
+  }
+  $('#softdot').style.background = sb.active ? 'var(--ok)' : 'var(--todo)';
+  $('#softdot').title = sb.active ? ('сейчас: '+sb.active) : '';
+  $('#softlist').innerHTML = (sb.backends||[]).map(b=>
+    `<div class="bkrow"><span style="color:${b.available?'var(--ok)':'var(--dim2)'}">${b.available?'✓':'○'}</span>
+     <b>${esc(b.title)}</b> — ${esc(b.detail)}</div>`).join('')
+    + (sb.note ? `<div class="bkrow" style="margin-top:6px;color:var(--run)">${esc(sb.note)}</div>` : '');
+}
+
+/* ----------------------------------------------------------------- сводка */
+function renderStats(st){
+  const sl = st.slots||[];
+  const agg = {};
+  sl.forEach(s => Object.entries(s.counts||{}).forEach(([k,v])=>agg[k]=(agg[k]||0)+v));
+  const used = sl.reduce((a,s)=>a+(s.tabs||[]).length,0);
+  const run = sl.filter(s=>s.running).length;
+  const chip = (t,v,c) => `<span class="pill">${t}: <b${c?` style="color:${c}"`:''}>${v}</b></span>`;
+  $('#gstats').innerHTML =
+    chip('прогонов', sl.length+' / '+st.max_slots)
+    + (run ? chip('активно', run, 'var(--run)') : '')
+    + chip('вкладок занято', used+' / '+st.total_tab_cap)
+    + (agg.DONE ? chip('DONE', agg.DONE, 'var(--ok)') : '')
+    + (agg.ERROR ? chip('ERROR', agg.ERROR, 'var(--err)') : '')
+    + (agg.TODO ? chip('TODO', agg.TODO) : '');
+}
+
+/* ------------------------------------------------------------------ слоты */
+function slotTemplate(s){
+  const n = s.id;
+  return `
+  <div class="shead">
+    <span class="sbadge">${esc(s.label)}</span>
+    <span class="sname" id="s${n}-name"></span>
+    <span class="badge s-TODO" id="s${n}-state">ожидает</span>
+    <span class="sel-t" id="s${n}-elapsed"></span>
+    <span class="grow"></span>
+    <label class="chk" title="репетиция без траты генераций"><input type="checkbox" id="s${n}-dry"> dry</label>
+    <button class="btn primary sm" id="s${n}-start">▶ Старт</button>
+    <button class="btn danger sm" id="s${n}-stop" disabled>■</button>
+    <button class="btn ghost sm" id="s${n}-del" title="убрать прогон из панели">✕</button>
+  </div>
+  <div class="row">
+    <input type="text" id="s${n}-src" placeholder="очередь: .xlsx / .yaml / .txt с @project">
+    <button class="btn sm" id="s${n}-load">Загрузить</button>
+    <button class="btn ghost sm" id="s${n}-pastebtn">текстом…</button>
+  </div>
+  <div id="s${n}-paste" hidden>
+    <textarea id="s${n}-ptext" spellcheck="false" placeholder="@project Название проекта&#10;&#10;=== IMG K1&#10;Текст промпта...&#10;&#10;=== VID K1_anim&#10;@use K1&#10;@duration 8&#10;Animate this image..."></textarea>
+    <div class="row"><button class="btn sm" id="s${n}-parse">Разобрать и загрузить</button>
+      <button class="btn ghost sm" id="s${n}-phelp">формат?</button></div>
+  </div>
+  <div class="tchips" id="s${n}-tabs"></div>
+  <div class="row" style="margin-top:9px">
+    <select id="s${n}-kind" style="flex:0"><option value="">все типы</option>
+      <option value="image">image</option><option value="video">video</option></select>
+    <input type="text" id="s${n}-batch" placeholder="BATCH" style="min-width:86px;flex:0">
+    <input type="number" id="s${n}-limit" placeholder="лимит" style="width:80px">
+    <span class="grow"></span>
+    <span class="mut" id="s${n}-refs"></span>
+    <button class="btn ghost sm" id="s${n}-delsel" style="display:none">✕ отмеченные</button>
+    <button class="btn ghost sm" id="s${n}-tgl">очередь ▾</button>
+  </div>
+  <div class="pbwrap" id="s${n}-pbw" style="display:none"><div class="pb">
+    <span class="ok" id="s${n}-pbok"></span><span class="er" id="s${n}-pber"></span>
+    <span class="dr" id="s${n}-pbdr"></span></div></div>
+  <div id="s${n}-workers"></div>
+  <div class="snote" id="s${n}-note"></div>
+  <div class="stail" id="s${n}-tail"></div>
+  <div class="qwrap" id="s${n}-qwrap">
+    <table><thead><tr>
+      <th style="width:24px"><input type="checkbox" class="selall" data-sid="${n}"></th>
+      <th class="sortable" data-sid="${n}" data-k="id">ID</th>
+      <th class="sortable" data-sid="${n}" data-k="kind">тип</th>
+      <th class="sortable" data-sid="${n}" data-k="batch">batch</th>
+      <th class="sortable" data-sid="${n}" data-k="duration">сек</th>
+      <th class="sortable" data-sid="${n}" data-k="refs">реф</th>
+      <th>промпт</th>
+      <th class="sortable" data-sid="${n}" data-k="status">статус</th>
+      <th style="width:24px"></th>
+    </tr></thead><tbody id="s${n}-rows"></tbody></table>
+  </div>`;
+}
+
+function buildSlot(s, isOnly){
+  const el = document.createElement('div');
+  el.className='slot'; el.id='slot-'+s.id; el.dataset.sid=s.id;
+  el.style.setProperty('--sc', pcol(s.id));
+  el.innerHTML = slotTemplate(s);
+  S.sel[s.id] = S.sel[s.id] || new Set();
+  if (!(s.id in S.q)) S.q[s.id] = isOnly;
+  const g = id => el.querySelector('#s'+s.id+'-'+id);
+  g('start').onclick = () => slotStart(s.id);
+  g('stop').onclick = async () => { try{ await api('/api/slot/stop',{id:s.id}); }catch(e){toast(e.message);} tick(); };
+  g('del').onclick = async () => {
+    if (!confirm('Убрать прогон '+s.label+' из панели? Файлы очереди не трогаются.')) return;
+    try{ await api('/api/slot/remove',{id:s.id}); delete S.sel[s.id]; delete S.q[s.id]; }
+    catch(e){toast(e.message);} tick();
+  };
+  g('load').onclick = async () => {
+    try{ S.sel[s.id].clear(); await api('/api/slot/load',{id:s.id, source:g('src').value.trim()});
+         toast('Очередь загружена','ok'); }catch(e){toast(e.message);} tick();
+  };
+  g('pastebtn').onclick = () => { g('paste').hidden = !g('paste').hidden; };
+  g('parse').onclick = async () => {
+    try{ S.sel[s.id].clear(); await api('/api/slot/parse',{id:s.id, text:g('ptext').value});
+         g('paste').hidden=true; toast('Разобрано и загружено','ok'); }catch(e){toast(e.message);} tick();
+  };
+  g('phelp').onclick = () => openDlg('help');
+  g('tgl').onclick = () => { S.q[s.id]=!S.q[s.id]; if(LAST) renderSlots(LAST); };
+  g('delsel').onclick = async () => {
+    try{ await api('/api/slot/rows',{id:s.id, ids:[...S.sel[s.id]]}); S.sel[s.id].clear(); }
+    catch(e){toast(e.message);} tick();
+  };
+  return el;
+}
+
+async function slotStart(sid){
+  const g = id => document.getElementById('s'+sid+'-'+id);
+  const b = g('start'); b.disabled = true;
+  try{
+    await api('/api/slot/start', {id:sid, source:g('src').value.trim(), kind:g('kind').value,
+      batch:g('batch').value.trim(), limit:g('limit').value, dry_run:g('dry').checked,
+      selected:[...(S.sel[sid]||[])]});
+    toast('Прогон запущен','ok');
+  }catch(e){ toast(e.message); b.disabled=false; }
+  tick();
+}
+
+function sortRows(rows, sk){
+  if (!sk || !sk.k) return rows;
   const num = v => typeof v === 'number';
-  return rows.slice().sort((a,b) => {
-    let x = a[sortK], y = b[sortK];
-    if (x == null && y == null) return 0;
-    if (x == null) return 1;
-    if (y == null) return -1;
-    if (num(x) && num(y)) return (x - y) * sortDir;
-    return String(x).localeCompare(String(y), 'ru') * sortDir;
+  return rows.slice().sort((a,b)=>{
+    let x=a[sk.k], y=b[sk.k];
+    if (x==null&&y==null) return 0; if (x==null) return 1; if (y==null) return -1;
+    if (num(x)&&num(y)) return (x-y)*sk.d;
+    return String(x).localeCompare(String(y),'ru')*sk.d;
   });
 }
 
-function renderTabs(st){
-  maxTabs = st.max_tabs || 3;
-  const tabs = st.tabs || [];
-  const workers = st.workers || [];
-  tabsSel = tabs.filter(t => t.selected).map(t => t.id);
-  const cnt = $('#tabcount');
-  const note = $('#tabnote');
+function updateSlot(el, s, st){
+  const g = id => el.querySelector('#s'+s.id+'-'+id);
+  g('name').textContent = s.queue_project || base(s.source) || 'очередь не загружена';
+  g('name').title = s.source || '';
 
-  if (st.running && workers.length){
-    cnt.style.display = '';
-    cnt.textContent = workers.length + ' параллельно';
-    $('#tabs').innerHTML = workers.map((w, i) => `
-      <div class="worker">
-        <span class="wlabel" style="color:${WCOLOR[i % 3]}">${esc(w.label)}</span>
-        <span class="jid">${w.job_id
-          ? esc(w.job_id)
-          : '<span style="color:var(--dim2)">' + esc(w.status) + '</span>'}</span>
-        ${w.elapsed ? `<span class="el">${mmss(w.elapsed)}</span>` : ''}
-        <span class="el" title="сделано / провалено"
-          style="color:var(--ok)">${w.done}</span>${w.failed
-          ? `<span class="el" style="color:var(--err)">/${w.failed}</span>` : ''}
-      </div>`).join('');
-    note.innerHTML = '';
-    return;
+  const stEl = g('state');
+  let cls='s-TODO', txt='ожидает';
+  if (s.running){ cls='s-IN_PROGRESS'; txt = s.dry_running ? 'репетиция' : 'идёт'; }
+  else if (s.error){ cls='s-ERROR'; txt='ошибка'; }
+  else if (s.outcome){ cls='s-DONE'; txt='готово'; }
+  stEl.className = 'badge '+cls; stEl.textContent = txt;
+  g('elapsed').textContent = s.running ? mmss(s.elapsed) : '';
+
+  g('start').disabled = s.running;
+  g('stop').disabled = !s.running;
+  g('del').disabled = s.running;
+  g('load').disabled = s.running; g('parse').disabled = s.running;
+  const src = g('src');
+  if (document.activeElement !== src && !src.value && s.source) src.value = s.source;
+  src.disabled = s.running;
+
+  // вкладки-чипы
+  const tabs = st.tabs||[];
+  g('tabs').innerHTML = '<span class="lbl">вкладки</span>' + (tabs.length ? tabs.map((t,i)=>{
+    const mine = (s.tabs||[]).includes(t.id);
+    const busy = t.owner && t.owner !== s.id;
+    const name = 'вкладка '+(i+1)+(t.project_id ? ' · '+t.project_id.slice(0,8) : ' · без проекта');
+    return `<button class="tchip ${mine?'mine':''} ${busy?'busy':''}" data-sid="${s.id}"
+      data-tab="${esc(t.id)}" ${s.running||busy?'disabled':''}
+      title="${busy?('занята прогоном '+esc(t.owner_label||'')):(mine?'клик — открепить':'клик — выбрать для этого прогона')}">${esc(name)}${busy?' · '+esc(t.owner_label||''):''}</button>`;
+  }).join('') : '<span class="mut">нет открытых вкладок — запусти браузер (кнопка в шапке)</span>');
+
+  // прогресс
+  const c = s.counts||{}, total = (s.rows||[]).length;
+  const done=(c.DONE||0), err=(c.ERROR||0), dr=(c.DRY||0);
+  g('pbw').style.display = total ? '' : 'none';
+  if (total){
+    g('pbok').style.width=(100*done/total)+'%';
+    g('pber').style.width=(100*err/total)+'%';
+    g('pbdr').style.width=(100*dr/total)+'%';
   }
+  g('refs').textContent = (s.refs && (s.refs.uploads||s.refs.reused))
+    ? `реф: залито ${s.refs.uploads} · повторно ${s.refs.reused}` : '';
 
-  cnt.style.display = tabs.length ? '' : 'none';
-  cnt.textContent = tabs.length;
-  if (!tabs.length){
-    $('#tabs').innerHTML = '<div class="note">'
-      + (st.tabs_error
-         ? 'браузер на ' + esc(st.endpoint || '') + ' не отвечает'
-         : 'нет открытых вкладок Flow')
-      + '</div>'
-      + '<div class="row" style="margin-top:9px">'
-      + '<button class="btn" id="launch">Запустить браузер</button>'
-      + '<select id="ltabs" style="flex:0"><option value="1">1 вкладка</option>'
-      + '<option value="2">2 вкладки</option><option value="3" selected>3 вкладки</option>'
-      + '</select></div>';
-    note.innerHTML = '<div class="note">Откроется твой Edge на отдельном профиле'
-      + ' с отладочным портом. Логин не автоматизируется: сессия берётся из профиля,'
-      + ' где ты вошёл сам.</div>';
-    return;
-  }
-  $('#tabs').innerHTML = tabs.map((t, i) => `
-    <label class="tab ${t.selected ? 'on' : ''}">
-      <input type="checkbox" data-tab="${esc(t.id)}" ${t.selected ? 'checked' : ''}
-             ${st.running ? 'disabled' : ''}>
-      <span class="body">
-        <span class="name">${esc(t.title || 'вкладка Flow')}</span>
-        <span class="meta">${t.project_id
-          ? 'проект ' + esc(t.project_id.slice(0, 8))
-          : 'проект не открыт — список проектов'}</span>
-      </span>
-      ${t.selected ? `<span class="wlabel"
-        style="color:${WCOLOR[tabsSel.indexOf(t.id) % 3]}">#${tabsSel.indexOf(t.id) + 1}</span>` : ''}
-    </label>`).join('');
+  // воркеры
+  g('workers').innerHTML = s.running ? (s.workers||[]).map((w,i)=>`
+    <div class="worker"><span class="wl" style="color:${pcol(s.id)}">${esc(w.label)}</span>
+      <span class="jid">${w.job_id?esc(w.job_id):'<span class="mut">'+esc(w.status)+'</span>'}</span>
+      ${w.elapsed?`<span class="el">${mmss(w.elapsed)}</span>`:''}
+      <span class="el" style="color:var(--ok)">${w.done}</span>${w.failed?`<span class="el" style="color:var(--err)">/${w.failed}</span>`:''}
+    </div>`).join('') : '';
 
-  if (tabsSel.length >= 2){
-    note.innerHTML = '<div class="note">Очередь пойдёт в ' + tabsSel.length
-      + ' вкладки сразу. Все они работают в одном проекте, паузы между задачами'
-      + ' остаются общими — нагрузка на аккаунт та же, просто ожидание идёт внахлёст.</div>';
-  } else if (!tabsSel.length){
-    note.innerHTML = '<div class="note">Ничего не отмечено — возьму первую вкладку'
-      + ' с открытым проектом. Отметь 2–3, чтобы гнать очередь параллельно.</div>';
-  } else {
-    note.innerHTML = '';
+  // итог / ошибка / скрытые строки
+  let note = '';
+  if (s.error) note += `<span class="erc">${esc(s.error)}</span> `;
+  else if (s.outcome && !s.running) note += `<span class="okc">${esc(s.outcome)}</span> `;
+  if (s.removed) note += `<span class="mut">скрыто строк: ${s.removed}
+    <a href="#" data-restore="${s.id}" style="color:var(--accent)">вернуть</a></span>`;
+  g('note').innerHTML = note;
+  g('tail').textContent = s.running ? (s.log_tail||[]).slice(-2).join('\n') : '';
+
+  // таблица
+  const open = !!S.q[s.id];
+  g('tgl').textContent = open ? 'очередь ▴' : `очередь ▾ (${total})`;
+  g('qwrap').style.display = open ? '' : 'none';
+  g('delsel').style.display = S.sel[s.id] && S.sel[s.id].size ? '' : 'none';
+  if (open){
+    const rows = sortRows(s.rows||[], S.sort[s.id]);
+    el.querySelectorAll('th.sortable').forEach(th=>{
+      const b = th.textContent.replace(/[▲▼]/g,'').trim();
+      const sk = S.sort[s.id];
+      th.innerHTML = esc(b) + (sk && th.dataset.k===sk.k ? `<span class="arr">${sk.d>0?'▲':'▼'}</span>` : '');
+    });
+    g('rows').innerHTML = rows.map(r=>`
+      <tr class="${r.status==='IN_PROGRESS'?'active':''}">
+        <td><input type="checkbox" data-rowsel data-sid="${s.id}" data-id="${esc(r.id)}"
+             ${S.sel[s.id].has(r.id)?'checked':''}></td>
+        <td class="id">${esc(r.id)}</td>
+        <td title="${r.kind}">${r.kind==='video'?'🎬':'🖼'}</td>
+        <td class="id" style="color:var(--dim)">${esc(r.batch||'')}</td>
+        <td style="color:var(--dim)">${r.duration||''}</td>
+        <td title="${esc((r.refs_list||[]).join('\n'))}">${r.refs||''}</td>
+        <td><div class="prompt">${esc(r.prompt)}</div>
+            ${r.error?`<div class="err">${esc(r.error)}</div>`:''}</td>
+        <td><span class="badge s-${r.status}">${r.status}</span></td>
+        <td>${s.running?'':`<button class="del" data-sid="${s.id}" data-del="${esc(r.id)}" title="убрать строку">✕</button>`}</td>
+      </tr>`).join('') || '<tr><td colspan="9" class="empty">очередь пуста — укажи файл или вставь промпты текстом</td></tr>';
+    const all = el.querySelector('.selall');
+    const ids = rows.map(r=>r.id);
+    all.checked = ids.length>0 && ids.every(id=>S.sel[s.id].has(id));
   }
 }
 
-function render(st){
-  $('#start').disabled = st.running;
-  $('#stop').disabled = !st.running;
-  const c1 = $('#conn');
-  const live = st.running && st.connected;
-  c1.innerHTML = '<span class="dot' + (live ? ' live' : '') + '" style="background:'
-    + (st.running ? (st.connected ? 'var(--ok)' : 'var(--err)') : 'var(--todo)') + '"></span>'
-    + (st.running ? (st.connected ? 'прогон идёт' : 'нет связи с браузером') : 'простаивает');
-  renderTabs(st);
-  const qp = $('#qproj');
-  if (st.queue_project) { qp.style.display=''; qp.innerHTML = 'очередь → <b>' + esc(st.queue_project) + '</b>'; }
-  else qp.style.display = 'none';
-  const pp = $('#proj');
-  if (st.project) { pp.style.display=''; pp.innerHTML = 'открыт: <b>' + esc(st.project) + '</b>'; }
-  else pp.style.display = 'none';
-
-  if (document.activeElement !== $('#src') && !$('#src').value) $('#src').value = st.source || '';
-  if (document.activeElement !== $('#endpoint') && !$('#endpoint').value) $('#endpoint').value = st.endpoint || '';
-  $('#syntax').textContent = st.syntax_help || '';
-
-  const c = st.counts || {};
-  $('#stat').innerHTML = Object.keys(c).map(k =>
-      `<span class="pill">${k}: <b>${c[k]}</b></span>`).join('')
-    + (st.removed ? `<span class="pill">скрыто: <b>${st.removed}</b>
-        <button class="btn ghost sm" onclick="restoreRows()">вернуть</button></span>` : '')
-    + (st.refs && (st.refs.uploads || st.refs.reused)
-       ? `<span class="pill">реф: залито <b>${st.refs.uploads}</b>, повторно <b>${st.refs.reused}</b></span>` : '');
-
-  const rows = sortRows(st.rows || []);
-  knownIds = rows.map(r => r.id);
-  document.querySelectorAll('#headrow th.sortable').forEach(th => {
-    const base = th.textContent.replace(/[▲▼]/g, '').trim();
-    th.innerHTML = esc(base) + (th.dataset.k === sortK
-      ? `<span class="arr">${sortDir > 0 ? '▲' : '▼'}</span>` : '');
+function renderSlots(st){
+  const wrap = $('#slots');
+  const ids = (st.slots||[]).map(s=>s.id);
+  [...wrap.children].forEach(el=>{
+    if (!ids.includes(+el.dataset.sid)) el.remove();
   });
-  $('#rows').innerHTML = rows.map(r => `
-    <tr class="${r.status==='IN_PROGRESS'?'active':''}">
-      <td><input type="checkbox" data-id="${esc(r.id)}" ${sel.has(r.id)?'checked':''}></td>
-      <td class="id">${esc(r.id)}</td>
-      <td title="${r.kind}">${r.kind==='video'?'🎬':'🖼'}</td>
-      <td class="id" style="color:var(--dim)">${esc(r.batch||'')}</td>
-      <td style="color:var(--dim)">${r.duration||''}</td>
-      <td title="${esc((r.refs_list||[]).join('\n'))}">${r.refs||''}</td>
-      <td class="id" style="color:var(--dim);font-size:11px">${esc(r.out||'')}</td>
-      <td><div class="prompt">${esc(r.prompt)}</div>
-          ${r.error?`<div class="err">${esc(r.error)}</div>`:''}</td>
-      <td><span class="badge s-${r.status}">${r.status}</span></td>
-      <td><button class="del" data-del="${esc(r.id)}" title="убрать из очереди (файл не меняется)">✕</button></td>
-    </tr>`).join('') || '<tr><td colspan="10" style="color:var(--dim)">очередь пуста — укажи файл или вставь промпты</td></tr>';
-  $('#selall').checked = knownIds.length > 0 && knownIds.every(id => sel.has(id));
-  $('#delsel').style.display = sel.size ? '' : 'none';
+  (st.slots||[]).forEach(s=>{
+    let el = document.getElementById('slot-'+s.id);
+    if (!el){ el = buildSlot(s, (st.slots||[]).length===1); wrap.appendChild(el); }
+    updateSlot(el, s, st);
+  });
+  $('#addslot').style.display = ids.length >= st.max_slots ? 'none' : '';
+}
 
+/* ------------------------------------------------------------------ aside */
+function renderAside(st){
+  const tabs = st.tabs||[];
+  $('#tabcount').textContent = tabs.length;
+  $('#atabs').innerHTML = tabs.length ? tabs.map((t,i)=>{
+    const own = t.owner ? `<span class="own" style="color:${pcol(t.owner)}">${esc(t.owner_label)}</span>` : '<span class="mut">свободна</span>';
+    return `<div class="atab"><span class="nm">вкладка ${i+1} · ${t.project_id?esc(t.project_id.slice(0,8)):'без проекта'}</span>${own}</div>`;
+  }).join('') : `<div class="note">${st.browser_ok?'нет вкладок Flow':'браузер не запущен — кнопка в шапке'}</div>`;
+
+  // лог-фильтр по прогонам
+  const key = (st.slots||[]).map(s=>s.id).join(',');
+  const lf = $('#logf');
+  if (S.logSlots !== key){
+    S.logSlots = key;
+    const cur = lf.value;
+    lf.innerHTML = '<option value="">все</option>' + (st.slots||[]).map(s=>
+      `<option value="${esc(s.label)}">${esc(s.label)}</option>`).join('');
+    lf.value = cur;
+  }
+  const filt = lf.value;
+  const lines = (st.log||[]).filter(l => !filt || l.startsWith('['+filt+']'));
   const log = $('#log');
   const stick = log.scrollHeight - log.scrollTop - log.clientHeight < 40;
-  log.textContent = (st.log||[]).join('\n') || '—';
+  log.innerHTML = lines.map(l=>{
+    const m = l.match(/^\[П(\d+)\]/);
+    if (!m) return esc(l);
+    return `<span class="lt" style="color:${pcol(+m[1])}">[П${m[1]}]</span>` + esc(l.slice(m[0].length));
+  }).join('\n') || '—';
   if (stick) log.scrollTop = log.scrollHeight;
 
-  const sb = st.soften || {};
-  // Отдельное имя обязательно: sel наверху — это множество отмеченных строк,
-  // и повторное объявление внутри той же функции роняло render() целиком.
-  const bsel = $('#softenBackend');
-  if (bsel.dataset.filled !== '1' && (sb.backends || []).length) {
-    bsel.innerHTML = '<option value="auto">авто — первый доступный</option>'
-      + sb.backends.map(b =>
-          `<option value="${b.id}"${b.available?'':' disabled'}>${esc(b.title)}${b.available?'':' — недоступен'}</option>`
-        ).join('');
-    bsel.value = sb.backend || 'auto';
-    bsel.dataset.filled = '1';
-  }
-  $('#softenNow').textContent = sb.active ? ('сейчас: ' + sb.active) : '';
-  $('#softenList').innerHTML = (sb.backends || []).map(b =>
-    `<div style="font-size:12.5px;color:var(--dim);padding:2px 0">
-       <span style="color:${b.available?'var(--ok)':'var(--dim2)'}">${b.available?'✓':'○'}</span>
-       <b style="color:var(--fg)">${esc(b.title)}</b> — ${esc(b.detail)}</div>`).join('');
-
-  $('#proddir').textContent = st.products_dir || 'products';
-  $('#prodlist').innerHTML = (st.products || []).length
-    ? st.products.map(p => `<span class="pill" title="@product ${esc(p.name)}">
-        📦 <b>${esc(p.name)}</b>&nbsp;· ${p.files} фото</span>`).join('')
-    : '<span class="pill">пока пусто — создай подпапку с фото продукта</span>';
-
+  const res = st.results||[];
   const rc = $('#rescount');
-  rc.style.display = (st.results||[]).length ? '' : 'none';
-  rc.textContent = (st.results||[]).length;
-  $('#gal').innerHTML = (st.results||[]).map(f => {
-    const u = '/api/file?path=' + encodeURIComponent(f.path);
+  rc.style.display = res.length?'':'none'; rc.textContent = res.length;
+  $('#gal').innerHTML = res.map(f=>{
+    const u = '/api/file?path='+encodeURIComponent(f.path);
     return `<a href="${u}" target="_blank">${f.video
       ? `<video src="${u}" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>`
       : `<img src="${u}" loading="lazy">`}<span title="${esc(f.name)}">${esc(f.name)}</span></a>`;
   }).join('');
 }
 
-document.body.addEventListener('change', async e => {
-  if (e.target.matches('tbody input[type=checkbox]')) {
-    e.target.checked ? sel.add(e.target.dataset.id) : sel.delete(e.target.dataset.id);
-    $('#delsel').style.display = sel.size ? '' : 'none';
-    return;
-  }
-  if (e.target.matches('input[data-tab]')) {
-    const id = e.target.dataset.tab;
-    const next = e.target.checked
-      ? tabsSel.concat([id]) : tabsSel.filter(x => x !== id);
-    if (next.length > maxTabs) {
-      e.target.checked = false;
-      toast('Больше ' + maxTabs + ' вкладок нельзя: это потолок антибана.');
-      return;
-    }
-    try { await api('/api/tabs', {ids: next}); tabsSel = next; }
-    catch(err){ toast(err.message); }
-    tick();
-  }
-});
-$('#selall').addEventListener('change', e => {
-  knownIds.forEach(id => e.target.checked ? sel.add(id) : sel.delete(id));
-  tick();
-});
-document.body.addEventListener('click', async e => {
-  const p = e.target.closest('.prompt'); if (p) { p.classList.toggle('full'); return; }
+/* ----------------------------------------------------------------- диалог */
+function openDlg(tab){
+  $('#dlg').showModal();
+  if (tab) switchDlg(tab);
+}
+function switchDlg(t){
+  document.querySelectorAll('.dtabs button').forEach(b=>b.classList.toggle('on', b.dataset.t===t));
+  document.querySelectorAll('.dsec').forEach(d=>d.classList.toggle('on', d.id==='d-'+t));
+}
+
+function render(st){
+  renderHeader(st); renderStats(st); renderSlots(st); renderAside(st);
+  if (document.activeElement !== $('#endpoint') && !$('#endpoint').value)
+    $('#endpoint').value = st.endpoint || '';
+  $('#syntax').textContent = st.syntax_help || '';
+  $('#proddir').textContent = st.products_dir || 'products';
+  $('#prodlist').innerHTML = (st.products||[]).length
+    ? st.products.map(p=>`<span class="pill" title="@product ${esc(p.name)}">📦 <b>${esc(p.name)}</b>&nbsp;· ${p.files} фото</span>`).join('')
+    : '<span class="pill">пока пусто — создай подпапку с фото продукта</span>';
+}
+
+/* ---------------------------------------------------------------- события */
+document.body.addEventListener('click', async e=>{
+  const p = e.target.closest('.prompt'); if (p){ p.classList.toggle('full'); return; }
   const th = e.target.closest('th.sortable');
-  if (th) {
-    const k = th.dataset.k;
-    if (sortK === k) { if (sortDir === 1) sortDir = -1; else { sortK = null; sortDir = 1; } }
-    else { sortK = k; sortDir = 1; }
+  if (th){
+    const sid = +th.dataset.sid, k = th.dataset.k, cur = S.sort[sid];
+    if (cur && cur.k===k){ if (cur.d===1) cur.d=-1; else delete S.sort[sid]; }
+    else S.sort[sid] = {k, d:1};
+    if (LAST) renderSlots(LAST); return;
+  }
+  const chip = e.target.closest('.tchip');
+  if (chip && !chip.disabled && !chip.classList.contains('busy')){
+    const sid = +chip.dataset.sid, tid = chip.dataset.tab;
+    const slot = (LAST.slots||[]).find(s=>s.id===sid); if(!slot) return;
+    const cur = new Set(slot.tabs||[]);
+    cur.has(tid) ? cur.delete(tid) : cur.add(tid);
+    try{ await api('/api/slot/tabs',{id:sid, ids:[...cur]}); }catch(err){ toast(err.message); }
     tick(); return;
   }
-  if (e.target.id === 'launch') {
-    const b = e.target;
-    b.disabled = true; b.textContent = 'запускаю…';
-    try {
-      const r = await api('/api/browser', {tabs: +($('#ltabs')||{value:1}).value});
-      toast('Браузер: ' + r.browser + ', вкладок ' + r.tabs, 'ok');
-    } catch(err){ toast(err.message); }
-    tick();
+  const del = e.target.closest('.del');
+  if (del){
+    try{ S.sel[+del.dataset.sid]?.delete(del.dataset.del);
+         await api('/api/slot/rows',{id:+del.dataset.sid, ids:[del.dataset.del]}); }
+    catch(err){ toast(err.message); }
+    tick(); return;
+  }
+  const rst = e.target.closest('[data-restore]');
+  if (rst){ e.preventDefault();
+    try{ await api('/api/slot/rows',{id:+rst.dataset.restore, reset:true}); }catch(err){ toast(err.message); }
+    tick(); return;
+  }
+  const dt = e.target.closest('.dtabs button');
+  if (dt){ switchDlg(dt.dataset.t); return; }
+});
+
+document.body.addEventListener('change', e=>{
+  if (e.target.matches('input[data-rowsel]')){
+    const set = S.sel[+e.target.dataset.sid];
+    e.target.checked ? set.add(e.target.dataset.id) : set.delete(e.target.dataset.id);
+    if (LAST) renderSlots(LAST);
     return;
   }
-  const del = e.target.closest('.del');
-  if (del) {
-    try { sel.delete(del.dataset.del); await api('/api/remove', {ids:[del.dataset.del]}); }
-    catch(err){ toast(err.message); }
-    tick();
+  if (e.target.matches('.selall')){
+    const sid = +e.target.dataset.sid;
+    const slot = (LAST.slots||[]).find(s=>s.id===sid); if(!slot) return;
+    const set = S.sel[sid];
+    sortRows(slot.rows||[], S.sort[sid]).forEach(r => e.target.checked ? set.add(r.id) : set.delete(r.id));
+    renderSlots(LAST);
+    return;
   }
+  if (e.target.id === 'logf' && LAST) renderAside(LAST);
 });
-async function restoreRows(){
-  try { await api('/api/remove', {reset:true}); } catch(e){ toast(e.message); }
-  tick();
-}
-async function tick(){ try { render(await api('/api/state')); } catch(e){} }
 
-$('#start').onclick = async () => {
-  $('#start').disabled = true;
-  try {
-    await api('/api/start', {
-      source: $('#src').value.trim(), kind: $('#kind').value,
-      batch: $('#batch').value.trim(), limit: $('#limit').value,
-      dry_run: $('#dry').checked, selected: [...sel],
-    });
-    toast('Прогон запущен', 'ok');
-  } catch(e){ toast(e.message); }
-  tick();
+$('#addslot').onclick = async ()=>{ try{ await api('/api/slot/add',{}); }catch(e){ toast(e.message); } tick(); };
+$('#stopall').onclick = async ()=>{ try{ await api('/api/stopall',{}); }catch(e){ toast(e.message); } tick(); };
+$('#rescan').onclick = ()=>{ tick(true); };
+$('#aaddtab').onclick = async ()=>{
+  try{ await api('/api/browser',{add:1}); toast('Открываю вкладку…','ok'); }catch(e){ toast(e.message); }
+  setTimeout(()=>tick(true), 2500);
 };
-$('#stop').onclick = async () => { try { await api('/api/stop', {}); } catch(e){ toast(e.message); } tick(); };
-$('#reload').onclick = async () => {
-  try { sel.clear(); await api('/api/reload', {source: $('#src').value.trim()});
-        toast('Очередь загружена', 'ok'); }
-  catch(e){ toast(e.message); }
-  tick();
+$('#bbtn').onclick = async ()=>{
+  const b = $('#bbtn'); b.disabled = true; const old=b.textContent; b.textContent='запускаю…';
+  try{
+    const r = await api('/api/browser',{tabs:+$('#bcount').value});
+    toast('Браузер: '+(r.browser||'ок')+', вкладок Flow '+(r.tabs??'?'),'ok');
+  }catch(e){ toast(e.message); }
+  b.disabled=false; b.textContent=old;
+  setTimeout(()=>tick(true), 1500);
 };
-$('#parse').onclick = async () => {
-  try {
-    sel.clear();
-    await api('/api/parse', {text: $('#ptext').value});
-    $('#pastebox').open = false;
-    toast('Разобрано и загружено', 'ok');
-  } catch(e){ toast(e.message); }
-  tick();
+$('#soft').onchange = async e=>{
+  try{ const r = await api('/api/soften',{backend:e.target.value});
+       toast('Смягчение: '+r.active+(r.note?'\n'+r.note:''),'ok'); }
+  catch(err){ toast(err.message); }
+  tick(true);
 };
-$('#delsel').onclick = async () => {
-  try { await api('/api/remove', {ids:[...sel]}); sel.clear(); }
-  catch(e){ toast(e.message); }
-  tick();
-};
-$('#saveSoften').onclick = async () => {
-  try {
-    const r = await api('/api/soften', {backend: $('#softenBackend').value});
-    toast('Смягчение: ' + r.active, 'ok');
-  } catch(e){ toast(e.message); }
-  tick();
-};
-$('#gear').onclick = () => {
-  const box = $('#settings');
-  box.hidden = !box.hidden;
-  if (!box.hidden) box.scrollIntoView({block:'nearest'});
-};
-$('#gearclose').onclick = () => { $('#settings').hidden = true; };
-$('#rescan').onclick = async () => {
-  try { render(await api('/api/state?fresh=1')); toast('Список вкладок обновлён', 'ok'); }
-  catch(e){ toast(e.message); }
-};
-$('#saveep').onclick = async () => {
-  const st = $('#epstatus');
-  st.textContent = 'проверяю…';
-  try {
-    const r = await api('/api/settings', {endpoint: $('#endpoint').value.trim()});
-    st.textContent = '✓ ' + r.browser;
-    toast('Подключение сохранено: ' + r.browser, 'ok');
-  } catch(e){ st.textContent = '✗ ' + e.message; toast(e.message); }
+$('#gear').onclick = ()=>openDlg();
+$('#dclose').onclick = ()=>$('#dlg').close();
+$('#saveep').onclick = async ()=>{
+  const stel = $('#epstatus'); stel.textContent='проверяю…';
+  try{
+    const r = await api('/api/settings',{endpoint:$('#endpoint').value.trim()});
+    stel.textContent = '✓ '+r.browser;
+    toast('Подключение сохранено: '+r.browser,'ok');
+  }catch(e){ stel.textContent='✗ '+e.message; toast(e.message); }
+  tick(true);
 };
 
-tick();
+tick(true);
 setInterval(tick, 1500);
 </script></body></html>
 """
 
 
 class LogSink:
-    """Приёмник вывода rich.Console: копит строки для веб-панели."""
+    """Приёмник вывода rich.Console: копит строки, умеет пересылать их дальше.
 
-    def __init__(self, maxlen: int = 600) -> None:
+    forward — колбэк на каждую готовую строку; так лог прогона попадает и в
+    свою карточку, и в общий журнал панели (уже с меткой [Пn]).
+    """
+
+    def __init__(self, maxlen: int = 600, forward: Callable[[str], None] | None = None) -> None:
         self.lines: deque[str] = deque(maxlen=maxlen)
         self._buf = ""
         self._lock = threading.Lock()
+        self._forward = forward
+
+    def push(self, line: str) -> None:
+        with self._lock:
+            self.lines.append(line)
 
     def write(self, text: str) -> int:
+        done: list[str] = []
         with self._lock:
             self._buf += text
             while "\n" in self._buf:
@@ -704,6 +843,11 @@ class LogSink:
                 line = line.rstrip()
                 if line:
                     self.lines.append(line)
+                    done.append(line)
+        # Пересылку делаем вне замка: у глобального приёмника замок свой.
+        if self._forward:
+            for line in done:
+                self._forward(line)
         return len(text)
 
     def flush(self) -> None:
@@ -714,16 +858,18 @@ class LogSink:
             return list(self.lines)
 
 
-class AppState:
-    """Состояние панели: очередь, статусы, лог, фоновый поток прогона."""
+class RunSlot:
+    """Один прогон: очередь, вкладки, проект, поток. Живёт внутри AppState."""
 
-    def __init__(self, cfg: Config, default_source: str) -> None:
-        self.cfg = cfg
-        self.source = default_source
-        self.sink = LogSink()
-        self.console = Console(file=self.sink, force_terminal=False, width=110, highlight=False)
-        self.log = RunLog(cfg.runs_log())
-        self.notifier = Notifier()
+    def __init__(self, sid: int, app: "AppState") -> None:
+        self.id = sid
+        self.label = f"П{sid}"
+        self.app = app
+        self.cfg = app.cfg
+        self.sink = LogSink(maxlen=300, forward=lambda line: app.sink.push(f"[{self.label}] {line}"))
+        self.console = Console(file=self.sink, force_terminal=False, width=100, highlight=False)
+
+        self.source = ""
         self.rows: list[dict[str, Any]] = []
         self.jobs_by_id: dict[str, Any] = {}
         self.statuses: dict[str, str] = {}
@@ -732,29 +878,30 @@ class AppState:
         self.queue_project: str | None = None
         self.sheet: SheetQueue | None = None
         self.sheet_by_id: dict[str, Any] = {}
-        self.thread: threading.Thread | None = None
-        self.runner: Runner | None = None
-        self.parallel: ParallelRunner | None = None
-        self.project: str | None = None
-        self.connected = False
-        self.refs_stat = {"uploads": 0, "reused": 0}
-        self._skip_completed = False
-        self._resolvers: list[RefResolver] = []
-        # Вкладки браузера: выбор пользователя и кэш последнего опроса.
-        self.tabs_selected: list[str] = []
-        self._tabs_cache: list[dict[str, Any]] = []
-        self._tabs_error: str = ""
-        self._tabs_at = 0.0
-        try:
-            self.load_queue(default_source)
-        except Exception as exc:  # noqa: BLE001 — панель должна открыться даже с плохим путём
-            self.console.print(f"[yellow]очередь не загружена: {exc}[/yellow]")
 
-    # ------------------------------------------------------------- очередь
+        self.tabs_selected: list[str] = []
+        self.thread: threading.Thread | None = None
+        self.parallel: ParallelRunner | None = None
+        self.project: str | None = None      # имя проекта после старта
+        self.project_id = ""                 # id проекта во время прогона
+        self.refs_stat = {"uploads": 0, "reused": 0}
+        self.outcome_text = ""
+        self.last_error = ""
+        self.dry_running = False
+        self.started_at = 0.0
+        self._skip_completed = False
+
+    # ------------------------------------------------------------- состояние
+
+    @property
+    def running(self) -> bool:
+        return self.thread is not None and self.thread.is_alive()
 
     def _require_idle(self) -> None:
         if self.running:
-            raise RuntimeError("прогон идёт — сначала останови его")
+            raise RuntimeError(f"{self.label}: прогон идёт — сначала останови его")
+
+    # --------------------------------------------------------------- очередь
 
     def load_queue(self, source: str) -> None:
         """Прочитать очередь из .xlsx / .yaml / .txt."""
@@ -770,12 +917,12 @@ class AppState:
         self.errors = {}
         self.removed = set()
         self.queue_project = None
+        self.outcome_text = ""
+        self.last_error = ""
         suffix = p.suffix.lower()
 
         if suffix in (".xlsx", ".xlsm"):
             self.sheet = SheetQueue(p)
-            # Для отображения берём ВСЕ строки: DONE и ERROR видно глазами,
-            # а что реально запускать — решается в start().
             sheet_rows = self.sheet.load(statuses=("TODO", "IN_PROGRESS", "DONE", "ERROR", "SKIP"))
             self.sheet_by_id = {r.job.id: r for r in sheet_rows}
             self.jobs_by_id = {r.job.id: r.job for r in sheet_rows}
@@ -798,32 +945,31 @@ class AppState:
             self.jobs_by_id = {j.id: j for j in jobs}
             self.rows = [self._row_dict(j) for j in jobs]
             if self.queue_project:
-                # Очередь привязана к проекту: что в нём реально сделано, станет
-                # ясно после его открытия — резюм применит прогон, а не загрузка.
+                # Что реально сделано в проекте, выяснит прогон при старте.
                 self.statuses = {j.id: "TODO" for j in jobs}
             else:
-                done = self.log.completed_ids()
+                done = self.app.log.completed_ids()
                 self.statuses = {j.id: (ST_DONE if j.id in done else "TODO") for j in jobs}
 
         self.console.print(
             f"очередь загружена: {len(self.rows)} строк из {p.name}"
             + (f" (проект: {self.queue_project})" if self.queue_project else "")
         )
+        self.app.save_ui()
 
     def parse_text(self, text: str) -> None:
-        """Разобрать вставленный текст. Сохраняется в файл — переживает рестарт."""
+        """Разобрать вставленный текст. Файл свой на каждый прогон."""
         self._require_idle()
         if not (text or "").strip():
             raise ValueError("пустой текст — нечего разбирать")
-        # Сначала валидируем, потом сохраняем: битый текст файл не перетирает.
         _, errors, _ = parse_prompts(text, self.cfg.out_dir(), self.cfg.products_dir())
         if errors:
             raise ValueError("ошибки разбора:\n" + "\n".join(f"• {e}" for e in errors))
-        Path(PASTED_FILE).write_text(text, encoding="utf-8")
-        self.load_queue(PASTED_FILE)
+        path = Path(f"prompts_pasted_{self.id}.flow.txt")
+        path.write_text(text, encoding="utf-8")
+        self.load_queue(str(path))
 
     def remove_rows(self, ids: list[str] | None, reset: bool = False) -> None:
-        """Убрать строки из очереди панели (файл не трогается)."""
         self._require_idle()
         if reset:
             self.removed = set()
@@ -853,121 +999,21 @@ class AppState:
 
     # --------------------------------------------------------------- вкладки
 
-    def tabs(self, max_age: float = 3.0) -> list[dict[str, Any]]:
-        """Открытые вкладки Flow. С кэшем: панель опрашивается раз в полторы
-        секунды, а лезть в браузер на каждый опрос незачем."""
-        now = time.time()
-        if now - self._tabs_at < max_age and (self._tabs_cache or self._tabs_error):
-            return self._tabs_cache
-        self._tabs_at = now
-        try:
-            self._tabs_cache = list_flow_tabs(
-                str(self.cfg.get("cdp.endpoint", "http://localhost:9222")),
-                str(self.cfg.get("cdp.page_url_match", "labs.google/fx")),
-            )
-            self._tabs_error = ""
-        except Exception as exc:  # noqa: BLE001 — браузер может быть просто не запущен
-            self._tabs_cache = []
-            self._tabs_error = f"{type(exc).__name__}: браузер не отвечает"
-        # Закрытые вкладки не должны оставаться отмеченными.
-        alive = {t["id"] for t in self._tabs_cache}
-        if self._tabs_cache and not self.running:
-            self.tabs_selected = [t for t in self.tabs_selected if t in alive]
-        return self._tabs_cache
-
-    def launch_browser(self, tabs: int = 1) -> dict[str, Any]:
-        """Поднять браузер с отладочным портом прямо из панели."""
-        from .browser import launch
-
-        self._require_idle()
-        r = launch(
-            self.cfg, tabs=int(tabs or 1),
-            on_step=lambda s: self.console.print(f"[dim]{s}[/dim]"),
-        )
-        self._tabs_at = 0.0  # список вкладок устарел — перечитать на следующем опросе
-        self.console.print(
-            f"браузер: {r['browser']}, вкладок Flow {r['tabs']}, профиль {r['profile']}"
-        )
-        return r
-
-    def set_tabs(self, ids: list[str]) -> list[str]:
-        """Запомнить, в каких вкладках гонять очередь."""
+    def set_tabs(self, ids: list[str]) -> None:
         self._require_idle()
         ids = [str(i) for i in (ids or []) if str(i).strip()]
         if len(ids) > MAX_TABS:
-            raise ValueError(
-                f"больше {MAX_TABS} вкладок нельзя: это потолок антибана из спецификации"
-            )
+            raise ValueError(f"на один проект — не больше {MAX_TABS} вкладок")
+        used = self.app.tabs_used_elsewhere(self.id)
+        clash = [i for i in ids if i in used]
+        if clash:
+            raise ValueError("эта вкладка уже выбрана другим прогоном")
+        total = sum(len(s.tabs_selected) for s in self.app.slots if s.id != self.id) + len(ids)
+        if total > TOTAL_TAB_CAP:
+            raise ValueError(f"суммарно больше {TOTAL_TAB_CAP} вкладок нельзя")
         self.tabs_selected = ids
-        return ids
 
-    def _tabs_for_run(self) -> list[str]:
-        """Вкладки для прогона: выбранные, а если не выбрано — одна любая."""
-        chosen = [t for t in self.tabs_selected if t]
-        if chosen:
-            return chosen[:MAX_TABS]
-        return []
-
-    # ------------------------------------------------------------ настройки
-
-    def set_soften_backend(self, backend: str) -> str:
-        """Сменить бэкенд смягчения. Возвращает фактически выбранный."""
-        self._require_idle()
-        backend = (backend or "auto").strip().lower()
-        allowed = {"auto", "rules", "ollama", "gemini", "claude"}
-        if backend not in allowed:
-            raise ValueError(f"неизвестный бэкенд {backend!r}; доступны: {', '.join(sorted(allowed))}")
-        self.cfg.set("moderation.soften.backend", backend)
-        self._save_ui({"soften_backend": backend})
-        s = build_softener(self.cfg)
-        active = s.name if s else "выключено"
-        self.console.print(f"смягчение переключено: {backend} (сейчас работает: {active})")
-        return active
-
-    def _save_ui(self, patch: dict[str, Any]) -> None:
-        """Дописать настройки панели, не затирая уже сохранённые."""
-        data: dict[str, Any] = {}
-        try:
-            data = json.loads(Path(UI_FILE).read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            pass
-        data.update(patch)
-        try:
-            Path(UI_FILE).write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
-        except OSError:
-            pass
-
-    def soften_state(self) -> dict[str, Any]:
-        s = build_softener(self.cfg)
-        return {
-            "backend": str(self.cfg.get("moderation.soften.backend", "auto")),
-            "active": s.name if s else None,
-            "backends": backend_status(self.cfg),
-        }
-
-    def set_endpoint(self, endpoint: str) -> str:
-        """Сменить CDP endpoint. Возвращает имя браузера после проверки."""
-        self._require_idle()
-        endpoint = (endpoint or "").strip().rstrip("/")
-        if not endpoint.startswith(("http://", "https://")):
-            raise ValueError("endpoint должен начинаться с http:// (например http://localhost:9222)")
-        try:
-            r = httpx.get(f"{endpoint}/json/version", timeout=4)
-            browser = r.json().get("Browser", "неизвестный браузер")
-        except Exception as exc:  # noqa: BLE001
-            raise ValueError(
-                f"браузер на {endpoint} не отвечает: {type(exc).__name__}. "
-                "Запусти его с --remote-debugging-port и НЕдефолтным --user-data-dir."
-            ) from exc
-        self.cfg.set("cdp.endpoint", endpoint)
-        self._save_ui({"endpoint": endpoint})
-        return browser
-
-    # --------------------------------------------------------------- прогон
-
-    @property
-    def running(self) -> bool:
-        return self.thread is not None and self.thread.is_alive()
+    # ---------------------------------------------------------------- прогон
 
     def start(self, opts: dict[str, Any]) -> None:
         self._require_idle()
@@ -997,43 +1043,63 @@ class AppState:
             if limit < 1:
                 raise ValueError("лимит должен быть >= 1")
             chosen = chosen[:limit]
-
         if not chosen:
             raise ValueError(
                 "нечего запускать: отметь строки галочками или проверь фильтры "
                 "(без галочек идут только TODO)"
             )
 
+        # Вкладки: выбранные, а если пусто — первая свободная.
+        live = {t["id"] for t in self.app.tabs()}
+        if not live:
+            raise RuntimeError(
+                "браузер не запущен или в нём нет вкладок Flow — "
+                "кнопка «Запустить браузер» в шапке"
+            )
+        used = self.app.tabs_used_elsewhere(self.id)
+        tab_ids = [t for t in self.tabs_selected if t]
+        if tab_ids:
+            dead = [t for t in tab_ids if t not in live]
+            if dead:
+                raise RuntimeError("выбранная вкладка закрыта — обнови выбор (значки вкладок)")
+            clash = [t for t in tab_ids if t in used]
+            if clash:
+                raise RuntimeError("выбранная вкладка занята другим прогоном")
+        else:
+            free = [t["id"] for t in self.app.tabs() if t["id"] not in used]
+            if not free:
+                raise RuntimeError("нет свободной вкладки Flow — «＋ вкладка Flow» справа")
+            tab_ids = [free[0]]
+            self.tabs_selected = tab_ids
+            self.console.print("вкладка не выбрана — беру первую свободную")
+
         jobs = [self.jobs_by_id[cid] for cid in chosen]
         for cid in chosen:
             self.statuses[cid] = "TODO"
             self.errors.pop(cid, None)
         self.refs_stat = {"uploads": 0, "reused": 0}
-        # Резюм внутри прогона (по проекту) — только когда выбор неявный.
         self._skip_completed = not selected and self.sheet is None
 
         dry = bool(opts.get("dry_run"))
-        if opts.get("tabs") is not None:
-            self.set_tabs(list(opts.get("tabs") or []))
-        tab_ids = self._tabs_for_run()
-        self.thread = threading.Thread(target=self._run, args=(jobs, dry, tab_ids), daemon=True)
+        self.dry_running = dry
+        self.outcome_text = ""
+        self.last_error = ""
+        self.started_at = time.time()
+        self.thread = threading.Thread(
+            target=self._run, args=(jobs, dry, tab_ids), daemon=True,
+            name=f"flowbatch-slot-{self.id}",
+        )
         self.thread.start()
 
     def stop(self) -> None:
         if self.parallel is not None:
             self.parallel.stop()
-            self.console.print("[yellow]запрошена остановка всех вкладок[/yellow]")
-        elif self.runner is not None:
-            self.runner.stop_requested = True
-            self.console.print("[yellow]запрошена остановка — доработаю текущую задачу[/yellow]")
-
-    # ---------------------------------------------------------- общие для обоих
+            self.console.print("[yellow]запрошена остановка[/yellow]")
 
     def _apply_resume(self, jobs: list[Any], project_id: str, dry: bool) -> list[Any]:
-        """Выкинуть то, что в этом проекте уже сделано."""
         if not (self._skip_completed and not dry):
             return jobs
-        done = self.log.completed_ids(project=project_id)
+        done = self.app.log.completed_ids(project=project_id)
         skipped = [j for j in jobs if j.id in done]
         rest = [j for j in jobs if j.id not in done]
         for j in skipped:
@@ -1042,172 +1108,352 @@ class AppState:
             self.console.print(f"резюм: в этом проекте уже сделано {len(skipped)}")
         return rest
 
-    def _on_status(self, job: Any, status: str, result_path: str | None = None,
-                   error: str | None = None) -> None:
-        """Статус задачи -> панель и Excel. Зовётся из нескольких потоков."""
-        self.statuses[job.id] = STATUS_DISPLAY.get(status, status)
-        if error:
-            self.errors[job.id] = error
-        self.refs_stat = {
-            "uploads": sum(r.uploads for r in self._resolvers),
-            "reused": sum(r.reused for r in self._resolvers),
-        }
-        if self.sheet is not None and status in ("ok", "failed"):
-            row = self.sheet_by_id.get(job.id)
-            if row is not None:
-                self.sheet.write_result(
-                    row,
-                    ST_DONE if status == "ok" else ST_ERROR,
-                    result_path=result_path,
-                    bump_attempts=(status == "failed"),
-                    note=error,
-                )
-
-    def _make_softener(self) -> Any:
-        return build_softener(self.cfg, log=lambda s: self.console.print(f"[dim]{s}[/dim]"))
-
-    def _report(self, outcome: Any) -> None:
-        self.console.print(
-            f"[bold]Итог:[/bold] сделано {outcome.done} из {outcome.total}"
-            + (f", провалено {outcome.failed}" if outcome.failed else "")
-            + f", за {outcome.elapsed_sec / 60:.1f} мин"
-        )
-        if outcome.stopped_reason:
-            self.console.print(f"[red]{outcome.stopped_reason}[/red]")
-
     def _run(self, jobs: list[Any], dry: bool, tab_ids: list[str]) -> None:
-        self._resolvers = []
         try:
-            if len(tab_ids) > 1:
-                self._run_parallel(jobs, dry, tab_ids)
-            else:
-                self._run_single(jobs, dry, tab_ids[0] if tab_ids else None)
-        except Exception as exc:  # noqa: BLE001 — панель должна пережить любой сбой
+            self.app.prepare_soften(self.console)
+
+            # Разведка одним подключением: проект, конфликт, резюм.
+            probe = FlowClient(self.cfg, target_id=tab_ids[0])
+            probe.bring_to_front = False
+            try:
+                probe.connect()
+            except FlowClientError as exc:
+                self.last_error = "нет связи с браузером"
+                self.console.print(f"[red]{exc}[/red]")
+                return
+            try:
+                if self.queue_project:
+                    with self.app.project_lock:
+                        how = probe.ensure_project(self.queue_project)
+                    verb = {"current": "уже открыт", "opened": "открыт", "created": "создан"}[how]
+                    self.console.print(f"проект {self.queue_project!r} {verb}")
+                self.project = probe.project_name() or probe.current_project_id()
+                pid = probe.current_project_id() or ""
+                if not pid:
+                    self.last_error = "во вкладке открыт список проектов, а не проект"
+                    self.console.print(f"[red]{self.last_error}[/red]")
+                    return
+                other = self.app.project_conflict(self.id, pid)
+                if other:
+                    self.last_error = f"этот проект уже гоняет {other} — два прогона в одном проекте нельзя"
+                    self.console.print(f"[red]{self.last_error}[/red]")
+                    return
+                self.project_id = pid
+                jobs = self._apply_resume(jobs, pid, dry)
+            finally:
+                probe.close()
+
+            if not jobs:
+                self.outcome_text = "все выбранные задачи уже выполнены в этом проекте"
+                self.console.print(f"[yellow]{self.outcome_text}[/yellow]")
+                return
+
+            refs_lock = threading.Lock()
+            resolvers: list[RefResolver] = []
+
+            def resolver_factory(client: Any, pid2: str) -> RefResolver:
+                r = RefResolver(
+                    client, self.app.log, self.app.refcache, pid2,
+                    on_upload=lambda p: self.console.print(f"  заливаю в библиотеку: {p.name}"),
+                    lock=refs_lock,
+                )
+                resolvers.append(r)
+                return r
+
+            def on_status(job: Any, status: str, result_path: str | None = None,
+                          error: str | None = None) -> None:
+                self.statuses[job.id] = STATUS_DISPLAY.get(status, status)
+                if error:
+                    self.errors[job.id] = error
+                self.refs_stat = {
+                    "uploads": sum(r.uploads for r in resolvers),
+                    "reused": sum(r.reused for r in resolvers),
+                }
+                if self.sheet is not None and status in ("ok", "failed"):
+                    row = self.sheet_by_id.get(job.id)
+                    if row is not None:
+                        self.sheet.write_result(
+                            row,
+                            ST_DONE if status == "ok" else ST_ERROR,
+                            result_path=result_path,
+                            bump_attempts=(status == "failed"),
+                            note=error,
+                        )
+
+            softener_factory = lambda: build_softener(  # noqa: E731
+                self.cfg, log=lambda s: self.console.print(f"[dim]{s}[/dim]")
+            )
+            sof = softener_factory()
+            if sof is not None:
+                self.console.print(f"[dim]смягчение при модерации: {sof.name}[/dim]")
+
+            self.parallel = ParallelRunner(
+                self.cfg, tab_ids, self.app.notifier, self.app.log, self.console,
+                dry_run=dry, on_status=on_status,
+                softener_factory=softener_factory, resolver_factory=resolver_factory,
+                queue_project=self.queue_project,
+                pacer=self.app.pacer, project_lock=self.app.project_lock,
+                bring_front=False,
+            )
+            outcome = self.parallel.run(jobs)
+            self.outcome_text = (
+                f"сделано {outcome.done} из {outcome.total}"
+                + (f", провалено {outcome.failed}" if outcome.failed else "")
+                + f" · {outcome.elapsed_sec / 60:.1f} мин"
+            )
+            self.console.print(f"[bold]Итог:[/bold] {self.outcome_text}")
+            if outcome.stopped_reason:
+                self.console.print(f"[red]{outcome.stopped_reason}[/red]")
+                self.last_error = outcome.stopped_reason
+            # Квота и «подозрительная активность» бьют по всему аккаунту —
+            # глушим и остальные прогоны, каждый доработает текущую задачу.
+            if outcome.stop_kind in STOP_QUEUE:
+                self.app.stop_all(f"{self.label}: {outcome.stopped_reason}", except_id=self.id)
+        except Exception as exc:  # noqa: BLE001 — падение прогона не роняет панель
+            self.last_error = str(exc)[:300]
             self.console.print(f"[red]прогон упал: {exc}[/red]")
         finally:
-            self.runner = None
             self.parallel = None
-            self.connected = False
+            self.project_id = ""
+            self.dry_running = False
 
-    # ------------------------------------------------------------ одна вкладка
+    # ------------------------------------------------------------------ вид
 
-    def _run_single(self, jobs: list[Any], dry: bool, target_id: str | None) -> None:
-        client = FlowClient(self.cfg, target_id=target_id)
+    def snapshot(self) -> dict[str, Any]:
+        counts: dict[str, int] = {}
+        rows = []
+        for r in self.rows:
+            if r["id"] in self.removed:
+                continue
+            st = self.statuses.get(r["id"], "TODO")
+            counts[st] = counts.get(st, 0) + 1
+            rows.append({**r, "status": st, "error": self.errors.get(r["id"])})
+        return {
+            "id": self.id,
+            "label": self.label,
+            "running": self.running,
+            "dry_running": self.dry_running,
+            "source": self.source,
+            "queue_project": self.queue_project,
+            "project": self.project,
+            "tabs": self.tabs_selected,
+            "rows": rows,
+            "counts": counts,
+            "removed": len(self.removed),
+            "workers": self.parallel.tab_states() if self.parallel is not None else [],
+            "outcome": self.outcome_text,
+            "error": self.last_error,
+            "elapsed": int(time.time() - self.started_at) if self.running else 0,
+            "refs": self.refs_stat,
+            "log_tail": list(self.sink.lines)[-3:],
+        }
+
+
+class AppState:
+    """Панель целиком: слоты прогонов + всё общее между ними."""
+
+    def __init__(self, cfg: Config, default_source: str, saved: dict[str, Any] | None = None) -> None:
+        self.cfg = cfg
+        self.sink = LogSink(maxlen=900)
+        self.log = RunLog(cfg.runs_log())
+        self.notifier = Notifier()
+        # Общее на все прогоны: ритм пауз, замок создания проектов, кэш
+        # референсов. Смысл каждого — в докстринге модуля.
+        self.pacer = Pacer(cfg)
+        self.project_lock = threading.Lock()
+        self.refcache = RefCache(cfg.runs_log().parent / ".flowbatch_refcache.json")
+
+        self.slots: list[RunSlot] = []
+        self._next_sid = 1
+        self._tabs_cache: list[dict[str, Any]] = []
+        self._tabs_error = ""
+        self._tabs_at = 0.0
+        self._browser_name = ""
+        self._soften_cache: tuple[float, list[dict[str, Any]]] = (0.0, [])
+        self._soften_note = ""
+
+        sources = (saved or {}).get("slots") or [default_source]
+        for src in sources[:MAX_SLOTS]:
+            slot = self.add_slot(save=False)
+            if src:
+                try:
+                    slot.load_queue(str(src))
+                except Exception as exc:  # noqa: BLE001 — панель должна открыться всегда
+                    slot.console.print(f"[yellow]очередь не загружена: {exc}[/yellow]")
+
+    # ------------------------------------------------------------------ слоты
+
+    def add_slot(self, save: bool = True) -> RunSlot:
+        if len(self.slots) >= MAX_SLOTS:
+            raise ValueError(f"больше {MAX_SLOTS} прогонов нельзя")
+        slot = RunSlot(self._next_sid, self)
+        self._next_sid += 1
+        self.slots.append(slot)
+        if save:
+            self.save_ui()
+        return slot
+
+    def slot(self, sid: Any) -> RunSlot:
+        for s in self.slots:
+            if s.id == int(sid):
+                return s
+        raise ValueError(f"нет прогона с id={sid}")
+
+    def remove_slot(self, sid: Any) -> None:
+        s = self.slot(sid)
+        if s.running:
+            raise RuntimeError(f"{s.label}: сначала останови прогон")
+        self.slots.remove(s)
+        if not self.slots:
+            self.add_slot(save=False)
+        self.save_ui()
+
+    def stop_all(self, reason: str = "", except_id: int | None = None) -> None:
+        for s in self.slots:
+            if s.running and s.id != except_id:
+                s.stop()
+        if reason:
+            self.sink.push(f"[глобально] остановка всех прогонов: {reason}")
+
+    def tabs_used_elsewhere(self, sid: int) -> set[str]:
+        """Вкладки, занятые другими слотами (выбор = бронь, прогон = тем более)."""
+        return {t for s in self.slots if s.id != sid for t in s.tabs_selected}
+
+    def project_conflict(self, sid: int, project_id: str) -> str | None:
+        """Метка чужого работающего прогона в том же проекте, если есть."""
+        for s in self.slots:
+            if s.id != sid and s.running and s.project_id == project_id:
+                return s.label
+        return None
+
+    # ---------------------------------------------------------------- вкладки
+
+    def tabs(self, max_age: float = 3.0) -> list[dict[str, Any]]:
+        now = time.time()
+        if now - self._tabs_at < max_age and (self._tabs_cache or self._tabs_error):
+            return self._tabs_cache
+        self._tabs_at = now
+        endpoint = str(self.cfg.get("cdp.endpoint", "http://localhost:9222"))
         try:
-            client.connect()
-            self.connected = True
-        except FlowClientError as exc:
-            self.connected = False
-            self.console.print(f"[red]{exc}[/red]")
-            return
-
-        try:
-            if self.queue_project:
-                how = client.ensure_project(self.queue_project)
-                verb = {"current": "уже открыт", "opened": "открыт", "created": "создан"}[how]
-                self.console.print(f"проект {self.queue_project!r} {verb}")
-
-            self.project = client.project_name() or client.current_project_id()
-            project_id = client.current_project_id() or ""
-            if not project_id:
-                self.console.print("[red]открыт список проектов, а не проект — открой проект во вкладке[/red]")
-                return
-
-            jobs = self._apply_resume(jobs, project_id, dry)
-            if not jobs:
-                self.console.print("[yellow]все выбранные задачи уже выполнены в этом проекте[/yellow]")
-                return
-
-            resolver = RefResolver(
-                client, self.log,
-                RefCache(self.cfg.runs_log().parent / ".flowbatch_refcache.json"),
-                project_id,
-                on_upload=lambda p: self.console.print(f"  заливаю в библиотеку: {p.name}"),
+            self._tabs_cache = list_flow_tabs(
+                endpoint, str(self.cfg.get("cdp.page_url_match", "labs.google/fx"))
             )
-            self._resolvers = [resolver]
+            self._tabs_error = ""
+            if not self._browser_name:
+                self._browser_name = browser_version(endpoint) or ""
+        except Exception as exc:  # noqa: BLE001 — браузер может быть выключен
+            self._tabs_cache = []
+            self._tabs_error = f"{type(exc).__name__}: браузер не отвечает"
+            self._browser_name = ""
+        # Мёртвые вкладки не должны оставаться выбранными у простаивающих слотов.
+        alive = {t["id"] for t in self._tabs_cache}
+        if self._tabs_cache:
+            for s in self.slots:
+                if not s.running:
+                    s.tabs_selected = [t for t in s.tabs_selected if t in alive]
+        return self._tabs_cache
 
-            softener = self._make_softener()
-            if softener is not None:
-                self.console.print(f"[dim]смягчение промптов при модерации: {softener.name}[/dim]")
+    def launch_browser(self, tabs: int = 0, add: int = 0) -> dict[str, Any]:
+        endpoint = str(self.cfg.get("cdp.endpoint", "http://localhost:9222"))
+        say = lambda s: self.sink.push(f"[браузер] {s}")  # noqa: E731
+        if add:
+            n = open_more_tabs(endpoint, int(add),
+                               url=str(self.cfg.get("cdp.start_url", "") or "") or None, say=say)
+            self._tabs_at = 0.0
+            if not n:
+                raise BrowserError("не смог открыть вкладку — браузер не отвечает?")
+            return {"added": n}
+        r = launch(self.cfg, tabs=int(tabs or 1), on_step=say)
+        self._tabs_at = 0.0
+        self.sink.push(f"[браузер] {r['browser']}, вкладок Flow {r['tabs']}, профиль {r['profile']}")
+        return r
 
-            self.runner = Runner(
-                self.cfg, client, self.notifier, self.log, self.console,
-                dry_run=dry, resolver=resolver, on_status=self._on_status,
-                project_id=project_id, softener=softener,
-            )
-            self._report(self.runner.run(jobs))
-        finally:
-            client.close()
+    # -------------------------------------------------------------- смягчение
 
-    # -------------------------------------------------------- несколько вкладок
-
-    def _run_parallel(self, jobs: list[Any], dry: bool, tab_ids: list[str]) -> None:
-        """Прогон в 2–3 вкладках одного браузера.
-
-        Проект и резюм считаются заранее, одним подключением: воркеры должны
-        получить уже отфильтрованную очередь, иначе каждый пересчитывал бы её
-        сам и они разошлись бы в том, что считать сделанным.
-        """
-        probe = FlowClient(self.cfg, target_id=tab_ids[0])
-        try:
-            probe.connect()
-            self.connected = True
-        except FlowClientError as exc:
-            self.connected = False
-            self.console.print(f"[red]{exc}[/red]")
+    def prepare_soften(self, console: Console) -> None:
+        """Перед прогоном: если выбран Ollama (или авто) — поднять сервер."""
+        backend = str(self.cfg.get("moderation.soften.backend", "auto")).strip().lower()
+        if backend not in ("auto", "ollama"):
             return
+        st = ensure_ollama(self.cfg, on_step=lambda s: console.print(f"[dim]{s}[/dim]"))
+        if st.get("started") or not st.get("running") or not st.get("model_present"):
+            console.print(f"[dim]{st['note']}[/dim]")
+        self._soften_cache = (0.0, [])  # статус мог поменяться
+
+    def set_soften_backend(self, backend: str) -> dict[str, Any]:
+        backend = (backend or "auto").strip().lower()
+        allowed = {"auto", "rules", "ollama", "gemini", "claude"}
+        if backend not in allowed:
+            raise ValueError(f"неизвестный бэкенд {backend!r}")
+        self.cfg.set("moderation.soften.backend", backend)
+        self.save_ui()
+        note = ""
+        if backend in ("auto", "ollama"):
+            st = ensure_ollama(self.cfg, on_step=lambda s: self.sink.push(f"[смягчение] {s}"))
+            note = st["note"]
+        self._soften_note = note
+        self._soften_cache = (0.0, [])
+        s = build_softener(self.cfg)
+        active = s.name if s else "выключено"
+        self.sink.push(f"[смягчение] выбран {backend}, работает: {active}")
+        return {"active": active, "note": note}
+
+    def soften_state(self, fresh: bool = False) -> dict[str, Any]:
+        now = time.time()
+        ts, cached = self._soften_cache
+        if fresh or now - ts > 10 or not cached:
+            cached = backend_status(self.cfg)
+            self._soften_cache = (now, cached)
+        s = build_softener(self.cfg)
+        return {
+            "backend": str(self.cfg.get("moderation.soften.backend", "auto")),
+            "active": s.name if s else None,
+            "backends": cached,
+            "note": self._soften_note,
+        }
+
+    # -------------------------------------------------------------- настройки
+
+    def set_endpoint(self, endpoint: str) -> str:
+        if any(s.running for s in self.slots):
+            raise RuntimeError("идёт прогон — менять подключение сейчас нельзя")
+        endpoint = (endpoint or "").strip().rstrip("/")
+        if not endpoint.startswith(("http://", "https://")):
+            raise ValueError("endpoint должен начинаться с http:// (например http://localhost:9222)")
         try:
-            if self.queue_project:
-                probe.ensure_project(self.queue_project)
-            self.project = probe.project_name() or probe.current_project_id()
-            project_id = probe.current_project_id() or ""
-            if not project_id:
-                self.console.print(
-                    "[red]в первой выбранной вкладке открыт список проектов, а не проект[/red]"
-                )
-                return
-            jobs = self._apply_resume(jobs, project_id, dry)
-        finally:
-            probe.close()
+            r = httpx.get(f"{endpoint}/json/version", timeout=4)
+            browser = r.json().get("Browser", "неизвестный браузер")
+        except Exception as exc:  # noqa: BLE001
+            raise ValueError(
+                f"браузер на {endpoint} не отвечает: {type(exc).__name__}. "
+                "Запусти его с --remote-debugging-port и НЕдефолтным --user-data-dir."
+            ) from exc
+        self.cfg.set("cdp.endpoint", endpoint)
+        self._tabs_at = 0.0
+        self._browser_name = ""
+        self.save_ui()
+        return browser
 
-        if not jobs:
-            self.console.print("[yellow]все выбранные задачи уже выполнены в этом проекте[/yellow]")
-            return
+    def save_ui(self) -> None:
+        """Панельные настройки на диск: endpoint, бэкенд смягчения, источники слотов."""
+        data: dict[str, Any] = {}
+        try:
+            data = json.loads(Path(UI_FILE).read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            pass
+        data.update({
+            "endpoint": self.cfg.get("cdp.endpoint"),
+            "soften_backend": self.cfg.get("moderation.soften.backend"),
+            "slots": [s.source for s in self.slots],
+        })
+        try:
+            Path(UI_FILE).write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        except OSError:
+            pass
 
-        cache = RefCache(self.cfg.runs_log().parent / ".flowbatch_refcache.json")
-        refs_lock = threading.Lock()
-
-        def resolver_factory(client: Any, pid: str) -> RefResolver:
-            # Заливает каждый через свою вкладку, но кэш общий и под замком —
-            # иначе три вкладки залили бы одно и то же фото трижды.
-            r = RefResolver(
-                client, self.log, cache, pid,
-                on_upload=lambda p: self.console.print(f"  заливаю в библиотеку: {p.name}"),
-                lock=refs_lock,
-            )
-            self._resolvers.append(r)
-            return r
-
-        self.console.print(
-            f"[bold]параллельный режим:[/bold] вкладок {len(tab_ids)}, задач {len(jobs)}"
-        )
-        softener = self._make_softener()
-        if softener is not None:
-            self.console.print(f"[dim]смягчение промптов при модерации: {softener.name}[/dim]")
-
-        self.parallel = ParallelRunner(
-            self.cfg, tab_ids, self.notifier, self.log, self.console,
-            dry_run=dry, on_status=self._on_status,
-            softener_factory=self._make_softener,
-            resolver_factory=resolver_factory,
-            queue_project=self.queue_project,
-        )
-        self._report(self.parallel.run(jobs))
-
-    # ------------------------------------------------------------- состояние
+    # ------------------------------------------------------------------- вид
 
     def products(self) -> list[dict[str, Any]]:
-        """База продуктов: подпапки products/ и число фото в каждой."""
         base = self.cfg.products_dir()
         if not base.is_dir():
             return []
@@ -1223,7 +1469,6 @@ class AppState:
         return out
 
     def results(self) -> list[dict[str, Any]]:
-        """Файлы из out/, свежие сверху."""
         out = self.cfg.out_dir()
         if not out.exists():
             return []
@@ -1238,38 +1483,32 @@ class AppState:
         ]
 
     def snapshot(self, fresh: bool = False) -> dict[str, Any]:
-        counts: dict[str, int] = {}
-        rows = []
-        for r in self.rows:
-            if r["id"] in self.removed:
-                continue
-            st = self.statuses.get(r["id"], "TODO")
-            counts[st] = counts.get(st, 0) + 1
-            rows.append({**r, "status": st, "error": self.errors.get(r["id"])})
-
         tabs = self.tabs(max_age=0.0 if fresh else 3.0)
-        sel = set(self.tabs_selected)
+        owner: dict[str, RunSlot] = {}
+        for s in self.slots:
+            for t in s.tabs_selected:
+                owner[t] = s
         return {
-            "running": self.running,
-            "connected": self.connected,
+            "max_slots": MAX_SLOTS,
             "max_tabs": MAX_TABS,
-            "tabs": [{**t, "selected": t["id"] in sel} for t in tabs],
-            "tabs_error": self._tabs_error,
-            "workers": self.parallel.tab_states() if self.parallel is not None else [],
-            "project": self.project,
-            "queue_project": self.queue_project,
-            "source": self.source,
+            "total_tab_cap": TOTAL_TAB_CAP,
+            "browser_ok": not self._tabs_error,
+            "browser_name": self._browser_name,
             "endpoint": self.cfg.get("cdp.endpoint"),
-            "syntax_help": SYNTAX_HELP,
-            "rows": rows,
-            "counts": counts,
-            "removed": len(self.removed),
-            "log": self.sink.snapshot()[-250:],
+            "tabs": [
+                {**t,
+                 "owner": owner[t["id"]].id if t["id"] in owner else None,
+                 "owner_label": owner[t["id"]].label if t["id"] in owner else ""}
+                for t in tabs
+            ],
+            "tabs_error": self._tabs_error,
+            "slots": [s.snapshot() for s in self.slots],
+            "log": self.sink.snapshot()[-300:],
             "results": self.results(),
             "products": self.products(),
             "products_dir": str(self.cfg.products_dir()),
-            "soften": self.soften_state(),
-            "refs": self.refs_stat,
+            "soften": self.soften_state(fresh=fresh),
+            "syntax_help": SYNTAX_HELP,
         }
 
 
@@ -1306,11 +1545,7 @@ def make_handler(state: AppState) -> type[BaseHTTPRequestHandler]:
                 self._json({"error": "not found"}, 404)
 
         def _serve_file(self, raw: str) -> None:
-            """Отдать файл результата.
-
-            Только из out/ и screenshots/: без этой проверки параметр path
-            превратился бы в чтение любого файла на диске.
-            """
+            """Только из out/ и screenshots/ — иначе path читал бы весь диск."""
             if not raw:
                 self._json({"error": "no path"}, 400)
                 return
@@ -1336,31 +1571,43 @@ def make_handler(state: AppState) -> type[BaseHTTPRequestHandler]:
             except json.JSONDecodeError:
                 payload = {}
             try:
-                if u.path == "/api/start":
-                    state.start(payload)
+                if u.path == "/api/slot/add":
+                    slot = state.add_slot()
+                    self._json({"ok": True, "id": slot.id})
+                elif u.path == "/api/slot/remove":
+                    state.remove_slot(payload.get("id"))
                     self._json({"ok": True})
-                elif u.path == "/api/stop":
-                    state.stop()
+                elif u.path == "/api/slot/load":
+                    state.slot(payload.get("id")).load_queue(payload.get("source") or "")
                     self._json({"ok": True})
-                elif u.path == "/api/reload":
-                    state.load_queue(payload.get("source") or state.source)
+                elif u.path == "/api/slot/parse":
+                    state.slot(payload.get("id")).parse_text(payload.get("text") or "")
                     self._json({"ok": True})
-                elif u.path == "/api/parse":
-                    state.parse_text(payload.get("text") or "")
+                elif u.path == "/api/slot/rows":
+                    state.slot(payload.get("id")).remove_rows(
+                        payload.get("ids"), reset=bool(payload.get("reset")))
                     self._json({"ok": True})
-                elif u.path == "/api/remove":
-                    state.remove_rows(payload.get("ids"), reset=bool(payload.get("reset")))
+                elif u.path == "/api/slot/tabs":
+                    state.slot(payload.get("id")).set_tabs(payload.get("ids") or [])
                     self._json({"ok": True})
+                elif u.path == "/api/slot/start":
+                    state.slot(payload.get("id")).start(payload)
+                    self._json({"ok": True})
+                elif u.path == "/api/slot/stop":
+                    state.slot(payload.get("id")).stop()
+                    self._json({"ok": True})
+                elif u.path == "/api/stopall":
+                    state.stop_all("по кнопке «Стоп всё»")
+                    self._json({"ok": True})
+                elif u.path == "/api/browser":
+                    self._json({"ok": True, **state.launch_browser(
+                        tabs=payload.get("tabs") or 0, add=payload.get("add") or 0)})
+                elif u.path == "/api/soften":
+                    self._json({"ok": True,
+                                **state.set_soften_backend(payload.get("backend") or "auto")})
                 elif u.path == "/api/settings":
                     browser = state.set_endpoint(payload.get("endpoint") or "")
                     self._json({"ok": True, "browser": browser})
-                elif u.path == "/api/soften":
-                    active = state.set_soften_backend(payload.get("backend") or "auto")
-                    self._json({"ok": True, "active": active})
-                elif u.path == "/api/tabs":
-                    self._json({"ok": True, "tabs": state.set_tabs(payload.get("ids") or [])})
-                elif u.path == "/api/browser":
-                    self._json({"ok": True, **state.launch_browser(payload.get("tabs") or 1)})
                 else:
                     self._json({"error": "not found"}, 404)
             except Exception as exc:  # noqa: BLE001 — ошибку показываем в панели
@@ -1371,7 +1618,7 @@ def make_handler(state: AppState) -> type[BaseHTTPRequestHandler]:
 
 def serve(cfg: Config, source: str, port: int = 8765, open_browser: bool = True) -> None:
     """Запустить панель на 127.0.0.1:<port>."""
-    # Сохранённые настройки панели (endpoint) перекрывают config.yaml.
+    saved: dict[str, Any] = {}
     try:
         saved = json.loads(Path(UI_FILE).read_text(encoding="utf-8"))
         if saved.get("endpoint"):
@@ -1381,7 +1628,7 @@ def serve(cfg: Config, source: str, port: int = 8765, open_browser: bool = True)
     except (OSError, json.JSONDecodeError):
         pass
 
-    state = AppState(cfg, source)
+    state = AppState(cfg, source, saved=saved)
     server = ThreadingHTTPServer(("127.0.0.1", port), make_handler(state))
     url = f"http://127.0.0.1:{port}/"
     print(f"flowbatch: панель на {url}  (Ctrl+C — выход)")

@@ -16,6 +16,7 @@
 from __future__ import annotations
 
 import json
+import threading
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
@@ -76,11 +77,16 @@ class RefStat:
 
 
 class RefCache:
-    """Кэш «локальный файл -> uuid» в разрезе проекта, на диске в JSON."""
+    """Кэш «локальный файл -> uuid» в разрезе проекта, на диске в JSON.
+
+    Потокобезопасен: в панели один экземпляр делят все прогоны, и без
+    внутреннего замка две одновременные записи перемешали бы JSON на диске.
+    """
 
     def __init__(self, path: str | Path) -> None:
         self.path = Path(path)
         self._data: dict[str, dict[str, str]] = {}
+        self._io = threading.Lock()
         self._load()
 
     def _load(self) -> None:
@@ -99,15 +105,18 @@ class RefCache:
         )
 
     def get(self, project_id: str, stat: RefStat) -> str | None:
-        return self._data.get(project_id, {}).get(stat.key())
+        with self._io:
+            return self._data.get(project_id, {}).get(stat.key())
 
     def put(self, project_id: str, stat: RefStat, uuid: str) -> None:
-        self._data.setdefault(project_id, {})[stat.key()] = uuid
-        self._save()
+        with self._io:
+            self._data.setdefault(project_id, {})[stat.key()] = uuid
+            self._save()
 
     def forget_project(self, project_id: str) -> None:
-        if self._data.pop(project_id, None) is not None:
-            self._save()
+        with self._io:
+            if self._data.pop(project_id, None) is not None:
+                self._save()
 
 
 class RefResolver:

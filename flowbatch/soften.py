@@ -19,7 +19,11 @@ from __future__ import annotations
 
 import os
 import re
-from typing import Callable
+import shutil
+import subprocess
+import time
+from pathlib import Path
+from typing import Any, Callable
 
 import httpx
 
@@ -399,6 +403,79 @@ def build_softener(cfg: Config, log: Callable[[str], None] | None = None) -> Sof
         if candidate.available:
             return Softener(candidate, rules, log)
     return Softener(None, rules, log)
+
+
+def find_ollama_exe() -> str | None:
+    """Где лежит ollama.exe: PATH, затем стандартная установка на Windows."""
+    exe = shutil.which("ollama")
+    if exe:
+        return exe
+    if os.name == "nt":
+        cand = Path(os.environ.get("LOCALAPPDATA", "")) / "Programs" / "Ollama" / "ollama.exe"
+        if cand.exists():
+            return str(cand)
+    return None
+
+
+def ensure_ollama(cfg: Config, wait_sec: int = 30, on_step: Any = None) -> dict[str, Any]:
+    """Поднять сервер Ollama, если он не запущен. Модель НЕ качает.
+
+    «Выбрал Ollama перед генерацией — дальше само»: панель зовёт это при
+    выборе бэкенда и на старте прогона. Сервер поднимается как отдельный
+    процесс и живёт после выхода панели. Скачивание модели сюда сознательно
+    не входит: 7+ ГБ молча в фоне — это сюрприз, а не сервис.
+    """
+    say = on_step or (lambda _s: None)
+    o = OllamaSoftener(cfg)
+
+    def _status(running: bool, started: bool, models: list[str] | None) -> dict[str, Any]:
+        present = bool(models) and o.model in (models or [])
+        if not running:
+            note = f"Ollama не отвечает на {o.host}"
+        elif present:
+            note = f"Ollama работает, модель {o.model} на месте"
+        else:
+            note = (f"Ollama работает, но модели {o.model} нет — скачай: "
+                    f"ollama pull {o.model}")
+        return {"running": running, "started": started, "model": o.model,
+                "model_present": present, "note": note}
+
+    try:
+        return _status(True, False, o.list_models())
+    except SoftenError:
+        pass  # сервер не отвечает — пробуем поднять
+
+    exe = find_ollama_exe()
+    if not exe:
+        return {"running": False, "started": False, "model": o.model, "model_present": False,
+                "note": "Ollama не установлена (ollama.exe не найден) — поставь её или выбери Gemini"}
+
+    say(f"Ollama не запущена — поднимаю сервер ({Path(exe).name} serve)")
+    env = dict(os.environ)
+    host = o.host.removeprefix("http://").removeprefix("https://")
+    if host not in ("localhost:11434", "127.0.0.1:11434"):
+        env["OLLAMA_HOST"] = host  # нестандартный порт — сервер должен слушать там же
+    flags = 0
+    if os.name == "nt":
+        # Сервер должен пережить закрытие панели.
+        flags = subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
+    try:
+        subprocess.Popen([exe, "serve"], creationflags=flags, close_fds=True,
+                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, env=env)
+    except Exception as exc:  # noqa: BLE001
+        return {"running": False, "started": False, "model": o.model, "model_present": False,
+                "note": f"не смог запустить ollama serve: {type(exc).__name__}"}
+
+    deadline = time.time() + wait_sec
+    while time.time() < deadline:
+        try:
+            models = o.list_models()
+            say("сервер Ollama ответил")
+            return _status(True, True, models)
+        except SoftenError:
+            time.sleep(1.0)
+    return {"running": False, "started": True, "model": o.model, "model_present": False,
+            "note": f"ollama serve не ответил за {wait_sec}с"}
 
 
 def backend_status(cfg: Config) -> list[dict[str, object]]:

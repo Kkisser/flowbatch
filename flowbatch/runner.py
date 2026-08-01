@@ -67,6 +67,10 @@ class RunOutcome:
     failed: int = 0
     skipped: int = 0
     stopped_reason: str | None = None
+    # Машиночитаемый вид stopped_reason: kind ошибки из STOP_QUEUE или None.
+    # Нужен панели: квота и «подозрительная активность» бьют по аккаунту
+    # целиком, и по этому полю останавливаются ВСЕ прогоны, а не один.
+    stop_kind: str | None = None
     elapsed_sec: float = 0.0
     failures: list[tuple[str, str]] = field(default_factory=list)
 
@@ -172,6 +176,7 @@ class Runner:
                 self._report_failure(job, exc)
                 if exc.kind in STOP_QUEUE:
                     out.stopped_reason = _ADVICE.get(exc.kind, str(exc))
+                    out.stop_kind = exc.kind
                     self.console.print(f"[bold red]Очередь остановлена:[/bold red] {out.stopped_reason}")
                     out.skipped = max(0, len(jobs) - i - 1)
                     self.stop_requested = True
@@ -183,6 +188,11 @@ class Runner:
 
     def _pause(self, done_count: int, long_every: int) -> None:
         """Человеческий темп между задачами."""
+        if self.dry_run:
+            # Репетиция генераций не запускает — полные антибан-паузы здесь
+            # только растягивали бы проверку очереди на десятки минут.
+            time.sleep(2.0)
+            return
         if self.pacer is not None:
             # Ритм общий на все вкладки: три воркера, каждый со своей паузой,
             # втроём давали бы втрое больше запросов в минуту — ровно то, за

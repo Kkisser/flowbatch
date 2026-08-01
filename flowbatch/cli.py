@@ -820,7 +820,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     br = sub.add_parser("browser", help="запустить браузер с отладочным портом")
     br.add_argument("--tabs", type=int, default=1,
-                    help="сколько вкладок Flow открыть (для параллельного режима)")
+                    help="сколько вкладок Flow должно быть открыто (1–7, по вкладке на прогон)")
     br.set_defaults(func=cmd_browser)
 
     w = sub.add_parser("ui", help="локальная веб-панель управления очередью")

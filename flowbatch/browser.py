@@ -123,7 +123,8 @@ def launch(
     profile = str(cfg.get("cdp.user_data_dir", "") or DEFAULT_PROFILE)
     url = str(cfg.get("cdp.start_url", "") or DEFAULT_URL)
     exe = find_browser(str(cfg.get("cdp.browser_path", "") or ""))
-    tabs = max(1, min(int(tabs), 3))
+    # Потолок 7 — под режим «до 7 проектов параллельно, по вкладке на каждый».
+    tabs = max(1, min(int(tabs), 7))
 
     already = version(endpoint)
     if already:
@@ -182,6 +183,11 @@ def launch(
         "Чаще всего это значит, что профиль оказался дефолтным: на нём Chromium 136+ "
         "отладочный порт не поднимает. Проверь cdp.user_data_dir в config.yaml."
     )
+
+
+def open_more_tabs(endpoint: str, count: int, url: str | None = None, say: Any = None) -> int:
+    """Открыть ещё count вкладок Flow в уже работающем браузере."""
+    return _open_tabs(endpoint, url or DEFAULT_URL, count, say or (lambda _s: None))
 
 
 def _count_flow_tabs(endpoint: str) -> int:
