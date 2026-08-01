@@ -13,12 +13,15 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable, Literal
 
+import httpx
 from playwright.sync_api import Browser, Page, Playwright, expect, sync_playwright
 
 from .config import Config
 from .scrub import scrub
 
 Kind = Literal["image", "video"]
+
+_PROJECT_ID_RE = re.compile(r"/flow/project/([0-9a-fA-F-]{8,})")
 
 # Текст триггера настроек:
 #   изображение: '🍌 Nano Banana 2\ncrop_9_16\nx1'
@@ -148,11 +151,47 @@ class MediaItem:
     tag: str  # img | video
 
 
+def list_flow_tabs(endpoint: str, match: str = "labs.google/fx") -> list[dict[str, str]]:
+    """Перечислить открытые вкладки Flow по HTTP-эндпоинту отладки.
+
+    Намеренно без Playwright: панель дёргает список часто, а поднимать ради
+    этого драйвер — секунды на каждый опрос. /json/list отдаёт targetId,
+    и именно по нему потом привязывается воркер: URL для этого не годится,
+    у двух вкладок одного проекта он одинаковый.
+    """
+    url = endpoint.rstrip("/") + "/json/list"
+    data = httpx.get(url, timeout=4).json()
+    tabs: list[dict[str, str]] = []
+    for t in data:
+        if t.get("type") != "page":
+            continue
+        page_url = t.get("url") or ""
+        if match not in page_url:
+            continue
+        m = _PROJECT_ID_RE.search(page_url)
+        tabs.append(
+            {
+                "id": t.get("id") or "",
+                "url": page_url,
+                "title": (t.get("title") or "").strip(),
+                "project_id": m.group(1) if m else "",
+            }
+        )
+    return tabs
+
+
 class FlowClient:
     """Обёртка над вкладкой Flow. Используется как контекстный менеджер."""
 
-    def __init__(self, cfg: Config) -> None:
+    def __init__(self, cfg: Config, target_id: str | None = None) -> None:
         self.cfg = cfg
+        # Привязка к конкретной вкладке. None — взять первую подходящую
+        # (обычный однопоточный режим). Задаётся в параллельном режиме,
+        # где каждый воркер обязан держаться своей вкладки.
+        self.target_id = target_id
+        # Выносить вкладку на передний план имеет смысл, только когда она одна:
+        # три воркера, дерущихся за фокус, переключали бы вкладки без остановки.
+        self.bring_to_front = True
         self._pw: Playwright | None = None
         self._browser: Browser | None = None
         self._page: Page | None = None
@@ -184,7 +223,41 @@ class FlowClient:
 
         self._page = self._pick_page()
         self._arm_network_listener(self._page)
+        if not self.bring_to_front:
+            self._keep_page_awake(self._page)
         return self._page
+
+    @staticmethod
+    def page_target_id(page: Page) -> str:
+        """targetId вкладки — единственный её стабильный идентификатор.
+
+        Playwright такого свойства не даёт, но CDP-сессию к странице открыть
+        можно, и Target.getTargetInfo отвечает ровно тем же id, что и
+        /json/list. Так список вкладок в панели сходится с воркерами.
+        """
+        try:
+            sess = page.context.new_cdp_session(page)
+            info = sess.send("Target.getTargetInfo") or {}
+            sess.detach()
+            return str(info.get("targetInfo", {}).get("targetId") or "")
+        except Exception:  # noqa: BLE001 — идентификация не должна ронять подключение
+            return ""
+
+    def _keep_page_awake(self, page: Page) -> None:
+        """Не дать Chromium придушить фоновую вкладку.
+
+        Параллельный режим держит 2–3 вкладки, и на переднем плане может быть
+        только одна. Chromium режет фоновым вкладкам таймеры и снимает фокус,
+        а Flow опрашивает статус генерации именно таймерами. Обе команды —
+        штатные CDP: эмуляция фокуса и запрет ухода вкладки в «замороженное»
+        состояние. Если браузер их не поддержит, просто работаем как есть.
+        """
+        try:
+            sess = page.context.new_cdp_session(page)
+            sess.send("Emulation.setFocusEmulationEnabled", {"enabled": True})
+            sess.send("Page.setWebLifecycleState", {"state": "active"})
+        except Exception:  # noqa: BLE001 — необязательная оптимизация
+            pass
 
     def _pick_page(self) -> Page:
         """Выбрать вкладку Flow среди уже открытых. Новых вкладок не создаём."""
@@ -196,6 +269,15 @@ class FlowClient:
 
         if not all_pages:
             raise FlowClientError("В подключённом браузере нет ни одной вкладки.")
+
+        if self.target_id:
+            for p in all_pages:
+                if self.page_target_id(p) == self.target_id:
+                    return p
+            raise FlowClientError(
+                f"Вкладка {self.target_id[:12]}… не найдена — её закрыли или "
+                "браузер перезапустили. Обнови список вкладок в панели."
+            )
 
         candidates = [p for p in all_pages if match in (p.url or "")]
         if not candidates:
@@ -244,7 +326,13 @@ class FlowClient:
                 self._pw = None
 
     def focus(self) -> None:
-        """Вывести вкладку на передний план: фоновые вкладки троттлятся."""
+        """Вывести вкладку на передний план: фоновые вкладки троттлятся.
+
+        В параллельном режиме отключено (bring_to_front=False): вместо драки за
+        передний план вкладку удерживает «живой» _keep_page_awake.
+        """
+        if not self.bring_to_front:
+            return
         try:
             self.page.bring_to_front()
         except Exception:  # noqa: BLE001
@@ -1209,12 +1297,19 @@ class FlowClient:
         timeout_sec: int | None = None,
         on_tick: Any = None,
         moderation_baseline: int = 0,
+        arbiter: Any = None,
     ) -> MediaItem:
         """Ждать появления нового медиа-URL, которого не было до запуска.
 
         moderation_baseline — сколько фраз модерации было на странице ДО клика:
         старые упавшие плитки из прошлых сессий не должны давать ложных
         срабатываний, поэтому реагируем только на прирост.
+
+        arbiter — общий на все вкладки реестр «этот результат уже занят».
+        Нужен только в параллельном режиме: три вкладки смотрят в один проект,
+        и без реестра две задачи могли бы забрать один и тот же файл. Пока
+        arbiter не передан, ветка полностью выключена и поведение то же, что
+        и было в однопоточном прогоне.
         """
         gen = self.cfg.get("generation", {})
         if timeout_sec is None:
@@ -1224,6 +1319,7 @@ class FlowClient:
         poll = int(gen.get("poll_interval_sec", 3))
         started = time.time()
         tick = 0
+        settle = 0
 
         while time.time() - started < timeout_sec:
             self.page.wait_for_timeout(poll * 1000)
@@ -1234,10 +1330,23 @@ class FlowClient:
 
             snap = self.media_snapshot()
             new = [item for name, item in snap.items() if name not in before]
+            if new and arbiter is not None:
+                # Чужое не трогаем — его уже забрал другой воркер.
+                new = [i for i in new if arbiter.is_free(i.name)]
+                # Кнопка «Создать» в МОЕЙ вкладке остаётся заблокированной,
+                # пока идёт МОЯ генерация. Значит, всплывший результат при
+                # заблокированной кнопке — с соседней вкладки. Ждём три опроса
+                # и всё-таки берём: если Flow когда-нибудь перестанет
+                # блокировать кнопку, задача не должна зависнуть навсегда.
+                if new and settle < 3 and self.is_generating():
+                    settle += 1
+                    new = []
             if new:
                 # Для видео предпочитаем <video>, но и превьюшка сгодится:
                 # скачиваем всё равно по uuid, а тип определим по content-type.
                 new.sort(key=lambda i: 0 if (kind == "video" and i.tag == "video") else 1)
+                if arbiter is not None and not arbiter.claim(new[0].name):
+                    continue  # успели перехватить между проверкой и захватом
                 return new[0]
 
             if on_tick:

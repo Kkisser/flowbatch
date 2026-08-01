@@ -86,9 +86,17 @@ class Runner:
         on_status: Any = None,
         project_id: str | None = None,
         softener: Any = None,
+        arbiter: Any = None,
+        pacer: Any = None,
     ) -> None:
         self.cfg = cfg
         self.client = client
+        # Оба поля работают только в параллельном режиме и оба по умолчанию
+        # пусты, чтобы однопоточный прогон остался ровно тем, что уже проверен.
+        # arbiter — реестр «этот результат уже занят» (см. wait_for_new_media),
+        # pacer — общий на все вкладки ритм пауз между задачами.
+        self.arbiter = arbiter
+        self.pacer = pacer
         self.notifier = notifier
         self.log = log
         self.console = console
@@ -116,19 +124,44 @@ class Runner:
 
     # ------------------------------------------------------------------ цикл
 
-    def run(self, jobs: list[Job]) -> RunOutcome:
-        """Прогнать список задач. Возвращает сводку."""
-        out = RunOutcome(total=len(jobs))
+    def run(
+        self, jobs: list[Job] | None = None, take: Any = None, total: int | None = None
+    ) -> RunOutcome:
+        """Прогнать задачи. Возвращает сводку.
+
+        take — необязательный источник задач вместо готового списка: в
+        параллельном режиме воркеры тянут из общей очереди по одной, поэтому
+        освободившаяся вкладка сразу берёт следующую строку, а не простаивает
+        до конца чужого видео. take() отдаёт None, когда очередь пуста.
+        """
+        jobs = list(jobs or [])
+        out = RunOutcome(total=total if total is not None else len(jobs))
         started = time.time()
         long_every = int(self.cfg.get("antiban.long_pause_every", 10))
+        i = 0
 
-        for i, job in enumerate(jobs):
+        while True:
+            if take is not None:
+                job = take()
+                if job is None:
+                    break
+            else:
+                if i >= len(jobs):
+                    break
+                job = jobs[i]
             if self.stop_requested:
-                out.skipped = len(jobs) - i
+                out.skipped = (len(jobs) - i) if take is None else 0
                 out.stopped_reason = "остановлено пользователем"
                 self.console.print("[yellow]Остановка по запросу[/yellow]")
                 break
-            self.console.rule(f"[bold]{i + 1}/{len(jobs)}  {job.id}[/bold]  ({job.kind})")
+
+            if i or take is not None:
+                self._pause(i + 1, long_every)
+                if self.stop_requested:
+                    out.stopped_reason = "остановлено пользователем"
+                    break
+
+            self.console.rule(f"[bold]{i + 1}/{out.total}  {job.id}[/bold]  ({job.kind})")
             self._notify_status(job, "IN_PROGRESS")
             try:
                 self._run_one(job)
@@ -140,17 +173,22 @@ class Runner:
                 if exc.kind in STOP_QUEUE:
                     out.stopped_reason = _ADVICE.get(exc.kind, str(exc))
                     self.console.print(f"[bold red]Очередь остановлена:[/bold red] {out.stopped_reason}")
-                    out.skipped = len(jobs) - i - 1
+                    out.skipped = max(0, len(jobs) - i - 1)
+                    self.stop_requested = True
                     break
-
-            if i < len(jobs) - 1:
-                self._pause(i + 1, long_every)
+            i += 1
 
         out.elapsed_sec = time.time() - started
         return out
 
     def _pause(self, done_count: int, long_every: int) -> None:
         """Человеческий темп между задачами."""
+        if self.pacer is not None:
+            # Ритм общий на все вкладки: три воркера, каждый со своей паузой,
+            # втроём давали бы втрое больше запросов в минуту — ровно то, за
+            # что Flow и помечает активность подозрительной.
+            self.pacer.wait_turn(lambda: self.stop_requested, self.console)
+            return
         base = float(self.cfg.get("antiban.pause_between_jobs_sec", 30))
         jitter = float(self.cfg.get("antiban.pause_jitter_sec", 10))
         delay = max(1.0, base + random.uniform(-jitter, jitter))
@@ -308,7 +346,8 @@ class Runner:
             self.console.print(f"    [dim]{sec}с…[/dim]", end="\r")
 
         item = self.client.wait_for_new_media(
-            before, job.kind, on_tick=tick, moderation_baseline=mod_base
+            before, job.kind, on_tick=tick, moderation_baseline=mod_base,
+            arbiter=self.arbiter,
         )
         self.client.raise_for_errors(launch_ts)
 

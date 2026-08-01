@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+import threading
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -14,6 +15,9 @@ import yaml
 from .scrub import scrub
 
 Kind = Literal["image", "video"]
+
+# Один на процесс: журнал у всех воркеров общий (см. RunLog.append).
+_LOG_WRITE_LOCK = threading.Lock()
 
 STATUS_OK = "ok"
 STATUS_FAILED = "failed"
@@ -214,11 +218,17 @@ class RunLog:
         return done
 
     def append(self, record: dict[str, Any]) -> None:
-        """Дописать запись. Флашим сразу: процесс могут убить в любой момент."""
+        """Дописать запись. Флашим сразу: процесс могут убить в любой момент.
+
+        Под замком: в параллельном режиме пишут три воркера сразу, и без него
+        две записи могли бы перемешаться в одной строке — журнал стал бы битым
+        ровно там, где по нему потом считается резюм.
+        """
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        with self.path.open("a", encoding="utf-8") as fh:
-            fh.write(json.dumps(record, ensure_ascii=False) + "\n")
-            fh.flush()
+        with _LOG_WRITE_LOCK:
+            with self.path.open("a", encoding="utf-8") as fh:
+                fh.write(json.dumps(record, ensure_ascii=False) + "\n")
+                fh.flush()
 
     def write_result(
         self,

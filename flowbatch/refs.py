@@ -24,6 +24,16 @@ from .promptfile import LIB_PREFIX, LIB_PROJECT_SEP
 from .queue import RunLog, resolve_ref
 
 
+class _NullLock:
+    """Заглушка вместо замка для однопоточного прогона."""
+
+    def __enter__(self) -> "_NullLock":
+        return self
+
+    def __exit__(self, *exc: object) -> None:
+        return None
+
+
 @dataclass
 class RefHandle:
     """Разрешённый референс, готовый к прикреплению.
@@ -110,12 +120,18 @@ class RefResolver:
         cache: RefCache,
         project_id: str,
         on_upload: Callable[[Path], None] | None = None,
+        lock: Any = None,
     ) -> None:
         self.client = client
         self.log = log
         self.cache = cache
         self.project_id = project_id
         self.on_upload = on_upload
+        # Общий на все вкладки замок. В параллельном режиме у каждого воркера
+        # свой резолвер (он заливает через СВОЮ вкладку), но кэш и проект —
+        # общие: без замка три вкладки одновременно не найдут файл в кэше и
+        # зальют его трижды, намусорив дублями в библиотеке.
+        self.lock = lock or _NullLock()
         self.uploads = 0
         self.reused = 0
 
@@ -126,6 +142,10 @@ class RefResolver:
         Спеки lib: не трогают диск вовсе — прикрепление пойдёт поиском по
         библиотеке (текущего или указанного проекта) на фазе attach.
         """
+        with self.lock:
+            return self._resolve(raw)
+
+    def _resolve(self, raw: str | Path) -> RefHandle:
         if isinstance(raw, str) and raw.startswith(LIB_PREFIX):
             name, project = parse_lib_spec(raw)
             if not name:
