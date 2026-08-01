@@ -139,6 +139,47 @@ def main() -> int:
         elif not jobs[0].refs or not jobs[0].refs[0].endswith("OLD.jpg"):
             failures.append(f"@use по файлу с диска дал не тот путь: {jobs[0].refs}")
 
+    # Комментарии вырезаются ВЕЗДЕ, включая середину промпта и стык блоков.
+    COMMENTS = (
+        "# шапка файла\n"
+        "=== IMG A\n"
+        "Line one.\n"
+        "   # отступленный комментарий внутри промпта\n"
+        "Line two.\n"
+        "\n"
+        "# заголовок следующего блока\n"
+        "=== IMG B\n"
+        "Prompt B.\n"
+    )
+    jobs, errors, _ = parse(COMMENTS, out_dir="out")
+    if errors:
+        failures.append(f"COMMENTS дал ошибки: {errors}")
+    else:
+        a, b = jobs[0], jobs[1]
+        if "#" in a.prompt or "#" in b.prompt:
+            failures.append(f"комментарий утёк в промпт: {a.prompt!r} / {b.prompt!r}")
+        if a.prompt != "Line one.\nLine two.":
+            failures.append(f"промпт A собран неверно: {a.prompt!r}")
+        if b.prompt != "Prompt B.":
+            failures.append(f"промпт B собран неверно: {b.prompt!r}")
+
+    # Решётка в середине строки — часть промпта, не комментарий.
+    jobs, errors, _ = parse("=== IMG H\nBackground hex #F4F1EA, accent #C1440E.", out_dir="out")
+    if errors or "#F4F1EA" not in jobs[0].prompt:
+        failures.append(f"hex-цвет пострадал: {jobs and jobs[0].prompt!r}, {errors}")
+
+    # Экранирование \# — строка попадает в промпт с решёткой.
+    jobs, errors, _ = parse("=== IMG E\n\\# Heading in prompt\nBody.", out_dir="out")
+    if errors:
+        failures.append(f"экранирование дало ошибки: {errors}")
+    elif not jobs[0].prompt.startswith("# Heading in prompt"):
+        failures.append(f"экранирование \\# не сработало: {jobs[0].prompt!r}")
+
+    # Пустые строки после вырезанных комментариев схлопываются.
+    jobs, errors, _ = parse("=== IMG G\nA.\n\n# c1\n# c2\n\nB.", out_dir="out")
+    if not errors and "\n\n\n" in jobs[0].prompt:
+        failures.append(f"остались тройные переводы строк: {jobs[0].prompt!r}")
+
     # @product: раскрытие папки, конкретный файл, ошибки базы.
     with tempfile.TemporaryDirectory() as td:
         prod = Path(td) / "rl410"

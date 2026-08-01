@@ -40,6 +40,8 @@ def cmd_doctor(args: argparse.Namespace) -> int:
     console.print(Panel.fit("flowbatch doctor", style="bold cyan"))
 
     problems: list[str] = []
+    if _warn_key_in_example():
+        problems.append("секрет вписан в .env.example (уедет в git)")
 
     client = FlowClient(cfg)
     try:
@@ -519,6 +521,41 @@ SOFTEN_SAMPLE = (
 )
 
 
+def _warn_key_in_example() -> bool:
+    """Ключ, вписанный в .env.example, уедет в публичный репозиторий.
+
+    Файл .env.example отслеживается git (это шаблон), а .env — нет. Спутать
+    их легко, цена ошибки — утёкший ключ, поэтому проверяем явно.
+    """
+    p = Path(".env.example")
+    if not p.exists():
+        return False
+    leaked: list[str] = []
+    for raw in p.read_text(encoding="utf-8", errors="replace").splitlines():
+        line = raw.strip()
+        if line.startswith("#") or "=" not in line:
+            continue
+        name, _, value = line.partition("=")
+        if value.strip():
+            leaked.append(name.strip())
+    if leaked:
+        console.print(
+            Panel(
+                "В [bold].env.example[/bold] вписаны значения: "
+                + ", ".join(leaked)
+                + "\n\nЭтот файл отслеживается git и уезжает в репозиторий — "
+                "ключи в нём утекут наружу.\n"
+                "Перенеси значения в [bold].env[/bold] (он в .gitignore), "
+                "а в .env.example оставь пустые строки.\n"
+                "Если ключ уже успел попасть в коммит — отзови его и выпусти новый.",
+                title="[bold red]Ключ не в том файле[/bold red]",
+                border_style="red",
+            )
+        )
+        return True
+    return False
+
+
 def cmd_soften_test(args: argparse.Namespace) -> int:
     """Проверить смягчение промптов. Браузер и генерации не нужны.
 
@@ -531,6 +568,7 @@ def cmd_soften_test(args: argparse.Namespace) -> int:
     load_dotenv()
     cfg = Config.load(args.config)
     console.print(Panel.fit("проверка смягчения промптов", style="bold cyan"))
+    _warn_key_in_example()
 
     # 1. Какие ключи вообще видны (значения не показываем).
     for env_name, label in (("GEMINI_API_KEY", "Gemini"), ("ANTHROPIC_API_KEY", "Claude")):

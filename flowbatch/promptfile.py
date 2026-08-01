@@ -53,6 +53,8 @@ from pathlib import Path
 from .queue import Job
 
 HEADER_RE = re.compile(r"^===\s*(?P<kind>\S+)\s+(?P<id>[\w.\-]+)\s*$")
+# Три и более перевода строки подряд (после вырезания комментариев) → два.
+_BLANK_RUN_RE = re.compile(r"\n{3,}")
 
 KIND_MAP = {
     "img": "image", "image": "image", "картинка": "image", "фото": "image", "кадр": "image",
@@ -144,10 +146,15 @@ def parse(
             blocks.append(cur)
             continue
 
-        if stripped.startswith("#") and (cur is None or not cur.prompt_lines):
-            # Комментарии — только вне промпта: внутри текста решётка может
-            # быть частью промпта, её не трогаем.
+        # Комментарий — любая строка, начинающаяся с # (после пробелов), где бы
+        # она ни стояла. Раньше решётка гасилась только до начала текста промпта,
+        # и комментарий-заголовок следующего блока прилипал к промпту предыдущего;
+        # Flow такие строки честно рисует текстом прямо на картинке.
+        # Экранирование: строка, начинающаяся с \#, попадёт в промпт как #.
+        if stripped.startswith("#"):
             continue
+        if stripped.startswith("\\#"):
+            line = line.replace("\\#", "#", 1)
 
         if not stripped and cur is None:
             continue
@@ -284,7 +291,9 @@ def _blocks_to_jobs(
 
     jobs: list[Job] = []
     for i, b in enumerate(blocks):
-        prompt = "\n".join(b.prompt_lines).strip()
+        # Вырезанные комментарии оставляют после себя лишние пустые строки —
+        # схлопываем, чтобы в Flow не уезжали дыры в тексте.
+        prompt = _BLANK_RUN_RE.sub("\n\n", "\n".join(b.prompt_lines)).strip()
         if not prompt:
             errors.append(f"строка {b.line}: блок {b.id!r} без текста промпта")
 
