@@ -7,6 +7,7 @@
 Плюс проверяем, что жестокое всё-таки убрано, и меряем время.
 """
 
+import re
 import sys
 import time
 from pathlib import Path
@@ -43,7 +44,29 @@ HARSH = (
     "deep stab wounds, severed limbs, a bloody butcher knife in the chest. "
     "Extreme graphic violence, torture aftermath."
 )
-HARSH_WORDS = ["gore", "corpse", "blood", "stab", "sever", "butcher", "torture", "mutilat"]
+# Ищем по границам слов, а не подстрокой: наивный поиск считал бы «several»
+# за «sever», а «stable» — за «stab», и модель штрафовалась бы ни за что.
+# Основы с * допускают окончания (mutilat* -> mutilated/mutilation).
+HARSH_WORDS = [
+    "gore", "gory", "corpse", "blood", "bloody", "stab", "stabbed", "stabbing",
+    "sever", "severed", "butcher", "torture", "mutilate", "mutilated", "mutilation",
+    "entrails", "wound", "wounds",
+]
+
+
+def _found_words(text: str, words: list[str]) -> list[str]:
+    """Какие из слов реально встречаются как отдельные слова."""
+    low = text.lower()
+    return [w for w in words if re.search(rf"\b{re.escape(w)}\b", low)]
+
+
+def _context(text: str, word: str, span: int = 55) -> str:
+    """Кусок текста вокруг слова — чтобы глазами проверить, не ложное ли срабатывание."""
+    m = re.search(rf"\b{re.escape(word)}\b", text, re.IGNORECASE)
+    if not m:
+        return ""
+    a, b = max(0, m.start() - span), min(len(text), m.end() + span)
+    return "…" + " ".join(text[a:b].split()) + "…"
 
 
 def load_real_prompt() -> str:
@@ -73,8 +96,8 @@ def score(backend, prompt: str, harsh: str) -> dict:
     try:
         harsh_out, _ = backend.soften(harsh, 1)
         res["sec_short"] = round(time.time() - t0, 1)
-        low = harsh_out.lower()
-        res["harsh_left"] = [w for w in HARSH_WORDS if w in low]
+        res["harsh_left"] = _found_words(harsh_out, HARSH_WORDS)
+        res["harsh_ctx"] = {w: _context(harsh_out, w) for w in res["harsh_left"]}
         res["softened"] = harsh_out.strip() != harsh.strip() and not res["harsh_left"]
     except SoftenError as exc:
         res["harsh_error"] = str(exc)[:50]
@@ -122,8 +145,8 @@ def main() -> int:
               f"{r['len_ratio']:>6} {r.get('sec_long','?'):>6} {r.get('sec_short','?'):>6}")
         if r["lost"]:
             print(f"{'':<26} потеряно: {', '.join(r['lost'])}")
-        if r.get("harsh_left"):
-            print(f"{'':<26} осталось жёсткого: {', '.join(r['harsh_left'])}")
+        for w in r.get("harsh_left", []):
+            print(f"{'':<26} осталось «{w}»: {r.get('harsh_ctx', {}).get(w, '')}")
 
     ok = [r for r in rows if "error" not in r and r["kept"] == len(MUST_KEEP) and r.get("softened")]
     print()
