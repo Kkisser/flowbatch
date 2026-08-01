@@ -81,10 +81,17 @@ class RuleSoftener:
 
 
 class GeminiSoftener:
-    """Переписывание через Google Gemini API (бесплатный тариф AI Studio)."""
+    """Переписывание через Google Gemini API (ключ из AI Studio).
+
+    Ключ передаётся заголовком x-goog-api-key, а НЕ параметром ?key= в URL.
+    Две причины: новые ключи AI Studio создаются как «auth keys», для которых
+    заголовок — рекомендованная форма (старые «standard keys» отключаются
+    в сентябре 2026), и ключ не попадает в URL, а значит не оседает в логах
+    прокси и в текстах ошибок.
+    """
 
     name = "gemini"
-    API = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+    BASE = "https://generativelanguage.googleapis.com/v1beta"
 
     def __init__(self, cfg: Config) -> None:
         self.model = str(cfg.get("moderation.soften.gemini_model", "gemini-2.0-flash"))
@@ -93,6 +100,26 @@ class GeminiSoftener:
     @property
     def available(self) -> bool:
         return bool(self.key)
+
+    def _headers(self) -> dict[str, str]:
+        return {"x-goog-api-key": self.key, "Content-Type": "application/json"}
+
+    def list_models(self) -> list[str]:
+        """Имена моделей, доступных этому ключу. Для диагностики."""
+        if not self.key:
+            raise SoftenError("нет GEMINI_API_KEY")
+        try:
+            r = httpx.get(f"{self.BASE}/models", headers=self._headers(), timeout=30)
+        except Exception as exc:  # noqa: BLE001
+            raise SoftenError(f"Gemini недоступен: {type(exc).__name__}") from exc
+        if r.status_code != 200:
+            raise SoftenError(f"Gemini HTTP {r.status_code}: {_api_error(r.text)}")
+        out = []
+        for m in r.json().get("models", []):
+            name = str(m.get("name", "")).removeprefix("models/")
+            if name and "generateContent" in (m.get("supportedGenerationMethods") or []):
+                out.append(name)
+        return sorted(out)
 
     def soften(self, prompt: str, attempt: int) -> tuple[str, str]:
         if not self.key:
@@ -103,8 +130,8 @@ class GeminiSoftener:
         )
         try:
             r = httpx.post(
-                self.API.format(model=self.model),
-                params={"key": self.key},
+                f"{self.BASE}/models/{self.model}:generateContent",
+                headers=self._headers(),
                 json={
                     "contents": [{
                         "parts": [{"text": f"{LLM_INSTRUCTION}{harder}\n\nПромпт:\n{prompt}"}],
@@ -115,15 +142,34 @@ class GeminiSoftener:
         except Exception as exc:  # noqa: BLE001
             raise SoftenError(f"Gemini недоступен: {type(exc).__name__}") from exc
         if r.status_code != 200:
-            raise SoftenError(f"Gemini HTTP {r.status_code}: {r.text[:200]}")
+            raise SoftenError(f"Gemini HTTP {r.status_code}: {_api_error(r.text)}")
+        data = r.json()
         try:
-            parts = r.json()["candidates"][0]["content"]["parts"]
+            parts = data["candidates"][0]["content"]["parts"]
             text = "\n".join(p.get("text", "") for p in parts).strip()
         except (KeyError, IndexError, ValueError) as exc:
+            # Пустой candidates обычно означает, что промпт зарубила уже
+            # модерация самого Gemini — это стоит показать открытым текстом.
+            reason = (data.get("promptFeedback") or {}).get("blockReason")
+            if reason:
+                raise SoftenError(f"Gemini сам заблокировал промпт ({reason})") from exc
             raise SoftenError("Gemini вернул неожиданный ответ") from exc
         if not text:
             raise SoftenError("Gemini вернул пустой текст")
         return text, f"переписано Gemini ({self.model})"
+
+
+def _api_error(body: str) -> str:
+    """Короткое сообщение об ошибке API без утечки тела целиком."""
+    try:
+        import json
+
+        err = json.loads(body).get("error", {})
+        msg = str(err.get("message", ""))[:180]
+        status = err.get("status", "")
+        return f"{status}: {msg}" if status else msg or body[:180]
+    except Exception:  # noqa: BLE001
+        return body[:180]
 
 
 class ClaudeSoftener:

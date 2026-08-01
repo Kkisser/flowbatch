@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from typing import Any
 
@@ -509,6 +510,88 @@ def cmd_library(args: argparse.Namespace) -> int:
     return 0
 
 
+# --------------------------------------------------------------- soften-test
+
+
+SOFTEN_SAMPLE = (
+    "Vertical 9:16 frame. A cartoon detective tooth holds a knife covered in blood, "
+    "standing over a dead body in a gory crime scene. Horror atmosphere, creepy lighting."
+)
+
+
+def cmd_soften_test(args: argparse.Namespace) -> int:
+    """Проверить смягчение промптов. Браузер и генерации не нужны.
+
+    Сам ключ нигде не печатается — только факт его наличия и результат вызова.
+    """
+    from dotenv import load_dotenv
+
+    from .soften import GeminiSoftener, build_softener
+
+    load_dotenv()
+    cfg = Config.load(args.config)
+    console.print(Panel.fit("проверка смягчения промптов", style="bold cyan"))
+
+    # 1. Какие ключи вообще видны (значения не показываем).
+    for env_name, label in (("GEMINI_API_KEY", "Gemini"), ("ANTHROPIC_API_KEY", "Claude")):
+        raw = (os.getenv(env_name) or "").strip()
+        if raw:
+            console.print(f"{OK} [bold]{label}[/bold]: ключ найден в .env ({len(raw)} симв.)")
+        else:
+            console.print(f"{WARN} [bold]{label}[/bold]: ключа нет ({env_name} пуст)")
+
+    softener = build_softener(cfg, log=lambda s: console.print(f"[dim]{s}[/dim]"))
+    if softener is None:
+        console.print(f"{BAD} смягчение выключено в config.yaml (moderation.soften.enabled)")
+        return 1
+    console.print(f"{OK} [bold]Выбран бэкенд[/bold]: {softener.name}")
+
+    # 2. Для Gemini — живая проверка ключа и список доступных моделей.
+    if softener.name == "gemini":
+        gem = GeminiSoftener(cfg)
+        try:
+            models = gem.list_models()
+        except Exception as exc:  # noqa: BLE001
+            console.print(f"{BAD} [bold]Ключ не работает[/bold]: {escape(str(exc))}")
+            console.print(
+                "  [dim]ключ создаётся на aistudio.google.com/apikey; "
+                "проверь, что скопирован целиком и без пробелов[/dim]"
+            )
+            return 1
+        console.print(f"{OK} [bold]Ключ рабочий[/bold]: доступно моделей — {len(models)}")
+        want = cfg.get("moderation.soften.gemini_model")
+        if want in models:
+            console.print(f"{OK} модель из конфига [cyan]{want}[/cyan] доступна")
+        else:
+            console.print(f"{BAD} модели [cyan]{want}[/cyan] из конфига НЕТ у этого ключа")
+            flash = [m for m in models if "flash" in m and "thinking" not in m]
+            if flash:
+                console.print(f"  [bold]Впиши в config.yaml одну из этих:[/bold]")
+                for m in flash[:8]:
+                    console.print(f"    moderation.soften.gemini_model: \"{m}\"")
+            return 1
+
+    # 3. Прогон на заведомо «злом» промпте.
+    prompt = args.prompt or SOFTEN_SAMPLE
+    console.print("\n[bold]Исходный промпт:[/bold]")
+    console.print(Panel(escape(prompt), border_style="red"))
+
+    try:
+        out, what = softener.soften(prompt, attempt=1)
+    except Exception as exc:  # noqa: BLE001
+        console.print(f"{BAD} смягчение упало: {escape(str(exc))}")
+        return 1
+
+    console.print(f"[bold]Смягчено[/bold] — {what}:")
+    console.print(Panel(escape(out), border_style="green"))
+
+    if out.strip() == prompt.strip():
+        console.print(f"{BAD} промпт не изменился — смягчение бесполезно")
+        return 1
+    console.print(f"{OK} промпт изменён, смягчение работает")
+    return 0
+
+
 # ------------------------------------------------------------------- products
 
 
@@ -572,6 +655,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     d = sub.add_parser("doctor", help="проверить подключение, селекторы, настройки, Telegram")
     d.set_defaults(func=cmd_doctor)
+
+    st = sub.add_parser("soften-test", help="проверить ключ и смягчение промптов (без браузера)")
+    st.add_argument("--prompt", help="свой промпт для проверки вместо встроенного примера")
+    st.set_defaults(func=cmd_soften_test)
 
     pr = sub.add_parser("products", help="база продуктов на диске (для @product)")
     pr.set_defaults(func=cmd_products)
