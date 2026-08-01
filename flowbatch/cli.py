@@ -20,6 +20,7 @@ from .promptfile import parse as parse_prompts
 from .queue import RunLog, load_jobs, select_jobs
 from .refs import RefCache, RefResolver
 from .runner import Runner
+from .soften import build_softener
 from .sheet import ST_DONE, ST_ERROR, ST_IN_PROGRESS, SheetQueue, filter_rows
 
 console = Console()
@@ -395,12 +396,19 @@ def cmd_run(args: argparse.Namespace) -> int:
                 note=error,
             )
 
+    softener = None
+    if not args.no_soften:
+        softener = build_softener(cfg, log=lambda s: console.print(f"[dim]{s}[/dim]"))
+        if softener is not None:
+            console.print(f"[dim]смягчение промптов при модерации: {softener.name}[/dim]")
+
     runner = Runner(
         cfg, client, notifier, log, console,
         dry_run=args.dry_run,
         resolver=resolver,
         on_status=on_status,
         project_id=project_id,
+        softener=softener,
     )
     try:
         outcome = runner.run(jobs)
@@ -595,6 +603,11 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("--from", dest="from_id", metavar="ID", help="начать с этой задачи")
     r.add_argument("--limit", type=int, metavar="N", help="взять не больше N задач")
     r.add_argument("--no-resume", action="store_true", help="не пропускать уже выполненные")
+    r.add_argument(
+        "--no-soften",
+        action="store_true",
+        help="не смягчать промпты при отказе модерации (по умолчанию включено)",
+    )
     r.add_argument(
         "--new-project",
         action="store_true",

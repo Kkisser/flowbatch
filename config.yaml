@@ -94,6 +94,50 @@ generation:
   # Ждём, пока кнопка «Создать» станет aria-disabled="false"
   ready_timeout_sec: 60
 
+# Модерация: как ловить отказы и что с ними делать.
+moderation:
+  # Надписи на странице, по которым распознаётся отказ модерации.
+  # Регистр не важен. Дополняй список, когда Flow покажет новую формулировку —
+  # текст ошибки задачи всегда содержит кусок страницы вокруг найденной фразы.
+  phrases:
+    - "может нарушать наши правила"
+    - "нарушает наши правила"
+    - "не соответствует нашим правилам"
+    - "не удалось создать"
+    - "may violate our policies"
+    - "violates our policies"
+    - "wasn't able to create"
+
+  soften:
+    enabled: true
+    # Сколько раз смягчать промпт и перезапускать задачу, прежде чем сдаться.
+    attempts: 2
+    # auto — Gemini при наличии GEMINI_API_KEY в .env, иначе Claude при наличии
+    # ANTHROPIC_API_KEY, иначе правила. Можно зафиксировать: rules | gemini | claude
+    backend: "auto"
+    gemini_model: "gemini-2.0-flash"
+    claude_model: "claude-opus-5"
+
+    # Бэкенд «rules» (офлайн): замены слов + смягчающая добавка к промпту.
+    # Попытка 1 — только добавка; попытка 2 — ещё и замены/вычистка слов.
+    replacements:
+      "blood": "red paint"
+      "bloody": "messy"
+      "gore": ""
+      "gory": ""
+      "knife": "spoon"
+      "gun": "toy prop"
+      "weapon": "prop"
+      "kill": "stop"
+      "dead": "sleepy"
+      "creepy": "quirky"
+      "scary": "silly"
+      "horror": "cartoon"
+    suffix: >-
+      Wholesome family-friendly cartoon for a general audience. No violence,
+      no injuries, no weapons, no scary or unsettling imagery, no anatomical
+      details, fully clothed characters, kind expressions, bright safe mood.
+
 antiban:
   pause_between_jobs_sec: 30
   pause_jitter_sec: 10      # итоговая пауза = pause ± jitter

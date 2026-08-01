@@ -43,6 +43,7 @@ from .promptfile import parse as parse_prompts
 from .queue import RunLog, load_jobs
 from .refs import RefCache, RefResolver, parse_lib_spec
 from .runner import Runner
+from .soften import build_softener
 from .sheet import ST_DONE, ST_ERROR, SheetQueue
 
 # Файл, куда сохраняется текст, вставленный в панель.
@@ -752,9 +753,16 @@ class AppState:
                             note=error,
                         )
 
+            softener = build_softener(
+                self.cfg, log=lambda s: self.console.print(f"[dim]{s}[/dim]")
+            )
+            if softener is not None:
+                self.console.print(f"[dim]смягчение промптов при модерации: {softener.name}[/dim]")
+
             self.runner = Runner(
                 self.cfg, client, self.notifier, self.log, self.console,
                 dry_run=dry, resolver=resolver, on_status=on_status, project_id=project_id,
+                softener=softener,
             )
             outcome = self.runner.run(jobs)
             self.console.print(

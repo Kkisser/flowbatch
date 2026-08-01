@@ -436,6 +436,45 @@ class FlowClient:
 
         page.on("response", on_response)
 
+    # ------------------------------------------------------------- модерация
+
+    def moderation_state(self) -> dict[str, Any]:
+        """Сколько раз на странице встречаются фразы модерации + кусок текста.
+
+        Flow сообщает об отказе не только сетевым кодом, но и надписью прямо
+        на плитке («видео может нарушать наши правила»), при этом HTTP-ответ
+        бывает успешным. Скан по innerText не зависит от разметки — фразы
+        задаются в config.yaml и дополняются по мере встречи новых.
+        """
+        phrases = [str(p) for p in (self.cfg.get("moderation.phrases", []) or []) if str(p).strip()]
+        if not phrases:
+            return {"count": 0, "snippet": None}
+        js = r"""
+        (phrases) => {
+          const text = (document.body.innerText || '').toLowerCase();
+          let count = 0, snippet = null;
+          for (const p of phrases) {
+            const pl = p.toLowerCase();
+            let idx = 0;
+            for (;;) {
+              idx = text.indexOf(pl, idx);
+              if (idx === -1) break;
+              count++;
+              if (snippet === null) {
+                snippet = text.slice(Math.max(0, idx - 70), idx + pl.length + 70)
+                  .replace(/\s+/g, ' ').trim();
+              }
+              idx += pl.length;
+            }
+          }
+          return { count, snippet };
+        }
+        """
+        try:
+            return self.page.evaluate(js, phrases) or {"count": 0, "snippet": None}
+        except Exception:  # noqa: BLE001 — скан не должен ронять ожидание
+            return {"count": 0, "snippet": None}
+
     def errors_since(self, ts: float) -> list[dict[str, Any]]:
         """Ошибки tRPC, пришедшие после указанного момента."""
         return [e for e in self.trpc_errors if e["ts"] >= ts]
@@ -1169,8 +1208,14 @@ class FlowClient:
         kind: Kind,
         timeout_sec: int | None = None,
         on_tick: Any = None,
+        moderation_baseline: int = 0,
     ) -> MediaItem:
-        """Ждать появления нового медиа-URL, которого не было до запуска."""
+        """Ждать появления нового медиа-URL, которого не было до запуска.
+
+        moderation_baseline — сколько фраз модерации было на странице ДО клика:
+        старые упавшие плитки из прошлых сессий не должны давать ложных
+        срабатываний, поэтому реагируем только на прирост.
+        """
         gen = self.cfg.get("generation", {})
         if timeout_sec is None:
             timeout_sec = int(
@@ -1198,7 +1243,17 @@ class FlowClient:
             if on_tick:
                 on_tick(int(time.time() - started))
 
+            # Слой 1: сетевые коды tRPC (PUBLIC_ERROR_UNSAFE_GENERATION и пр.)
             self.raise_for_errors(started)
+
+            # Слой 2: надпись модерации на странице (HTTP при этом может быть 200)
+            mod = self.moderation_state()
+            if mod["count"] > moderation_baseline:
+                raise FlowError(
+                    ERR_MODERATION,
+                    "Flow показал сообщение модерации на странице",
+                    detail=f"текст на странице: «{mod['snippet']}»",
+                )
 
         raise FlowError(
             ERR_UNKNOWN,

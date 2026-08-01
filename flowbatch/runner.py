@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import random
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any
 
@@ -85,6 +85,7 @@ class Runner:
         resolver: Any = None,
         on_status: Any = None,
         project_id: str | None = None,
+        softener: Any = None,
     ) -> None:
         self.cfg = cfg
         self.client = client
@@ -95,6 +96,8 @@ class Runner:
         self.max_retries = int(cfg.get("antiban.max_retries", 3))
         # Разрешает пути референсов в uuid и решает, надо ли заливать файл.
         self.resolver = resolver
+        # Смягчитель промптов при отказе модерации (см. soften.py). None = выкл.
+        self.softener = softener
         # Колбэк для внешнего журнала (например, записи статуса в Excel):
         # on_status(job, status, result_path, error).
         self.on_status = on_status
@@ -169,12 +172,23 @@ class Runner:
     # ------------------------------------------------------------ одна задача
 
     def _run_one(self, job: Job) -> None:
-        """Одна задача с ретраями на троттлинг, 5xx и сетевые сбои."""
+        """Одна задача: ретраи на сеть/троттлинг + смягчение промпта на модерацию."""
         attempt = 0
+        soften_used = 0
+        soften_max = int(self.cfg.get("moderation.soften.attempts", 2))
         while True:
             attempt += 1
             try:
                 self._attempt(job)
+                if soften_used:
+                    self.console.print(
+                        f"  [green]прошло после смягчения промпта "
+                        f"(попыток смягчения: {soften_used})[/green]"
+                    )
+                    self.notifier.send(
+                        f"✅ {job.id}: прошло модерацию после смягчения промпта "
+                        f"({soften_used} попыт.)"
+                    )
                 return
             except FlowError as exc:
                 err = exc
@@ -191,6 +205,33 @@ class Runner:
                 )
                 time.sleep(backoff)
                 continue
+
+            # Модерация: смягчаем промпт и пробуем ту же задачу заново.
+            if err.kind == ERR_MODERATION and self.softener and soften_used < soften_max:
+                soften_used += 1
+                new_prompt, what = self.softener.soften(job.prompt, soften_used)
+                if new_prompt.strip() and new_prompt.strip() != job.prompt.strip():
+                    self.console.print(
+                        f"  [bold yellow]модерация отклонила «{job.id}»[/bold yellow] — "
+                        f"смягчаю промпт ({self.softener.name}, "
+                        f"попытка {soften_used}/{soften_max}): {what}"
+                    )
+                    if err.detail:
+                        self.console.print(f"  [dim]{err.detail[:300]}[/dim]")
+                    self.notifier.send(
+                        f"⚠️ {job.id}: модерация Flow отклонила промпт.\n"
+                        f"Смягчаю ({self.softener.name}, попытка {soften_used}/{soften_max}): {what}"
+                    )
+                    job = replace(job, prompt=new_prompt)
+                    continue
+                self.console.print("  [yellow]смягчитель не изменил промпт — сдаюсь[/yellow]")
+
+            if soften_used and err.kind == ERR_MODERATION:
+                err = FlowError(
+                    err.kind,
+                    f"{err} (промпт смягчался {soften_used} раз — не помогло)",
+                    detail=err.detail,
+                )
             raise err
 
     def _attempt(self, job: Job) -> None:
@@ -246,8 +287,10 @@ class Runner:
             self._notify_status(job, STATUS_DRY_RUN, result_path=str(shot))
             return
 
-        # 5. Снимок медиа до запуска — база для диффа.
+        # 5. Снимки до запуска: медиа (база диффа) и фразы модерации (база
+        #    ложных срабатываний — старые упавшие плитки не считаются).
         before = set(self.client.media_snapshot().keys())
+        mod_base = int(self.client.moderation_state()["count"])
         self.console.print(f"  медиа в DOM до запуска: {len(before)}")
 
         # 6. Запуск.
@@ -259,7 +302,9 @@ class Runner:
         def tick(sec: int) -> None:
             self.console.print(f"    [dim]{sec}с…[/dim]", end="\r")
 
-        item = self.client.wait_for_new_media(before, job.kind, on_tick=tick)
+        item = self.client.wait_for_new_media(
+            before, job.kind, on_tick=tick, moderation_baseline=mod_base
+        )
         self.client.raise_for_errors(launch_ts)
 
         # 8. Скачивание — со своим ретраем.
