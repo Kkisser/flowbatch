@@ -179,7 +179,7 @@ class Runner:
         while True:
             attempt += 1
             try:
-                self._attempt(job)
+                self._attempt(job, soften_used=soften_used)
                 if soften_used:
                     self.console.print(
                         f"  [green]прошло после смягчения промпта "
@@ -234,8 +234,13 @@ class Runner:
                 )
             raise err
 
-    def _attempt(self, job: Job) -> None:
-        """Один проход: настройки → промпт → референсы → запуск → ожидание → файл."""
+    def _attempt(self, job: Job, soften_used: int = 0) -> None:
+        """Один проход: настройки → промпт → референсы → запуск → ожидание → файл.
+
+        soften_used — сколько раз промпт уже смягчали. Ненулевое значение
+        означает, что job.prompt отличается от того, что лежит в очереди,
+        поэтому в журнал пишется фактически использованный текст.
+        """
         started_at = now_iso()
         t0 = time.time()
         self.client.focus()
@@ -320,6 +325,8 @@ class Runner:
         self.log.write_result(
             job, STATUS_OK, started_at, url=item.url, file=str(dest),
             project=self.project_id,
+            soften_attempts=soften_used,
+            prompt_used=job.prompt if soften_used else None,
         )
         self._notify_status(job, STATUS_OK, result_path=str(dest))
 

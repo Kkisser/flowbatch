@@ -231,6 +231,8 @@ class RunLog:
         error: str | None = None,
         error_kind: str | None = None,
         project: str | None = None,
+        soften_attempts: int = 0,
+        prompt_used: str | None = None,
     ) -> dict[str, Any]:
         """Собрать и записать строку результата."""
         # scrub здесь — последний рубеж: даже если ошибка пришла не через
@@ -247,5 +249,10 @@ class RunLog:
             "error": scrub(error) if error else None,
             "error_kind": error_kind,
         }
+        if soften_attempts:
+            # Промпт после смягчения отличается от того, что в очереди, —
+            # без записи было бы непонятно, что именно ушло в генерацию.
+            rec["soften_attempts"] = soften_attempts
+            rec["prompt_used"] = prompt_used
         self.append(rec)
         return rec

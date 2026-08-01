@@ -512,6 +512,81 @@ def cmd_library(args: argparse.Namespace) -> int:
     return 0
 
 
+# ------------------------------------------------------------ telegram-setup
+
+
+def cmd_telegram_setup(args: argparse.Namespace) -> int:
+    """Определить chat_id для уведомлений. Сам токен не печатается.
+
+    chat_id — это НЕ имя бота, а числовой id чата, куда слать сообщения.
+    Узнаётся только после того, как человек написал боту первым: до этого
+    чата не существует, и Telegram не даёт боту начать переписку.
+    """
+    import httpx
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    console.print(Panel.fit("настройка Telegram", style="bold cyan"))
+    _warn_key_in_example()
+
+    token = (os.getenv("TELEGRAM_BOT_TOKEN") or "").strip()
+    if not token:
+        console.print(f"{BAD} TELEGRAM_BOT_TOKEN пуст в .env — вставь токен от @BotFather")
+        return 1
+    console.print(f"{OK} токен найден ({len(token)} симв.)")
+
+    try:
+        me = httpx.get(f"https://api.telegram.org/bot{token}/getMe", timeout=20).json()
+    except Exception as exc:  # noqa: BLE001
+        console.print(f"{BAD} Telegram недоступен: {type(exc).__name__}")
+        return 1
+    if not me.get("ok"):
+        console.print(f"{BAD} токен не принят: {escape(str(me.get('description', me)))}")
+        return 1
+    bot = me["result"].get("username", "?")
+    console.print(f"{OK} бот: [bold]@{bot}[/bold]")
+
+    try:
+        upd = httpx.get(f"https://api.telegram.org/bot{token}/getUpdates", timeout=20).json()
+    except Exception as exc:  # noqa: BLE001
+        console.print(f"{BAD} не удалось прочитать обновления: {type(exc).__name__}")
+        return 1
+
+    chats: dict[str, str] = {}
+    for item in upd.get("result", []):
+        msg = item.get("message") or item.get("channel_post") or {}
+        chat = msg.get("chat") or {}
+        if chat.get("id") is None:
+            continue
+        who = chat.get("username") or chat.get("title") or chat.get("first_name") or "?"
+        chats[str(chat["id"])] = f"{who} ({chat.get('type', '?')})"
+
+    if not chats:
+        console.print(
+            Panel(
+                f"Бот жив, но с ним ещё никто не переписывался.\n\n"
+                f"1. Открой Telegram, найди [bold]@{bot}[/bold]\n"
+                f"2. Нажми Start и напиши боту любое слово\n"
+                f"3. Запусти эту команду ещё раз\n\n"
+                "Telegram показывает боту только те чаты, где ему уже писали, "
+                "поэтому первый шаг обязателен.\n"
+                "Учти: обновления живут ~24 часа, так что не тяни между шагами.",
+                title="[bold yellow]Напиши боту первым[/bold yellow]",
+                border_style="yellow",
+            )
+        )
+        return 1
+
+    console.print(f"\n{OK} [bold]Найдены чаты:[/bold]")
+    for cid, who in chats.items():
+        console.print(f"    TELEGRAM_CHAT_ID={cid}    — {who}")
+    console.print(
+        "\n[bold]Впиши нужный id в .env[/bold] (строка TELEGRAM_CHAT_ID=…), "
+        "затем проверь связь:\n  python -m flowbatch.cli doctor"
+    )
+    return 0
+
+
 # --------------------------------------------------------------- soften-test
 
 
@@ -693,6 +768,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     d = sub.add_parser("doctor", help="проверить подключение, селекторы, настройки, Telegram")
     d.set_defaults(func=cmd_doctor)
+
+    tg = sub.add_parser("telegram-setup", help="определить TELEGRAM_CHAT_ID для уведомлений")
+    tg.set_defaults(func=cmd_telegram_setup)
 
     st = sub.add_parser("soften-test", help="проверить ключ и смягчение промптов (без браузера)")
     st.add_argument("--prompt", help="свой промпт для проверки вместо встроенного примера")
