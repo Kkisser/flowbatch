@@ -208,6 +208,8 @@ class OllamaSoftener:
         if not self.host.startswith(("http://", "https://")):
             self.host = f"http://{self.host}"
         self.timeout = int(cfg.get("moderation.soften.ollama_timeout_sec", 300))
+        self.num_ctx = int(cfg.get("moderation.soften.ollama_num_ctx", 8192))
+        self.num_predict = int(cfg.get("moderation.soften.ollama_num_predict", 4096))
 
     @property
     def available(self) -> bool:
@@ -229,33 +231,64 @@ class OllamaSoftener:
             raise SoftenError(f"Ollama HTTP {r.status_code}")
         return sorted(m.get("name", "") for m in r.json().get("models", []))
 
+    def _payload(self, prompt: str, harder: str, think: bool) -> dict:
+        # num_ctx: промпты бывают по 4000+ символов, а дефолтное окно Ollama
+        # мало — длинный промпт молча обрезался бы вместе с инструкцией.
+        # num_predict: ответ примерно равен входу, нужен запас.
+        body = {
+            "model": self.model,
+            "stream": False,
+            "messages": [
+                {"role": "system", "content": LLM_INSTRUCTION + harder},
+                {"role": "user", "content": prompt},
+            ],
+            # Низкая температура: нужна точечная правка, а не творческий
+            # пересказ — иначе поедут реплики и имена персонажей.
+            "options": {
+                "temperature": 0.3,
+                "num_ctx": self.num_ctx,
+                "num_predict": self.num_predict,
+            },
+        }
+        if not think:
+            # «Думающие» модели (gemma4, qwen3) тратят бюджет токенов на
+            # рассуждения и могут вернуть пустой content. Нам рассуждения
+            # не нужны — это переписывание, а не задача на логику.
+            body["think"] = False
+        return body
+
     def soften(self, prompt: str, attempt: int) -> tuple[str, str]:
         harder = (
             "\nЭто уже НЕ ПЕРВАЯ попытка — предыдущее смягчение модерация тоже "
             "отклонила. Переписывай агрессивнее." if attempt >= 2 else ""
         )
-        try:
-            r = httpx.post(
-                f"{self.host}/api/chat",
-                json={
-                    "model": self.model,
-                    "stream": False,
-                    "messages": [
-                        {"role": "system", "content": LLM_INSTRUCTION + harder},
-                        {"role": "user", "content": prompt},
-                    ],
-                    # Низкая температура: нам нужна точечная правка, а не
-                    # творческий пересказ — иначе поедут реплики и имена.
-                    "options": {"temperature": 0.3},
-                },
-                timeout=self.timeout,
-            )
-        except Exception as exc:  # noqa: BLE001
-            raise SoftenError(f"Ollama недоступна: {type(exc).__name__}") from exc
-        if r.status_code != 200:
+        data = None
+        for think in (False, True):  # без размышлений; если модель против — с ними
+            try:
+                r = httpx.post(
+                    f"{self.host}/api/chat",
+                    json=self._payload(prompt, harder, think),
+                    timeout=self.timeout,
+                )
+            except Exception as exc:  # noqa: BLE001
+                raise SoftenError(f"Ollama недоступна: {type(exc).__name__}") from exc
+            if r.status_code == 200:
+                data = r.json()
+                break
+            # Модель не поддерживает отключение размышлений — пробуем с ними.
+            if think is False and "think" in r.text.lower():
+                continue
             raise SoftenError(f"Ollama HTTP {r.status_code}: {r.text[:180]}")
-        text = str((r.json().get("message") or {}).get("content", "")).strip()
+
+        msg = (data or {}).get("message") or {}
+        text = str(msg.get("content", "")).strip()
         if not text:
+            if str(msg.get("thinking", "")).strip():
+                raise SoftenError(
+                    f"{self.model} израсходовала весь бюджет ответа на размышления — "
+                    "подними moderation.soften.ollama_num_predict или возьми "
+                    "не-«думающую» модель"
+                )
             raise SoftenError("Ollama вернула пустой текст")
         return _strip_fence(text), f"переписано Ollama ({self.model})"
 
