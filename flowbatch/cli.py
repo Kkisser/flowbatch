@@ -784,7 +784,8 @@ def cmd_ui(args: argparse.Namespace) -> int:
     from .web import serve
 
     cfg = Config.load(args.config)
-    serve(cfg, args.source, port=args.port, open_browser=not args.no_browser)
+    serve(cfg, args.source, port=args.port, open_browser=not args.no_browser,
+          host=args.host, token="" if args.no_token else None)
     return 0
 
 
@@ -825,7 +826,12 @@ def build_parser() -> argparse.ArgumentParser:
 
     w = sub.add_parser("ui", help="локальная веб-панель управления очередью")
     w.add_argument("--source", default="jobs.yaml", help="очередь по умолчанию: .xlsx или jobs.yaml")
-    w.add_argument("--port", type=int, default=8765, help="порт панели (только 127.0.0.1)")
+    w.add_argument("--port", type=int, default=8765, help="порт панели")
+    w.add_argument("--host", default="127.0.0.1",
+                   help="какой адрес слушать: 127.0.0.1 (по умолчанию, только эта машина) "
+                        "или tailscale (доступ с устройств сети Tailscale, с токеном)")
+    w.add_argument("--no-token", action="store_true",
+                   help="не требовать токен даже при выходе наружу (небезопасно)")
     w.add_argument("--no-browser", action="store_true", help="не открывать браузер автоматически")
     w.set_defaults(func=cmd_ui)
 

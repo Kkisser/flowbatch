@@ -18,14 +18,19 @@
 же проекте перепутал бы чужие результаты со своими. Панель это проверяет
 и останавливает второй прогон с объяснением.
 
-Сервер слушает только 127.0.0.1 и отдаёт файлы только из out/ и screenshots/:
-он управляет твоим браузером, наружу его выставлять нельзя.
+По умолчанию сервер слушает только 127.0.0.1 и отдаёт файлы только из out/
+и screenshots/. Панель управляет твоим браузером и запускает генерации, так
+что любой, кто до неё дотянулся, распоряжается аккаунтом Flow как ты сам.
+Отсюда правило: адрес, отличный от 127.0.0.1 (например IP в Tailscale),
+включает обязательный токен — см. serve().
 """
 
 from __future__ import annotations
 
 import json
 import mimetypes
+import secrets
+import subprocess
 import threading
 import time
 import webbrowser
@@ -58,7 +63,29 @@ TOTAL_TAB_CAP = 7
 
 UI_FILE = ".flowbatch_ui.json"
 
+# Адреса, при которых панель доступна только с этой машины и токен не нужен.
+LOOPBACK = {"127.0.0.1", "::1", "localhost", ""}
+
 STATUS_DISPLAY = {"ok": "DONE", "failed": "ERROR", "dry_run": "DRY", "IN_PROGRESS": "IN_PROGRESS"}
+
+
+def tailscale_ip() -> str | None:
+    """IPv4 этой машины в Tailscale, если он поднят.
+
+    Нужен, чтобы слушать РОВНО интерфейс Tailscale, а не 0.0.0.0: на 0.0.0.0
+    панель торчала бы ещё и в любой Wi-Fi, к которому подключён ноутбук.
+    """
+    exe = Path(r"C:\Program Files\Tailscale\tailscale.exe")
+    cmd = [str(exe) if exe.exists() else "tailscale", "ip", "-4"]
+    try:
+        res = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    for line in (res.stdout or "").splitlines():
+        ip = line.strip()
+        if ip.startswith("100."):
+            return ip
+    return None
 
 HTML = r"""<!doctype html>
 <html lang="ru"><head><meta charset="utf-8">
@@ -1269,7 +1296,9 @@ class AppState:
         self._tabs_error = ""
         self._tabs_at = 0.0
         self._browser_name = ""
-        self._soften_cache: tuple[float, list[dict[str, Any]]] = (0.0, [])
+        # (когда, статусы бэкендов, имя активного). Активный кэшируется вместе
+        # со статусами: его вычисление тоже ходит в Ollama по сети.
+        self._soften_cache: tuple[float, list[dict[str, Any]], str | None] = (0.0, [], None)
         self._soften_note = ""
 
         sources = (saved or {}).get("slots") or [default_source]
@@ -1378,7 +1407,7 @@ class AppState:
         st = ensure_ollama(self.cfg, on_step=lambda s: console.print(f"[dim]{s}[/dim]"))
         if st.get("started") or not st.get("running") or not st.get("model_present"):
             console.print(f"[dim]{st['note']}[/dim]")
-        self._soften_cache = (0.0, [])  # статус мог поменяться
+        self._soften_cache = (0.0, [], None)  # статус мог поменяться
 
     def set_soften_backend(self, backend: str) -> dict[str, Any]:
         backend = (backend or "auto").strip().lower()
@@ -1392,7 +1421,7 @@ class AppState:
             st = ensure_ollama(self.cfg, on_step=lambda s: self.sink.push(f"[смягчение] {s}"))
             note = st["note"]
         self._soften_note = note
-        self._soften_cache = (0.0, [])
+        self._soften_cache = (0.0, [], None)
         s = build_softener(self.cfg)
         active = s.name if s else "выключено"
         self.sink.push(f"[смягчение] выбран {backend}, работает: {active}")
@@ -1400,14 +1429,18 @@ class AppState:
 
     def soften_state(self, fresh: bool = False) -> dict[str, Any]:
         now = time.time()
-        ts, cached = self._soften_cache
+        ts, cached, active = self._soften_cache
         if fresh or now - ts > 10 or not cached:
             cached = backend_status(self.cfg)
-            self._soften_cache = (now, cached)
-        s = build_softener(self.cfg)
+            # build_softener в режиме auto опрашивает Ollama по HTTP. Панель
+            # дёргает snapshot раз в 1.5с, поэтому без кэша каждый тик стоил
+            # бы пары секунд и опросы наслаивались бы друг на друга.
+            s = build_softener(self.cfg)
+            active = s.name if s else None
+            self._soften_cache = (now, cached, active)
         return {
             "backend": str(self.cfg.get("moderation.soften.backend", "auto")),
-            "active": s.name if s else None,
+            "active": active,
             "backends": cached,
             "note": self._soften_note,
         }
@@ -1512,7 +1545,7 @@ class AppState:
         }
 
 
-def make_handler(state: AppState) -> type[BaseHTTPRequestHandler]:
+def make_handler(state: AppState, token: str = "") -> type[BaseHTTPRequestHandler]:
     out_dir = state.cfg.out_dir().resolve()
     shots_dir = state.cfg.screenshots_dir().resolve()
 
@@ -1522,10 +1555,48 @@ def make_handler(state: AppState) -> type[BaseHTTPRequestHandler]:
         def log_message(self, *a: Any) -> None:  # noqa: A003 — глушим лог сервера
             return
 
-        def _send(self, code: int, body: bytes, ctype: str) -> None:
+        # ------------------------------------------------------------- доступ
+
+        def _token_ok(self) -> bool:
+            """Токен из заголовка, cookie или ?token= в ссылке.
+
+            compare_digest, а не ==: сравнение строк выходит раньше на первом
+            несовпавшем символе, и по времени ответа токен подбирается побайтно.
+            """
+            if not token:
+                return True
+            given = [
+                self.headers.get("X-Flowbatch-Token") or "",
+                parse_qs(urlparse(self.path).query).get("token", [""])[0],
+            ]
+            for part in (self.headers.get("Cookie") or "").split(";"):
+                name, _, value = part.strip().partition("=")
+                if name == "fb_token":
+                    given.append(value)
+            return any(secrets.compare_digest(g, token) for g in given if g)
+
+        def _origin_ok(self) -> bool:
+            """Защита от CSRF: чужая страница не должна дёргать наши POST.
+
+            Браузер сам проставляет Origin на межсайтовых запросах и подделать
+            его со стороны страницы нельзя. Пустой Origin — это curl или наш
+            же запрос, там решает токен.
+            """
+            origin = self.headers.get("Origin")
+            if not origin:
+                return True
+            return urlparse(origin).netloc == (self.headers.get("Host") or "")
+
+        def _deny(self) -> None:
+            self._json({"error": "нужен токен доступа — открой панель по ссылке с ?token=…"}, 403)
+
+        def _send(self, code: int, body: bytes, ctype: str,
+                  extra: list[tuple[str, str]] | None = None) -> None:
             self.send_response(code)
             self.send_header("Content-Type", ctype)
             self.send_header("Content-Length", str(len(body)))
+            for k, v in extra or []:
+                self.send_header(k, v)
             self.end_headers()
             self.wfile.write(body)
 
@@ -1535,6 +1606,18 @@ def make_handler(state: AppState) -> type[BaseHTTPRequestHandler]:
 
         def do_GET(self) -> None:  # noqa: N802
             u = urlparse(self.path)
+            if not self._token_ok():
+                self._deny()
+                return
+            # Токен пришёл ссылкой — перекладываем его в cookie и убираем из
+            # адреса, чтобы он не остался в истории браузера и в закладках.
+            if token and u.path in ("/", "/index.html") and "token=" in (u.query or ""):
+                self._send(
+                    302, b"", "text/plain",
+                    extra=[("Location", "/"),
+                           ("Set-Cookie", f"fb_token={token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=31536000")],
+                )
+                return
             if u.path in ("/", "/index.html"):
                 self._send(200, HTML.encode("utf-8"), "text/html; charset=utf-8")
             elif u.path == "/api/state":
@@ -1565,6 +1648,9 @@ def make_handler(state: AppState) -> type[BaseHTTPRequestHandler]:
 
         def do_POST(self) -> None:  # noqa: N802
             u = urlparse(self.path)
+            if not self._token_ok() or not self._origin_ok():
+                self._deny()
+                return
             length = int(self.headers.get("Content-Length") or 0)
             try:
                 payload = json.loads(self.rfile.read(length) or b"{}")
@@ -1616,8 +1702,20 @@ def make_handler(state: AppState) -> type[BaseHTTPRequestHandler]:
     return Handler
 
 
-def serve(cfg: Config, source: str, port: int = 8765, open_browser: bool = True) -> None:
-    """Запустить панель на 127.0.0.1:<port>."""
+def serve(cfg: Config, source: str, port: int = 8765, open_browser: bool = True,
+          host: str = "127.0.0.1", token: str | None = None) -> None:
+    """Запустить панель.
+
+    host — какой интерфейс слушать. По умолчанию 127.0.0.1: панель видна
+    только с этой машины. Значение "tailscale" подставляет IP машины в
+    Tailscale, и тогда панель доступна устройствам сети — но ТОЛЬКО им,
+    а не всему Wi-Fi, в отличие от 0.0.0.0.
+
+    token — общий секрет. Пустая строка выключает проверку; None означает
+    «включить автоматически, если слушаем не loopback». Токен обязателен при
+    выходе наружу: в сети Tailscale могут быть чужие устройства, а панель
+    распоряжается аккаунтом Flow целиком.
+    """
     saved: dict[str, Any] = {}
     try:
         saved = json.loads(Path(UI_FILE).read_text(encoding="utf-8"))
@@ -1628,12 +1726,40 @@ def serve(cfg: Config, source: str, port: int = 8765, open_browser: bool = True)
     except (OSError, json.JSONDecodeError):
         pass
 
+    if host.strip().lower() in ("tailscale", "ts"):
+        ip = tailscale_ip()
+        if not ip:
+            raise SystemExit(
+                "Tailscale не отвечает — не смог определить IP этой машины в сети.\n"
+                "Проверь, что он запущен: tailscale status"
+            )
+        host = ip
+
+    remote = host not in LOOPBACK
+    if token is None:
+        token = ""
+        if remote:
+            # Живёт в .flowbatch_ui.json (он в .gitignore): ссылка остаётся
+            # прежней между перезапусками, иначе токен пришлось бы переносить
+            # на телефон заново после каждого рестарта.
+            token = str(saved.get("token") or "") or secrets.token_urlsafe(24)
+            saved["token"] = token
+            try:
+                Path(UI_FILE).write_text(json.dumps(saved, ensure_ascii=False), encoding="utf-8")
+            except OSError:
+                pass
+
     state = AppState(cfg, source, saved=saved)
-    server = ThreadingHTTPServer(("127.0.0.1", port), make_handler(state))
-    url = f"http://127.0.0.1:{port}/"
-    print(f"flowbatch: панель на {url}  (Ctrl+C — выход)")
+    server = ThreadingHTTPServer((host, port), make_handler(state, token))
+    local = f"http://127.0.0.1:{port}/"
+    print(f"flowbatch: панель на http://{host}:{port}/  (Ctrl+C — выход)")
+    if remote:
+        suffix = f"?token={token}" if token else ""
+        print(f"  для устройств Tailscale: http://{host}:{port}/{suffix}")
+        print("  ссылку с токеном никому не пересылай: она даёт полный доступ к твоему Flow")
     if open_browser:
-        threading.Timer(0.6, lambda: webbrowser.open(url)).start()
+        threading.Timer(0.6, lambda: webbrowser.open(
+            f"http://{host}:{port}/?token={token}" if remote and token else local)).start()
     try:
         server.serve_forever()
     except KeyboardInterrupt:
