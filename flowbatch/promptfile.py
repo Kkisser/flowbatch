@@ -74,8 +74,18 @@ SYNTAX_HELP = (
     "Директивы в Flow не уходят — только текст промпта. Строки с # — комментарии."
 )
 
-# Расширения файлов, которые считаем фотографиями продукта.
-PRODUCT_IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp"}
+# Расширения файлов, которые считаем фотографиями продукта. Имя файла роли
+# не играет — что лежит в папке продукта, то и прикрепляется.
+PRODUCT_IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".avif"}
+
+# Форматы, которые фотографией быть могут, но во Flow не загрузятся: HEIC с
+# айфона и RAW с зеркалки браузер не покажет, вектор Flow не принимает.
+# Молча их пропускать нельзя — иначе на папке с одними .heic программа скажет
+# «нет изображений», хотя фотографии там очевидно есть.
+UNSUPPORTED_IMAGE_EXTS = {
+    ".heic", ".heif", ".tif", ".tiff", ".svg",
+    ".raw", ".cr2", ".cr3", ".nef", ".arw", ".dng",
+}
 
 # Внутренний префикс referencе-спеки «из библиотеки». Разбирается в refs.py.
 LIB_PREFIX = "lib:"
@@ -269,10 +279,19 @@ def _expand_product(spec: str, products_dir: Path, line: int, errors: list[str])
         key=lambda p: p.name.lower(),
     )
     if not files:
-        errors.append(
-            f"строка {line}: @product {spec!r} — в {folder} нет изображений "
-            f"({'/'.join(sorted(e.lstrip('.') for e in PRODUCT_IMAGE_EXTS))})"
-        )
+        bad = sorted({p.suffix.lower() for p in folder.iterdir()
+                      if p.is_file() and p.suffix.lower() in UNSUPPORTED_IMAGE_EXTS})
+        if bad:
+            errors.append(
+                f"строка {line}: @product {spec!r} — в {folder} лежат только "
+                f"{', '.join(e.lstrip('.').upper() for e in bad)}, а Flow их не принимает. "
+                "Пересохрани фото в JPG или PNG."
+            )
+        else:
+            errors.append(
+                f"строка {line}: @product {spec!r} — в {folder} нет изображений "
+                f"({'/'.join(sorted(e.lstrip('.') for e in PRODUCT_IMAGE_EXTS))})"
+            )
         return []
     return [str(p) for p in files]
 
