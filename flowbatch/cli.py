@@ -785,7 +785,8 @@ def cmd_ui(args: argparse.Namespace) -> int:
 
     cfg = Config.load(args.config)
     serve(cfg, args.source, port=args.port, open_browser=not args.no_browser,
-          host=args.host, token="" if args.no_token else None)
+          host=args.host, token="" if args.no_token else None,
+          notify_link=not args.no_telegram_link)
     return 0
 
 
@@ -832,6 +833,8 @@ def build_parser() -> argparse.ArgumentParser:
                         "или tailscale (доступ с устройств сети Tailscale, с токеном)")
     w.add_argument("--no-token", action="store_true",
                    help="не требовать токен даже при выходе наружу (небезопасно)")
+    w.add_argument("--no-telegram-link", action="store_true",
+                   help="не слать ссылку с токеном в Telegram при запуске в сетевом режиме")
     w.add_argument("--no-browser", action="store_true", help="не открывать браузер автоматически")
     w.set_defaults(func=cmd_ui)
 

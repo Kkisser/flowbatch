@@ -27,8 +27,11 @@
 
 from __future__ import annotations
 
+import html
 import json
 import mimetypes
+import os
+import platform
 import secrets
 import subprocess
 import threading
@@ -1702,8 +1705,46 @@ def make_handler(state: AppState, token: str = "") -> type[BaseHTTPRequestHandle
     return Handler
 
 
+def _send_access_link(notifier: Notifier, url: str) -> None:
+    """Отправить ссылку на панель в Telegram (в фоне, чтобы не тормозить старт).
+
+    Ссылка содержит токен — то есть это ключ от аккаунта Flow целиком. Уходит
+    только в личный чат из .env; в консоли и в runs.jsonl токен как был, так и
+    остаётся невидимым.
+    """
+    if not notifier.enabled:
+        print("  Telegram не настроен (нет TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID в .env) — "
+              "ссылку не отправляю")
+        return
+
+    machine = os.environ.get("COMPUTERNAME") or platform.node() or "этот компьютер"
+    text = (
+        f"🔗 <b>Панель flowbatch запущена</b> на «{html.escape(machine)}»\n\n"
+        f"{html.escape(url)}\n\n"
+        "Открывается только с устройств твоей сети Tailscale. "
+        "Ссылка содержит токен доступа — по ней пускают без пароля, "
+        "поэтому никому её не пересылай."
+    )
+
+    def worker() -> None:
+        # Повторы не для красоты: api.telegram.org из этой сети отвечает через
+        # раз, и одиночная попытка регулярно ловит ConnectTimeout. Без ретраев
+        # ссылка просто не доедет, а узнаешь об этом уже с телефона.
+        for pause in (0, 5, 15, 40):
+            if pause:
+                time.sleep(pause)
+            if notifier.send(text):
+                print("  ссылка отправлена в Telegram")
+                return
+        print(f"  не удалось отправить ссылку в Telegram: {notifier.last_error}")
+        print(f"  открой вручную: {url}")
+
+    threading.Thread(target=worker, daemon=True).start()
+
+
 def serve(cfg: Config, source: str, port: int = 8765, open_browser: bool = True,
-          host: str = "127.0.0.1", token: str | None = None) -> None:
+          host: str = "127.0.0.1", token: str | None = None,
+          notify_link: bool = True) -> None:
     """Запустить панель.
 
     host — какой интерфейс слушать. По умолчанию 127.0.0.1: панель видна
@@ -1715,6 +1756,9 @@ def serve(cfg: Config, source: str, port: int = 8765, open_browser: bool = True,
     «включить автоматически, если слушаем не loopback». Токен обязателен при
     выходе наружу: в сети Tailscale могут быть чужие устройства, а панель
     распоряжается аккаунтом Flow целиком.
+
+    notify_link — слать ли готовую ссылку с токеном в Telegram. Смысл имеет
+    только в удалённом режиме: набирать токен на телефоне руками невозможно.
     """
     saved: dict[str, Any] = {}
     try:
@@ -1755,8 +1799,11 @@ def serve(cfg: Config, source: str, port: int = 8765, open_browser: bool = True,
     print(f"flowbatch: панель на http://{host}:{port}/  (Ctrl+C — выход)")
     if remote:
         suffix = f"?token={token}" if token else ""
-        print(f"  для устройств Tailscale: http://{host}:{port}/{suffix}")
+        remote_url = f"http://{host}:{port}/{suffix}"
+        print(f"  для устройств Tailscale: {remote_url}")
         print("  ссылку с токеном никому не пересылай: она даёт полный доступ к твоему Flow")
+        if notify_link:
+            _send_access_link(state.notifier, remote_url)
     if open_browser:
         threading.Timer(0.6, lambda: webbrowser.open(
             f"http://{host}:{port}/?token={token}" if remote and token else local)).start()
