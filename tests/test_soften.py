@@ -28,6 +28,7 @@ from flowbatch.soften import (
 CFG_DATA = {
     "moderation": {
         "phrases_third_party": ["сторонних поставщиков контента", "third-party content"],
+        "phrases_unusual": ["подозрительн", "suspicious activity"],
         "soften": {
             "enabled": True,
             "attempts": 9,
@@ -161,6 +162,23 @@ def main() -> int:
              "ПОСТАВЩИКОВ КОНТЕНТА. Измените запрос."
     ) != "third_party":
         failures.append("third_party-ошибка не распознана")
+    if moderation_category(
+        cfg, "Ошибка. Мы заметили ПОДОЗРИТЕЛЬНУЮ активность. Узнайте больше."
+    ) != "unusual":
+        failures.append("подозрительная активность не распознана как unusual")
+    # unusual важнее third_party, если оба в одном куске текста.
+    if moderation_category(
+        cfg, "подозрительную активность ... сторонних поставщиков контента"
+    ) != "unusual":
+        failures.append("приоритет unusual над third_party сломан")
+
+    # --- температура по попыткам: 0.2 на первых двух, дальше рост до 0.9 ---
+    from flowbatch.soften import _temp
+
+    expected = {1: 0.2, 2: 0.2, 4: 0.4, 5: 0.5, 9: 0.9}
+    got = {a: _temp(a) for a in expected}
+    if got != expected:
+        failures.append(f"температура по попыткам не та: {got}")
 
     # --- инструкции: база и эскалация ---
     if _instruction(1, "policy") != LLM_INSTRUCTION:

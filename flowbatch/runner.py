@@ -16,6 +16,7 @@ from .flow_client import (
     ERR_QUOTA,
     ERR_SERVER,
     ERR_THROTTLE,
+    ERR_UNKNOWN,
     ERR_UNUSUAL,
     FlowClient,
     FlowError,
@@ -25,10 +26,17 @@ from .scrub import scrub
 from .soften import DIALOGUE_ONLY_ATTEMPT, moderation_category
 from .queue import STATUS_DRY_RUN, STATUS_FAILED, STATUS_OK, Job, RunLog, now_iso
 
-# Ошибки, при которых очередь останавливается целиком.
-STOP_QUEUE = {ERR_QUOTA, ERR_UNUSUAL}
+# Ошибки, при которых очередь останавливается целиком. Только квота:
+# с пустым счётом перегенерация — это спин без шансов. Всё остальное
+# лечится повтором (по явному требованию: «любая ошибка — перегенерируй»).
+STOP_QUEUE = {ERR_QUOTA}
 # Ошибки, которые лечатся повтором с экспоненциальным бэкоффом.
-RETRYABLE = {ERR_THROTTLE, ERR_SERVER}
+# ERR_UNKNOWN здесь сознательно: таймауты ожидания и прочие разовые сбои
+# чаще проходят со второго раза, чем повторяются.
+RETRYABLE = {ERR_THROTTLE, ERR_SERVER, ERR_UNKNOWN}
+# «Подозрительная активность» — тоже повтор, но с длинными паузами:
+# Flow просит притормозить, а не сменить промпт.
+RETRY_SLOW = {ERR_UNUSUAL}
 
 # Признаки сетевого сбоя в тексте исключения Playwright — такие лечатся ретраем.
 _NET_MARKERS = (
@@ -52,8 +60,9 @@ def _as_flow_error(exc: BaseException) -> FlowError:
 _ADVICE = {
     ERR_QUOTA: "Кончились кредиты. Очередь остановлена — пополни и запусти заново, резюм подхватит.",
     ERR_UNUSUAL: (
-        "Flow пометил активность как подозрительную. Очередь остановлена. "
-        "Сделай паузу 1–6 часов, потом запусти заново с увеличенными паузами в config.yaml."
+        "Flow жаловался на подозрительную активность. Повторы с длинными паузами "
+        "не помогли — если это повторяется на соседних задачах, дай аккаунту "
+        "отдохнуть час-другой и подними паузы в config.yaml."
     ),
     ERR_MODERATION: "Промпт не прошёл модерацию. Задача помечена FAILED, очередь продолжается.",
 }
@@ -254,13 +263,37 @@ class Runner:
                 # Без этой ветки одна сетевая икота роняет всю очередь.
                 err = _as_flow_error(exc)
 
-            if err.kind in RETRYABLE and attempt <= self.max_retries:
-                backoff = min(300, 15 * (2 ** (attempt - 1)))
-                self.console.print(
-                    f"[yellow]{err}[/yellow] — попытка {attempt}/{self.max_retries}, "
-                    f"бэкофф {backoff}с"
+            # «Мы заметили подозрительную активность» приходит тем же сканом
+            # страницы, что и модерация, — но это транзиентный сбой, а не
+            # претензия к промпту. Переклассифицируем до выбора реакции.
+            if err.kind == ERR_MODERATION and moderation_category(
+                self.cfg, err.detail or ""
+            ) == "unusual":
+                err = FlowError(
+                    ERR_UNUSUAL,
+                    "Flow пожаловался на подозрительную активность",
+                    detail=err.detail,
                 )
-                time.sleep(backoff)
+
+            if err.kind in (RETRYABLE | RETRY_SLOW) and attempt <= self.max_retries:
+                if err.kind in RETRY_SLOW:
+                    # Просьба притормозить: паузы заметно длиннее обычных.
+                    backoff = min(600, 90 * (2 ** (attempt - 1)))
+                else:
+                    backoff = min(300, 15 * (2 ** (attempt - 1)))
+                self.console.print(
+                    f"[yellow]{err}[/yellow] — перегенерирую, попытка "
+                    f"{attempt}/{self.max_retries}, пауза {backoff}с"
+                )
+                # Пауза короткими шагами: «Стоп» из панели срабатывает сразу,
+                # а не через десять минут бэкоффа.
+                waited = 0.0
+                while waited < backoff and not self.stop_requested:
+                    step = min(0.5, backoff - waited)
+                    time.sleep(step)
+                    waited += step
+                if self.stop_requested:
+                    raise err
                 continue
 
             # Модерация: переписываем промпт и пробуем ту же задачу заново.

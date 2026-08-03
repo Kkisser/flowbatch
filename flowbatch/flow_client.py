@@ -537,7 +537,8 @@ class FlowClient:
         phrases = [
             str(p)
             for p in ((self.cfg.get("moderation.phrases", []) or [])
-                      + (self.cfg.get("moderation.phrases_third_party", []) or []))
+                      + (self.cfg.get("moderation.phrases_third_party", []) or [])
+                      + (self.cfg.get("moderation.phrases_unusual", []) or []))
             if str(p).strip()
         ]
         if not phrases:

@@ -148,8 +148,16 @@ def _unmask_dialogue(text: str, reps: dict[str, str]) -> tuple[str, list[str]]:
 
 
 def moderation_category(cfg: Config, detail: str) -> str:
-    """policy | third_party — по тексту ошибки со страницы."""
+    """unusual | third_party | policy — по тексту ошибки со страницы.
+
+    unusual проверяется первым: «подозрительная активность» — это не про
+    содержание промпта, переписывать там нечего, задача просто ждёт и
+    перезапускается как есть.
+    """
     low = (detail or "").lower()
+    for p in cfg.get("moderation.phrases_unusual", []) or []:
+        if str(p).strip() and str(p).lower() in low:
+            return "unusual"
     for p in cfg.get("moderation.phrases_third_party", []) or []:
         if str(p).strip() and str(p).lower() in low:
             return "third_party"
@@ -157,13 +165,16 @@ def moderation_category(cfg: Config, detail: str) -> str:
 
 
 def _temp(attempt: int) -> float:
-    """Температура растёт с номером попытки.
+    """Температура: 0.2 на первых двух попытках, дальше растёт до 0.9.
 
-    Первая правка должна быть точечной (низкая температура), но если один и
-    тот же промпт отклоняют раз за разом, детерминированная модель выдавала
-    бы почти одинаковые варианты — подмешиваем разнообразие.
+    Первые правки должны быть точечными, без творчества — низкая температура
+    держит модель близко к исходному тексту. Но если один и тот же промпт
+    отклоняют раз за разом, детерминированная модель выдавала бы почти
+    одинаковые варианты — с попытки 4 подмешиваем разнообразие.
     """
-    return round(min(0.9, 0.3 + 0.1 * max(0, attempt - 1)), 2)
+    if attempt <= 2:
+        return 0.2
+    return round(min(0.9, 0.1 * attempt), 2)
 
 
 def _instruction(attempt: int, category: str) -> str:
