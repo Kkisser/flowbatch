@@ -202,6 +202,24 @@ class RunLog:
                 found = m.group(1)  # берём самую свежую запись
         return found
 
+    def uuid_for_job(self, job_id: str, project: str | None = None) -> str | None:
+        """Media-uuid успешного результата задачи по её id.
+
+        Основной путь резолва @use: uuid берётся прямо из url в журнале,
+        скачанный файл для этого НЕ нужен (скачивание может быть выключено).
+        Берётся самая свежая успешная запись — задача могла перегоняться.
+        """
+        found: str | None = None
+        for rec in self.records():
+            if rec.get("status") != STATUS_OK or str(rec.get("id") or "") != str(job_id):
+                continue
+            if project is not None and rec.get("project") != project:
+                continue
+            m = re.search(r"[?&]name=([^&]+)", str(rec.get("url") or ""))
+            if m:
+                found = m.group(1)
+        return found
+
     def completed_ids(self, project: str | None = None) -> set[str]:
         """id задач, уже успешно выполненных — их при резюме пропускаем.
 
@@ -243,8 +261,13 @@ class RunLog:
         project: str | None = None,
         soften_attempts: int = 0,
         prompt_used: str | None = None,
+        out_stem: str | None = None,
     ) -> dict[str, Any]:
-        """Собрать и записать строку результата."""
+        """Собрать и записать строку результата.
+
+        out_stem — целевое имя файла БЕЗ расширения, когда скачивание
+        выключено: команда fetch по нему поймёт, куда класть файл.
+        """
         # scrub здесь — последний рубеж: даже если ошибка пришла не через
         # FlowError, секрет не должен осесть в runs.jsonl.
         rec: dict[str, Any] = {
@@ -259,6 +282,8 @@ class RunLog:
             "error": scrub(error) if error else None,
             "error_kind": error_kind,
         }
+        if out_stem:
+            rec["out_stem"] = out_stem
         if soften_attempts:
             # Промпт после смягчения отличается от того, что в очереди, —
             # без записи было бы непонятно, что именно ушло в генерацию.

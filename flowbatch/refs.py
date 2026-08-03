@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
 
-from .promptfile import LIB_PREFIX, LIB_PROJECT_SEP
+from .promptfile import LIB_PREFIX, LIB_PROJECT_SEP, USE_PREFIX
 from .queue import RunLog, resolve_ref
 
 
@@ -161,6 +161,20 @@ class RefResolver:
                 raise ValueError(f"Пустое имя в референсе библиотеки: {raw!r}")
             self.reused += 1  # из библиотеки — по определению без загрузки
             return RefHandle(label=raw, search=name, picker_project=project)
+
+        # @use: результат другой задачи. Ищется по журналу этого проекта —
+        # uuid известен с момента генерации, файл на диске не нужен вовсе
+        # (скачивание результатов может быть выключено).
+        if isinstance(raw, str) and raw.startswith(USE_PREFIX):
+            job_id = raw[len(USE_PREFIX):].strip()
+            uuid = self.log.uuid_for_job(job_id, project=self.project_id)
+            if not uuid:
+                raise FileNotFoundError(
+                    f"@use {job_id}: в этом проекте ещё нет успешного результата "
+                    f"задачи {job_id!r} — она должна отработать раньше"
+                )
+            self.reused += 1
+            return RefHandle(label=f"@use {job_id}", uuid=uuid)
 
         path = resolve_ref(raw)
 

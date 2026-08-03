@@ -1014,6 +1014,8 @@ class RunSlot:
             if ref.startswith("lib:"):
                 name, project = parse_lib_spec(ref)
                 return f"библиотека: {name}" + (f" (проект {project})" if project else "")
+            if ref.startswith("use:"):
+                return f"результат задачи {ref[4:]}"
             return ref
 
         return {

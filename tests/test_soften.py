@@ -1,7 +1,7 @@
 """Проверка смягчения промптов. Запуск: python tests/test_soften.py
 
 Без сети: LLM-бэкенды здесь не вызываются, проверяется логика правил,
-эскалация по попыткам и фоллбэк композиции.
+лестница попыток (диалог на №3), категории и фоллбэк композиции.
 """
 
 import sys
@@ -10,17 +10,31 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from flowbatch.config import Config
-from flowbatch.soften import RuleSoftener, SoftenError, Softener, build_softener
+from flowbatch.soften import (
+    DIALOGUE_ONLY_ATTEMPT,
+    LLM_INSTRUCTION,
+    THIRD_PARTY_INSTRUCTION,
+    RuleSoftener,
+    SoftenError,
+    Softener,
+    _instruction,
+    _mask_dialogue,
+    _unmask_dialogue,
+    build_softener,
+    extract_dialogue,
+    moderation_category,
+)
 
 CFG_DATA = {
     "moderation": {
+        "phrases_third_party": ["сторонних поставщиков контента", "third-party content"],
         "soften": {
             "enabled": True,
-            "attempts": 2,
+            "attempts": 9,
             "backend": "rules",
             "replacements": {"blood": "red paint", "knife": "spoon", "gore": ""},
             "suffix": "Wholesome family-friendly cartoon. No violence.",
-        }
+        },
     },
     "antiban": {"concurrency": 1},
 }
@@ -29,14 +43,18 @@ CFG_DATA = {
 class FailingLLM:
     name = "fake-llm"
 
-    def soften(self, prompt: str, attempt: int):
+    def soften(self, prompt: str, attempt: int, category: str = "policy"):
         raise SoftenError("нарочно сломан")
 
 
 class WorkingLLM:
     name = "fake-llm"
 
-    def soften(self, prompt: str, attempt: int):
+    def __init__(self):
+        self.categories: list[str] = []
+
+    def soften(self, prompt: str, attempt: int, category: str = "policy"):
+        self.categories.append(category)
         return f"REWRITTEN[{attempt}]: {prompt[:20]}", "переписано фейком"
 
 
@@ -77,11 +95,83 @@ def main() -> int:
     if "Wholesome family-friendly" not in out5:
         failures.append(f"фоллбэк на правила не сработал: {what5}")
 
-    # Композиция: рабочий LLM используется первым.
-    comp2 = Softener(WorkingLLM(), rules, log=lambda s: None)
-    out6, what6 = comp2.soften(prompt, 2)
+    # Композиция: рабочий LLM используется первым, категория доезжает до него.
+    llm = WorkingLLM()
+    comp2 = Softener(llm, rules, log=lambda s: None)
+    out6, what6 = comp2.soften(prompt, 2, category="third_party")
     if not out6.startswith("REWRITTEN[2]"):
         failures.append(f"LLM-бэкенд не был использован: {what6}")
+    if llm.categories != ["third_party"]:
+        failures.append(f"категория не дошла до бэкенда: {llm.categories}")
+
+    # --- лестница: попытка №3 = только реплики, LLM не трогается ---
+    scene = (
+        "CAMERA: static shot.\n"
+        'VALERA: «Это чего?»\n'
+        "ACTION: THE BONE falls down.\n"
+        'THE BONE: «Выселение. Десять уровней давления.»\n'
+        'VALERA: «Это чего?»\n'  # дубль — должен схлопнуться
+    )
+    d = extract_dialogue(scene)
+    if d != "Это чего?\nВыселение. Десять уровней давления.":
+        failures.append(f"extract_dialogue дал не то: {d!r}")
+
+    out7, what7 = comp2.soften(scene, DIALOGUE_ONLY_ATTEMPT)
+    if out7 != d:
+        failures.append(f"попытка №3 не превратилась в голые реплики: {out7!r}")
+    if len(llm.categories) != 1:
+        failures.append("попытка №3 зачем-то сходила в LLM")
+
+    # Без реплик попытка №3 идёт обычным путём.
+    out8, _ = comp2.soften("no dialogue here at all", DIALOGUE_ONLY_ATTEMPT)
+    if not out8.startswith(f"REWRITTEN[{DIALOGUE_ONLY_ATTEMPT}]"):
+        failures.append(f"попытка №3 без реплик не упала в LLM: {out8!r}")
+
+    # --- маска реплик: LLM получает плейсхолдеры, а не текст реплик ---
+    masked, reps = _mask_dialogue(scene)
+    if "Это чего?" in masked or "Выселение" in masked:
+        failures.append(f"маска не спрятала реплики: {masked!r}")
+    if "«§R1§»" not in masked:
+        failures.append(f"плейсхолдер не в кавычках: {masked!r}")
+    back, lost = _unmask_dialogue(masked, reps)
+    if back != scene or lost:
+        failures.append(f"маска-демаска не вернула оригинал (lost={lost})")
+    # Потерянный плейсхолдер — реплика дописывается в конец, а не пропадает.
+    back2, lost2 = _unmask_dialogue("scene without placeholders", reps)
+    if not lost2 or "Это чего?" not in back2 or "DIALOGUE (verbatim)" not in back2:
+        failures.append(f"потерянные реплики не дописались: {back2!r}")
+
+    # Через композицию: LLM видит маску, наружу выходит оригинальный текст реплик.
+    class EchoLLM(WorkingLLM):
+        def soften(self, prompt: str, attempt: int, category: str = "policy"):
+            self.categories.append(category)
+            return prompt, "эхо"  # возвращает вход как есть — маска должна сняться
+
+    echo = EchoLLM()
+    comp3 = Softener(echo, rules, log=lambda s: None)
+    out9, _ = comp3.soften(scene, 1)
+    if "§R" in out9 or "Выселение. Десять уровней давления." not in out9:
+        failures.append(f"реплики не вернулись из маски: {out9!r}")
+
+    # --- категория по тексту ошибки ---
+    if moderation_category(cfg, "видео может нарушать наши правила") != "policy":
+        failures.append("policy-ошибка распознана как third_party")
+    if moderation_category(
+        cfg, "Сейчас не могу создать такое видео из-за интересов СТОРОННИХ "
+             "ПОСТАВЩИКОВ КОНТЕНТА. Измените запрос."
+    ) != "third_party":
+        failures.append("third_party-ошибка не распознана")
+
+    # --- инструкции: база и эскалация ---
+    if _instruction(1, "policy") != LLM_INSTRUCTION:
+        failures.append("попытка 1 (policy): инструкция должна быть базовой")
+    if _instruction(1, "third_party") != THIRD_PARTY_INSTRUCTION:
+        failures.append("попытка 1 (third_party): не та инструкция")
+    i5, i9 = _instruction(5, "policy"), _instruction(9, "policy")
+    if "№5" not in i5 or "смелее" not in i5:
+        failures.append(f"эскалация на попытке 5 не та: …{i5[-120:]!r}")
+    if "№9" not in i9 or "радикально" not in i9.lower():
+        failures.append(f"эскалация на попытке 9 не та: …{i9[-120:]!r}")
 
     # build_softener: rules-бэкенд без ключей всегда доступен.
     s = build_softener(cfg)
@@ -101,7 +191,7 @@ def main() -> int:
         for f in failures:
             print(f"  - {f}")
         return 1
-    print("OK: правила, эскалация, фоллбэк и сборка работают")
+    print("OK: правила, лестница из 9 попыток, диалог на №3, категории, фоллбэк")
     return 0
 
 

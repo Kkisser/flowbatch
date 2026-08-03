@@ -22,6 +22,7 @@ from .flow_client import (
 )
 from .notify import Notifier
 from .scrub import scrub
+from .soften import DIALOGUE_ONLY_ATTEMPT, moderation_category
 from .queue import STATUS_DRY_RUN, STATUS_FAILED, STATUS_OK, Job, RunLog, now_iso
 
 # Ошибки, при которых очередь останавливается целиком.
@@ -224,6 +225,10 @@ class Runner:
         attempt = 0
         soften_used = 0
         soften_max = int(self.cfg.get("moderation.soften.attempts", 2))
+        # Последняя «сценная» версия промпта. Нужна из-за попытки №3 (голые
+        # реплики): если и она отклонена, попытка №4 должна переписывать сцену
+        # дальше, а не смягчать три строчки диалога.
+        scene_prompt = job.prompt
         while True:
             attempt += 1
             try:
@@ -254,21 +259,31 @@ class Runner:
                 time.sleep(backoff)
                 continue
 
-            # Модерация: смягчаем промпт и пробуем ту же задачу заново.
+            # Модерация: переписываем промпт и пробуем ту же задачу заново.
             if err.kind == ERR_MODERATION and self.softener and soften_used < soften_max:
                 soften_used += 1
-                new_prompt, what = self.softener.soften(job.prompt, soften_used)
+                # Категория считается каждый раз заново: задача могла сначала
+                # споткнуться о «наши правила», а после переписывания — о
+                # «сторонних поставщиков контента».
+                category = moderation_category(self.cfg, err.detail or "")
+                cat_note = " [сходство с чужим контентом]" if category == "third_party" else ""
+                new_prompt, what = self.softener.soften(
+                    scene_prompt, soften_used, category=category
+                )
                 if new_prompt.strip() and new_prompt.strip() != job.prompt.strip():
+                    if soften_used != DIALOGUE_ONLY_ATTEMPT:
+                        scene_prompt = new_prompt
                     self.console.print(
-                        f"  [bold yellow]модерация отклонила «{job.id}»[/bold yellow] — "
-                        f"смягчаю промпт ({self.softener.name}, "
+                        f"  [bold yellow]модерация отклонила «{job.id}»{cat_note}[/bold yellow] — "
+                        f"переписываю промпт ({self.softener.name}, "
                         f"попытка {soften_used}/{soften_max}): {what}"
                     )
                     if err.detail:
                         self.console.print(f"  [dim]{err.detail[:300]}[/dim]")
                     self.notifier.send(
-                        f"⚠️ {job.id}: модерация Flow отклонила промпт.\n"
-                        f"Смягчаю ({self.softener.name}, попытка {soften_used}/{soften_max}): {what}"
+                        f"⚠️ {job.id}: модерация Flow отклонила промпт{cat_note}.\n"
+                        f"Переписываю ({self.softener.name}, "
+                        f"попытка {soften_used}/{soften_max}): {what}"
                     )
                     job = replace(job, prompt=new_prompt)
                     continue
@@ -361,7 +376,26 @@ class Runner:
         )
         self.client.raise_for_errors(launch_ts)
 
-        # 8. Скачивание — со своим ретраем.
+        # 8. Скачивание — со своим ретраем. Выключается в config.yaml
+        #    (generation.download_results: false): результат остаётся в
+        #    библиотеке Flow, а файл можно забрать позже командой fetch —
+        #    в журнал для этого пишутся url (с uuid) и целевое имя.
+        if not bool(self.cfg.get("generation.download_results", True)):
+            elapsed = time.time() - t0
+            self.console.print(
+                f"  [green]готово[/green]: в библиотеке Flow "
+                f"(uuid {item.name[:8]}…) за {elapsed:.0f}с — скачивание выключено"
+            )
+            self.log.write_result(
+                job, STATUS_OK, started_at, url=item.url, file=None,
+                out_stem=str(self.cfg.out_dir() / job.out_stem),
+                project=self.project_id,
+                soften_attempts=soften_used,
+                prompt_used=job.prompt if soften_used else None,
+            )
+            self._notify_status(job, STATUS_OK)
+            return
+
         dest = self._download_with_retry(item, job)
         size = dest.stat().st_size
         if size == 0:

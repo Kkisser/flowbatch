@@ -90,6 +90,9 @@ UNSUPPORTED_IMAGE_EXTS = {
 # Внутренний префикс referencе-спеки «из библиотеки». Разбирается в refs.py.
 LIB_PREFIX = "lib:"
 LIB_PROJECT_SEP = " :: "
+# Референс «результат другой задачи»: резолвится по журналу прогонов в uuid
+# медиа, файл на диске не требуется (скачивание может быть выключено).
+USE_PREFIX = "use:"
 
 
 @dataclass
@@ -320,7 +323,7 @@ def _blocks_to_jobs(
         for use in b.uses:
             target = seen.get(use)
             if target is not None:
-                pos, kind, stem = target
+                pos, kind, _stem = target
                 if kind == "video":
                     errors.append(
                         f"блок {b.id!r}: @use {use} указывает на видео — "
@@ -333,17 +336,10 @@ def _blocks_to_jobs(
                         "генерится позже него — поставь её выше в файле"
                     )
                     continue
-                refs.append(str(out_dir / stem))
-            else:
-                # Не в этом файле — может быть результат прошлого прогона.
-                matches = sorted(out_dir.glob(f"{use}.*"))
-                if matches:
-                    refs.append(str(matches[0]))
-                else:
-                    errors.append(
-                        f"блок {b.id!r}: @use {use} — такой задачи нет ни в файле, "
-                        f"ни готовым файлом в {out_dir}/"
-                    )
+            # Резолв — на прогоне, по журналу проекта (uuid медиа). Задачи,
+            # которых нет в этом файле, тоже законны: результат прошлого
+            # прогона в том же проекте. Файл на диске не нужен совсем.
+            refs.append(f"{USE_PREFIX}{use}")
 
         refs += b.refs
         for line, spec in b.products:

@@ -534,7 +534,12 @@ class FlowClient:
         бывает успешным. Скан по innerText не зависит от разметки — фразы
         задаются в config.yaml и дополняются по мере встречи новых.
         """
-        phrases = [str(p) for p in (self.cfg.get("moderation.phrases", []) or []) if str(p).strip()]
+        phrases = [
+            str(p)
+            for p in ((self.cfg.get("moderation.phrases", []) or [])
+                      + (self.cfg.get("moderation.phrases_third_party", []) or []))
+            if str(p).strip()
+        ]
         if not phrases:
             return {"count": 0, "snippet": None}
         js = r"""

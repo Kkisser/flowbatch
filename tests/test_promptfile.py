@@ -107,8 +107,10 @@ def main() -> int:
     anim = jobs[2]
     if anim.kind != "video" or anim.duration != 8:
         failures.append(f"GOOD: K1_anim разобран неверно: {anim}")
-    if not anim.refs or not anim.refs[0].replace("\\", "/").endswith("out/K1"):
-        failures.append(f"GOOD: @use K1 дал не тот путь: {anim.refs}")
+    # @use теперь резолвится на прогоне по журналу (uuid медиа), а не через
+    # скачанный файл — парсер отдаёт спеку use:<id>.
+    if anim.refs != ["use:K1"]:
+        failures.append(f"GOOD: @use K1 дал не ту спеку: {anim.refs}")
     k2a = jobs[3]
     if k2a.output_name != "K2_final":
         failures.append(f"GOOD: @out не применился: {k2a.output_name}")
@@ -130,14 +132,13 @@ def main() -> int:
         if not any(bit in e for e in errors):
             failures.append(f"BAD: не поймана ошибка со словами {bit!r}; всего: {errors}")
 
-    # @use на файл прошлого прогона: кладём файл на диск и убеждаемся, что найден.
-    with tempfile.TemporaryDirectory() as td:
-        (Path(td) / "OLD.jpg").write_bytes(b"x")
-        jobs, errors, _ = parse("=== VID V\n@use OLD\nAnimate.", out_dir=td)
-        if errors:
-            failures.append(f"@use по файлу с диска дал ошибки: {errors}")
-        elif not jobs[0].refs or not jobs[0].refs[0].endswith("OLD.jpg"):
-            failures.append(f"@use по файлу с диска дал не тот путь: {jobs[0].refs}")
+    # @use на задачу не из этого файла: законно (результат прошлого прогона
+    # в том же проекте), файл на диске не требуется — резолв на прогоне.
+    jobs, errors, _ = parse("=== VID V\n@use OLD\nAnimate.", out_dir="out")
+    if errors:
+        failures.append(f"@use на чужую задачу дал ошибки: {errors}")
+    elif jobs[0].refs != ["use:OLD"]:
+        failures.append(f"@use на чужую задачу дал не ту спеку: {jobs[0].refs}")
 
     # Комментарии вырезаются ВЕЗДЕ, включая середину промпта и стык блоков.
     COMMENTS = (

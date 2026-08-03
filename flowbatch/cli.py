@@ -790,6 +790,94 @@ def cmd_ui(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_fetch(args: argparse.Namespace) -> int:
+    """Скачать из библиотеки Flow результаты, которых ещё нет на диске.
+
+    Пара к generation.download_results: false — прогон пишет в журнал url
+    и целевое имя, а файлы забираются потом, одной пачкой, без замедления
+    очереди. Скачивание идёт через живую вкладку Flow (нужны её cookies).
+    """
+    import re as _re
+
+    from .queue import STATUS_OK, now_iso
+
+    cfg = Config.load(args.config)
+    log = RunLog(cfg.runs_log())
+
+    # Свежайшая успешная запись на задачу+проект; уже скачанные — мимо.
+    latest: dict[tuple[str, str], dict[str, Any]] = {}
+    have: set[tuple[str, str]] = set()
+    for rec in log.records():
+        if rec.get("status") != STATUS_OK or not rec.get("id"):
+            continue
+        key = (str(rec["id"]), str(rec.get("project") or ""))
+        f = rec.get("file")
+        if f and Path(str(f)).exists():
+            have.add(key)
+            continue
+        if rec.get("url"):
+            latest[key] = rec
+
+    todo = [(k, r) for k, r in latest.items() if k not in have]
+    if args.limit:
+        todo = todo[: args.limit]
+    if not todo:
+        console.print("всё уже на диске — скачивать нечего")
+        return 0
+
+    console.print(f"к скачиванию: {len(todo)} файл(ов)")
+    from .flow_client import MediaItem
+
+    # Без ✓/✗: при выводе в пайп Windows-консоль в cp1251 падает на них
+    # с UnicodeEncodeError, а fetch удобно вызывать именно из скриптов.
+    ok = bad = 0
+    try:
+        client = FlowClient(cfg)
+        client.connect()
+    except FlowClientError as exc:
+        console.print(f"[red]нет связи с браузером:[/red] {escape(str(exc))}")
+        console.print("запусти его кнопкой в панели или: flowbatch browser")
+        return 1
+    try:
+        for (job_id, project), rec in todo:
+            stem = rec.get("out_stem") or str(cfg.out_dir() / job_id)
+            m = _re.search(r"[?&]name=([^&]+)", str(rec["url"]))
+            if not m:
+                bad += 1
+                console.print(f"  [red]мимо[/red] {job_id}: в url записи нет uuid")
+                continue
+            item = MediaItem(
+                name=m.group(1),
+                url=str(rec["url"]),
+                tag="video" if rec.get("kind") == "video" else "img",
+            )
+            try:
+                dest = client.download(item, Path(stem))
+            except Exception as exc:  # noqa: BLE001 — одна ошибка не должна валить пачку
+                bad += 1
+                console.print(f"  [red]мимо[/red] {job_id}: {escape(str(exc)[:160])}")
+                continue
+            ok += 1
+            console.print(
+                f"  [green]есть[/green] {job_id} -> {dest} "
+                f"({dest.stat().st_size / 1024:.0f} КБ)"
+            )
+            # Дозапись с file: журнал узнаёт, что файл теперь есть, и
+            # повторный fetch его пропустит.
+            log.append({
+                "id": job_id, "kind": rec.get("kind"), "project": project or None,
+                "status": STATUS_OK, "started_at": rec.get("started_at"),
+                "finished_at": now_iso(), "url": rec.get("url"),
+                "file": str(dest), "error": None, "error_kind": None,
+                "fetched": True,
+            })
+    finally:
+        client.close()
+
+    console.print(f"[bold]итог:[/bold] скачано {ok}, ошибок {bad}")
+    return 0 if bad == 0 else 1
+
+
 # --------------------------------------------------------------------- parser
 
 
@@ -837,6 +925,14 @@ def build_parser() -> argparse.ArgumentParser:
                    help="не слать ссылку с токеном в Telegram при запуске в сетевом режиме")
     w.add_argument("--no-browser", action="store_true", help="не открывать браузер автоматически")
     w.set_defaults(func=cmd_ui)
+
+    f = sub.add_parser(
+        "fetch",
+        help="скачать из библиотеки Flow результаты, не скачанные при прогоне "
+             "(пара к generation.download_results: false)",
+    )
+    f.add_argument("--limit", type=int, help="не больше N файлов за раз")
+    f.set_defaults(func=cmd_fetch)
 
     n = sub.add_parser("newproject", help="создать новый пустой проект Flow и остаться в нём")
     n.add_argument("--name", help="имя проекта; без него Flow ставит дату и время")

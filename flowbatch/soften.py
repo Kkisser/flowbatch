@@ -38,7 +38,9 @@ LLM_INSTRUCTION = (
     "смутить модерацию. Всё остальное копируй дословно, слово в слово.\n"
     "\n"
     "НЕЛЬЗЯ МЕНЯТЬ НИ ПРИ КАКИХ УСЛОВИЯХ:\n"
-    "- реплики персонажей (текст в кавычках «...») — дословно;\n"
+    "- реплики персонажей: и текст в кавычках «...», и защищённые метки вида "
+    "§R1§, §R2§ (это вырезанные реплики, они подставятся обратно "
+    "автоматически) — копируй такие метки на их местах как есть;\n"
     "- ИМЕНА И ОБОЗНАЧЕНИЯ ПЕРСОНАЖЕЙ (THE BONE, VALERA, SHESTYORKA, "
     "THE TONGUE и любые другие) — и в описаниях действий, и в строках диалога. "
     "Не заменяй их на обезличенное вроде SECOND CHARACTER: по этим меткам "
@@ -58,6 +60,136 @@ LLM_INSTRUCTION = (
     "Верни ТОЛЬКО переписанный промпт."
 )
 
+# Отдельная инструкция для отказа «из-за интересов сторонних поставщиков
+# контента»: Flow счёл, что промпт похож на ЧУЖОЙ контент (сериал, фильм,
+# знаменитость, чужой бренд). Смягчать жестокость тут бессмысленно — нужно
+# убирать сходство, то есть переписывать кардинально.
+THIRD_PARTY_INSTRUCTION = (
+    "Ты редактируешь промпт для генерации видео/изображений, который Google "
+    "отклонил с формулировкой «из-за интересов сторонних поставщиков контента». "
+    "Это значит: промпт напоминает ЧУЖОЙ узнаваемый контент — сериал, фильм, "
+    "мультфильм, знаменитость, чужой бренд или персонажа.\n"
+    "\n"
+    # Блок запретов стоит ПЕРВЫМ и сформулирован жёстче, чем «перепиши
+    # кардинально» ниже: проверено на gemma3:12b — в обратном порядке модель
+    # три раза из трёх «кардинально» переписывала и реплики тоже.
+    "НЕЛЬЗЯ МЕНЯТЬ НИ ПРИ КАКИХ УСЛОВИЯХ:\n"
+    "- реплики персонажей: и текст в кавычках «...», и защищённые метки вида "
+    "§R1§, §R2§ (это вырезанные реплики, они подставятся обратно "
+    "автоматически) — копируй такие метки на их местах как есть. Реплики "
+    "НЕ являются чужим контентом;\n"
+    "- ИМЕНА И ОБОЗНАЧЕНИЯ ПЕРСОНАЖЕЙ в метках строк (THE BONE, VALERA и "
+    "другие) — по ним модель понимает, кто говорит;\n"
+    "- НАШ бренд и модели устройств (Revyline, RL 230, RL 410 и т.п.) — "
+    "это наш собственный бренд;\n"
+    "- тайминги (0.0 to 2.0 и т.д.), структуру блоков, названия секций "
+    "(CAMERA, ACTION, DIALOGUE и т.п.), запреты (NO MUSIC, no on-screen text);\n"
+    "- суть происходящего в кадре (кто что делает).\n"
+    "\n"
+    "ВСЁ ОСТАЛЬНОЕ — ОПИСАНИЯ СЦЕНЫ — ПЕРЕПИШИ КАРДИНАЛЬНО, убрав сходство "
+    "с чужим:\n"
+    "- смени сеттинг, атмосферу и узнаваемые образы на собственные, "
+    "непохожие на известные франшизы;\n"
+    "- убери или переименуй всё, что отсылает к чужим вселенным, названиям, "
+    "актёрам и медийным персонам;\n"
+    "- визуальный стиль опиши нейтрально, без отсылок к конкретным "
+    "фильмам/студиям («в стиле Пиксар» — нельзя).\n"
+    "\n"
+    "Не добавляй пояснений, преамбул и комментариев. "
+    "Верни ТОЛЬКО переписанный промпт."
+)
+
+# Реплики в наших промптах — в «ёлочках». Латинские "..." не трогаем:
+# в них обычно технические термины, а не диалог.
+_DIALOGUE_RE = re.compile(r"«([^»]{1,500})»")
+
+# Номер попытки, на которой вместо переписывания отправляются голые реплики.
+DIALOGUE_ONLY_ATTEMPT = 3
+
+
+def extract_dialogue(prompt: str) -> str:
+    """Достать из промпта только реплики «...» — по одной на строку.
+
+    Попытка №3 лестницы смягчения: иногда Flow пропускает голый диалог
+    без описаний сцены, на которые и ругалась модерация.
+    """
+    lines = [m.group(1).strip() for m in _DIALOGUE_RE.finditer(prompt)]
+    return "\n".join(dict.fromkeys(line for line in lines if line))
+
+
+def _mask_dialogue(prompt: str) -> tuple[str, dict[str, str]]:
+    """Спрятать реплики «...» за плейсхолдеры §R1§, §R2§…
+
+    Инструкция «сохрани реплики дословно» — это надежда на дисциплину модели,
+    и на third_party-инструкции gemma3:12b её не оправдала (0/3 на смоуке:
+    «Выселение…» → «Переезд…»). Маска — гарантия: текст реплик в LLM вообще
+    не уходит, портить нечего.
+    """
+    reps: dict[str, str] = {}
+
+    def sub(m: re.Match) -> str:
+        key = f"§R{len(reps) + 1}§"
+        reps[key] = m.group(1)
+        return f"«{key}»"
+
+    return _DIALOGUE_RE.sub(sub, prompt), reps
+
+
+def _unmask_dialogue(text: str, reps: dict[str, str]) -> tuple[str, list[str]]:
+    """Вернуть реплики на место. Потерянные моделью — дописать в конец."""
+    for key, line in reps.items():
+        text = text.replace(key, line)
+    lost = [line for key, line in reps.items() if line not in text]
+    if lost:
+        text = text.rstrip() + "\n\nDIALOGUE (verbatim):\n" + "\n".join(
+            f"«{line}»" for line in lost
+        )
+    return text, lost
+
+
+def moderation_category(cfg: Config, detail: str) -> str:
+    """policy | third_party — по тексту ошибки со страницы."""
+    low = (detail or "").lower()
+    for p in cfg.get("moderation.phrases_third_party", []) or []:
+        if str(p).strip() and str(p).lower() in low:
+            return "third_party"
+    return "policy"
+
+
+def _temp(attempt: int) -> float:
+    """Температура растёт с номером попытки.
+
+    Первая правка должна быть точечной (низкая температура), но если один и
+    тот же промпт отклоняют раз за разом, детерминированная модель выдавала
+    бы почти одинаковые варианты — подмешиваем разнообразие.
+    """
+    return round(min(0.9, 0.3 + 0.1 * max(0, attempt - 1)), 2)
+
+
+def _instruction(attempt: int, category: str) -> str:
+    """Собрать системную инструкцию с эскалацией по номеру попытки."""
+    base = THIRD_PARTY_INSTRUCTION if category == "third_party" else LLM_INSTRUCTION
+    if attempt < 2:
+        return base
+    extra = (
+        f"\nЭто попытка №{attempt}: предыдущие {attempt - 1} вариант(а) модерация "
+        "тоже отклонила. "
+    )
+    if attempt <= 4:
+        extra += "Переписывай агрессивнее."
+    elif attempt <= 6:
+        extra += (
+            "Переписывай значительно смелее: упрощай сцену, убирай спорные "
+            "детали целиком, а не подбирай им синонимы."
+        )
+    else:
+        extra += (
+            "Действуй радикально: сохрани реплики, бренд и суть кадра, а всё "
+            "остальное перескажи максимально нейтрально и коротко — как "
+            "безобидную бытовую сцену."
+        )
+    return base + extra
+
 
 class SoftenError(RuntimeError):
     """Бэкенд не смог переписать промпт (сеть, лимит, отказ)."""
@@ -72,11 +204,13 @@ class RuleSoftener:
         self.replacements: dict[str, str] = dict(cfg.get("moderation.soften.replacements", {}) or {})
         self.suffix: str = str(cfg.get("moderation.soften.suffix", "") or "").strip()
 
-    def soften(self, prompt: str, attempt: int) -> tuple[str, str]:
+    def soften(self, prompt: str, attempt: int, category: str = "policy") -> tuple[str, str]:
         """Вернуть (новый промпт, описание что сделано).
 
         Попытка 1: добавить смягчающую добавку в конец.
         Попытка 2+: ещё и применить замены слов.
+        category правила игнорируют: словарные замены не умеют убирать
+        сходство с чужим контентом.
         """
         out = prompt
         actions: list[str] = []
@@ -141,21 +275,20 @@ class GeminiSoftener:
                 out.append(name)
         return sorted(out)
 
-    def soften(self, prompt: str, attempt: int) -> tuple[str, str]:
+    def soften(self, prompt: str, attempt: int, category: str = "policy") -> tuple[str, str]:
         if not self.key:
             raise SoftenError("нет GEMINI_API_KEY")
-        harder = (
-            "\nЭто уже НЕ ПЕРВАЯ попытка — предыдущее смягчение модерация тоже "
-            "отклонила. Переписывай агрессивнее." if attempt >= 2 else ""
-        )
         try:
             r = httpx.post(
                 f"{self.BASE}/models/{self.model}:generateContent",
                 headers=self._headers(),
                 json={
                     "contents": [{
-                        "parts": [{"text": f"{LLM_INSTRUCTION}{harder}\n\nПромпт:\n{prompt}"}],
+                        "parts": [{"text": f"{_instruction(attempt, category)}\n\nПромпт:\n{prompt}"}],
                     }],
+                    # Прогрев с попытками: на поздних нужен другой текст,
+                    # а не тот же самый отказ слово в слово.
+                    "generationConfig": {"temperature": _temp(attempt)},
                 },
                 timeout=45,
             )
@@ -235,7 +368,7 @@ class OllamaSoftener:
             raise SoftenError(f"Ollama HTTP {r.status_code}")
         return sorted(m.get("name", "") for m in r.json().get("models", []))
 
-    def _payload(self, prompt: str, harder: str, think: bool) -> dict:
+    def _payload(self, prompt: str, attempt: int, category: str, think: bool) -> dict:
         # num_ctx: промпты бывают по 4000+ символов, а дефолтное окно Ollama
         # мало — длинный промпт молча обрезался бы вместе с инструкцией.
         # num_predict: ответ примерно равен входу, нужен запас.
@@ -243,13 +376,13 @@ class OllamaSoftener:
             "model": self.model,
             "stream": False,
             "messages": [
-                {"role": "system", "content": LLM_INSTRUCTION + harder},
+                {"role": "system", "content": _instruction(attempt, category)},
                 {"role": "user", "content": prompt},
             ],
-            # Низкая температура: нужна точечная правка, а не творческий
-            # пересказ — иначе поедут реплики и имена персонажей.
+            # Температура низкая на первой попытке (точечная правка) и растёт
+            # с номером — см. _temp().
             "options": {
-                "temperature": 0.3,
+                "temperature": _temp(attempt),
                 "num_ctx": self.num_ctx,
                 "num_predict": self.num_predict,
             },
@@ -261,17 +394,13 @@ class OllamaSoftener:
             body["think"] = False
         return body
 
-    def soften(self, prompt: str, attempt: int) -> tuple[str, str]:
-        harder = (
-            "\nЭто уже НЕ ПЕРВАЯ попытка — предыдущее смягчение модерация тоже "
-            "отклонила. Переписывай агрессивнее." if attempt >= 2 else ""
-        )
+    def soften(self, prompt: str, attempt: int, category: str = "policy") -> tuple[str, str]:
         data = None
         for think in (False, True):  # без размышлений; если модель против — с ними
             try:
                 r = httpx.post(
                     f"{self.host}/api/chat",
-                    json=self._payload(prompt, harder, think),
+                    json=self._payload(prompt, attempt, category, think),
                     timeout=self.timeout,
                 )
             except Exception as exc:  # noqa: BLE001
@@ -327,23 +456,19 @@ class ClaudeSoftener:
             return False
         return True
 
-    def soften(self, prompt: str, attempt: int) -> tuple[str, str]:
+    def soften(self, prompt: str, attempt: int, category: str = "policy") -> tuple[str, str]:
         try:
             import anthropic
         except ImportError as exc:
             raise SoftenError("пакет anthropic не установлен (pip install anthropic)") from exc
         if not self.key:
             raise SoftenError("нет ANTHROPIC_API_KEY")
-        harder = (
-            "\nЭто уже НЕ ПЕРВАЯ попытка — предыдущее смягчение модерация тоже "
-            "отклонила. Переписывай агрессивнее." if attempt >= 2 else ""
-        )
         try:
             client = anthropic.Anthropic(api_key=self.key)
             resp = client.messages.create(
                 model=self.model,
                 max_tokens=8000,
-                system=LLM_INSTRUCTION + harder,
+                system=_instruction(attempt, category),
                 messages=[{"role": "user", "content": prompt}],
             )
         except Exception as exc:  # noqa: BLE001
@@ -368,13 +493,33 @@ class Softener:
     def name(self) -> str:
         return self.primary.name if self.primary is not None else self.rules.name
 
-    def soften(self, prompt: str, attempt: int) -> tuple[str, str]:
+    def soften(self, prompt: str, attempt: int, category: str = "policy") -> tuple[str, str]:
+        # Попытка №3 — особая: вместо переписывания отправляем ГОЛЫЕ реплики
+        # из промпта, без описаний сцены. Модерация ругается на описания,
+        # а диалог сам по себе Flow нередко пропускает.
+        if attempt == DIALOGUE_ONLY_ATTEMPT:
+            dialogue = extract_dialogue(prompt)
+            if dialogue:
+                return dialogue, "оставлены только реплики — без описаний сцены"
+            self._log("в промпте нет реплик «...» — попытка №3 идёт обычным смягчением")
+
         if self.primary is not None:
+            # Реплики уезжают в LLM плейсхолдерами и возвращаются на место
+            # после — их дословность гарантирована механикой, а не инструкцией.
+            masked, reps = _mask_dialogue(prompt)
             try:
-                return self.primary.soften(prompt, attempt)
+                out, what = self.primary.soften(masked, attempt, category)
             except SoftenError as exc:
                 self._log(f"смягчитель {self.primary.name} не сработал ({exc}) — падаю на правила")
-        return self.rules.soften(prompt, attempt)
+            else:
+                out, lost = _unmask_dialogue(out, reps)
+                if lost:
+                    self._log(
+                        f"модель выкинула {len(lost)} реплик(и) вместе с плейсхолдерами — "
+                        "дописаны блоком DIALOGUE в конец"
+                    )
+                return out, what
+        return self.rules.soften(prompt, attempt, category)
 
 
 def build_softener(cfg: Config, log: Callable[[str], None] | None = None) -> Softener | None:
