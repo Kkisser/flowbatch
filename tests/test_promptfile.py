@@ -140,6 +140,43 @@ def main() -> int:
     elif jobs[0].refs != ["use:OLD"]:
         failures.append(f"@use на чужую задачу дал не ту спеку: {jobs[0].refs}")
 
+    # Межпроектный @use: 'ПРОЕКТ :: id' — спека сохраняет обе части,
+    # локальные проверки порядка не мешают.
+    jobs, errors, _ = parse(
+        "=== VID V\n@use VSPOMNI_S01E01 :: vspomni_s01e01_01_hero\nAnimate.",
+        out_dir="out",
+    )
+    if errors:
+        failures.append(f"межпроектный @use дал ошибки: {errors}")
+    elif jobs[0].refs != ["use:VSPOMNI_S01E01 :: vspomni_s01e01_01_hero"]:
+        failures.append(f"межпроектный @use дал не ту спеку: {jobs[0].refs}")
+    # Кривая форма — понятная ошибка, а не молчаливое склеивание.
+    _, errors, _ = parse("=== VID V\n@use ПРОЕКТ :: \nAnimate.", out_dir="out")
+    if not any("@use с проектом" in e for e in errors):
+        failures.append(f"пустой id в межпроектном @use не пойман: {errors}")
+
+    # Резолвер: межпроектная спека ищет uuid по всему журналу и отдаёт
+    # пикеру имя проекта; файл и клиент не нужны.
+    from flowbatch.refs import RefCache, RefResolver
+
+    class _FakeLog:
+        def uuid_for_job(self, job_id, project=None):
+            assert project is None, "межпроектный @use должен искать по всем проектам"
+            return "uuid-123" if job_id == "vspomni_s01e01_01_hero" else None
+
+    with tempfile.TemporaryDirectory() as td:
+        rr = RefResolver(client=None, log=_FakeLog(),
+                         cache=RefCache(Path(td) / "c.json"), project_id="p2")
+        h = rr.resolve("use:VSPOMNI_S01E01 :: vspomni_s01e01_01_hero")
+        if h.uuid != "uuid-123" or h.picker_project != "VSPOMNI_S01E01":
+            failures.append(f"межпроектный резолв дал не то: {h}")
+        try:
+            rr.resolve("use:VSPOMNI_S01E01 :: net_takoy")
+            failures.append("несуществующий межпроектный @use не дал ошибку")
+        except FileNotFoundError as exc:
+            if "ни в одном проекте" not in str(exc):
+                failures.append(f"текст ошибки межпроектного @use не тот: {exc}")
+
     # Комментарии вырезаются ВЕЗДЕ, включая середину промпта и стык блоков.
     COMMENTS = (
         "# шапка файла\n"

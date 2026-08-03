@@ -162,16 +162,38 @@ class RefResolver:
             self.reused += 1  # из библиотеки — по определению без загрузки
             return RefHandle(label=raw, search=name, picker_project=project)
 
-        # @use: результат другой задачи. Ищется по журналу этого проекта —
-        # uuid известен с момента генерации, файл на диске не нужен вовсе
-        # (скачивание результатов может быть выключено).
+        # @use: результат другой задачи. Ищется по журналу — uuid известен
+        # с момента генерации, файл на диске не нужен вовсе (скачивание
+        # результатов может быть выключено).
         if isinstance(raw, str) and raw.startswith(USE_PREFIX):
-            job_id = raw[len(USE_PREFIX):].strip()
+            body = raw[len(USE_PREFIX):].strip()
+            if LIB_PROJECT_SEP in body:
+                # Межпроектная форма 'ПРОЕКТ :: id': uuid ищем по журналу во
+                # всех проектах (id задач глобально уникальны по конвенции
+                # имён), а пикер при прикреплении переключится на проект
+                # по имени — там этот uuid и лежит.
+                project_name, _, job_id = body.partition(LIB_PROJECT_SEP)
+                project_name, job_id = project_name.strip(), job_id.strip()
+                uuid = self.log.uuid_for_job(job_id, project=None)
+                if not uuid:
+                    raise FileNotFoundError(
+                        f"@use {project_name} :: {job_id}: в журнале нет успешного "
+                        f"результата задачи {job_id!r} ни в одном проекте — она "
+                        "генерилась через это приложение?"
+                    )
+                self.reused += 1
+                return RefHandle(
+                    label=f"@use {project_name} :: {job_id}",
+                    uuid=uuid,
+                    picker_project=project_name,
+                )
+            job_id = body
             uuid = self.log.uuid_for_job(job_id, project=self.project_id)
             if not uuid:
                 raise FileNotFoundError(
                     f"@use {job_id}: в этом проекте ещё нет успешного результата "
-                    f"задачи {job_id!r} — она должна отработать раньше"
+                    f"задачи {job_id!r} — она должна отработать раньше. Если она "
+                    f"из другого проекта, пиши '@use Имя проекта :: {job_id}'"
                 )
             self.reused += 1
             return RefHandle(label=f"@use {job_id}", uuid=uuid)
