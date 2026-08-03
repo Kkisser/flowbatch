@@ -229,6 +229,10 @@ class Runner:
         # реплики): если и она отклонена, попытка №4 должна переписывать сцену
         # дальше, а не смягчать три строчки диалога.
         scene_prompt = job.prompt
+        # Всё, что уже отклонялось (или сейчас в работе), — повторно такой
+        # текст не запускаем: генерация с тем же промптом обречена и только
+        # жжёт время и лимиты.
+        tried = {job.prompt.strip()}
         while True:
             attempt += 1
             try:
@@ -260,19 +264,22 @@ class Runner:
                 continue
 
             # Модерация: переписываем промпт и пробуем ту же задачу заново.
+            # Реакция на ЛЮБУЮ формулировку предупреждения одна и та же —
+            # лестница переписываний; контекст ошибки влияет только на
+            # инструкцию (policy / third_party).
             if err.kind == ERR_MODERATION and self.softener and soften_used < soften_max:
-                soften_used += 1
                 # Категория считается каждый раз заново: задача могла сначала
                 # споткнуться о «наши правила», а после переписывания — о
                 # «сторонних поставщиков контента».
                 category = moderation_category(self.cfg, err.detail or "")
                 cat_note = " [сходство с чужим контентом]" if category == "third_party" else ""
-                new_prompt, what = self.softener.soften(
-                    scene_prompt, soften_used, category=category
+                new_prompt, what, soften_used = self._soften_escalate(
+                    scene_prompt, tried, soften_used, soften_max, category
                 )
-                if new_prompt.strip() and new_prompt.strip() != job.prompt.strip():
+                if new_prompt is not None:
                     if soften_used != DIALOGUE_ONLY_ATTEMPT:
                         scene_prompt = new_prompt
+                    tried.add(new_prompt.strip())
                     self.console.print(
                         f"  [bold yellow]модерация отклонила «{job.id}»{cat_note}[/bold yellow] — "
                         f"переписываю промпт ({self.softener.name}, "
@@ -287,15 +294,49 @@ class Runner:
                     )
                     job = replace(job, prompt=new_prompt)
                     continue
-                self.console.print("  [yellow]смягчитель не изменил промпт — сдаюсь[/yellow]")
+                self.console.print(
+                    "  [yellow]лестница переписывания исчерпана — новый текст "
+                    "получить не удалось[/yellow]"
+                )
 
             if soften_used and err.kind == ERR_MODERATION:
                 err = FlowError(
                     err.kind,
-                    f"{err} (промпт смягчался {soften_used} раз — не помогло)",
+                    f"{err} (промпт переписывался, попыток лестницы: {soften_used} из "
+                    f"{soften_max} — не помогло)",
                     detail=err.detail,
                 )
             raise err
+
+    def _soften_escalate(
+        self,
+        scene_prompt: str,
+        tried: set[str],
+        soften_used: int,
+        soften_max: int,
+        category: str,
+    ) -> tuple[str | None, str, int]:
+        """Идти по лестнице переписываний, пока текст реально не изменится.
+
+        Ключевое отличие от «одна попытка — один прогон»: если ступень вернула
+        текст, который уже пробовали (модель решила «менять нечего»), генерацию
+        с ним НЕ перезапускаем — она обречена. Вместо этого сразу шагаем на
+        следующую ступень: инструкция агрессивнее, температура выше, на №3 —
+        голые реплики. Ровно на этом сценарии старая логика «не изменил —
+        сдаюсь» хоронила задачу после первой же попытки из девяти.
+
+        Возвращает (новый текст | None, описание, использовано попыток).
+        """
+        while soften_used < soften_max:
+            soften_used += 1
+            cand, what = self.softener.soften(scene_prompt, soften_used, category=category)
+            if cand.strip() and cand.strip() not in tried:
+                return cand, what, soften_used
+            self.console.print(
+                f"  [dim]ступень {soften_used}/{soften_max}: текст не изменился — "
+                f"пробую следующую[/dim]"
+            )
+        return None, "", soften_used
 
     def _attempt(self, job: Job, soften_used: int = 0) -> None:
         """Один проход: настройки → промпт → референсы → запуск → ожидание → файл.
