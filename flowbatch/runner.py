@@ -14,6 +14,7 @@ from .config import Config
 from .flow_client import (
     ERR_MODERATION,
     ERR_QUOTA,
+    ERR_ABORTED,
     ERR_SERVER,
     ERR_STALE_PICKER,
     ERR_THROTTLE,
@@ -133,6 +134,9 @@ class Runner:
         self.on_status = on_status
         self.project_id = project_id
         self.stop_requested = False
+        # Жёсткая остановка: бросить и текущую задачу, не досиживая до
+        # конца её генерации. Проверяется прямо в цикле ожидания.
+        self.abort_requested = False
 
     def _notify_status(
         self, job: Job, status: str, result_path: str | None = None, error: str | None = None
@@ -189,6 +193,13 @@ class Runner:
                 self._run_one(job)
                 out.done += 1
             except FlowError as exc:
+                # «Стоп сейчас» — не провал задачи: FAILED не пишем, чтобы
+                # она осталась в очереди и подхватилась при следующем старте.
+                if exc.kind == ERR_ABORTED:
+                    self._notify_status(job, "TODO")
+                    out.stopped_reason = "прервано пользователем («Стоп сейчас»)"
+                    self.console.print(f"[yellow]{exc}[/yellow]")
+                    break
                 out.failed += 1
                 out.failures.append((job.id, str(exc)))
                 self._report_failure(job, exc)
@@ -290,6 +301,10 @@ class Runner:
                     "Flow пожаловался на подозрительную активность",
                     detail=err.detail,
                 )
+
+            # Прерывание не лечится ни ретраем, ни смягчением — выходим сразу.
+            if err.kind == ERR_ABORTED:
+                raise err
 
             # Пикер не увидел медиа, сгенерированное в этой же сессии: его
             # список грузится вместе со страницей и сам не обновляется.
@@ -516,7 +531,7 @@ class Runner:
 
         item = self.client.wait_for_new_media(
             before, job.kind, on_tick=tick, moderation_baseline=mod_base,
-            arbiter=self.arbiter,
+            arbiter=self.arbiter, should_abort=lambda: self.abort_requested,
         )
         self.client.raise_for_errors(launch_ts)
 

@@ -40,6 +40,9 @@ ERR_SERVER = "server"
 # Список «+»-пикера отстал от библиотеки: нужного медиа в нём нет, хотя в
 # проекте оно есть. Лечится перезагрузкой вкладки — см. reload_page().
 ERR_STALE_PICKER = "stale_picker"
+# Прогон прерван пользователем прямо посреди ожидания результата.
+# Не ошибка задачи: ни ретраев, ни смягчения, ни пометки FAILED.
+ERR_ABORTED = "aborted"
 ERR_UNKNOWN = "unknown"
 
 _CODE_MAP = {
@@ -1338,6 +1341,7 @@ class FlowClient:
         on_tick: Any = None,
         moderation_baseline: int = 0,
         arbiter: Any = None,
+        should_abort: Any = None,
     ) -> MediaItem:
         """Ждать появления нового медиа-URL, которого не было до запуска.
 
@@ -1350,6 +1354,11 @@ class FlowClient:
         и без реестра две задачи могли бы забрать один и тот же файл. Пока
         arbiter не передан, ветка полностью выключена и поведение то же, что
         и было в однопоточном прогоне.
+
+        should_abort — проверяется на каждом опросе. Даёт «Стоп сейчас»:
+        бросить ожидание в течение секунд, а не досиживать до конца
+        генерации видео. Сама генерация во Flow при этом продолжится, её
+        результат просто останется в библиотеке нескачанным.
         """
         gen = self.cfg.get("generation", {})
         if timeout_sec is None:
@@ -1362,6 +1371,8 @@ class FlowClient:
         settle = 0
 
         while time.time() - started < timeout_sec:
+            if should_abort is not None and should_abort():
+                raise FlowError(ERR_ABORTED, "ожидание результата прервано по «Стоп сейчас»")
             self.page.wait_for_timeout(poll * 1000)
             tick += 1
             # Раз в ~5 опросов подматываем список к свежим элементам.

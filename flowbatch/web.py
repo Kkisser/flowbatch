@@ -28,6 +28,8 @@
 from __future__ import annotations
 
 import html
+import base64
+import binascii
 import json
 import mimetypes
 import os
@@ -312,7 +314,10 @@ display:none;z-index:99;box-shadow:0 10px 34px #000c}
     смягчение
     <select id="soft" style="border:none;background:transparent;padding:2px 4px;color:var(--fg)"></select>
   </span>
-  <button class="btn danger sm" id="stopall" style="display:none">■ Стоп всё</button>
+  <button class="btn danger sm" id="stopall" style="display:none"
+          title="доработают текущие задачи и встанут">■ Стоп всё</button>
+  <button class="btn danger sm" id="killall" style="display:none"
+          title="бросить текущие задачи прямо сейчас">⏹! Стоп сейчас</button>
   <button class="btn icon" id="gear" title="настройки и справка">⚙</button>
 </header>
 <main>
@@ -441,7 +446,9 @@ function renderHeader(st){
   $('#bstat').innerHTML = `<span class="dot${st.slots.some(s=>s.running)?' live':''}" style="background:${ok?'var(--ok)':'var(--err)'}"></span>`
     + (ok ? `${esc(st.browser_name||'браузер')} · <b>${n}</b>&nbsp;вкладок` : 'браузер не запущен');
   $('#bbtn').textContent = ok ? '＋ вкладки' : '▶ Запустить браузер';
-  $('#stopall').style.display = st.slots.some(s=>s.running) ? '' : 'none';
+  const anyRun = st.slots.some(s=>s.running);
+  $('#stopall').style.display = anyRun ? '' : 'none';
+  $('#killall').style.display = anyRun ? '' : 'none';
 
   const sb = st.soften||{};
   const sel = $('#soft');
@@ -487,13 +494,19 @@ function slotTemplate(s){
     <span class="grow"></span>
     <label class="chk" title="репетиция без траты генераций"><input type="checkbox" id="s${n}-dry"> dry</label>
     <button class="btn primary sm" id="s${n}-start">▶ Старт</button>
-    <button class="btn danger sm" id="s${n}-stop" disabled>■</button>
+    <button class="btn danger sm" id="s${n}-stop" disabled
+            title="мягкая остановка: доработает текущую задачу и встанет">■</button>
+    <button class="btn danger sm" id="s${n}-kill" disabled
+            title="жёсткая остановка: бросить текущую задачу прямо сейчас">⏹!</button>
     <button class="btn ghost sm" id="s${n}-del" title="убрать прогон из панели">✕</button>
   </div>
   <div class="row">
+    <button class="btn sm" id="s${n}-pick" title="выбрать файл где угодно на диске">📂 Файл с диска…</button>
+    <input type="file" id="s${n}-file" hidden
+           accept=".txt,.text,.prompts,.yaml,.yml,.xlsx,.xlsm">
     <input type="text" id="s${n}-src" list="queuefiles"
-           placeholder="очередь: имя файла из папки промптов или полный путь">
-    <button class="btn sm" id="s${n}-load">Загрузить</button>
+           placeholder="или имя файла из папки промптов">
+    <button class="btn sm" id="s${n}-load" title="прочитать файл и показать задачи">Разобрать</button>
     <button class="btn ghost sm" id="s${n}-pastebtn">текстом…</button>
   </div>
   <div id="s${n}-paste" hidden>
@@ -543,6 +556,13 @@ function buildSlot(s, isOnly){
   const g = id => el.querySelector('#s'+s.id+'-'+id);
   g('start').onclick = () => slotStart(s.id);
   g('stop').onclick = async () => { try{ await api('/api/slot/stop',{id:s.id}); }catch(e){toast(e.message);} tick(); };
+  g('kill').onclick = async () => {
+    if (!confirm('Бросить текущую задачу прогона '+s.label+' прямо сейчас?\n\n'
+      +'Уже запущенная во Flow генерация доработает, но результат не скачается '
+      +'и задача останется в очереди.')) return;
+    try{ await api('/api/slot/stop',{id:s.id, force:true}); toast('Останавливаю немедленно','ok'); }
+    catch(e){toast(e.message);} tick();
+  };
   g('del').onclick = async () => {
     if (!confirm('Убрать прогон '+s.label+' из панели? Файлы очереди не трогаются.')) return;
     try{ await api('/api/slot/remove',{id:s.id}); delete S.sel[s.id]; delete S.q[s.id]; }
@@ -551,6 +571,26 @@ function buildSlot(s, isOnly){
   g('load').onclick = async () => {
     try{ S.sel[s.id].clear(); await api('/api/slot/load',{id:s.id, source:g('src').value.trim()});
          toast('Очередь загружена','ok'); }catch(e){toast(e.message);} tick();
+  };
+  /* Проводник: браузер отдаёт только СОДЕРЖИМОЕ файла, не путь. Поэтому
+     копируем файл в папку промптов на стороне сервера и сразу разбираем —
+     заодно это работает и с телефона через Tailscale. */
+  g('pick').onclick = () => g('file').click();
+  g('file').onchange = async (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (!f) return;
+    if (f.size > 8*1024*1024) { toast('Файл больше 8 МБ — это точно очередь?'); return; }
+    try{
+      const buf = await f.arrayBuffer();
+      let bin = ''; const bytes = new Uint8Array(buf);
+      for (let i=0;i<bytes.length;i++) bin += String.fromCharCode(bytes[i]);
+      S.sel[s.id].clear();
+      const r = await api('/api/slot/upload',{id:s.id, name:f.name, data:btoa(bin)});
+      g('src').value = r.saved || '';
+      toast('Загружен и разобран: '+f.name,'ok');
+    }catch(err){ toast(err.message); }
+    e.target.value = '';   // тот же файл можно выбрать повторно
+    tick();
   };
   g('pastebtn').onclick = () => { g('paste').hidden = !g('paste').hidden; };
   g('parse').onclick = async () => {
@@ -604,6 +644,7 @@ function updateSlot(el, s, st){
 
   g('start').disabled = s.running;
   g('stop').disabled = !s.running;
+  g('kill').disabled = !s.running;
   g('del').disabled = s.running;
   g('load').disabled = s.running; g('parse').disabled = s.running;
   const src = g('src');
@@ -815,6 +856,15 @@ document.body.addEventListener('change', e=>{
 
 $('#addslot').onclick = async ()=>{ try{ await api('/api/slot/add',{}); }catch(e){ toast(e.message); } tick(); };
 $('#stopall').onclick = async ()=>{ try{ await api('/api/stopall',{}); }catch(e){ toast(e.message); } tick(); };
+$('#killall').onclick = async ()=>{
+  if (!confirm('Бросить текущие задачи ВСЕХ прогонов прямо сейчас?
+
+'
+    +'Запущенные во Flow генерации доработают, но результаты не скачаются '
+    +'и задачи останутся в очередях.')) return;
+  try{ await api('/api/stopall',{force:true}); toast('Останавливаю всё немедленно','ok'); }
+  catch(e){ toast(e.message); } tick();
+};
 $('#rescan').onclick = ()=>{ tick(true); };
 $('#aaddtab').onclick = async ()=>{
   try{ await api('/api/browser',{add:1}); toast('Открываю вкладку…','ok'); }catch(e){ toast(e.message); }
@@ -990,6 +1040,52 @@ class RunSlot:
         )
         self.app.save_ui()
 
+    # Что принимаем из проводника. Всё прочее — отказ: панель может быть
+    # открыта из сети, и запись произвольных файлов на диск недопустима.
+    UPLOAD_EXTS = {".txt", ".text", ".prompts", ".yaml", ".yml", ".xlsx", ".xlsm"}
+    UPLOAD_MAX = 8 * 1024 * 1024
+
+    def upload_queue(self, name: str, data_b64: str) -> str:
+        """Сохранить выбранный в проводнике файл в папку промптов и разобрать.
+
+        Браузер отдаёт содержимое, а не путь, — поэтому файл именно копируется
+        к себе. Заодно он появляется в списке папки и переживает перезапуск.
+        """
+        self._require_idle()
+        # Только имя файла: '..', слэши и абсолютные пути из name вырезаются,
+        # иначе через него можно было бы писать куда угодно.
+        safe = Path(str(name or "")).name.strip()
+        if not safe:
+            raise ValueError("файл без имени")
+        if Path(safe).suffix.lower() not in self.UPLOAD_EXTS:
+            raise ValueError(
+                f"формат {Path(safe).suffix!r} не поддерживается; "
+                f"нужен один из: {', '.join(sorted(self.UPLOAD_EXTS))}"
+            )
+        try:
+            blob = base64.b64decode(data_b64 or "", validate=True)
+        except (binascii.Error, ValueError) as exc:
+            raise ValueError("файл не удалось прочитать") from exc
+        if not blob:
+            raise ValueError("файл пустой")
+        if len(blob) > self.UPLOAD_MAX:
+            raise ValueError(f"файл больше {self.UPLOAD_MAX // 1024 // 1024} МБ")
+
+        folder = self.cfg.prompts_dir()
+        folder.mkdir(parents=True, exist_ok=True)
+        dest = folder / safe
+        # Одноимённый файл не затираем молча: старая очередь может быть нужна.
+        if dest.exists() and dest.read_bytes() != blob:
+            stem, suf = dest.stem, dest.suffix
+            n = 2
+            while (folder / f"{stem}_{n}{suf}").exists():
+                n += 1
+            dest = folder / f"{stem}_{n}{suf}"
+        dest.write_bytes(blob)
+        self.console.print(f"файл принят: {dest}")
+        self.load_queue(str(dest))
+        return str(dest)
+
     def parse_text(self, text: str) -> None:
         """Разобрать вставленный текст. Файл свой на каждый прогон."""
         self._require_idle()
@@ -1128,10 +1224,13 @@ class RunSlot:
         )
         self.thread.start()
 
-    def stop(self) -> None:
+    def stop(self, force: bool = False) -> None:
         if self.parallel is not None:
-            self.parallel.stop()
-            self.console.print("[yellow]запрошена остановка[/yellow]")
+            self.parallel.stop(force=force)
+            self.console.print(
+                "[bold red]СТОП СЕЙЧАС: бросаю текущие задачи[/bold red]" if force
+                else "[yellow]запрошена остановка — доработаю текущую задачу[/yellow]"
+            )
 
     def _apply_resume(self, jobs: list[Any], project_id: str, dry: bool) -> list[Any]:
         if not (self._skip_completed and not dry):
@@ -1347,10 +1446,11 @@ class AppState:
             self.add_slot(save=False)
         self.save_ui()
 
-    def stop_all(self, reason: str = "", except_id: int | None = None) -> None:
+    def stop_all(self, reason: str = "", except_id: int | None = None,
+                 force: bool = False) -> None:
         for s in self.slots:
             if s.running and s.id != except_id:
-                s.stop()
+                s.stop(force=force)
         if reason:
             self.sink.push(f"[глобально] остановка всех прогонов: {reason}")
 
@@ -1689,6 +1789,10 @@ def make_handler(state: AppState, token: str = "") -> type[BaseHTTPRequestHandle
                 elif u.path == "/api/slot/load":
                     state.slot(payload.get("id")).load_queue(payload.get("source") or "")
                     self._json({"ok": True})
+                elif u.path == "/api/slot/upload":
+                    saved = state.slot(payload.get("id")).upload_queue(
+                        payload.get("name") or "", payload.get("data") or "")
+                    self._json({"ok": True, "saved": saved})
                 elif u.path == "/api/slot/parse":
                     state.slot(payload.get("id")).parse_text(payload.get("text") or "")
                     self._json({"ok": True})
@@ -1703,10 +1807,10 @@ def make_handler(state: AppState, token: str = "") -> type[BaseHTTPRequestHandle
                     state.slot(payload.get("id")).start(payload)
                     self._json({"ok": True})
                 elif u.path == "/api/slot/stop":
-                    state.slot(payload.get("id")).stop()
+                    state.slot(payload.get("id")).stop(force=bool(payload.get("force")))
                     self._json({"ok": True})
                 elif u.path == "/api/stopall":
-                    state.stop_all("по кнопке «Стоп всё»")
+                    state.stop_all("по кнопке «Стоп всё»", force=bool(payload.get("force")))
                     self._json({"ok": True})
                 elif u.path == "/api/browser":
                     self._json({"ok": True, **state.launch_browser(

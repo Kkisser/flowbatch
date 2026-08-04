@@ -236,10 +236,19 @@ class ParallelRunner:
 
     # ------------------------------------------------------------------ доступ
 
-    def stop(self) -> None:
+    def stop(self, force: bool = False) -> None:
+        """Остановить прогон. force — бросить и текущие задачи, не досиживая.
+
+        Мягкая остановка доигрывает начатое: у видео это до 15 минут ожидания.
+        Жёсткая прерывает само ожидание — воркеры выходят за секунды. Уже
+        запущенная во Flow генерация при этом доработает, её результат просто
+        останется в библиотеке нескачанным.
+        """
         self.stop_requested = True
         for r in self._runners:
             r.stop_requested = True
+            if force:
+                r.abort_requested = True
 
     def tab_states(self) -> list[dict[str, Any]]:
         return [t.as_dict() for t in self.tabs]
