@@ -272,13 +272,6 @@ pre#log{background:#080b11;border:1px solid var(--line);border-radius:9px;paddin
 font:11.5px/1.6 ui-monospace,Consolas,monospace;white-space:pre-wrap;word-break:break-word;
 max-height:32vh;min-height:110px;overflow:auto;margin:0;color:#c4cddc}
 pre#log .lt{font-weight:700}
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px}
-.gallery a{display:block;border:1px solid var(--line);border-radius:9px;overflow:hidden;
-background:#000;transition:border-color .12s}
-.gallery a:hover{border-color:var(--accent)}
-.gallery img,.gallery video{width:100%;height:136px;object-fit:cover;display:block}
-.gallery span{display:block;font-size:10px;color:var(--dim);padding:4px 6px;
-overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 /* ----------------------------------------------------------------- диалог */
 dialog{background:var(--panel);color:var(--fg);border:1px solid var(--line2);
@@ -349,10 +342,6 @@ display:none;z-index:99;box-shadow:0 10px 34px #000c}
     <h2>Лог <span class="grow"></span>
       <select id="logf" style="padding:3px 8px;font-size:12px"><option value="">все</option></select></h2>
     <pre id="log">—</pre>
-  </div>
-  <div class="apanel">
-    <h2>Результаты <span class="pill" id="rescount" style="display:none"></span></h2>
-    <div class="gallery" id="gal"></div>
   </div>
 </aside>
 </main>
@@ -774,16 +763,6 @@ function renderAside(st){
     return `<span class="lt" style="color:${pcol(+m[1])}">[П${m[1]}]</span>` + esc(l.slice(m[0].length));
   }).join('\n') || '—';
   if (stick) log.scrollTop = log.scrollHeight;
-
-  const res = st.results||[];
-  const rc = $('#rescount');
-  rc.style.display = res.length?'':'none'; rc.textContent = res.length;
-  $('#gal').innerHTML = res.map(f=>{
-    const u = '/api/file?path='+encodeURIComponent(f.path);
-    return `<a href="${u}" target="_blank">${f.video
-      ? `<video src="${u}" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>`
-      : `<img src="${u}" loading="lazy">`}<span title="${esc(f.name)}">${esc(f.name)}</span></a>`;
-  }).join('');
 }
 
 /* ----------------------------------------------------------------- диалог */
@@ -1628,20 +1607,6 @@ class AppState:
             out.append({"name": d.name, "files": n})
         return out
 
-    def results(self) -> list[dict[str, Any]]:
-        out = self.cfg.out_dir()
-        if not out.exists():
-            return []
-        files = sorted(
-            (f for f in out.iterdir() if f.is_file()),
-            key=lambda f: f.stat().st_mtime, reverse=True,
-        )[:40]
-        return [
-            {"name": f.name, "path": str(f.resolve()),
-             "video": f.suffix.lower() in (".mp4", ".webm", ".mov")}
-            for f in files
-        ]
-
     def snapshot(self, fresh: bool = False) -> dict[str, Any]:
         tabs = self.tabs(max_age=0.0 if fresh else 3.0)
         owner: dict[str, RunSlot] = {}
@@ -1664,7 +1629,6 @@ class AppState:
             "tabs_error": self._tabs_error,
             "slots": [s.snapshot() for s in self.slots],
             "log": self.sink.snapshot()[-300:],
-            "results": self.results(),
             "products": self.products(),
             "products_dir": str(self.cfg.products_dir()),
             "prompts_dir": str(self.cfg.prompts_dir()),
