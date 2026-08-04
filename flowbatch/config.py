@@ -76,3 +76,26 @@ class Config:
 
     def products_dir(self) -> Path:
         return Path(self.get("paths.products_dir", "products"))
+
+    def prompts_dir(self) -> Path:
+        return Path(self.get("paths.prompts_dir", "prompts"))
+
+    def resolve_queue(self, source: str) -> Path:
+        """Путь к файлу очереди: как указан, иначе из папки промптов.
+
+        Позволяет писать в панели просто «MISS_ULYBKA.flow.txt» вместо
+        полного пути и при этом не ломает уже сохранённые пути и абсолютные.
+        """
+        raw = (source or "").strip().strip('"')
+        if not raw:
+            raise ValueError("не указан путь к очереди")
+        direct = Path(raw)
+        if direct.exists():
+            return direct
+        inside = self.prompts_dir() / direct.name
+        if inside.exists():
+            return inside
+        raise FileNotFoundError(
+            f"не найден файл очереди: {direct} "
+            f"(искал и в папке промптов: {inside})"
+        )

@@ -1,0 +1,248 @@
+@project VSPOMNI_S01E01
+
+=== IMG vspomni_s01e01_01_ward
+# Сцена 1 — Image. Палата: Марк в койке, Врач рядом. Эталон Марка и Врача.
+3D Pixar style, vertical 9:16. A soft cozy cartoon hospital room, warm morning light through pastel curtains, a simple bed with a light-blue blanket, a small bedside monitor with a gentle green line, a vase with daisies on the nightstand.
+CRITICAL CHARACTER LOCK: MARK — cartoon tooth character, bright white enamel molar-shaped head with a small neck, slightly narrow tall crown, soft blue pajamas, sitting up in the bed under the blanket, wide confused frightened eyes, hands slightly raised. DOCTOR — cartoon tooth character, white enamel large broad molar-shaped head, round thin glasses, white medical coat over a pale shirt, standing beside the bed, calm kind reassuring expression, one hand raised in a gentle soothing gesture. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: MARK in the bed on the RIGHT, DOCTOR standing on the LEFT beside the bed. Everyone full body, from head to feet or fully visible under the blanket, not cropped.
+No captions or text on screen. Cinematic soft warm morning light, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG vspomni_s01e01_02_ring
+@use vspomni_s01e01_01_ward
+# Сцена 2 — Image. Элла у койки надевает кольцо себе. Эталон Эллы.
+3D Pixar style, vertical 9:16. The same soft cozy cartoon hospital room, warm afternoon light, the bed with the light-blue blanket, daisies on the nightstand.
+CRITICAL CHARACTER LOCK: MARK — cartoon tooth character LOCKED to the attached reference image, bright white enamel molar-shaped head, slightly narrow tall crown, soft blue pajamas, sitting up in bed, confused uncertain expression. ELLA — cartoon tooth character, pale ivory enamel with a subtle creamy-yellow tint, elegant molar-shaped head with long dark cartoon eyelashes, glamorous scarlet evening dress, sly sweet smile, sitting on a chair right beside the bed, sliding a small golden cartoon ring onto her own finger while looking tenderly at MARK. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: MARK in the bed on the RIGHT, ELLA seated close on the LEFT, the golden ring glinting on her finger in the foreground. Everyone full body, not cropped.
+No captions or text on screen. Cinematic warm soft light with a faint cold rim on ELLA, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG vspomni_s01e01_03_anya
+@use vspomni_s01e01_01_ward
+@use vspomni_s01e01_02_ring
+# Сцена 3 — Image. Аня в дверях, Врач мягко преграждает, Элла ледяная. Эталон Ани.
+3D Pixar style, vertical 9:16. The same cartoon hospital room, doorway visible on one side, warm interior light, cooler light from the corridor.
+CRITICAL CHARACTER LOCK: ANYA — cartoon tooth character, bright white enamel molar-shaped head, warm sincere big eyes glistening with cartoon emotion, gentle light-peach summer dress, standing in the doorway reaching one hand toward the bed, desperate pleading expression. MARK — cartoon tooth character LOCKED to the attached reference image, bright white enamel molar head, soft blue pajamas, sitting up in bed, torn and confused. ELLA — cartoon tooth character LOCKED to the attached reference image, pale ivory-yellow tinted enamel, scarlet dress, standing protectively beside the bed with crossed arms and an icy stare. DOCTOR — cartoon tooth character LOCKED to the attached reference image, white coat and round glasses, standing between ANYA and the bed, both hands raised in a calm polite stopping gesture, no physical contact. All fully original fictional animated tooth characters, tooth-shaped heads, smooth glossy enamel, no hair, no human skin. They remain exactly like their reference images.
+Composition: ANYA in the doorway on the LEFT, DOCTOR in the MIDDLE facing her, ELLA and MARK by the bed on the RIGHT. Everyone full body, not cropped.
+No captions or text on screen. Cinematic contrast of warm room light and cool corridor light, wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG vspomni_s01e01_04_bathroom
+@use vspomni_s01e01_01_ward
+@product rl410/
+# Сцена 4 — Image. Вечер, ванная. Марк достаёт закрытый RL 410 из несессера.
+3D Pixar style, vertical 9:16. A small cozy cartoon bathroom at evening, dim warm lamp light, a mirror above a clean white sink, a soft open travel toiletry bag on the counter.
+CRITICAL CHARACTER LOCK: MARK — cartoon tooth character LOCKED to the attached reference image, bright white enamel molar-shaped head, slightly narrow tall crown, soft blue pajamas, standing at the sink, holding the device in one hand, staring at it with a trembling puzzled expression. Fully original fictional animated tooth character, tooth-shaped head, smooth glossy enamel, no hair, no human skin. He remains exactly like his reference image.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE: the product is the Revyline RL 410 portable slider irrigator, strictly 100% identical to the attached reference photo — same body color, same proportions, same closed compact slider configuration, the REVYLINE logo preserved exactly as printed. The device stays fully CLOSED and compact at all times: it never slides open, never unfolds, never extends, never transforms. Fingers never cover the nozzle area or the REVYLINE logo. Only one product in the whole frame, held only in MARK's hand. Zero changes, no morphing.
+Composition: MARK in the MIDDLE at the sink, the closed irrigator held up in his hand near chest level, clearly visible, the open travel bag beside the sink. Full body, not cropped.
+No captions or text on screen. Cinematic dim warm evening light, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG vspomni_s01e01_05_flashback
+@use vspomni_s01e01_01_ward
+@use vspomni_s01e01_03_anya
+@product rl410/
+# Сцена 5 — Image. Вспышка-флешбэк: солнечное утро, Аня с RL 410, Марк смеётся. Продукт-хиро.
+3D Pixar style, vertical 9:16. A bright sunny cartoon home bathroom in the past, golden warm morning sunlight flooding through a window, white tiles, two toothbrush cups on the shelf, a dreamy soft glow at the edges of the frame like a happy memory.
+CRITICAL CHARACTER LOCK: ANYA — cartoon tooth character LOCKED to the attached reference image, bright white enamel molar-shaped head, light-peach summer dress, laughing joyfully, holding the device up proudly in one hand. MARK — cartoon tooth character LOCKED to the attached reference image, bright white enamel molar head, slightly narrow tall crown, casual soft home t-shirt in the same soft blue tone, standing next to her laughing warmly. Fully original fictional animated tooth characters, tooth-shaped heads, smooth glossy enamel, no hair, no human skin. They remain exactly like their reference images.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE: the product is the Revyline RL 410 portable slider irrigator, strictly 100% identical to the attached reference photo — same body color, same proportions, same closed compact slider configuration, the REVYLINE logo preserved exactly as printed. The device stays fully CLOSED and compact: it never slides open, never unfolds, never extends, never transforms. Fingers never cover the nozzle area or the REVYLINE logo. Only one product in the whole frame, held only in ANYA's hand. Zero changes, no morphing.
+Composition: ANYA on the LEFT holding the irrigator up between them, MARK on the RIGHT, both facing each other and laughing, morning light behind them. Everyone full body, not cropped.
+No captions or text on screen. Cinematic golden dreamy morning light, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG vspomni_s01e01_06_mirror
+@use vspomni_s01e01_04_bathroom
+@product rl410/
+# Сцена 6 — Image. Марк смотрит в зеркало, ирригатор в руке.
+3D Pixar style, vertical 9:16. The same small cozy cartoon bathroom at evening, dim warm lamp light, MARK's reflection visible in the mirror above the sink.
+CRITICAL CHARACTER LOCK: MARK — cartoon tooth character LOCKED to the attached reference image, bright white enamel molar-shaped head, soft blue pajamas, standing at the sink, staring at his own reflection with a shaken searching expression, the device held in one hand at chest level. Fully original fictional animated tooth character, tooth-shaped head, smooth glossy enamel, no hair, no human skin. He remains exactly like his reference image, and his reflection is identical to him.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE: the product is the Revyline RL 410 portable slider irrigator, strictly 100% identical to the attached reference photo, fully CLOSED compact slider configuration, never slides open, never unfolds, never transforms, REVYLINE logo preserved exactly as printed, fingers never covering the nozzle area or the logo. Only one product in the whole frame, held only in MARK's hand. Zero changes, no morphing.
+Composition: MARK in the MIDDLE seen from behind at a three-quarter angle, his face clearly visible in the mirror. Full body, not cropped.
+No captions or text on screen. Cinematic dim moody warm light, medium shot over the shoulder into the mirror, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG vspomni_s01e01_07_ella_night
+@use vspomni_s01e01_02_ring
+# Сцена 7 — Image. Ночь: Элла у приоткрытой двери, несессер в руках.
+3D Pixar style, vertical 9:16. A dim cartoon hospital corridor at night, cool blue night lighting, a door slightly ajar with warm light spilling from the bathroom inside.
+CRITICAL CHARACTER LOCK: ELLA — cartoon tooth character LOCKED to the attached reference image, pale ivory enamel with a subtle creamy-yellow tint, long dark cartoon eyelashes, glamorous scarlet dress, standing by the slightly open door, clutching the soft travel toiletry bag to her chest with both hands, narrowed scheming eyes, a sly cold smirk. Fully original fictional animated tooth character, tooth-shaped head, smooth glossy enamel, no hair, no human skin. She remains exactly like her reference image.
+Composition: ELLA in the MIDDLE of the corridor, lit half by cool night light and half by the warm slit of the doorway, the travel bag clearly visible in her hands. Full body, not cropped.
+No captions or text on screen. Cinematic moody split lighting, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG vspomni_s01e01_08_trash_rain
+@use vspomni_s01e01_02_ring
+@product rl410/
+# Сцена 8 — Image. Клиффхэнгер: дождь, мусорный бак, ирригатор в несессере сверху, Элла рядом.
+3D Pixar style, vertical 9:16. A rainy cartoon night street behind the hospital, glossy wet asphalt reflecting a single street lamp, gentle rain streaks, a large simple metal trash bin with the lid open.
+CRITICAL CHARACTER LOCK: ELLA — cartoon tooth character LOCKED to the attached reference image, pale ivory-yellow tinted enamel, scarlet dress, holding a small red umbrella in one hand, standing beside the trash bin, looking down at it with a cold satisfied smirk. Fully original fictional animated tooth character, tooth-shaped head, smooth glossy enamel, no hair, no human skin. She remains exactly like her reference image.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE: the product is the Revyline RL 410 portable slider irrigator, strictly 100% identical to the attached reference photo, fully CLOSED compact slider configuration, never slides open, never unfolds, never transforms, REVYLINE logo preserved exactly as printed and clearly visible. Only one product in the whole frame, lying on top of the open travel toiletry bag inside the trash bin, dramatically lit by the street lamp, raindrops on its glossy body. Zero changes, no morphing.
+Composition: the trash bin in the LOWER MIDDLE foreground with the irrigator clearly visible on top of the bag, ELLA standing full body slightly behind on the RIGHT. Not cropped.
+No captions or text on screen. Cinematic rainy night lighting, single warm street lamp, slight low angle, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== VID vspomni_s01e01_01_ward_anim
+@use vspomni_s01e01_01_ward
+@duration 8
+# Сцена 1 — Animation. Хук: «Кто я?». Марк паникует, Врач успокаивает. 8 секунд.
+Animate this exact scene. This is an emotional dramatic cartoon soap-opera moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- MARK: cartoon TOOTH character from the reference image, bright white enamel molar-shaped head, slightly narrow tall crown, soft blue pajamas, sits up in the bed on the RIGHT.
+- DOCTOR: cartoon TOOTH character from the reference image, white enamel large broad molar head, round glasses, white medical coat, stands on the LEFT beside the bed.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. MARK stays bright white, DOCTOR stays white with glasses and coat.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: cozy cartoon hospital room, bed with light-blue blanket, bedside monitor with a soft green line, daisies on the nightstand. Nothing new appears during the video.
+EMOTIONAL INTENSITY — HIGH: MARK's eyes are wide and darting, eyebrows raised in fright, he clutches the blanket; DOCTOR is calm, slow soothing hand gesture, soft steady gaze. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: quick push-in on MARK for the hook, then a gentle cut to a two-shot.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–4.0s: MARK jolts upright, looks around in panic. MARK says in Russian, frightened and lost: «Кто я? Почему я ничего не помню?!»
+4.0–8.0s: DOCTOR slowly raises a calming hand. DOCTOR says in Russian, calm and warm: «Тише. Память вернут только сильные эмоции.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: soft slow monitor beeps, quiet room tone.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID vspomni_s01e01_02_ring_anim
+@use vspomni_s01e01_02_ring
+@duration 8
+# Сцена 2 — Animation. Элла надевает кольцо себе: «Я твоя невеста». 8 секунд.
+Animate this exact scene. This is a tense dramatic cartoon soap-opera moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- MARK: cartoon TOOTH character from the reference image, bright white enamel molar-shaped head, slightly narrow tall crown, soft blue pajamas, sits up in the bed on the RIGHT.
+- ELLA: cartoon TOOTH character from the reference image, pale ivory enamel with a subtle creamy-yellow tint, long dark cartoon eyelashes, glamorous scarlet dress, sits on the chair on the LEFT beside the bed.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. MARK stays bright white, ELLA stays pale ivory-yellow in the scarlet dress.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: the same cozy cartoon hospital room, bed with light-blue blanket, daisies on the nightstand, a small golden cartoon ring. Nothing new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM-HIGH: ELLA is honey-sweet with sly narrowed eyes, she slowly and deliberately slides the golden ring onto her OWN finger and admires it; MARK frowns, eyes searching her face, uncertain. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: slow close-up on the ring sliding onto ELLA's finger, then a soft two-shot.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–4.0s: ELLA slides the ring onto her own finger, gazing tenderly at MARK. ELLA says in Russian, sweet and velvety: «Я твоя невеста, любимый. Вот и кольцо.»
+4.0–8.0s: MARK studies her face, confused. MARK says in Russian, unsure and quiet: «Невеста?.. Почему я тебя не помню?»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: quiet room tone, a faint clock tick.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID vspomni_s01e01_03_anya_anim
+@use vspomni_s01e01_03_anya
+@duration 8
+# Сцена 3 — Animation. Аня прорывается, Врач мягко останавливает, Элла ледяная. 8 секунд.
+Animate this exact scene. This is a highly dramatic cartoon soap-opera confrontation, with fast dynamic editing.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ANYA: cartoon TOOTH character from the reference image, bright white enamel molar head, light-peach summer dress, stands in the doorway on the LEFT.
+- DOCTOR: cartoon TOOTH character from the reference image, white coat, round glasses, stands in the MIDDLE facing ANYA.
+- ELLA: cartoon TOOTH character from the reference image, pale ivory-yellow tinted enamel, scarlet dress, stands by the bed on the RIGHT with crossed arms.
+- MARK: cartoon TOOTH character from the reference image, bright white enamel molar head, soft blue pajamas, sits up in the bed on the RIGHT.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts, and the characters NEVER blend into each other: ANYA stays bright white in the peach dress, ELLA stays pale ivory-yellow in the scarlet dress, DOCTOR keeps his coat and glasses, MARK stays in blue pajamas in the bed.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: the cartoon hospital room with the doorway on the left, cool corridor light, warm room light. Nothing new appears during the video.
+EMOTIONAL INTENSITY — VERY HIGH: ANYA is desperate, eyes glistening with big cartoon emotion, one hand reaching toward the bed; DOCTOR keeps both hands raised in a calm polite stopping gesture, never touching anyone; ELLA is icy, chin high, cold stare. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed. Characters move one at a time, no physical contact between anyone.
+CAMERA STYLE: quick cut from the doorway to ELLA's cold face, then a wide shot of the whole room.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–4.0s: ANYA leans into the room past the doorway, reaching out, while DOCTOR calmly raises his hands to stop her. ANYA says in Russian, desperate and pleading: «Марк! Это я, Аня! Не верь ей!»
+4.0–8.0s: ELLA lifts her chin and looks away coldly. ELLA says in Russian, icy and dismissive: «Девушка, вы кто вообще? Выйдите.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: quiet corridor hum, a soft door creak.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID vspomni_s01e01_04_bathroom_anim
+@use vspomni_s01e01_04_bathroom
+@duration 6
+# Сцена 4 — Animation. Марк находит закрытый RL 410 в несессере. 6 секунд.
+Animate this exact scene. This is a quiet mysterious emotional cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. He must NEVER turn into a human, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- MARK: cartoon TOOTH character from the reference image, bright white enamel molar-shaped head, slightly narrow tall crown, soft blue pajamas, stands at the sink in the MIDDLE.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: his tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on the head at any moment, in every single frame. The head is completely bald smooth tooth enamel.
+SET DETAIL: small cozy cartoon bathroom at evening, dim warm lamp light, mirror over the sink, the soft open travel toiletry bag on the counter. Nothing new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM: MARK turns the device slowly in his hand, eyes narrowed in confusion, his hand trembles slightly, a strange pull of recognition on his face. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: slow push-in from a medium shot toward the device in his hand, the device stays large and near-static in frame, only the hand moves gently.
+ABSOLUTE PRODUCT LOCK — the product is the Revyline RL 410 portable slider irrigator and stays 100% identical to the attached reference photo, fully CLOSED compact slider configuration at all times, it never slides open, never unfolds, never extends, never transforms, the REVYLINE logo stays exactly as printed, fingers never cover the nozzle area or the logo. Only one product in the whole frame, held only by MARK. Zero changes, no morphing. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–6.0s: MARK lifts the closed irrigator out of the bag, stares at it, his hand trembling slightly. MARK says in Russian, in a shaken whisper: «Что это?.. Почему у меня дрожат руки?»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. He stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+Ambient sound only: quiet bathroom tone, a single soft water drip.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+6 seconds, vertical 9:16.
+
+=== VID vspomni_s01e01_05_flashback_anim
+@use vspomni_s01e01_05_flashback
+@duration 10
+# Сцена 5 — Animation. Продукт-хиро: вспышка памяти, Аня называет модель вслух. 10 секунд.
+Animate this exact scene. This is a warm joyful dreamy cartoon memory moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ANYA: cartoon TOOTH character from the reference image, bright white enamel molar head, light-peach summer dress, stands on the LEFT holding the device.
+- MARK: cartoon TOOTH character from the reference image, bright white enamel molar head, slightly narrow tall crown, casual soft blue home t-shirt, stands on the RIGHT.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts, and ANYA and MARK never blend into each other.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: bright sunny cartoon home bathroom, golden morning light, white tiles, two toothbrush cups on the shelf, a soft dreamy glow at the frame edges. Nothing new appears during the video.
+EMOTIONAL INTENSITY — HIGH, pure happiness: ANYA laughs with sparkling eyes and proudly presents the device; MARK laughs warmly, leaning toward her. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: gentle slow arc around the couple, then a soft settle with the device large and clearly readable in the center; the device stays near-static, only ANYA's hand moves slightly.
+ABSOLUTE PRODUCT LOCK — the product is the Revyline RL 410 portable slider irrigator and stays 100% identical to the attached reference photo, fully CLOSED compact slider configuration at all times, it never slides open, never unfolds, never extends, never transforms, the REVYLINE logo stays exactly as printed, fingers never cover the nozzle area or the logo. Only one product in the whole frame, held only by ANYA, presented clearly toward the camera. Zero changes, no morphing. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–6.0s: ANYA laughs and holds the closed irrigator up between them, presenting it with pride. ANYA says in Russian, laughing and warm: «Наш утренний ритуал! Ревилайн Эр Эль четыреста десять. Месяц без зарядки, он помнит про нас всё!»
+6.0–10.0s: MARK leans a little closer, laughing softly. MARK says in Russian, tender and happy: «Каждое утро. Только ты и я.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: soft morning birds outside the window, a gentle low hum of the device.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+10 seconds, vertical 9:16.
+
+=== VID vspomni_s01e01_06_mirror_anim
+@use vspomni_s01e01_06_mirror
+@duration 6
+# Сцена 6 — Animation. Марк в зеркало: «Кто… ты?». 6 секунд.
+Animate this exact scene. This is a quiet haunted emotional cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. He must NEVER turn into a human, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- MARK: cartoon TOOTH character from the reference image, bright white enamel molar-shaped head, slightly narrow tall crown, soft blue pajamas, stands at the sink in the MIDDLE, his identical reflection in the mirror.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: his tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. The reflection is always identical to him. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on the head at any moment, in every single frame. The head is completely bald smooth tooth enamel.
+SET DETAIL: the same small cozy cartoon bathroom at evening, dim warm lamp light, mirror over the sink. Nothing new appears during the video.
+EMOTIONAL INTENSITY — HIGH but restrained: MARK stares into his own reflection, eyes wide and searching, slow blink, a flicker of the memory passing across his face. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: very slow push-in over his shoulder into the mirror reflection, no cuts.
+ABSOLUTE PRODUCT LOCK — the product is the Revyline RL 410 portable slider irrigator and stays 100% identical to the attached reference photo, fully CLOSED compact slider configuration at all times, it never slides open, never unfolds, never extends, never transforms, the REVYLINE logo stays exactly as printed, fingers never cover the nozzle area or the logo. Only one product in the whole frame, held only by MARK at chest level, near-static. Zero changes, no morphing.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–6.0s: MARK slowly raises his eyes to his reflection, the closed irrigator held still in his hand. MARK says in Russian, shaken, almost a whisper: «Кто… ты? Кто эта девушка?»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. He stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+Ambient sound only: quiet bathroom tone, a faint lamp buzz.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+6 seconds, vertical 9:16.
+
+=== VID vspomni_s01e01_07_ella_night_anim
+@use vspomni_s01e01_07_ella_night
+@duration 8
+# Сцена 7 — Animation. Элла всё видела, забирает несессер. 8 секунд.
+Animate this exact scene. This is a tense scheming cartoon soap-opera moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. She must NEVER turn into a human, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ELLA: cartoon TOOTH character from the reference image, pale ivory enamel with a subtle creamy-yellow tint, long dark cartoon eyelashes, glamorous scarlet dress, stands in the dim corridor in the MIDDLE, clutching the soft travel toiletry bag.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: her tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same dress. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on the head at any moment, in every single frame. The head is completely bald smooth tooth enamel.
+SET DETAIL: dim cartoon hospital corridor at night, cool blue night light, a door slightly ajar with a warm slit of light. Nothing new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM-HIGH, cold and scheming: ELLA glances once toward the door slit, narrows her eyes, hugs the bag tighter, a slow sly smirk spreads. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: slow lateral drift, then a soft push-in on her smirk.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–8.0s: ELLA glances at the door slit, then hugs the travel bag to her chest and turns away down the corridor. ELLA says in Russian, in a cold sly whisper: «Никаких воспоминаний. Никаких ритуалов.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. She stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+Ambient sound only: quiet night corridor hum, soft slow footsteps.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID vspomni_s01e01_08_trash_rain_anim
+@use vspomni_s01e01_08_trash_rain
+@duration 8
+# Сцена 8 — Animation. Клиффхэнгер: ирригатор в мусорке под дождём, байт «вспомнит/не вспомнит». 8 секунд.
+Animate this exact scene. This is a dramatic rainy cliffhanger cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. She must NEVER turn into a human, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ELLA: cartoon TOOTH character from the reference image, pale ivory-yellow tinted enamel, scarlet dress, small red umbrella in one hand, stands beside the trash bin on the RIGHT.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: her tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same dress. The umbrella is a separate rigid handheld prop that never merges with her body. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on the head at any moment, in every single frame. The head is completely bald smooth tooth enamel.
+SET DETAIL: rainy cartoon night street, wet asphalt reflecting one street lamp, a metal trash bin with the lid open, the soft travel bag inside the bin with the closed irrigator lying on top. Nothing new appears during the video.
+EMOTIONAL INTENSITY — HIGH, villainous satisfaction: ELLA looks down into the bin with a cold satisfied smirk, then slowly turns her eyes straight to the camera with a raised brow. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: slow dramatic push-in past ELLA down toward the irrigator in the bin, raindrops glinting on its body; the device stays completely static.
+ABSOLUTE PRODUCT LOCK — the product is the Revyline RL 410 portable slider irrigator and stays 100% identical to the attached reference photo, fully CLOSED compact slider configuration at all times, it never slides open, never unfolds, never extends, never transforms, the REVYLINE logo stays exactly as printed and clearly visible. Only one product in the whole frame, lying still on top of the travel bag inside the bin, no one touches it. Zero changes, no morphing. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–8.0s: ELLA looks down at the bin, smirks, then turns her gaze straight into the camera. ELLA says in Russian, cold, then teasing toward the camera: «Он никогда её не вспомнит. Или… вспомнит? Напиши в комментариях.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. She stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+Ambient sound only: steady gentle rain, a distant soft rumble of the night city.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.

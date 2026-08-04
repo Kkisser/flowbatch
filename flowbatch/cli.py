@@ -251,7 +251,8 @@ def cmd_run(args: argparse.Namespace) -> int:
     queue_project: str | None = args.project or None
     try:
         if args.prompts:
-            text = Path(args.prompts).read_text(encoding="utf-8-sig")
+            # Имя без пути ищется в папке промптов — как и в панели.
+            text = cfg.resolve_queue(args.prompts).read_text(encoding="utf-8-sig")
             jobs, errors, meta = parse_prompts(
                 text, out_dir=cfg.out_dir(), products_dir=cfg.products_dir()
             )
@@ -269,7 +270,7 @@ def cmd_run(args: argparse.Namespace) -> int:
                 jobs = [j for j in jobs if j.kind == args.kind]
             jobs = select_jobs(jobs, only=args.only, from_id=args.from_id, limit=args.limit)
         elif args.sheet:
-            sheet = SheetQueue(args.sheet)
+            sheet = SheetQueue(cfg.resolve_queue(args.sheet))
             rows = sheet.load()
             rows = filter_rows(
                 rows,

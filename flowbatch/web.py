@@ -406,6 +406,9 @@ display:none;z-index:99;box-shadow:0 10px 34px #000c}
   </div>
 </dialog>
 <div id="toast"></div>
+<!-- Подсказка со списком файлов из папки промптов: браузер сам покажет
+     их выпадашкой при клике по полю очереди. -->
+<datalist id="queuefiles"></datalist>
 
 <script>
 const $ = s => document.querySelector(s);
@@ -488,7 +491,8 @@ function slotTemplate(s){
     <button class="btn ghost sm" id="s${n}-del" title="убрать прогон из панели">✕</button>
   </div>
   <div class="row">
-    <input type="text" id="s${n}-src" placeholder="очередь: .xlsx / .yaml / .txt с @project">
+    <input type="text" id="s${n}-src" list="queuefiles"
+           placeholder="очередь: имя файла из папки промптов или полный путь">
     <button class="btn sm" id="s${n}-load">Загрузить</button>
     <button class="btn ghost sm" id="s${n}-pastebtn">текстом…</button>
   </div>
@@ -748,6 +752,8 @@ function render(st){
   if (document.activeElement !== $('#endpoint') && !$('#endpoint').value)
     $('#endpoint').value = st.endpoint || '';
   $('#syntax').textContent = st.syntax_help || '';
+  const qf = (st.queue_files || []).map(f=>`<option value="${esc(f)}">`).join('');
+  if ($('#queuefiles').innerHTML !== qf) $('#queuefiles').innerHTML = qf;
   $('#proddir').textContent = st.products_dir || 'products';
   $('#prodlist').innerHTML = (st.products||[]).length
     ? st.products.map(p=>`<span class="pill" title="@product ${esc(p.name)}">📦 <b>${esc(p.name)}</b>&nbsp;· ${p.files} фото</span>`).join('')
@@ -936,14 +942,11 @@ class RunSlot:
     def load_queue(self, source: str) -> None:
         """Прочитать очередь из .xlsx / .yaml / .txt."""
         self._require_idle()
-        src = (source or "").strip()
-        if not src:
-            raise ValueError("не указан путь к очереди")
-        p = Path(src)
-        if not p.exists():
-            raise FileNotFoundError(f"не найден файл очереди: {p}")
-
-        self.source = src
+        # Имя без пути ищется в папке промптов — см. Config.resolve_queue.
+        p = self.cfg.resolve_queue(source)
+        # Храним разрешённый путь: иначе после переезда файлов в prompts/
+        # сохранённая настройка прогона осталась бы указывать в пустоту.
+        self.source = str(p)
         self.errors = {}
         self.removed = set()
         self.queue_project = None
@@ -995,7 +998,9 @@ class RunSlot:
         _, errors, _ = parse_prompts(text, self.cfg.out_dir(), self.cfg.products_dir())
         if errors:
             raise ValueError("ошибки разбора:\n" + "\n".join(f"• {e}" for e in errors))
-        path = Path(f"prompts_pasted_{self.id}.flow.txt")
+        folder = self.cfg.prompts_dir()
+        folder.mkdir(parents=True, exist_ok=True)
+        path = folder / f"pasted_{self.id}.flow.txt"
         path.write_text(text, encoding="utf-8")
         self.load_queue(str(path))
 
@@ -1491,6 +1496,17 @@ class AppState:
 
     # ------------------------------------------------------------------- вид
 
+    def queue_files(self) -> list[str]:
+        """Имена файлов очередей в папке промптов — для подсказки в панели."""
+        folder = self.cfg.prompts_dir()
+        if not folder.is_dir():
+            return []
+        exts = {".txt", ".text", ".prompts", ".yaml", ".yml", ".xlsx", ".xlsm"}
+        return sorted(
+            (f.name for f in folder.iterdir() if f.is_file() and f.suffix.lower() in exts),
+            key=str.lower,
+        )
+
     def products(self) -> list[dict[str, Any]]:
         base = self.cfg.products_dir()
         if not base.is_dir():
@@ -1545,6 +1561,8 @@ class AppState:
             "results": self.results(),
             "products": self.products(),
             "products_dir": str(self.cfg.products_dir()),
+            "prompts_dir": str(self.cfg.prompts_dir()),
+            "queue_files": self.queue_files(),
             "soften": self.soften_state(fresh=fresh),
             "syntax_help": SYNTAX_HELP,
         }

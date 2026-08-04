@@ -10,6 +10,10 @@ screenshots/
 # Локальный кэш uuid референсов, текст из панели и её настройки
 .flowbatch_refcache.json
 .flowbatch_ui.json
+# Черновики из панели: перезаписываются при каждой вставке текста.
+# Именованные очереди в prompts/ отслеживаются — это рабочий материал.
+prompts/pasted_*.flow.txt
+# Старые имена, до переезда в prompts/
 prompts_pasted.flow.txt
 prompts_pasted_*.flow.txt
 # Фото продуктов — бинарные бренд-активы, в репозиторий не идут.

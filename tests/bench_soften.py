@@ -70,7 +70,7 @@ def _context(text: str, word: str, span: int = 55) -> str:
 
 
 def load_real_prompt() -> str:
-    src = Path(__file__).resolve().parents[1] / "ZASTRYALO_S01E02.flow.txt"
+    src = Path(__file__).resolve().parents[1] / "prompts" / "ZASTRYALO_S01E02.flow.txt"
     jobs, errors, _ = parse(src.read_text(encoding="utf-8-sig"), "out", "products")
     if errors:
         raise SystemExit(f"файл очереди не разобрался: {errors[:2]}")
