@@ -865,9 +865,7 @@ document.body.addEventListener('change', e=>{
 $('#addslot').onclick = async ()=>{ try{ await api('/api/slot/add',{}); }catch(e){ toast(e.message); } tick(); };
 $('#stopall').onclick = async ()=>{ try{ await api('/api/stopall',{}); }catch(e){ toast(e.message); } tick(); };
 $('#killall').onclick = async ()=>{
-  if (!confirm('Бросить текущие задачи ВСЕХ прогонов прямо сейчас?
-
-'
+  if (!confirm('Бросить текущие задачи ВСЕХ прогонов прямо сейчас?\n\n'
     +'Запущенные во Flow генерации доработают, но результаты не скачаются '
     +'и задачи останутся в очередях.')) return;
   try{ await api('/api/stopall',{force:true}); toast('Останавливаю всё немедленно','ok'); }
