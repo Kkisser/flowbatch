@@ -306,8 +306,18 @@ class Runner:
                 # «сторонних поставщиков контента».
                 category = moderation_category(self.cfg, err.detail or "")
                 cat_note = " [сходство с чужим контентом]" if category == "third_party" else ""
-                new_prompt, what, soften_used = self._soften_escalate(
+                new_prompt, what, soften_used, idle = self._soften_escalate(
                     scene_prompt, tried, soften_used, soften_max, category
+                )
+                # Ступени, вернувшие тот же текст, генерацию не запускали —
+                # без этой оговорки «попытка 4/9» читается как «1-3 молча
+                # провалились», хотя их просто не с чем было запускать.
+                idle_note = (
+                    f"\nСтупени {idle[0]}–{idle[-1]} вернули тот же текст — "
+                    "генерация по ним не запускалась."
+                    if len(idle) > 1 else
+                    f"\nСтупень {idle[0]} вернула тот же текст — "
+                    "генерация по ней не запускалась." if idle else ""
                 )
                 if new_prompt is not None:
                     if soften_used != DIALOGUE_ONLY_ATTEMPT:
@@ -321,9 +331,10 @@ class Runner:
                     if err.detail:
                         self.console.print(f"  [dim]{err.detail[:300]}[/dim]")
                     self.notifier.send(
-                        f"⚠️ {job.id}: модерация Flow отклонила промпт{cat_note}.\n"
+                        f"⚠️ {job.id}: модерация Flow отклонила промпт{cat_note}."
+                        f"{idle_note}\n"
                         f"Переписываю ({self.softener.name}, "
-                        f"попытка {soften_used}/{soften_max}): {what}"
+                        f"ступень {soften_used}/{soften_max}): {what}"
                     )
                     job = replace(job, prompt=new_prompt)
                     continue
@@ -348,7 +359,7 @@ class Runner:
         soften_used: int,
         soften_max: int,
         category: str,
-    ) -> tuple[str | None, str, int]:
+    ) -> tuple[str | None, str, int, list[int]]:
         """Идти по лестнице переписываний, пока текст реально не изменится.
 
         Ключевое отличие от «одна попытка — один прогон»: если ступень вернула
@@ -358,18 +369,21 @@ class Runner:
         голые реплики. Ровно на этом сценарии старая логика «не изменил —
         сдаюсь» хоронила задачу после первой же попытки из девяти.
 
-        Возвращает (новый текст | None, описание, использовано попыток).
+        Возвращает (новый текст | None, описание, использовано попыток,
+        номера ступеней, которые вернули уже виденный текст).
         """
+        idle: list[int] = []
         while soften_used < soften_max:
             soften_used += 1
             cand, what = self.softener.soften(scene_prompt, soften_used, category=category)
             if cand.strip() and cand.strip() not in tried:
-                return cand, what, soften_used
+                return cand, what, soften_used, idle
+            idle.append(soften_used)
             self.console.print(
                 f"  [dim]ступень {soften_used}/{soften_max}: текст не изменился — "
                 f"пробую следующую[/dim]"
             )
-        return None, "", soften_used
+        return None, "", soften_used, idle
 
     def _attempt(self, job: Job, soften_used: int = 0) -> None:
         """Один проход: настройки → промпт → референсы → запуск → ожидание → файл.

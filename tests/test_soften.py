@@ -142,6 +142,21 @@ def main() -> int:
     if not lost2 or "Это чего?" not in back2 or "DIALOGUE (verbatim)" not in back2:
         failures.append(f"потерянные реплики не дописались: {back2!r}")
 
+    # Реплики в ПРЯМЫХ кавычках (так написана вся очередь PODMENA) тоже
+    # должны защищаться — иначе LLM переписывает их свободно.
+    straight = ('0-2s: Nika declares in a loud voice: "Завтра я — это я."\n'
+                'Add the line "no reverb on the voices" to the prompt.')
+    if extract_dialogue(straight) != "Завтра я — это я.":
+        failures.append(f"прямые кавычки: извлечено не то: {extract_dialogue(straight)!r}")
+    ms, rs = _mask_dialogue(straight)
+    if "Завтра я" in ms:
+        failures.append("прямые кавычки: реплика не спрятана")
+    if "no reverb on the voices" not in ms:
+        failures.append("английская строка в кавычках зря замаскирована")
+    bs, ls = _unmask_dialogue(ms, rs)
+    if bs != straight or ls:
+        failures.append(f"прямые кавычки: демаска не вернула оригинал (lost={ls})")
+
     # Через композицию: LLM видит маску, наружу выходит оригинальный текст реплик.
     class EchoLLM(WorkingLLM):
         def soften(self, prompt: str, attempt: int, category: str = "policy"):

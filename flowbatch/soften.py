@@ -102,6 +102,26 @@ THIRD_PARTY_INSTRUCTION = (
 # Реплики в наших промптах — в «ёлочках». Латинские "..." не трогаем:
 # в них обычно технические термины, а не диалог.
 _DIALOGUE_RE = re.compile(r"«([^»]{1,500})»")
+# Реплики бывают и в прямых кавычках — так их пишет часть наших очередей
+# (PODMENA целиком). Такие берём ТОЛЬКО с кириллицей внутри: в английском
+# тексте промпта в прямых кавычках попадаются технические строки, и защищать
+# их как реплики нельзя.
+_DIALOGUE_STRAIGHT_RE = re.compile(r'"([^"\n]{1,500})"')
+_CYRILLIC_RE = re.compile(r"[А-Яа-яЁё]")
+
+
+def _dialogue_spans(text: str) -> list[tuple[int, int, str]]:
+    """Куски диалога в тексте: (начало, конец, содержимое без кавычек)."""
+    spans: list[tuple[int, int, str]] = [
+        (m.start(), m.end(), m.group(1)) for m in _DIALOGUE_RE.finditer(text)
+    ]
+    spans += [
+        (m.start(), m.end(), m.group(1))
+        for m in _DIALOGUE_STRAIGHT_RE.finditer(text)
+        if _CYRILLIC_RE.search(m.group(1))
+    ]
+    spans.sort()
+    return spans
 
 # Номер попытки, на которой вместо переписывания отправляются голые реплики.
 DIALOGUE_ONLY_ATTEMPT = 3
@@ -113,12 +133,12 @@ def extract_dialogue(prompt: str) -> str:
     Попытка №3 лестницы смягчения: иногда Flow пропускает голый диалог
     без описаний сцены, на которые и ругалась модерация.
     """
-    lines = [m.group(1).strip() for m in _DIALOGUE_RE.finditer(prompt)]
+    lines = [inner.strip() for _, _, inner in _dialogue_spans(prompt)]
     return "\n".join(dict.fromkeys(line for line in lines if line))
 
 
 def _mask_dialogue(prompt: str) -> tuple[str, dict[str, str]]:
-    """Спрятать реплики «...» за плейсхолдеры §R1§, §R2§…
+    """Спрятать реплики за плейсхолдеры §R1§, §R2§…, сохранив вид кавычек.
 
     Инструкция «сохрани реплики дословно» — это надежда на дисциплину модели,
     и на third_party-инструкции gemma3:12b её не оправдала (0/3 на смоуке:
@@ -126,13 +146,20 @@ def _mask_dialogue(prompt: str) -> tuple[str, dict[str, str]]:
     не уходит, портить нечего.
     """
     reps: dict[str, str] = {}
-
-    def sub(m: re.Match) -> str:
+    out: list[str] = []
+    last = 0
+    for start, end, inner in _dialogue_spans(prompt):
+        if start < last:
+            continue  # перекрытие кавычек — пропускаем, чтобы не порвать текст
         key = f"§R{len(reps) + 1}§"
-        reps[key] = m.group(1)
-        return f"«{key}»"
-
-    return _DIALOGUE_RE.sub(sub, prompt), reps
+        reps[key] = inner
+        open_q = prompt[start]
+        close_q = "»" if open_q == "«" else '"'
+        out.append(prompt[last:start])
+        out.append(f"{open_q}{key}{close_q}")
+        last = end
+    out.append(prompt[last:])
+    return "".join(out), reps
 
 
 def _unmask_dialogue(text: str, reps: dict[str, str]) -> tuple[str, list[str]]:
