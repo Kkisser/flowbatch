@@ -37,6 +37,9 @@ ERR_QUOTA = "quota"
 ERR_UNUSUAL = "unusual_activity"
 ERR_THROTTLE = "throttle"
 ERR_SERVER = "server"
+# Список «+»-пикера отстал от библиотеки: нужного медиа в нём нет, хотя в
+# проекте оно есть. Лечится перезагрузкой вкладки — см. reload_page().
+ERR_STALE_PICKER = "stale_picker"
 ERR_UNKNOWN = "unknown"
 
 _CODE_MAP = {
@@ -324,6 +327,23 @@ class FlowClient:
                 except Exception:  # noqa: BLE001
                     pass
                 self._pw = None
+
+    def reload_page(self, timeout_ms: int = 90_000) -> None:
+        """Перезагрузить вкладку и дождаться готовности редактора.
+
+        Единственный известный способ обновить список «+»-пикера. Он берётся
+        один раз вместе со страницей: в проекте PODMENA пикер показывал 20
+        элементов (первая серия плюс загрузки), тогда как в библиотеке их было
+        34 — всё, сгенерированное в текущей сессии, в пикер не попадало.
+        После перезагрузки — 34 из 34, искомый элемент на месте.
+
+        Промпт и прикреплённые референсы перезагрузка стирает, поэтому
+        вызывать её нужно ДО ввода промпта — задача пойдёт с начала.
+        """
+        self.page.reload(wait_until="domcontentloaded", timeout=timeout_ms)
+        self.page.wait_for_selector(self.cfg.selectors["prompt_editor"], timeout=timeout_ms)
+        # Библиотека и пикер дозагружаются уже после domcontentloaded.
+        self.page.wait_for_timeout(2500)
 
     def focus(self) -> None:
         """Вывести вкладку на передний план: фоновые вкладки троттлятся.
@@ -1137,7 +1157,15 @@ class FlowClient:
             self._confirm_add()
             return
         self.close_add_dialog()
-        raise FlowError(ERR_UNKNOWN, f"В пикере не найден элемент с uuid {uuid}")
+        raise FlowError(
+            ERR_STALE_PICKER,
+            f"В пикере не найден элемент с uuid {uuid}",
+            detail=(
+                "Список пикера Flow загружается один раз вместе со страницей и "
+                "не видит медиа, сгенерированные в этой же сессии. Перезагрузка "
+                "вкладки его обновляет."
+            ),
+        )
 
     def upload_to_library(self, path: Path, timeout_sec: int = 120) -> str:
         """Загрузить локальный файл в библиотеку проекта и вернуть его uuid.

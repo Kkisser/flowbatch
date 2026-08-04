@@ -15,6 +15,7 @@ from .flow_client import (
     ERR_MODERATION,
     ERR_QUOTA,
     ERR_SERVER,
+    ERR_STALE_PICKER,
     ERR_THROTTLE,
     ERR_UNKNOWN,
     ERR_UNUSUAL,
@@ -37,6 +38,9 @@ RETRYABLE = {ERR_THROTTLE, ERR_SERVER, ERR_UNKNOWN}
 # «Подозрительная активность» — тоже повтор, но с длинными паузами:
 # Flow просит притормозить, а не сменить промпт.
 RETRY_SLOW = {ERR_UNUSUAL}
+# Сколько раз за одну задачу перезагружать вкладку из-за отставшего пикера.
+# Одной перезагрузки хватает: она подтягивает всё, что успело сгенерироваться.
+STALE_RELOAD_MAX = 2
 
 # Признаки сетевого сбоя в тексте исключения Playwright — такие лечатся ретраем.
 _NET_MARKERS = (
@@ -65,6 +69,10 @@ _ADVICE = {
         "отдохнуть час-другой и подними паузы в config.yaml."
     ),
     ERR_MODERATION: "Промпт не прошёл модерацию. Задача помечена FAILED, очередь продолжается.",
+    ERR_STALE_PICKER: (
+        "Пикер Flow не показал нужный референс даже после перезагрузки вкладки. "
+        "Проверь, что задача-источник действительно отработала в ЭТОМ проекте."
+    ),
 }
 
 
@@ -242,6 +250,7 @@ class Runner:
         # текст не запускаем: генерация с тем же промптом обречена и только
         # жжёт время и лимиты.
         tried = {job.prompt.strip()}
+        reloads = 0
         while True:
             attempt += 1
             try:
@@ -274,6 +283,22 @@ class Runner:
                     "Flow пожаловался на подозрительную активность",
                     detail=err.detail,
                 )
+
+            # Пикер не увидел медиа, сгенерированное в этой же сессии: его
+            # список грузится вместе со страницей и сам не обновляется.
+            # Перезагружаем вкладку и проходим задачу заново — генерация при
+            # этом не повторяется, повторяются только настройки и промпт.
+            if err.kind == ERR_STALE_PICKER and reloads < STALE_RELOAD_MAX:
+                reloads += 1
+                self.console.print(
+                    "  [yellow]список пикера отстал от библиотеки — перезагружаю "
+                    f"вкладку ({reloads}/{STALE_RELOAD_MAX}) и повторяю задачу[/yellow]"
+                )
+                try:
+                    self.client.reload_page()
+                except Exception as exc:  # noqa: BLE001 — перезагрузка не должна ронять очередь
+                    raise _as_flow_error(exc) from exc
+                continue
 
             if err.kind in (RETRYABLE | RETRY_SLOW) and attempt <= self.max_retries:
                 if err.kind in RETRY_SLOW:
