@@ -90,9 +90,13 @@ def main() -> int:
         failures.append(f"прерванная задача посчитана сделанной: done={out.done}")
     if not out.stopped_reason or "прерван" not in out.stopped_reason:
         failures.append(f"причина остановки не та: {out.stopped_reason!r}")
-    # Статус вернулся в TODO — задача не потеряна и не помечена ошибкой.
-    if statuses and statuses[-1] != ("vid_01", "TODO"):
-        failures.append(f"итоговый статус не TODO: {statuses}")
+    # Статус STOPPED — видно, что задачу прервали, а не что её не начинали.
+    if statuses and statuses[-1] != ("vid_01", "STOPPED"):
+        failures.append(f"итоговый статус не STOPPED: {statuses}")
+    # И этот статус обязан попадать в работу при следующем «Старте».
+    from flowbatch.web import RUNNABLE
+    if "STOPPED" not in RUNNABLE:
+        failures.append("STOPPED не берётся в работу при следующем запуске")
     if client.polls < 1:
         failures.append("ожидание даже не начиналось")
 
@@ -109,7 +113,7 @@ def main() -> int:
         for f in failures:
             print(f"  - {f}")
         return 1
-    print("OK: «Стоп сейчас» прерывает ожидание, задача остаётся в очереди")
+    print("OK: «Стоп сейчас» прерывает ожидание, задача помечается STOPPED")
     return 0
 
 

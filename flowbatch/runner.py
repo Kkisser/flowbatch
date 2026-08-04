@@ -193,10 +193,11 @@ class Runner:
                 self._run_one(job)
                 out.done += 1
             except FlowError as exc:
-                # «Стоп сейчас» — не провал задачи: FAILED не пишем, чтобы
-                # она осталась в очереди и подхватилась при следующем старте.
+                # «Стоп сейчас» — не провал задачи: FAILED не пишем. Статус
+                # STOPPED виден отдельно от нетронутых TODO, но «Старт» без
+                # галочек берёт его в работу наравне с ними.
                 if exc.kind == ERR_ABORTED:
-                    self._notify_status(job, "TODO")
+                    self._notify_status(job, "STOPPED")
                     out.stopped_reason = "прервано пользователем («Стоп сейчас»)"
                     self.console.print(f"[yellow]{exc}[/yellow]")
                     break

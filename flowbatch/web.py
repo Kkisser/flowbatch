@@ -73,6 +73,11 @@ LOOPBACK = {"127.0.0.1", "::1", "localhost", ""}
 
 STATUS_DISPLAY = {"ok": "DONE", "failed": "ERROR", "dry_run": "DRY", "IN_PROGRESS": "IN_PROGRESS"}
 
+# Статусы, которые «Старт» без галочек берёт в работу. STOPPED — задача,
+# брошенная кнопкой «Стоп сейчас»: она не сделана и не сломана, её просто
+# прервали, поэтому следующий запуск обязан её подхватить.
+RUNNABLE = {"TODO", "STOPPED"}
+
 
 def tailscale_ip() -> str | None:
     """IPv4 этой машины в Tailscale, если он поднят.
@@ -197,6 +202,9 @@ font-size:11px;font-weight:600;white-space:nowrap}
 .s-ERROR{background:#2e161a;color:var(--err)}
 .s-DRY{background:#221936;color:var(--dry)}
 .s-SKIP{background:#1a202b;color:var(--todo)}
+/* Прервана «Стоп сейчас»: не сделана и не сломана — свой цвет, чтобы
+   отличать от нетронутых TODO и от настоящих ошибок. */
+.s-STOPPED{background:#2b2113;color:#d9a441}
 
 .tchips{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:9px}
 .tchips .lbl{font-size:11.5px;color:var(--dim2);text-transform:uppercase;letter-spacing:.06em}
@@ -1170,7 +1178,7 @@ class RunSlot:
             if selected:
                 if row["id"] in selected:
                     chosen.append(row["id"])
-            elif self.statuses.get(row["id"]) == "TODO":
+            elif self.statuses.get(row["id"]) in RUNNABLE:
                 chosen.append(row["id"])
         if limit is not None:
             if limit < 1:
