@@ -246,11 +246,18 @@ class Runner:
         # реплики): если и она отклонена, попытка №4 должна переписывать сцену
         # дальше, а не смягчать три строчки диалога.
         scene_prompt = job.prompt
+        # Исходник очереди. job.prompt по ходу лестницы подменяется, поэтому
+        # для второго захода нужен отдельно сохранённый оригинал.
+        original_prompt = job.prompt
         # Всё, что уже отклонялось (или сейчас в работе), — повторно такой
         # текст не запускаем: генерация с тем же промптом обречена и только
         # жжёт время и лимиты.
         tried = {job.prompt.strip()}
         reloads = 0
+        # Заходов по лестнице: исчерпали ступени одним бэкендом — берём
+        # следующий и идём заново от ИСХОДНОГО промпта.
+        passes_max = max(1, int(self.cfg.get("moderation.soften.passes", 2)))
+        passes = 1
         while True:
             attempt += 1
             try:
@@ -325,6 +332,29 @@ class Runner:
             # Реакция на ЛЮБУЮ формулировку предупреждения одна и та же —
             # лестница переписываний; контекст ошибки влияет только на
             # инструкцию (policy / third_party).
+            # Лестница исчерпана — пробуем ЕЩЁ РАЗ, но другой моделью.
+            # Часто дело не в формулировках, а в переписывающей модели:
+            # локальная gemma и облачный Gemini правят по-разному. Заход
+            # начинается с исходного промпта — свежей модели нужна настоящая
+            # сцена, а не текст, изжёванный девятью переписываниями.
+            if (err.kind == ERR_MODERATION and self.softener
+                    and soften_used >= soften_max and passes < passes_max):
+                nxt = self.softener.next_backend()
+                if nxt:
+                    passes += 1
+                    soften_used = 0
+                    # Ветка ниже сразу перепишет исходник новым бэкендом, так
+                    # что генерация с уже отклонённым текстом не повторится.
+                    scene_prompt = original_prompt
+                    self.console.print(
+                        f"  [bold yellow]лестница {soften_max}/{soften_max} не помогла[/bold yellow] — "
+                        f"заход {passes}/{passes_max} на другом бэкенде: {nxt}"
+                    )
+                    self.notifier.send(
+                        f"🔁 {job.id}: {soften_max} ступеней не пробили модерацию.\n"
+                        f"Заход {passes}/{passes_max} на другом бэкенде: {nxt}"
+                    )
+
             if err.kind == ERR_MODERATION and self.softener and soften_used < soften_max:
                 # Категория считается каждый раз заново: задача могла сначала
                 # споткнуться о «наши правила», а после переписывания — о
@@ -371,8 +401,9 @@ class Runner:
             if soften_used and err.kind == ERR_MODERATION:
                 err = FlowError(
                     err.kind,
-                    f"{err} (промпт переписывался, попыток лестницы: {soften_used} из "
-                    f"{soften_max} — не помогло)",
+                    f"{err} (переписывали {passes} заход(а) по {soften_max} ступеней, "
+                    f"последний бэкенд: {self.softener.name if self.softener else '—'} "
+                    "— не помогло)",
                     detail=err.detail,
                 )
             raise err

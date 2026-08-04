@@ -285,9 +285,28 @@ class GeminiSoftener:
     name = "gemini"
     BASE = "https://generativelanguage.googleapis.com/v1beta"
 
+    # Коды, при которых модель не виновата и надо просто взять следующую:
+    # 429 — кончилась квота, 503 — модель перегружена, 404 — снята.
+    SWITCH_CODES = (404, 429, 503)
+
     def __init__(self, cfg: Config) -> None:
-        self.model = str(cfg.get("moderation.soften.gemini_model", "gemini-2.0-flash"))
+        models = [
+            str(m).strip()
+            for m in (cfg.get("moderation.soften.gemini_models", []) or [])
+            if str(m).strip()
+        ]
+        if not models:
+            models = [str(cfg.get("moderation.soften.gemini_model", "gemini-flash-latest"))]
+        self.models = models
+        # Индекс текущей модели. Двигается вперёд при 429/503/404 и там и
+        # остаётся: если у первой кончилась дневная квота, долбиться в неё
+        # каждым промптом бессмысленно.
+        self._idx = 0
         self.key = (os.getenv("GEMINI_API_KEY") or "").strip()
+
+    @property
+    def model(self) -> str:
+        return self.models[min(self._idx, len(self.models) - 1)]
 
     @property
     def available(self) -> bool:
@@ -313,41 +332,68 @@ class GeminiSoftener:
                 out.append(name)
         return sorted(out)
 
-    def soften(self, prompt: str, attempt: int, category: str = "policy") -> tuple[str, str]:
+    def soften(self, prompt: str, attempt: int, category: str = "policy",
+               log: Callable[[str], None] | None = None) -> tuple[str, str]:
+        """Переписать промпт, при необходимости перебрав цепочку моделей."""
         if not self.key:
             raise SoftenError("нет GEMINI_API_KEY")
-        try:
-            r = httpx.post(
-                f"{self.BASE}/models/{self.model}:generateContent",
-                headers=self._headers(),
-                json={
-                    "contents": [{
-                        "parts": [{"text": f"{_instruction(attempt, category)}\n\nПромпт:\n{prompt}"}],
-                    }],
-                    # Прогрев с попытками: на поздних нужен другой текст,
-                    # а не тот же самый отказ слово в слово.
-                    "generationConfig": {"temperature": _temp(attempt)},
-                },
-                timeout=45,
-            )
-        except Exception as exc:  # noqa: BLE001
-            raise SoftenError(f"Gemini недоступен: {type(exc).__name__}") from exc
-        if r.status_code != 200:
-            raise SoftenError(f"Gemini HTTP {r.status_code}: {_api_error(r.text)}")
-        data = r.json()
-        try:
-            parts = data["candidates"][0]["content"]["parts"]
-            text = "\n".join(p.get("text", "") for p in parts).strip()
-        except (KeyError, IndexError, ValueError) as exc:
-            # Пустой candidates обычно означает, что промпт зарубила уже
-            # модерация самого Gemini — это стоит показать открытым текстом.
-            reason = (data.get("promptFeedback") or {}).get("blockReason")
-            if reason:
-                raise SoftenError(f"Gemini сам заблокировал промпт ({reason})") from exc
-            raise SoftenError("Gemini вернул неожиданный ответ") from exc
-        if not text:
-            raise SoftenError("Gemini вернул пустой текст")
-        return text, f"переписано Gemini ({self.model})"
+        say = log or (lambda s: None)
+        last = ""
+        # Начинаем с текущей модели: если предыдущая уже выбыла по квоте,
+        # возвращаться к ней смысла нет до конца прогона.
+        while self._idx < len(self.models):
+            model = self.models[self._idx]
+            try:
+                r = httpx.post(
+                    f"{self.BASE}/models/{model}:generateContent",
+                    headers=self._headers(),
+                    json={
+                        "contents": [{
+                            "parts": [{
+                                "text": f"{_instruction(attempt, category)}\n\nПромпт:\n{prompt}"
+                            }],
+                        }],
+                        # Прогрев с попытками: на поздних нужен другой текст,
+                        # а не тот же самый отказ слово в слово.
+                        "generationConfig": {"temperature": _temp(attempt)},
+                    },
+                    timeout=90,
+                )
+            except Exception as exc:  # noqa: BLE001
+                raise SoftenError(f"Gemini недоступен: {type(exc).__name__}") from exc
+
+            if r.status_code in self.SWITCH_CODES and self._idx + 1 < len(self.models):
+                why = {404: "снята с обслуживания", 429: "кончилась квота",
+                       503: "перегружена"}.get(r.status_code, f"HTTP {r.status_code}")
+                self._idx += 1
+                say(f"Gemini: {model} — {why}, перехожу на {self.models[self._idx]}")
+                continue
+            if r.status_code != 200:
+                raise SoftenError(f"Gemini HTTP {r.status_code}: {_api_error(r.text)}")
+
+            data = r.json()
+            try:
+                parts = data["candidates"][0]["content"]["parts"]
+                text = "\n".join(p.get("text", "") for p in parts).strip()
+            except (KeyError, IndexError, ValueError) as exc:
+                # Пустой candidates обычно означает, что промпт зарубила уже
+                # модерация самого Gemini — это стоит показать открытым текстом.
+                reason = (data.get("promptFeedback") or {}).get("blockReason")
+                if reason:
+                    raise SoftenError(f"Gemini сам заблокировал промпт ({reason})") from exc
+                raise SoftenError("Gemini вернул неожиданный ответ") from exc
+            if not text:
+                # Пустой ответ бывает у «думающих» моделей, съевших лимит на
+                # рассуждения. Следующая модель обычно справляется.
+                last = f"{model} вернула пустой текст"
+                if self._idx + 1 < len(self.models):
+                    self._idx += 1
+                    say(f"Gemini: {last}, перехожу на {self.models[self._idx]}")
+                    continue
+                raise SoftenError(last)
+            return text, f"переписано Gemini ({model})"
+
+        raise SoftenError(last or "цепочка моделей Gemini исчерпана")
 
 
 def _api_error(body: str) -> str:
@@ -520,16 +566,45 @@ class ClaudeSoftener:
 
 
 class Softener:
-    """Композиция: выбранный LLM-бэкенд с фоллбэком на правила."""
+    """Композиция: выбранный LLM-бэкенд с фоллбэком на правила.
 
-    def __init__(self, primary, rules: RuleSoftener, log: Callable[[str], None] | None = None) -> None:
-        self.primary = primary  # None | GeminiSoftener | ClaudeSoftener
+    spares — очередь запасных бэкендов на ВТОРОЙ заход по лестнице. Если
+    девять ступеней одной моделью модерацию не пробили, дело может быть не
+    в формулировках, а в самой модели: локальная gemma и облачный Gemini
+    переписывают по-разному. next_backend() переключает на следующий.
+    """
+
+    def __init__(self, primary, rules: RuleSoftener,
+                 log: Callable[[str], None] | None = None, spares: Any = ()) -> None:
+        self.primary = primary  # None | OllamaSoftener | GeminiSoftener | ClaudeSoftener
         self.rules = rules
+        self.spares = [s for s in spares]
         self._log = log or (lambda s: None)
 
     @property
     def name(self) -> str:
         return self.primary.name if self.primary is not None else self.rules.name
+
+    def next_backend(self) -> str | None:
+        """Переключиться на следующий запасной бэкенд. None — их больше нет.
+
+        Доступность проверяется здесь, а не при сборке: Ollama могли поднять
+        или уронить уже посреди прогона.
+        """
+        while self.spares:
+            cand = self.spares.pop(0)
+            try:
+                ok = bool(cand.available)
+            except Exception:  # noqa: BLE001 — недоступность не должна ронять задачу
+                ok = False
+            if ok:
+                self.primary = cand
+                return cand.name
+        # Правила — последний рубеж: они всегда работают и хоть что-то меняют.
+        if self.primary is not None:
+            self.primary = None
+            return self.rules.name
+        return None
 
     def soften(self, prompt: str, attempt: int, category: str = "policy") -> tuple[str, str]:
         # Попытка №3 — особая: вместо переписывания отправляем ГОЛЫЕ реплики
@@ -546,7 +621,11 @@ class Softener:
             # после — их дословность гарантирована механикой, а не инструкцией.
             masked, reps = _mask_dialogue(prompt)
             try:
-                out, what = self.primary.soften(masked, attempt, category)
+                # Gemini умеет рассказать, что перешёл на другую модель.
+                if isinstance(self.primary, GeminiSoftener):
+                    out, what = self.primary.soften(masked, attempt, category, log=self._log)
+                else:
+                    out, what = self.primary.soften(masked, attempt, category)
             except SoftenError as exc:
                 self._log(f"смягчитель {self.primary.name} не сработал ({exc}) — падаю на правила")
             else:
@@ -573,18 +652,26 @@ def build_softener(cfg: Config, log: Callable[[str], None] | None = None) -> Sof
     ollama = OllamaSoftener(cfg)
     gemini = GeminiSoftener(cfg)
     claude = ClaudeSoftener(cfg)
-    if backend == "ollama":
-        return Softener(ollama if ollama.available else None, rules, log)
-    if backend == "gemini":
-        return Softener(gemini if gemini.available else None, rules, log)
-    if backend == "claude":
-        return Softener(claude if claude.available else None, rules, log)
+    # Приоритет: локальная Ollama первой — бесплатно, без квот и без отправки
+    # промптов наружу; затем Gemini, затем Claude.
+    chain = [ollama, gemini, claude]
 
-    # auto: локальная Ollama первой — бесплатно, без квот и без отправки
-    # промптов наружу; затем Gemini, затем Claude; правила всегда в запасе.
-    for candidate in (ollama, gemini, claude):
+    def compose(primary: Any) -> Softener:
+        """Собрать смягчитель, отдав остальные бэкенды в запас на второй заход."""
+        spares = [c for c in chain if c is not primary]
+        return Softener(primary, rules, log, spares=spares)
+
+    if backend == "ollama":
+        return compose(ollama if ollama.available else None)
+    if backend == "gemini":
+        return compose(gemini if gemini.available else None)
+    if backend == "claude":
+        return compose(claude if claude.available else None)
+
+    # auto: первый доступный из цепочки; правила всегда в запасе.
+    for candidate in chain:
         if candidate.available:
-            return Softener(candidate, rules, log)
+            return compose(candidate)
     return Softener(None, rules, log)
 
 
