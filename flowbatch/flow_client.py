@@ -495,6 +495,61 @@ class FlowClient:
             )
         return "opened"
 
+    def rename_media(self, uuid: str, new_name: str, timeout_ms: int = 15_000) -> str:
+        """Переименовать элемент библиотеки по его uuid. Возвращает новое имя.
+
+        Путь проверен вживую: навести на плитку -> у неё появляется
+        единственная кнопка с aria-haspopup=menu -> пункт «Переименовать»
+        -> поле ввода -> Enter. Кнопка появляется ТОЛЬКО при наведении,
+        поэтому hover обязателен.
+        """
+        rename_label = self.cfg.locale.get("rename_media", "Переименовать")
+        tiles = self.page.locator(f'{self.cfg.selectors["virtuoso_item_list"]} > div')
+        n = tiles.count()
+        for i in range(n):
+            tile = tiles.nth(i)
+            try:
+                if uuid not in (tile.locator("img, video").first.get_attribute("src") or ""):
+                    continue
+            except Exception:  # noqa: BLE001 — плитка могла уехать из DOM
+                continue
+            tile.scroll_into_view_if_needed(timeout=timeout_ms)
+            tile.hover(timeout=timeout_ms)
+            self.page.wait_for_timeout(400)
+            menu_btn = tile.locator('button[aria-haspopup="menu"]').last
+            if menu_btn.count() == 0:
+                raise FlowError(ERR_UNKNOWN, f"У плитки {uuid[:8]} нет меню «Ещё»")
+            menu_btn.click(timeout=timeout_ms)
+            self.page.wait_for_timeout(500)
+            item = self.page.get_by_role("menuitem", name=rename_label)
+            if item.count() == 0:
+                self.page.keyboard.press("Escape")
+                raise FlowError(ERR_UNKNOWN, f"В меню плитки нет пункта «{rename_label}»")
+            item.first.click(timeout=timeout_ms)
+            self.page.wait_for_timeout(600)
+            # Поле переименования — единственное активное поле ввода.
+            field = self.page.locator(
+                'input:focus, [contenteditable="true"]:focus, [role=dialog] input'
+            ).first
+            if field.count() == 0:
+                self.page.keyboard.press("Escape")
+                raise FlowError(ERR_UNKNOWN, "Поле переименования не появилось")
+            # Поле предзаполнено текущим именем Flow — читаем его, чтобы
+            # шаблон вида "{n}_{name}" сохранил исходное название.
+            try:
+                current = (field.input_value() or "").strip()
+            except Exception:  # noqa: BLE001 — contenteditable вместо input
+                current = (field.inner_text() or "").strip()
+            new_name = new_name.replace("{name}", current) if "{name}" in new_name else new_name
+            field.click()
+            self.page.keyboard.press("Control+A")
+            self.page.keyboard.press("Delete")
+            field.type(new_name, delay=15)
+            self.page.keyboard.press("Enter")
+            self.page.wait_for_timeout(900)
+            return new_name
+        raise FlowError(ERR_STALE_PICKER, f"Плитка с uuid {uuid} не найдена в библиотеке")
+
     def rename_project(self, name: str) -> str:
         """Переименовать текущий проект и проверить, что имя применилось."""
         loc = self.page.locator(self.cfg.selectors["project_title"])

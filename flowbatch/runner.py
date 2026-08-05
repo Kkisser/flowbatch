@@ -555,6 +555,10 @@ class Runner:
         )
         self.client.raise_for_errors(launch_ts)
 
+        # 7a. Нумерация результата в самом Flow. Не критично для задачи:
+        #     сбой переименования не должен ронять уже готовую генерацию.
+        self._rename_result(item, job)
+
         # 8. Скачивание — со своим ретраем. Выключается в config.yaml
         #    (generation.download_results: false): результат остаётся в
         #    библиотеке Flow, а файл можно забрать позже командой fetch —
@@ -591,6 +595,29 @@ class Runner:
             prompt_used=job.prompt if soften_used else None,
         )
         self._notify_status(job, STATUS_OK, result_path=str(dest))
+
+    def _rename_result(self, item: Any, job: Job) -> None:
+        """Дать свежей плитке сквозной номер внутри проекта.
+
+        Шаблон в generation.rename_pattern: {n} — номер, {name} — имя,
+        которое дал Flow, {id} — id задачи. Пустой шаблон выключает.
+        Любая ошибка только логируется: генерация уже потрачена, терять
+        задачу из-за неудавшегося переименования нельзя.
+        """
+        pattern = str(self.cfg.get("generation.rename_pattern", "") or "").strip()
+        if not pattern:
+            return
+        try:
+            done = self.log.completed_ids(project=self.project_id) if self.log else set()
+            number = len(done) + 1
+            name = pattern.replace("{n}", str(number)).replace("{id}", job.id)
+            self.client.rename_media(item.name, name)
+            self.console.print(f"  переименовано в Flow: {name.replace('{name}', '…')}")
+        except Exception as exc:  # noqa: BLE001 — не роняем готовую задачу
+            self.console.print(
+                f"  [yellow]переименовать в Flow не удалось: "
+                f"{scrub(str(exc))[:140]}[/yellow]"
+            )
 
     def _download_with_retry(self, item: Any, job: Job) -> Path:
         """Отдельный ретрай на скачивание.
