@@ -623,10 +623,26 @@ class ClaudeCliSoftener:
         self.exe = str(cfg.get("moderation.soften.claude_cli_path", "") or "").strip() \
             or find_claude_exe()
         self.model = str(cfg.get("moderation.soften.claude_cli_model", "opus") or "opus")
-        self.timeout = int(cfg.get("moderation.soften.claude_cli_timeout_sec", 240))
+        self.effort = str(cfg.get("moderation.soften.claude_cli_effort", "") or "").strip()
+        self.fallback = str(cfg.get("moderation.soften.claude_cli_fallback", "") or "").strip()
+        self.timeout = int(cfg.get("moderation.soften.claude_cli_timeout_sec", 300))
         self.extra_args = [
             str(a) for a in (cfg.get("moderation.soften.claude_cli_args", []) or [])
         ]
+
+    def _flags(self, attempt: int) -> list[str]:
+        """Флаги CLI. Проверены на 2.1.222: --model, --effort, --fallback-model."""
+        flags = ["--model", self.model]
+        # На поздних ступенях сцену надо ломать радикально — там усилие
+        # оправдано. На ранних оно только жжёт лимиты подписки.
+        effort = self.effort
+        if effort and attempt >= 7 and effort in ("low", "medium"):
+            effort = "high"
+        if effort:
+            flags += ["--effort", effort]
+        if self.fallback:
+            flags += ["--fallback-model", self.fallback]
+        return flags + self.extra_args
 
     @property
     def available(self) -> bool:
@@ -645,7 +661,8 @@ class ClaudeCliSoftener:
                 "Claude Code CLI; путь можно задать в moderation.soften.claude_cli_path"
             )
         text = f"{_instruction(attempt, category)}\n\nПромпт:\n{prompt}"
-        base = [self.exe, "-p", "--model", self.model, *self.extra_args]
+        flags = self._flags(attempt)
+        base = [self.exe, "-p", *flags]
         # Две формы вызова: сначала текст через stdin (не упирается в предел
         # длины командной строки Windows — наши промпты бывают по 6000+
         # символов вместе с инструкцией), при пустом ответе — аргументом.
@@ -653,8 +670,7 @@ class ClaudeCliSoftener:
             res = self._run(base, text)
             out = (res.stdout or "").strip()
             if not out:
-                res = self._run([self.exe, "-p", text, "--model", self.model,
-                                 *self.extra_args], None)
+                res = self._run([self.exe, "-p", text, *flags], None)
                 out = (res.stdout or "").strip()
         except subprocess.TimeoutExpired as exc:
             raise SoftenError(f"claude CLI не ответил за {self.timeout}с") from exc
@@ -664,6 +680,20 @@ class ClaudeCliSoftener:
         if not out:
             err = scrub((res.stderr or "").strip())[:200] or f"код возврата {res.returncode}"
             raise SoftenError(f"claude CLI вернул пустой ответ ({err})")
+
+        # CLI печатает свои ошибки в stdout обычным текстом и с кодом 0 —
+        # «Not logged in · Please run /login» прошло бы дальше как готовый
+        # промпт. Ловим такие ответы по маркерам и по явной краткости.
+        low = out.lower()
+        for marker in ("not logged in", "please run /login", "invalid api key",
+                       "credit balance is too low", "usage limit reached"):
+            if marker in low:
+                raise SoftenError(f"claude CLI: {out.splitlines()[0][:160]}")
+        if len(out) < min(200, len(prompt) // 4):
+            raise SoftenError(
+                f"claude CLI вернул подозрительно короткий ответ "
+                f"({len(out)} симв. против {len(prompt)}): {out[:120]}"
+            )
         return _strip_fence(out), f"переписано Claude CLI ({self.model})"
 
 
