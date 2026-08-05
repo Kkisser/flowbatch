@@ -126,6 +126,20 @@ def _dialogue_spans(text: str) -> list[tuple[int, int, str]]:
 # Номер попытки, на которой вместо переписывания отправляются голые реплики.
 DIALOGUE_ONLY_ATTEMPT = 3
 
+# Насколько ответ модели может отличаться по длине от исходного промпта,
+# чтобы считаться переписанным промптом, а не чем-то ещё.
+#
+# Повод конкретный: gemma-4 через Gemini API не переписывает промпт, а
+# ПЕРЕСКАЗЫВАЕТ инструкцию списком — ответ выходил в 14-17 раз длиннее
+# исходника. Без этой проверки такой пересказ ушёл бы во Flow как
+# «смягчённый промпт» и сжёг бы генерацию. Нижняя граница ловит обрезанный
+# ответ и отказ вида «I can't help with that».
+#
+# Настоящие переписывания на замерах укладывались в 0.97-1.03, так что
+# запас здесь огромный и добросовестный вариант отбросить нельзя.
+MIN_REWRITE_RATIO = 0.35
+MAX_REWRITE_RATIO = 2.5
+
 
 def extract_dialogue(prompt: str) -> str:
     """Достать из промпта только реплики «...» — по одной на строку.
@@ -629,13 +643,22 @@ class Softener:
             except SoftenError as exc:
                 self._log(f"смягчитель {self.primary.name} не сработал ({exc}) — падаю на правила")
             else:
-                out, lost = _unmask_dialogue(out, reps)
-                if lost:
+                # Ответ должен быть переписанным промптом, а не пересказом
+                # инструкции и не отказом — см. MIN/MAX_REWRITE_RATIO.
+                ratio = len(out.strip()) / max(1, len(masked.strip()))
+                if not MIN_REWRITE_RATIO <= ratio <= MAX_REWRITE_RATIO:
                     self._log(
-                        f"модель выкинула {len(lost)} реплик(и) вместе с плейсхолдерами — "
-                        "дописаны блоком DIALOGUE в конец"
+                        f"{self.primary.name} вернул текст в {ratio:.1f}x от исходного — "
+                        "это не переписанный промпт, отбрасываю и падаю на правила"
                     )
-                return out, what
+                else:
+                    out, lost = _unmask_dialogue(out, reps)
+                    if lost:
+                        self._log(
+                            f"модель выкинула {len(lost)} реплик(и) вместе с плейсхолдерами — "
+                            "дописаны блоком DIALOGUE в конец"
+                        )
+                    return out, what
         return self.rules.soften(prompt, attempt, category)
 
 

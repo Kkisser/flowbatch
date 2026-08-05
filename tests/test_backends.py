@@ -87,6 +87,48 @@ def main() -> int:
     finally:
         S.httpx.post = real_post
 
+    # --- ответ, который не является переписанным промптом, отбрасывается ---
+    # Живой повод: gemma-4 пересказывает инструкцию списком вместо правки,
+    # и такой пересказ ушёл бы во Flow как промпт, сжигая генерацию.
+    scene_long = "CAMERA: kitchen.\nACTION: something happens on the table.\n" * 3
+
+    class Rambler:
+        name = "rambler"
+        available = True
+
+        def soften(self, prompt, attempt, category="policy"):
+            return ("* Задача: переписать промпт.\n" * 60), "пересказ"
+
+    rambled = S.Softener(Rambler(), S.RuleSoftener(CFG), log=lambda s: None)
+    out_r, what_r = rambled.soften(scene_long, 1)
+    if "Задача: переписать" in out_r:
+        failures.append("пересказ инструкции не отброшен — уйдёт во Flow как промпт")
+    if "Wholesome" not in out_r:
+        failures.append(f"после отбраковки не сработал фоллбэк на правила: {what_r}")
+
+    class Truncator:
+        name = "truncator"
+        available = True
+
+        def soften(self, prompt, attempt, category="policy"):
+            return "CAM", "обрезок"
+
+    trunc = S.Softener(Truncator(), S.RuleSoftener(CFG), log=lambda s: None)
+    if trunc.soften(scene_long, 1)[0].strip() == "CAM":
+        failures.append("обрезанный ответ не отброшен")
+
+    # Добросовестный ответ той же длины проходит.
+    class Honest:
+        name = "honest"
+        available = True
+
+        def soften(self, prompt, attempt, category="policy"):
+            return prompt.replace("something happens", "something calm happens"), "ок"
+
+    honest = S.Softener(Honest(), S.RuleSoftener(CFG), log=lambda s: None)
+    if "calm" not in honest.soften(scene_long, 1)[0]:
+        failures.append("нормальное переписывание зря отбраковано")
+
     # --- второй заход: бэкенд переключается, лестница начинается заново ---
     class Backend:
         def __init__(self, name, available=True):
