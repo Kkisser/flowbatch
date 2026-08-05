@@ -305,6 +305,9 @@ display:none;z-index:99;box-shadow:0 10px 34px #000c}
   <h1>flow<b>batch</b></h1>
   <span class="sep"></span>
   <span class="pill" id="bstat"><span class="dot" style="background:var(--todo)"></span>…</span>
+  <span class="pill" id="stale" style="display:none;background:#3a2d10;border-color:#7a5c14;color:#f0c674"
+        title="Панель работает на коде, который был на диске в момент её запуска. Свежие правки — и новые возможности — начнут действовать только после перезапуска.">
+    ⚠ код обновился — перезапусти панель</span>
   <button class="btn sm" id="bbtn">Запустить браузер</button>
   <select id="bcount" class="sm" title="сколько вкладок Flow должно быть открыто" style="padding:4px 8px">
     <option>1</option><option>2</option><option selected>3</option><option>5</option><option>7</option>
@@ -443,6 +446,10 @@ function renderHeader(st){
   $('#bstat').innerHTML = `<span class="dot${st.slots.some(s=>s.running)?' live':''}" style="background:${ok?'var(--ok)':'var(--err)'}"></span>`
     + (ok ? `${esc(st.browser_name||'браузер')} · <b>${n}</b>&nbsp;вкладок` : 'браузер не запущен');
   $('#bbtn').textContent = ok ? '＋ вкладки' : '▶ Запустить браузер';
+  // Код на диске новее запущенного процесса: молчать нельзя — прогон уйдёт
+  // на старой логике, и это заметно только по отсутствующему результату.
+  const stale = $('#stale');
+  stale.style.display = st.code_stale ? '' : 'none';
   const anyRun = st.slots.some(s=>s.running);
   $('#stopall').style.display = anyRun ? '' : 'none';
   $('#killall').style.display = anyRun ? '' : 'none';
@@ -1390,6 +1397,11 @@ class AppState:
         self._tabs_error = ""
         self._tabs_at = 0.0
         self._browser_name = ""
+        # Снимок «свежести» кода на момент старта — см. code_is_stale().
+        try:
+            self._code_mtime = max(p.stat().st_mtime for p in self._code_files())
+        except (OSError, ValueError):
+            self._code_mtime = 0.0
         # (когда, статусы бэкендов, имя активного). Активный кэшируется вместе
         # со статусами: его вычисление тоже ходит в Ollama по сети.
         self._soften_cache: tuple[float, list[dict[str, Any]], str | None] = (0.0, [], None)
@@ -1607,6 +1619,28 @@ class AppState:
             out.append({"name": d.name, "files": n})
         return out
 
+    def code_is_stale(self) -> bool:
+        """Изменился ли код на диске после запуска этого процесса.
+
+        Панель — обычный процесс: правки в .py она подхватывает только при
+        перезапуске. Это уже стоило целого прогона: нумерацию результатов
+        добавили в 18:36, а очередь в 21:05 крутилась на панели, поднятой
+        в 17:58, — и номера молча не проставились. Молчать об этом нельзя.
+        """
+        try:
+            newest = max(p.stat().st_mtime for p in self._code_files())
+        except (OSError, ValueError):
+            return False
+        return newest > self._code_mtime + 1.0
+
+    def _code_files(self) -> list[Path]:
+        pkg = Path(__file__).resolve().parent
+        files = list(pkg.glob("*.py"))
+        cfg_path = getattr(self.cfg, "path", None)
+        if cfg_path and Path(cfg_path).is_file():
+            files.append(Path(cfg_path))
+        return files
+
     def snapshot(self, fresh: bool = False) -> dict[str, Any]:
         tabs = self.tabs(max_age=0.0 if fresh else 3.0)
         owner: dict[str, RunSlot] = {}
@@ -1617,6 +1651,7 @@ class AppState:
             "max_slots": MAX_SLOTS,
             "max_tabs": MAX_TABS,
             "total_tab_cap": TOTAL_TAB_CAP,
+            "code_stale": self.code_is_stale(),
             "browser_ok": not self._tabs_error,
             "browser_name": self._browser_name,
             "endpoint": self.cfg.get("cdp.endpoint"),
