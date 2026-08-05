@@ -327,6 +327,25 @@ class Runner:
                 if err.kind in RETRY_SLOW:
                     # Просьба притормозить: паузы заметно длиннее обычных.
                     backoff = min(600, 90 * (2 ** (attempt - 1)))
+                    # И замедляем ритм ВСЕЙ очереди до конца прогона — иначе
+                    # следующая задача придёт в том же темпе и получит то же.
+                    if self.pacer is not None:
+                        new_base, new_long = self.pacer.slow_down()
+                        self.console.print(
+                            f"  [yellow]ритм замедлен: пауза {new_base:.0f}с, "
+                            f"длинная {new_long:.0f}с[/yellow]"
+                        )
+                        self.notifier.send(
+                            f"🐢 {job.id}: Flow пожаловался на подозрительную активность.\n"
+                            f"Задача перегенерируется через {backoff}с, "
+                            f"паузы подняты до {new_base:.0f}с "
+                            f"(длинная {new_long:.0f}с) до конца прогона."
+                        )
+                    else:
+                        self.notifier.send(
+                            f"🐢 {job.id}: Flow пожаловался на подозрительную активность.\n"
+                            f"Перегенерирую через {backoff}с."
+                        )
                 else:
                     backoff = min(300, 15 * (2 ** (attempt - 1)))
                 self.console.print(

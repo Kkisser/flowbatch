@@ -86,6 +86,24 @@ class Pacer:
         self._lock = threading.Lock()
         self._next_at = 0.0
         self._count = 0
+        self._factor = float(cfg.get("antiban.slowdown_factor", 2.5))
+        self._max_base = float(cfg.get("antiban.slowdown_max_base_sec", 90))
+        self._max_long = float(cfg.get("antiban.slowdown_max_long_sec", 600))
+        self.slowdowns = 0
+
+    def slow_down(self) -> tuple[float, float]:
+        """Замедлить ритм после жалобы Flow на подозрительную активность.
+
+        Паузы подобраны так, чтобы очередь шла бодро, но если Flow всё же
+        насторожился, спорить с ним бессмысленно — ритм увеличивается до
+        конца прогона. Возвращает новые (обычная пауза, длинная пауза).
+        """
+        with self._lock:
+            self.slowdowns += 1
+            self.base = min(self._max_base, self.base * self._factor)
+            self.long_sec = min(self._max_long, self.long_sec * self._factor)
+            self.jitter = min(self.base / 2, self.jitter * self._factor)
+            return self.base, self.long_sec
 
     def wait_turn(self, stop: Callable[[], bool], console: Console) -> None:
         with self._lock:
