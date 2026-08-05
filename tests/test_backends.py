@@ -188,6 +188,46 @@ def main() -> int:
     if back_b.seen and not back_b.seen[0].startswith("original prompt"):
         failures.append(f"второй заход начался не с исходника: {back_b.seen[0]!r}")
 
+    # --- Claude CLI: подписочный бэкенд, ключ не нужен ---
+    cli = S.ClaudeCliSoftener(CFG)
+    if cli.exe is None and cli.available:
+        failures.append("available=True при ненайденном exe")
+
+    calls: list[dict] = []
+
+    class Res:
+        def __init__(self, out="", err="", code=0):
+            self.stdout, self.stderr, self.returncode = out, err, code
+
+    # stdin-форма отдаёт текст — второй формы вызова быть не должно
+    cli.exe = "C:/fake/claude.exe"
+    cli._run = lambda args, text: (calls.append({"args": args, "text": text}),
+                                   Res("готовый текст"))[1]
+    out, what = cli.soften("сцена", 1)
+    if out != "готовый текст" or "opus" not in what:
+        failures.append(f"claude-cli вернул не то: {out!r} / {what!r}")
+    if len(calls) != 1 or calls[0]["text"] is None:
+        failures.append(f"первый вызов должен идти через stdin: {calls}")
+    if "--model" not in calls[0]["args"]:
+        failures.append(f"модель не передана: {calls[0]['args']}")
+
+    # пустой stdout -> запасная форма (текст аргументом)
+    calls.clear()
+    seq = [Res(""), Res("со второй попытки")]
+    cli._run = lambda args, text: (calls.append(text), seq.pop(0))[1]
+    out2, _ = cli.soften("сцена", 1)
+    if out2 != "со второй попытки" or len(calls) != 2 or calls[1] is not None:
+        failures.append(f"запасная форма вызова не сработала: {out2!r}, {calls}")
+
+    # совсем пусто -> понятная ошибка, а не молчание
+    cli._run = lambda args, text: Res("", "boom", 1)
+    try:
+        cli.soften("сцена", 1)
+        failures.append("пустой ответ CLI не поднял ошибку")
+    except S.SoftenError as exc:
+        if "boom" not in str(exc):
+            failures.append(f"в ошибке нет причины: {exc}")
+
     if failures:
         print("FAIL")
         for f in failures:

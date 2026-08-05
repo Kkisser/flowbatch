@@ -1,0 +1,274 @@
+@project PODMENA_V2_P02
+
+=== IMG podmena_v2_p02_01_hall
+@use PODMENA_V2_P01 :: podmena_v2_p01_01_hero
+# Сцена 1 — Image. Якорь части: немая сцена Ники и Веры в прихожей ночью.
+3D Pixar style, vertical 9:16. The grand mansion entrance hall at night — marble floor, curved staircase with a gilded railing, crystal chandelier, tall front door standing open behind with cold blue night light spilling in against the warm amber interior.
+CRITICAL CHARACTER LOCK: NIKA — cartoon tooth character, adult molar-shaped head, soft dull yellow enamel, oversized dark glossy sunglasses pushed up on top of her enamel head, hot-pink cropped jacket over a white top, white mini skirt, tiny gold strappy sandals on her root-feet, one little hand frozen mid-wave, the other on her glossy white mini rolling suitcase, her grin faltering. VERA — cartoon tooth character, identical adult molar-shaped head but gleaming bright white glossy enamel, oversized cream knit sweater, soft grey pleated skirt, tiny beige flat shoes, tiny sparkling ring on her left hand, frozen halfway up the staircase, both little hands gripping the gilded railing, eyes wide with horror. Only these two characters in the frame; a long shadow of a third person stretches across the marble floor from a side corridor. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: Nika MIDDLE in the doorway foreground, Vera RIGHT on the staircase in the background, their eyes locked across the hall. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic cold blue backlight against warm amber interior, wide two-plane shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podmena_v2_p02_02_closet
+@use podmena_v2_p02_01_hall
+# Сцена 2 — Image. Гардеробная: сёстры шепчутся среди платьев.
+3D Pixar style, vertical 9:16. A cramped luxurious walk-in wardrobe — rows of hanging dresses and coats pressed close on both sides, a single warm bulb above, stacked shoe boxes on shelves, a narrow strip of light under the closed door, dust motes in the bulb glow.
+CRITICAL CHARACTER LOCK: VERA — cartoon tooth character, adult molar-shaped head, gleaming bright white glossy enamel, oversized cream knit sweater, tiny sparkling ring on her left hand, both little hands raised in a strangled gesture, eyebrows drawn together, whisper-furious. NIKA — cartoon tooth character, identical molar-shaped head, soft dull yellow enamel, oversized dark glossy sunglasses knocked slightly crooked on her head, hot-pink cropped jacket, white mini skirt, one shoulder shrugged, completely unbothered, holding a coat sleeve away from her face with one little finger. Only these two characters in the frame, standing at arm's length, not touching. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: the two twin tooth characters face each other in the tight space, Vera LEFT, Nika RIGHT, squeezed between hanging clothes, a dress slipping off its hanger behind them. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic single warm bulb key light with soft shadows, tight two-shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podmena_v2_p02_03_dinner
+@use podmena_v2_p02_01_hall
+@use PODMENA_V2_P01 :: podmena_v2_p01_02_family
+# Сцена 3 — Image. Ужин: Регина объявляет приезд бабушки.
+3D Pixar style, vertical 9:16. The formal mansion dining room at night — long dark-wood table with a white tablecloth, tall lit candles in silver candelabras, porcelain plates, crystal water glasses, heavy velvet curtains, warm candlelight and long soft shadows.
+CRITICAL CHARACTER LOCK: REGINA — cartoon tooth character, adult molar-shaped head, polished pearl-white enamel, structured emerald-green skirt suit, triple-strand pearl necklace, small emerald pillbox hat with a pearl pin, thin sharply arched eyebrows, deep-red painted lips, seated at the head of the table, one little finger raised, announcing with cold satisfaction. VERA — cartoon tooth character, adult molar-shaped head, gleaming bright white glossy enamel, oversized cream knit sweater, tiny sparkling ring on her left hand, fork frozen halfway, eyes wide. ARTUR — cartoon tooth character, large adult molar-shaped head, bright white enamel, navy-blue three-piece suit, open-collar white shirt, rubbing the top of his enamel head with a pained expression. Only these three characters in the frame. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: Regina RIGHT at the head of the table, Vera MIDDLE facing the camera, Artur LEFT opposite her. Everyone full body on their chairs, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm candlelight from below, medium three-shot across the table, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podmena_v2_p02_04_night
+@use podmena_v2_p02_01_hall
+@product rl095/
+# Сцена 4 — Image. Ночь: Ника не может включить щётку, Вера в дверях.
+3D Pixar style, vertical 9:16. A luxurious marble mansion bathroom at night, lit by a single warm sconce above a large round mirror, veined white marble sink, gold taps, folded cream towel, door open to a dark corridor.
+CRITICAL CHARACTER LOCK: NIKA — cartoon tooth character, adult molar-shaped head, soft dull yellow enamel, oversized dark glossy sunglasses pushed up on her head, silky pink slip robe instead of her jacket, standing at the sink, gripping the toothbrush awkwardly in her fist, jabbing at the handle with her little thumb, brow furrowed in irritation. VERA — cartoon tooth character, identical molar-shaped head, gleaming bright white glossy enamel, oversized cream knit sweater, tiny sparkling ring on her left hand, leaning against the doorframe behind, arms crossed, one eyebrow raised, holding back a laugh. Only these two characters in the frame, not touching. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The toothbrush is the Revyline RL 095 Cloud Dancer: slender minimalist body in soft matte cloud-white (warm off-white) limited-edition Cloud Dancer color, smooth rounded elongated handle, one single round power button on the upper front of the handle, small "REVYLINE" lettering on the front of the handle, slim removable neck stem, compact oval brush head with soft white bristles. Do not change its color, shape, button, head, or add extra buttons/logos. Only one product in the whole frame, held only in NIKA's hand. Zero changes, no morphing.
+Composition: Nika MIDDLE at the sink in three-quarter view, the whole device fully inside the frame; Vera RIGHT in the doorway behind her, softly out of focus. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm sconce light against cool night shadow, medium two-shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podmena_v2_p02_05_product
+@use podmena_v2_p02_04_night
+@product rl095/
+# Сцена 5 — Image. ПРОДУКТ-ХИРО: Вера учит Нику ритуалу, щётка у Ники.
+3D Pixar style, vertical 9:16. The same luxurious marble mansion bathroom at night, warm sconce light above the round mirror, gold taps, a glass of water and a folded cream towel on the marble edge.
+CRITICAL CHARACTER LOCK: NIKA — cartoon tooth character, adult molar-shaped head, soft dull yellow enamel, oversized dark glossy sunglasses pushed up on her head, silky pink slip robe, holding the toothbrush upright in a careful new pencil-style grip, sceptical pout, one eyebrow arched. VERA — cartoon tooth character, identical molar-shaped head, gleaming bright white glossy enamel, oversized cream knit sweater, tiny sparkling ring on her left hand, standing beside her sister, warm patient teacher expression, one little hand miming a light pencil grip in the air, not touching Nika or the device. Only these two characters in the frame, their reflections soft in the mirror behind. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The toothbrush is the Revyline RL 095 Cloud Dancer: slender minimalist body in soft matte cloud-white (warm off-white) limited-edition Cloud Dancer color, smooth rounded elongated handle, one single round power button on the upper front of the handle, small "REVYLINE" lettering on the front of the handle, slim removable neck stem, compact oval brush head with soft white bristles. Do not change its color, shape, button, head, or add extra buttons/logos. Only one product in the whole frame, held only in NIKA's hand. Zero changes, no morphing.
+Composition: the two twin tooth characters side by side at the sink facing the camera in three-quarter view, Vera LEFT coaching with gestures, Nika RIGHT holding the device, the WHOLE device fully inside the frame. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm sconce light, medium-close two-shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podmena_v2_p02_06_babushka
+@use podmena_v2_p02_01_hall
+@use PODMENA_V2_P01 :: podmena_v2_p01_07_regina
+# Сцена 6 — Image. Эталон Бабушки: завтрак, настоящую Нику объявляют фальшивкой.
+3D Pixar style, vertical 9:16. A sunlit mansion breakfast room in the morning — tall windows with sheer curtains, a round table with a white cloth, a silver teapot, porcelain cups, a tiered stand with pastries, potted palms in the corners, bright warm morning light.
+CRITICAL CHARACTER LOCK: BABUSHKA — petite elderly cartoon tooth character, small stooped molar-shaped head, soft ivory-white enamel, big round thick spectacles magnifying her sharp blue eyes, dark-purple velvet high-collar dress, black lace shawl over her shoulders, oval cameo brooch at her small neck, tiny black buckled shoes on her root-feet, one little hand gripping a polished wooden cane with a brass handle, the other raised with a small pointing finger, leaning forward and sniffing sharply. NIKA — cartoon tooth character, adult molar-shaped head, soft dull yellow enamel, oversized dark glossy sunglasses pushed up on her head, hot-pink cropped jacket, white mini skirt, bending politely down toward the little elderly tooth, little hands spread in wounded protest. REGINA — cartoon tooth character, adult molar-shaped head, polished pearl-white enamel, emerald-green skirt suit, triple-strand pearl necklace, small emerald pillbox hat with a pearl pin, standing behind them, arms folded, watching with cold delight, no penlight and no toothbrush in this frame. Only these three characters in the frame. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: Babushka MIDDLE tiny and stooped, Nika RIGHT bending toward her, Regina LEFT behind. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic bright warm morning light, medium-wide three-shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podmena_v2_p02_07_uv
+@use podmena_v2_p02_06_babushka
+# Сцена 7 — Image. УФ-фонарик: налёт на жёлтой эмали Ники светится синим.
+3D Pixar style, vertical 9:16. The same breakfast room with the sheer curtains now half drawn, the room fallen into cool shadow, the breakfast table with the silver teapot and pastries in the foreground.
+CRITICAL CHARACTER LOCK: REGINA — cartoon tooth character, adult molar-shaped head, polished pearl-white enamel, emerald-green skirt suit, triple-strand pearl necklace, small emerald pillbox hat, arm outstretched, holding a slim violet UV penlight aimed at Nika, a narrow cone of violet light crossing the frame. NIKA — cartoon tooth character, adult molar-shaped head, soft dull yellow enamel, oversized dark glossy sunglasses pushed up on her head, hot-pink cropped jacket, seated at the table, head tilted back in a forced grimace of a smile; where the violet beam touches her enamel near her drawn mouth, small patches glow a soft luminous blue-violet against the dim room — this is a light effect only, her enamel base color stays the same. BABUSHKA — petite elderly cartoon tooth character, small stooped molar-shaped head, soft ivory-white enamel, big round thick spectacles reflecting the violet glow, dark-purple velvet dress, black lace shawl, cameo brooch, wooden cane, leaning in with a small shocked round mouth. Only these three characters in the frame. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: Regina LEFT with the penlight, Nika MIDDLE in the violet beam, Babushka RIGHT leaning in. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic cool violet key light against warm shadow, dust motes in the beam, medium three-shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podmena_v2_p02_08_cliff
+@use podmena_v2_p02_06_babushka
+@use podmena_v2_p02_01_hall
+# Сцена 8 — Image. Клиффхэнгер: Регина требует правды, Вера в дверях.
+3D Pixar style, vertical 9:16. The same shadowed breakfast room, with a tall open doorway to the corridor on the right side of the frame, a shaft of warm corridor light falling through it across the floor.
+CRITICAL CHARACTER LOCK: REGINA — cartoon tooth character, adult molar-shaped head, polished pearl-white enamel, emerald-green skirt suit, triple-strand pearl necklace, small emerald pillbox hat, leaning over the table toward Nika, the violet penlight lowered but still lit in her little hand, chin lifted, deep-red lips forming a hard question. NIKA — cartoon tooth character, adult molar-shaped head, soft dull yellow enamel, oversized dark glossy sunglasses pushed up on her head, hot-pink cropped jacket, pinned in her chair, both little palms raised, genuinely speechless. BABUSHKA — petite elderly cartoon tooth character, small stooped molar-shaped head, soft ivory-white enamel, big round thick spectacles, dark-purple velvet dress, black lace shawl, tiny hands folded on the brass cane handle, grimly satisfied. VERA — cartoon tooth character, adult molar-shaped head, gleaming bright white glossy enamel, oversized cream knit sweater, tiny sparkling ring on her left hand, standing framed in the open doorway, backlit by warm corridor light, one little hand on the doorframe, eyes lowered, guilt on her face, slightly out of focus. Only these four characters in the frame. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: Regina LEFT foreground leaning over the table, Nika MIDDLE pinned in her chair, Babushka beside her, Vera RIGHT in the doorway background, the composition leading the eye toward Vera. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic dim cool room against a warm doorway shaft, deep three-plane shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== VID podmena_v2_p02_01_hall_anim
+@use podmena_v2_p02_01_hall
+@duration 8
+# Сцена 1 — Animation. Немая сцена, шаги Регины за кадром. 8 секунд.
+Animate this exact scene. This is a dramatic comedic cartoon moment with fast dynamic editing.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- NIKA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with soft dull yellow enamel, oversized dark glossy sunglasses pushed up on her head, hot-pink cropped jacket, white mini skirt, tiny gold strappy sandals, glossy white mini rolling suitcase, stands MIDDLE in the doorway.
+- VERA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with gleaming bright white enamel, oversized cream knit sweater, tiny sparkling ring on her left hand, frozen on the staircase RIGHT.
+REGINA is heard ONLY as an off-screen voice from a side corridor and is NEVER visible in frame.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. Nika stays yellow, Vera stays white for the entire clip.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: grand mansion entrance hall at night, open front door with cold blue light, curved staircase with gilded railing, warm amber interior, a wardrobe door at the side. Nothing new appears during the video.
+EMOTIONAL INTENSITY — HIGH: Nika breezy then startled; Vera in rising silent panic; the off-screen voice cuts like a blade. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: starts low behind the suitcase, cranes up into the hall, whip-pans to the staircase, then a tense hold as the footsteps approach.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.0s: Nika strides in and throws her little arms wide. Nika says in Russian, loud and cheerful: «Сюрприз. Я вернулась.»
+2.0–3.5s: Whip-pan to the staircase; Vera freezes mid-step, gripping the railing; a silent beat between them.
+3.5–5.0s: Vera says in Russian, in a soft trembling whisper: «Ты обещала неделю.»
+5.0–7.0s: Sharp heeled footsteps echo from a side corridor; a long shadow slides across the marble. Regina's voice calls from OFF-SCREEN in Russian, crisp and cold: «Ника? Это ты внизу?» Both twins snap their heads toward the sound.
+7.0–8.0s: Vera says in Russian, in an urgent hiss: «Прячься.» Nika darts toward the wardrobe door.
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: suitcase wheels on marble, night wind through the open door, approaching heeled footsteps echoing, a grandfather clock ticking.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID podmena_v2_p02_02_closet_anim
+@use podmena_v2_p02_02_closet
+@duration 8
+# Сцена 2 — Animation. Ссора шёпотом в гардеробной. 8 секунд.
+Animate this exact scene. This is a comedic whisper-argument cartoon moment with fast dynamic editing.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- VERA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with gleaming bright white enamel, oversized cream knit sweater, tiny sparkling ring on her left hand, stands LEFT.
+- NIKA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with soft dull yellow enamel, oversized dark glossy sunglasses crooked on her head, hot-pink cropped jacket, white mini skirt, stands RIGHT.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. The characters never touch each other.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: cramped walk-in wardrobe, rows of hanging dresses and coats, one warm bulb, stacked shoe boxes, a strip of light under the closed door. Nothing new appears during the video.
+EMOTIONAL INTENSITY — HIGH comedic: Vera furious in a strangled whisper, Nika infuriatingly casual. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: tight handheld, small nervous sways between the two faces, one quick push-in on Nika's open palm at the end.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.5s: Vera shakes both raised little hands. Vera says in Russian, whisper-shouting: «Ты просила НЕДЕЛЮ!»
+2.5–4.5s: Nika shrugs one shoulder and flicks a coat sleeve away from her face. Nika says in Russian, flat and bored: «В Дубае скучно.»
+4.5–6.5s: Vera tips her head back against the hanging coats, then leans in again. Vera says in Russian, exasperated: «А у меня тут праздник?» A dress slips off its hanger and drops behind them.
+6.5–8.0s: Nika extends an open little palm between them, wiggling her fingers toward the sparkling ring on Vera's hand. Nika says in Russian, sweetly: «Отдай кольцо.» Quick push-in on the palm; Vera's eyes narrow.
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: hangers sliding on a rail, rustling fabric, the soft thump of a dress hitting the floor, muffled house silence.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID podmena_v2_p02_03_dinner_anim
+@use podmena_v2_p02_03_dinner
+@duration 8
+# Сцена 3 — Animation. Анонс бабушки-рентгена. 8 секунд.
+Animate this exact scene. This is a comedic, softly ominous cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ARTUR: cartoon TOOTH character from the reference image, large adult molar tooth-shaped head with bright white enamel, navy-blue three-piece suit, open-collar white shirt, seated LEFT.
+- VERA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with gleaming bright white enamel, oversized cream knit sweater, tiny sparkling ring on her left hand, seated MIDDLE.
+- REGINA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with polished pearl-white enamel, emerald-green skirt suit, triple-strand pearl necklace, small emerald pillbox hat, seated RIGHT at the head of the table.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: formal dining room at night, long table, lit candles in silver candelabras, porcelain, crystal glasses, velvet curtains. Nothing new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM: Regina savoring the announcement; Artur wearily protesting; Vera quietly alarmed. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: slow lateral slide along the table from Artur to Regina, then a snap-in on Vera's frozen face.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.5s: Regina sets her glass down with a click and raises one little finger. Regina says in Russian, crisp and ceremonious: «Завтра семейный завтрак. Приезжает бабушка.»
+2.5–4.5s: Artur lets his fork drop to the plate and rubs the top of his enamel head. Artur says in Russian, tired and pleading: «Мам, может, не надо.»
+4.5–6.5s: Regina turns her head slowly toward him, candle flames bending. Regina says in Russian, with relish: «Она видит людей насквозь.»
+6.5–8.0s: Snap-in on Vera, fork frozen mid-air. Vera says in Russian, quiet and uneasy: «Насквозь — это как?» A candle gutters.
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: cutlery clinking on porcelain, a glass set down on wood, faint candle crackle, a chair creaking.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID podmena_v2_p02_04_night_anim
+@use podmena_v2_p02_04_night
+@product rl095/
+@duration 8
+# Сцена 4 — Animation. «Она сломана» — «Она выключена». 8 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- NIKA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with soft dull yellow enamel, oversized dark glossy sunglasses pushed up on her head, silky pink slip robe, stands MIDDLE at the sink holding the toothbrush.
+- VERA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with gleaming bright white enamel, oversized cream knit sweater, tiny sparkling ring on her left hand, leans on the doorframe RIGHT in the background.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. Nika stays yellow, Vera stays white for the entire clip. The characters never touch each other.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: marble bathroom at night, round mirror with warm sconce, marble sink, gold taps, folded towel, open door to a dark corridor. Nothing new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM comedic: Nika haughty then baffled; Vera dry and amused. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: medium-close on Nika at the sink with a small drift, then a rack focus to Vera in the doorway and back.
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo, only one product in the whole frame, held only by NIKA, zero changes, no morphing. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.5s: Nika lifts her chin at her own reflection. Nika says in Russian, haughty and theatrical: «Завтра я — это я. Роль сдана.»
+2.5–5.5s: She jabs her little thumb at the handle three times — nothing happens. She turns the whole device over in her hand and shakes it once. Nika says in Russian, with total confidence: «Она сломана.»
+5.5–8.0s: Focus racks to Vera in the doorway; Vera points one little finger at the round button. Vera says in Russian, dry and amused: «Она выключена.» Nika presses the round button; the brush head starts vibrating with a soft sonic hum; Nika stares at the humming device, blinking.
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: the soft electric hum of the sonic toothbrush switching on at the end, a faint water drip in the marble sink, quiet night house silence.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID podmena_v2_p02_05_product_anim
+@use podmena_v2_p02_05_product
+@product rl095/
+@duration 10
+# Сцена 5 — Animation. Продукт-хиро: Вера учит Нику ритуалу с RL 095. 10 секунд.
+Animate this exact scene. This is a soft, warm, comedic sisterly cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- VERA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with gleaming bright white enamel, oversized cream knit sweater, tiny sparkling ring on her left hand, stands LEFT, coaching with gestures only, never touching Nika or the device.
+- NIKA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with soft dull yellow enamel, oversized dark glossy sunglasses pushed up on her head, silky pink slip robe, stands RIGHT at the sink holding the toothbrush.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. Nika stays yellow and Vera stays white for the entire clip; Nika's enamel color does NOT change in this scene.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: the same marble bathroom at night, round mirror with warm sconce, marble sink, gold taps, a glass of water and a folded cream towel on the marble edge. Nothing new appears during the video.
+EMOTIONAL INTENSITY — LOW to MEDIUM: Vera patient and gently teasing; Nika sceptical, clumsy, then quietly softened; a warm sisterly beat at the end. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: slow push-in to a medium-close two-shot, holding the whole product in frame at all times.
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo, only one product in the whole frame, held only by NIKA, zero changes, no morphing. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–3.0s: Nika adjusts her grip on the toothbrush while Vera mimes a light pencil grip in the air beside her. Vera says in Russian, warm and patient: «Revyline RL 095 Cloud Dancer. Держи как ручку и не дави.»
+3.0–5.5s: Nika presses the round button; the brush head starts vibrating with a soft sonic hum and she flinches, blinking. Vera says in Russian, calm and encouraging: «Таймер на две минуты. Сама остановит.»
+5.5–8.0s: Nika gently polishes the crown of her yellow enamel head in awkward small circles, a tiny wisp of foam near her smile. Vera watches her, then says in Russian, with a small teasing smile: «Первый раз в жизни?»
+8.0–10.0s: Nika answers through the foam without looking at her. Nika says in Russian, defensive and grumbling: «Не начинай.» The two sisters catch each other's eyes in the mirror and almost smile.
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: the soft electric hum of the sonic toothbrush, running tap water briefly, a glass tapped softly on marble.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+10 seconds, vertical 9:16.
+
+=== VID podmena_v2_p02_06_babushka_anim
+@use podmena_v2_p02_06_babushka
+@duration 8
+# Сцена 6 — Animation. Бабушка объявляет настоящую Нику фальшивкой. 8 секунд.
+Animate this exact scene. This is a comedic scandal cartoon moment with fast dynamic editing.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- BABUSHKA: petite elderly cartoon TOOTH character from the reference image, small stooped molar tooth-shaped head with soft ivory-white enamel, big round thick spectacles, dark-purple velvet high-collar dress, black lace shawl, oval cameo brooch, polished wooden cane with a brass handle, stands MIDDLE.
+- NIKA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with soft dull yellow enamel, oversized dark glossy sunglasses pushed up on her head, hot-pink cropped jacket, white mini skirt, stands RIGHT bending toward the little elderly tooth.
+- REGINA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with polished pearl-white enamel, emerald-green skirt suit, triple-strand pearl necklace, small emerald pillbox hat, stands LEFT in the background, arms folded.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. Nika stays yellow, Babushka stays soft ivory-white, Regina stays pearl-white for the entire clip. The characters never touch each other.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: sunlit mansion breakfast room, tall windows with sheer curtains, round table with a white cloth, silver teapot, porcelain cups, tiered stand with pastries, potted palms. Nothing new appears during the video.
+EMOTIONAL INTENSITY — HIGH comedic: Babushka imperious, then scandalized; Nika sweetly fake, then wounded; Regina savoring every second in the background. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: starts low at Babushka's height, rises slightly, then snaps to a close-up on her magnified eyes behind the spectacles, then back to a medium three-shot.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.0s: Babushka taps her cane twice on the floor and beckons with a small finger. Babushka says in Russian, thin, cracked and imperious: «Наклонись, деточка.» Nika bends down toward her with a bright forced smile.
+2.0–4.5s: Babushka sniffs sharply twice near her, recoils, and her eyes go huge behind the thick lenses; snap close-up on the flashing spectacles.
+4.5–7.0s: She jabs her little finger up at Nika. Babushka says in Russian, loud and scandalized: «Дыхание как из пепельницы. Это НЕ моя внучка!» In the background Regina's smile spreads slowly.
+7.0–8.0s: Nika straightens up, little palms out. Nika says in Russian, wounded and protesting: «Бабуль, это же я!»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: a wooden cane tapping on parquet, teaspoons clinking on porcelain, birds outside the tall windows, a chair scraping.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID podmena_v2_p02_07_uv_anim
+@use podmena_v2_p02_07_uv
+@duration 8
+# Сцена 7 — Animation. УФ-проверка: налёт светится синим. 8 секунд.
+Animate this exact scene. This is a comedic dramatic reveal cartoon moment with fast dynamic editing.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- REGINA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with polished pearl-white enamel, emerald-green skirt suit, triple-strand pearl necklace, small emerald pillbox hat, slim violet UV penlight in her little hand, stands LEFT.
+- NIKA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with soft dull yellow enamel, oversized dark glossy sunglasses pushed up on her head, hot-pink cropped jacket, seated MIDDLE at the table.
+- BABUSHKA: petite elderly cartoon TOOTH character from the reference image, small stooped molar tooth-shaped head with soft ivory-white enamel, big round thick spectacles, dark-purple velvet dress, black lace shawl, cameo brooch, wooden cane, leans in RIGHT.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. Nika stays yellow, Babushka stays soft ivory-white, Regina stays pearl-white for the entire clip. The glowing patches under the violet beam are a LIGHT EFFECT only — Nika's enamel base color and texture stay identical.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: the same breakfast room with sheer curtains half drawn, the room in cool shadow, breakfast table with silver teapot and pastries in the foreground. Nothing new appears during the video.
+EMOTIONAL INTENSITY — HIGH: Regina cold and surgical; Nika frozen in a forced grin; Babushka shocked, spectacles flashing. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: slow arc around the table from Regina's shoulder toward Nika, then a push-in on the glowing patches, then a snap to Babushka.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.0s: Regina draws the violet penlight, clicks it on and levels it at Nika. Regina says in Russian, crisp and cold: «Сейчас проверим.» The curtains sway and the room dims.
+2.0–4.5s: The violet cone lands on Nika's forced grin; small patches of soft luminous blue-violet light appear on her yellow enamel near her drawn mouth; the camera pushes in on the glow.
+4.5–6.5s: Babushka leans in, her spectacles reflecting the violet glow. Babushka says in Russian, in a thin shocked breath: «Светится. Синим.»
+6.5–8.0s: Nika snaps her mouth shut, then opens it again. Nika says in Russian, bright and desperate: «Это лампа такая!» Nobody moves.
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: a small plastic click of the penlight switch, a sharp collective intake of breath, a teaspoon dropping onto a saucer, curtains rustling.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID podmena_v2_p02_08_cliff_anim
+@use podmena_v2_p02_08_cliff
+@duration 10
+# Сцена 8 — Animation. Клиффхэнгер: «Где НАСТОЯЩАЯ Ника?» + призыв в комменты. 10 секунд.
+Animate this exact scene. This is a dramatic comedic cliffhanger cartoon moment with fast dynamic editing.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- REGINA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with polished pearl-white enamel, emerald-green skirt suit, triple-strand pearl necklace, small emerald pillbox hat, the violet penlight lowered but lit in her little hand, stands LEFT in the foreground leaning over the table.
+- NIKA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with soft dull yellow enamel, oversized dark glossy sunglasses pushed up on her head, hot-pink cropped jacket, pinned in her chair MIDDLE, both little palms raised.
+- BABUSHKA: petite elderly cartoon TOOTH character from the reference image, small stooped molar tooth-shaped head with soft ivory-white enamel, big round thick spectacles, dark-purple velvet dress, black lace shawl, tiny hands folded on the brass cane handle, seated beside Nika.
+- VERA: cartoon TOOTH character from the reference image, adult molar tooth-shaped head with gleaming bright white enamel, oversized cream knit sweater, tiny sparkling ring on her left hand, stands RIGHT framed in the open doorway, backlit by warm corridor light.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. Nika stays yellow, Vera stays white, Babushka stays soft ivory-white, Regina stays pearl-white for the entire clip.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: the same shadowed breakfast room, tall open doorway to the corridor on the right with a shaft of warm light, breakfast table with silver teapot and pastries. Nothing new appears during the video.
+EMOTIONAL INTENSITY — VERY HIGH melodrama, ending on a sly wink to the audience: Regina icy and demanding; Nika speechless; Vera guilty and quiet; Babushka grimly satisfied, then mischievous toward the camera. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: medium-close on Regina leaning over the table, then a slow deliberate pan right across the room to Vera in the doorway with a rack focus onto her face, then a swing back to Babushka pushing in for the final address to camera.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–3.0s: Regina plants both little palms on the tablecloth and leans over Nika. Regina says in Russian, slow and ice-cold: «Кто вы такая и где НАСТОЯЩАЯ Ника?»
+3.0–5.5s: Nika's palms rise higher, her mouth opening and closing without a sound; Babushka's fingers tighten on the cane handle; the camera pans slowly right toward the open doorway, focus racking onto Vera in the warm corridor light.
+5.5–7.0s: Vera lowers her eyes, one little hand on the doorframe. Vera says in Russian, quiet, almost to herself: «Я схожу за ней.» She steps back into the corridor light.
+7.0–10.0s: The camera swings back and pushes in on Babushka; she turns to the CAMERA, spectacles flashing. Babushka says in Russian, sly and cracked, straight to the audience: «Которая настоящая? Спорьте в комментариях. А щётка — в описании.» Freeze on her narrowed magnified eyes.
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: a wall clock ticking loudly in the silence, the cane creaking softly against the floor, distant birds outside, a floorboard shifting in the corridor.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+10 seconds, vertical 9:16.

@@ -1,0 +1,301 @@
+@project ISPYTANIE_OTCA_P01
+
+=== IMG father_p01_01_intro
+# Сцена 1 — Image. В кадре: отец-магнат Отец в костюме у вертолёта и сыновья Кирилл и Тёма.
+3D Pixar style, vertical 9:16. High-tech underground bunker landing pad with a sleek modern helicopter in the background, cinematic overhead lighting, dramatic survival game atmosphere.
+CRITICAL CHARACTER LOCK: OTETS — cartoon tooth character, elder molar tooth-shaped head with smooth sleek grey enamel, wearing a fitted dark navy business suit with a red tie, authoritative stern expression. KIRILL — cartoon tooth character, athletic molar tooth-shaped head with slightly yellowish enamel, wearing a athletic grey tank top and dark shorts, arrogant expression. TYOMA — cartoon tooth character, smaller milk tooth-shaped head with bright clean white enamel, wearing a simple neat blue t-shirt and shorts, modest quiet expression. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: OTETS stands in the foreground center pointing down toward the bunker entrance, KIRILL and TYOMA stand side-by-side behind him looking at the heavy steel vault doors. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic lighting, wide master shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG father_p01_02_rooms
+@use father_p01_01_intro
+# Сцена 2 — Image. В кадре: Кирилл в комнате джанк-фуда и Тёма в комнате овощей.
+3D Pixar style, vertical 9:16. Split perspective inside two adjacent bunker isolation rooms divided by a reinforced glass wall. Left side: messy room filled with fast food boxes, burgers, and soda cans. Right side: spotlessly clean bright room with fresh green vegetables on a wooden table.
+CRITICAL CHARACTER LOCK: KIRILL — cartoon tooth character from reference, molar tooth head with yellowish enamel, grey tank top, reclining lazily on a couch eating a burger. TYOMA — cartoon tooth character from reference, milk tooth head with clean white enamel, blue t-shirt, sitting neatly at a desk holding a fresh cucumber. All fully original fictional animated tooth characters, heads ARE tooth shapes, smooth enamel, no hair, no human skin.
+Composition: Medium-wide shot showing both brothers in their respective rooms across the dividing glass. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Bright cinematic contrast lighting, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG father_p01_03_parcel
+@use father_p01_01_intro
+# Сцена 3 — Image. В кадре: Тёма принимает спустившуюся металлическую посылку.
+3D Pixar style, vertical 9:16. Clean high-tech white isolation room, a mechanical delivery hatch in the ceiling with a metallic container descending on a cable.
+CRITICAL CHARACTER LOCK: TYOMA — cartoon tooth character from reference, milk tooth head with clean white enamel, blue t-shirt and shorts, curious surprised expression looking up at the parcel. All fully original fictional animated tooth characters, head IS a tooth shape, smooth enamel, no hair, no human skin.
+Composition: TYOMA stands in the center reaching up towards the silver metallic box descending from the ceiling hatch. Full body, from head to feet, not cropped.
+No captions or text on screen. Atmospheric spotlight, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG father_p01_04_hero
+@use father_p01_01_intro
+@product rl410/
+# Сцена 4 — Image. В кадре: Тёма держит и демонстрирует ирригатор Revyline RL 410.
+3D Pixar style, vertical 9:16. Bright clean modern room with soft warm accent lighting.
+CRITICAL CHARACTER LOCK: TYOMA — cartoon tooth character from reference, milk tooth head with clean white enamel, blue t-shirt, joyful excited expression. All fully original fictional animated tooth characters, head IS a tooth shape, smooth enamel, no hair, no human skin.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The oral irrigator is the Revyline RL 410: a compact modern dental irrigator with a sleek glossy body, ergonomic handle, transparent water reservoir, precise nozzle tip, subtle uppercase "REVYLINE" logo on the front, digital power button and mode indicator display. Only one product in the whole frame, held only in TYOMA's hand. Zero changes, no morphing.
+Composition: TYOMA standing in medium-full shot holding the Revyline RL 410 irrigator proudly in one hand, demonstrating it clearly to the viewer. Full body, from head to feet, not cropped.
+No captions or text on screen. Soft studio rim lighting, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG father_p01_05_scanner_pass
+@use father_p01_01_intro
+# Сцена 5 — Image. В кадре: Тёма у сканера улыбки, светится зелёный свет, дверь открывается.
+3D Pixar style, vertical 9:16. Futuristic corridor in front of a giant round steel security door with a glowing digital smile scanner mounted on the frame.
+CRITICAL CHARACTER LOCK: TYOMA — cartoon tooth character from reference, milk tooth head with clean white enamel, blue t-shirt, happy confident smiling expression with sparkling white teeth. All fully original fictional animated tooth characters, head IS a tooth shape, smooth enamel, no hair, no human skin.
+Composition: TYOMA stands facing the scanner door. A bright neon green laser beam scans his clean smile, and the massive door slides open revealing a lit exit pathway. Full body, from head to feet, not cropped.
+No captions or text on screen. Vibrant green glow lighting, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG father_p01_06_betrayal
+@use father_p01_01_intro
+# Сцена 6 — Image. В кадре: Кирилл толкает Тёму назад в комнату и блокирует дверь.
+3D Pixar style, vertical 9:16. Bunker corridor near an open security doorway.
+CRITICAL CHARACTER LOCK: KIRILL — cartoon tooth character from reference, molar tooth head with yellowish enamel, grey tank top, sneaky triumphant grin, pushing forward. TYOMA — cartoon tooth character from reference, milk tooth head with clean white enamel, blue t-shirt, shocked betrayed expression stumbling backward. All fully original fictional animated tooth characters, heads ARE tooth shapes, smooth enamel, no hair, no human skin.
+Composition: KIRILL forcefully pushes past TYOMA, pressing a heavy wall button that slams the security gate shut on TYOMA. Full body shot of both characters, from head to feet, not cropped.
+No captions or text on screen. High-contrast dramatic action lighting, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG father_p01_07_siren_cliffhanger
+@use father_p01_01_intro
+# Сцена 7 — Image. В кадре: Кирилл у сканера улыбки, горит красная сирена «ОТКАЗАНО».
+3D Pixar style, vertical 9:16. Final exit gates of the complex. A prominent digital smile scanner interface mounted on the wall is flashing intense red light.
+CRITICAL CHARACTER LOCK: KIRILL — cartoon tooth character from reference, molar tooth head with yellowish enamel, grey tank top, wide panicked frozen expression with mouth open showing yellow plaque on teeth. All fully original fictional animated tooth characters, head IS a tooth shape, smooth enamel, no hair, no human skin.
+Composition: KIRILL stands in front of the final closed blast door, bathed in flashing red warning light from the scanner display displaying a big red X icon. Freeze-frame reaction shot, full body, from head to feet, not cropped.
+No captions or text on screen. Intense emergency red siren illumination, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== VID father_p01_01_intro_anim
+@use father_p01_01_intro
+@duration 8
+# Сцена 1 — Animation. Отец объявляет условия испытания сыновьям. 8 секунд.
+Animate this exact scene. This is a dramatic cinematic cartoon moment, with dynamic camera movement.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- OTETS: cartoon TOOTH character from the reference image, elder molar tooth-shaped head with grey enamel, dark navy suit with red tie, stands CENTER.
+- KIRILL: cartoon TOOTH character from the reference image, molar tooth-shaped head with yellowish enamel, grey tank top, stands LEFT.
+- TYOMA: cartoon TOOTH character from the reference image, milk tooth-shaped head with white enamel, blue t-shirt, stands RIGHT.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. OTETS stays grey, KIRILL stays yellow, TYOMA stays white.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: high-tech underground bunker landing pad with heavy vault doors. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH: authoritative gestures from Otets, confident smirk from Kirill, quiet concern from Tyoma. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: slow cinematic push-in towards Otets.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.5s: OTETS steps forward and gestures toward the bunker vault doors. OTETS says in Russian, sternly: «Кто первым выйдет из этого комплекса — получит всё моё наследство!»
+3.5–8.0s: KIRILL crosses arms confidently while TYOMA looks around the complex entrance.
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: deep mechanical hum of bunker gates and distant helicopter rotors.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID father_p01_02_rooms_anim
+@use father_p01_02_rooms
+@duration 8
+# Сцена 2 — Animation. Контраст комнат: Кирилл ест гамбургер, Тёма ест овощи. 8 секунд.
+Animate this exact scene. This is a comedic contrasting cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- KIRILL: cartoon TOOTH character from the reference image, molar tooth head with yellowish enamel, grey tank top, sits LEFT on couch.
+- TYOMA: cartoon TOOTH character from the reference image, milk tooth head with clean white enamel, blue t-shirt, sits RIGHT at desk.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. KIRILL stays yellow, TYOMA stays white.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: split isolation rooms with dividing glass wall, left full of junk food, right clean with vegetables. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: Kirill laughing lazily, Tyoma calm and focused. Big expressive Pixar-style acting.
+
+CAMERA STYLE: subtle slow pan across the dividing glass wall.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–4.0s: KIRILL bites into a burger and laughs loudly toward the glass. KIRILL says in Russian, mockingly: «Ха! Я буду кайфовать, а ты жуй свои листья, мелкий!»
+4.0–8.0s: TYOMA takes a bite of cucumber and smiles peacefully. TYOMA says in Russian, calmly: «Главное — сохранять порядок и не забывать о гигиене.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: rustle of food wrappers and crunching of cucumber.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID father_p01_03_parcel_anim
+@use father_p01_03_parcel
+@duration 6
+# Сцена 3 — Animation. Посылка от отца спускается Тёме. 6 секунд.
+Animate this exact scene. This is a intriguing cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- TYOMA: cartoon TOOTH character from the reference image, milk tooth head with clean white enamel, blue t-shirt, stands CENTER.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. TYOMA stays white.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: clean isolation room with hatch in ceiling. Metallic container descending. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: Tyoma surprised and curious. Big expressive Pixar-style acting.
+
+CAMERA STYLE: tilt up to ceiling hatch, then follow container down to Tyoma.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–6.0s: TYOMA catches the descending metallic box, opens it and reads a small paper note inside. TYOMA says in Russian, surprised: «Посылка от отца? Записка: Пригодится для главного испытания...»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: mechanical hatch click and opening box latch sound.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID father_p01_04_hero_anim
+@use father_p01_04_hero
+@product rl410/
+@duration 10
+# Сцена 4 — Animation. Product Hero — Тёма демонстрирует ирригатор Revyline RL 410. 10 секунд.
+Animate this exact scene. This is a bright excited cartoon product showcase moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- TYOMA: cartoon TOOTH character from the reference image, milk tooth head with clean white enamel, blue t-shirt, stands CENTER.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. TYOMA stays white.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: bright room with soft accent lighting. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH: enthusiastic presentation acting.
+
+CAMERA STYLE: smooth circular arc around Tyoma demonstrating the product.
+
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo, only one product in the whole frame, held only by TYOMA, zero changes, no morphing. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–10.0s: TYOMA lifts up the Revyline RL 410 irrigator, pointing to its nozzle tip and glossy handle while demonstrating its sleek design. TYOMA says in Russian, enthusiastically: «Это же ирригатор Revyline RL 410! Мощная пульсирующая струя воды идеально выбивает налёт и очищает там, где обычная щётка бессильна!»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: soft clean water droplet sound effects.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+10 seconds, vertical 9:16.
+
+=== VID father_p01_05_scanner_pass_anim
+@use father_p01_05_scanner_pass
+@duration 8
+# Сцена 5 — Animation. Тёма проходит сканер улыбки, дверь открывается. 8 секунд.
+Animate this exact scene. This is a triumphant warm cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- TYOMA: cartoon TOOTH character from the reference image, milk tooth head with clean white enamel, blue t-shirt, stands CENTER.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. TYOMA stays white.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: futuristic corridor with blast door scanner glowing green. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH: joyful relief and noble determination. Big expressive Pixar-style acting.
+
+CAMERA STYLE: tracking shot behind Tyoma as the door opens, revealing the exit corridor.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: Scanner beam flashes bright green over Tyoma's sparkling teeth, electronic chime sounds, and heavy door slides up.
+3.0–8.0s: TYOMA pauses at the open threshold, turns back towards his brother's section. TYOMA says in Russian, warm and resolute: «Дверь открыта! Но я не могу бросить Кирилла... Мы же семья!»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: futuristic electronic scanner beep and heavy door pneumatic hiss.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID father_p01_06_betrayal_anim
+@use father_p01_06_betrayal
+@duration 8
+# Сцена 6 — Animation. Кирилл предаёт Тёму и запирает его. 8 секунд.
+Animate this exact scene. This is a dramatic betrayal cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- TYOMA: cartoon TOOTH character from the reference image, milk tooth head with white enamel, blue t-shirt, stands LEFT.
+- KIRILL: cartoon TOOTH character from the reference image, molar tooth head with yellow enamel, grey tank top, stands RIGHT.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. KIRILL stays yellow, TYOMA stays white.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: corridor with security door control panel. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH: Tyoma friendly, Kirill mischievous and treacherous. Big expressive Pixar-style acting.
+
+CAMERA STYLE: fast dynamic camera cut from Tyoma reaching out to Kirill slamming the lockdown button.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.5s: TYOMA opens the barrier for Kirill with a friendly smile. TYOMA says in Russian, kindly: «Пойдём вместе, я нашёл выход!»
+3.5–8.0s: KIRILL pushes Tyoma back into the room, hits the wall switch and heavy metal bars drop down locking Tyoma inside. KIRILL says in Russian, slyly: «Спасибо за подсказку, братишка! Наследство будет моим!»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: heavy metal gate slamming down and lock clicking shut.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID father_p01_07_siren_cliffhanger_anim
+@use father_p01_07_siren_cliffhanger
+@duration 8
+# Сцена 7 — Animation. Красная сирена «ОТКАЗАНО», Кирилл в шоке. Клиффхэнгер и призыв. 8 секунд.
+Animate this exact scene. This is a dramatic comedic cliffhanger cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- KIRILL: cartoon TOOTH character from the reference image, molar tooth head with yellowish enamel, grey tank top, stands CENTER.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. KIRILL stays yellow.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: final exit door with digital smile scanner flashing bright red emergency light. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — VERY HIGH: Kirill confident then suddenly terrified and shocked. Big expressive Pixar-style acting.
+
+CAMERA STYLE: dynamic zoom into Kirill's shocked face under flashing red siren lights, then freeze frame.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: KIRILL smiles into the scanner, scanner turns red with loud alarm siren. Electronic voice: «ОТКАЗАНО! ОБНАРУЖЕН ПЛОТНЫЙ ЗУБНОЙ НАЛЁТ!» KIRILL says in Russian, panicked: «Что?! Заблокировано?!»
+3.0–8.0s: KIRILL freezes in place as red light strobes. TYOMA (off-screen voiceover) says in Russian, engagingly: «Сможет ли Кирилл обмануть сканер в следующей серии? Напиши в комментариях, за кого ты — Команда Тёмы или Команда Кирилла!»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: loud buzzing security siren horn.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.

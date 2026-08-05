@@ -210,6 +210,17 @@ moderation:
     gemini_model: "gemini-flash-latest"
     claude_model: "claude-opus-5"
 
+    # Claude через CLI — работает по ПОДПИСКЕ, ключ не нужен вообще.
+    # Ставится отдельно от десктопного приложения (у него нет режима -p):
+    #   irm https://claude.ai/install.ps1 | iex
+    # Путь ищется в PATH и обычных местах установки; можно задать явно.
+    claude_cli_path: ""              # пусто -> искать самому
+    claude_cli_model: "opus"         # opus | sonnet | haiku
+    claude_cli_timeout_sec: 240      # запуск процесса медленнее HTTP
+    # Доп. аргументы CLI. Сюда же кладётся усилие рассуждений, если нужно —
+    # точное имя флага сверь командой `claude --help` своей версии.
+    claude_cli_args: []
+
     # Бэкенд «rules» (офлайн): замены слов + смягчающая добавка к промпту.
     # Попытка 1 — только добавка; попытка 2 — ещё и замены/вычистка слов.
     replacements:

@@ -1,0 +1,366 @@
+@project KURIER_P01
+
+=== IMG kurier_p01_01_hero
+# Сцена 1 — Image. В кадре: только ЛЕВ. Эталонный кадр части. Мраморный холл особняка, он меняет часы на куртку курьера.
+3D Pixar style, vertical 9:16. Luxurious marble entrance hall of a huge mansion at early morning, tall windows, warm golden light, a marble console table, a wide staircase behind.
+CRITICAL CHARACTER LOCK: LEV — cartoon tooth character, large molar-shaped head with bright glossy pure white enamel, calm confident eyes and thin dark eyebrows drawn directly on the enamel surface, small neck, small arms and short rounded root-shaped legs, wearing a plain cheap orange courier jacket over a simple grey t-shirt, plain dark trousers, a plain grey shoulder bag. He stands at the console table, an expensive-looking wristwatch and a small keyring lying in front of him, one hand on the collar of the courier jacket, expression determined and slightly sad. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. He remains exactly like his reference image.
+Composition: LEV stands MIDDLE of the frame, full body from head to feet, the marble table on his right, the staircase behind him. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm golden morning light, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG kurier_p01_02_sklad
+@use kurier_p01_01_hero
+# Сцена 2 — Image. В кадре: ЛЕВ и ГЕННАДИЙ. Эталонный кадр Геннадия. Склад, стопки коробок.
+3D Pixar style, vertical 9:16. Big warehouse interior, tall metal racks, stacks of plain cardboard boxes, cold neutral daylight from high windows, a pallet trolley on the floor.
+CRITICAL CHARACTER LOCK: LEV — cartoon tooth character, large molar-shaped head with bright glossy pure white enamel, calm eyes and thin dark eyebrows drawn directly on the enamel, small neck, wearing a plain cheap orange courier jacket over a simple grey t-shirt, plain dark trousers, plain grey shoulder bag, holding one cardboard box, polite patient expression. GENNADY — cartoon tooth character, large molar-shaped head with dull yellowish enamel, thick stern dark eyebrows, narrow strict eyes, small neck, wearing a plain grey manager shirt with a dark tie and a plain dark vest, holding a plain clipboard, arms crossed attitude, strict bossy expression. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+IMPORTANT BACKGROUND RULE: every other tooth character is fully clothed and clearly a tooth, not a human.
+Composition: GENNADY stands LEFT pointing his clipboard at the stack of boxes, LEV stands RIGHT holding a box, a wall of cardboard boxes between them. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic cold neutral warehouse light, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG kurier_p01_03_obed
+@use kurier_p01_01_hero
+# Сцена 3 — Image. В кадре: ЛЕВ и МАША. Эталонный кадр Маши. Комната отдыха, она делится обедом.
+3D Pixar style, vertical 9:16. Small shabby staff break room, a plain table, two simple chairs, an old kettle on a shelf, soft warm lamp light, a rainy window behind.
+CRITICAL CHARACTER LOCK: LEV — cartoon tooth character, large molar-shaped head with bright glossy pure white enamel, calm eyes and thin dark eyebrows drawn directly on the enamel, small neck, wearing a plain cheap orange courier jacket over a simple grey t-shirt, plain dark trousers, sitting at the table, surprised touched expression. MASHA — cartoon tooth character, medium molar-shaped head with clean light cream-white enamel, big soft round friendly eyes, gentle smile drawn directly on the enamel, small neck, wearing a plain light blue cashier apron over a white shirt, holding a plain lunch box and offering half of a simple sandwich across the table, warm kind expression. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: MASHA sits LEFT at the table offering the food, LEV sits RIGHT, the lunch box in the middle of the table between them. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic soft warm lamp light, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG kurier_p01_04_product
+@use kurier_p01_01_hero
+@product rl410
+# Сцена 4 — Image. В кадре: только ЛЕВ. PRODUCT HERO. Подсобка, тайный ритуал с RL 410.
+3D Pixar style, vertical 9:16. Tiny cramped storage room behind the warehouse, metal shelves with plain boxes, a small cracked mirror on the wall, a small sink, one bare warm bulb, contrast between the cheap room and the premium device.
+CRITICAL CHARACTER LOCK: LEV — cartoon tooth character, large molar-shaped head with bright glossy pure white enamel, calm proud eyes and thin dark eyebrows drawn directly on the enamel, small neck, small arms and short rounded root-shaped legs, wearing a plain cheap orange courier jacket over a simple grey t-shirt, plain dark trousers, standing in front of the small mirror, holding the device up in one hand and looking at it with a quiet proud smile. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. He remains exactly like his reference image.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The device is the Revyline RL 410 slider portable oral irrigator: a compact palm-sized slider body with softly rounded corners and a flat front face, shown STRICTLY in the closed compact configuration exactly as in the attached reference photo, one slim slightly curved nozzle pointing straight up from the top, one small round control button on the front face, a small uppercase REVYLINE logo on the body, with the exact same colors, finish, proportions, seams and every small detail as in the attached reference photo. The device never slides open, never unfolds, never extends, never telescopes and never transforms. Do not change its shape, color, button or logo, do not add extra buttons, logos, hoses, screens or cables. Fingers must never cover the nozzle or the REVYLINE logo. Only one product in the whole frame, held only in LEV's hand, shown whole and clearly, no extreme macro zoom. Zero changes, no morphing.
+Composition: LEV stands MIDDLE facing the mirror at a three quarter angle, the device raised at chest height in his right hand and fully visible, shelves around him. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm single bulb light with soft contrast, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG kurier_p01_05_sveta
+@use kurier_p01_01_hero
+@product rl410
+# Сцена 5 — Image. В кадре: ЛЕВ и СВЕТА. Эталонный кадр Светы. Она застукала его с ирригатором.
+3D Pixar style, vertical 9:16. Same tiny cramped storage room behind the warehouse, metal shelves with plain boxes, small cracked mirror, one bare warm bulb, the door standing open with cold light from the corridor.
+CRITICAL CHARACTER LOCK: LEV — cartoon tooth character, large molar-shaped head with bright glossy pure white enamel, wide startled eyes and thin dark eyebrows drawn directly on the enamel, small neck, wearing a plain cheap orange courier jacket over a simple grey t-shirt, plain dark trousers, caught by surprise, still holding the device in one hand. SVETA — cartoon tooth character, medium molar-shaped head with slightly yellowish enamel, big curious wide eyes and raised eyebrows drawn directly on the enamel, small neck, wearing a plain pink warehouse vest over a white blouse, standing in the open doorway pointing with an open palm toward the device, amazed nosy expression. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The device is the Revyline RL 410 slider portable oral irrigator: a compact palm-sized slider body with softly rounded corners and a flat front face, shown STRICTLY in the closed compact configuration exactly as in the attached reference photo, one slim slightly curved nozzle pointing straight up from the top, one small round control button on the front face, a small uppercase REVYLINE logo on the body, with the exact same colors, finish, proportions and details as in the attached reference photo. The device never slides open, never unfolds, never extends and never transforms. Fingers must never cover the nozzle or the REVYLINE logo. Only one product in the whole frame, held only in LEV's hand, shown whole and clearly, no extreme macro zoom. Zero changes, no morphing.
+Composition: SVETA stands LEFT in the open doorway, LEV stands RIGHT near the mirror with the device raised at chest height and fully visible between them. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic mixed warm bulb and cold corridor light, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG kurier_p01_06_prishur
+@use kurier_p01_01_hero
+@use kurier_p01_05_sveta
+@product rl410
+# Сцена 6 — Image. В кадре: ЛЕВ и СВЕТА. Она щурится и не верит. Призыв на артикул.
+3D Pixar style, vertical 9:16. Same tiny cramped storage room, metal shelves with plain boxes, one bare warm bulb, the open door behind, slightly closer framing than before.
+CRITICAL CHARACTER LOCK: SVETA — cartoon tooth character, medium molar-shaped head with slightly yellowish enamel, eyes narrowed to suspicious slits, one eyebrow raised high, drawn directly on the enamel, small neck, wearing a plain pink warehouse vest over a white blouse, arms crossed, leaning slightly forward, ironic disbelieving expression. LEV — cartoon tooth character, large molar-shaped head with bright glossy pure white enamel, calm eyes and thin dark eyebrows drawn directly on the enamel, small neck, wearing a plain cheap orange courier jacket over a simple grey t-shirt, plain dark trousers, holding the device low at his side, pretending to be relaxed with a small guilty smile. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The device is the Revyline RL 410 slider portable oral irrigator: a compact palm-sized slider body with softly rounded corners, shown STRICTLY in the closed compact configuration exactly as in the attached reference photo, one slim slightly curved nozzle pointing up from the top, one small round control button on the front face, a small uppercase REVYLINE logo on the body, exact same colors, finish and proportions as in the attached reference photo. The device never slides open, never unfolds, never extends and never transforms. Fingers must never cover the nozzle or the REVYLINE logo. Only one product in the whole frame, held only in LEV's hand, shown whole and clearly, no extreme macro zoom. Zero changes, no morphing.
+Composition: SVETA stands LEFT leaning in with crossed arms, LEV stands RIGHT with the device visible in his lowered hand. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm bulb light with soft shadows, medium close shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG kurier_p01_07_journal
+@use kurier_p01_01_hero
+@use kurier_p01_02_sklad
+# Сцена 7 — Image. В кадре: ГЕННАДИЙ в кабинете, ЛЕВ виден вдали за окном. Журнал с обложкой.
+3D Pixar style, vertical 9:16. Small shabby warehouse office at night, a desk with a lamp, a mug, a wide window behind the desk showing the dark warehouse yard, cold blue night outside against the warm desk lamp.
+CRITICAL CHARACTER LOCK: GENNADY — cartoon tooth character, large molar-shaped head with dull yellowish enamel, thick stern dark eyebrows, narrow eyes wide open in slow realization, small neck, wearing a plain grey manager shirt with a dark tie and a plain dark vest, sitting at the desk holding an open glossy business magazine in both hands, stunned thoughtful expression. LEV — cartoon tooth character, large molar-shaped head with bright glossy pure white enamel, small neck, wearing a plain cheap orange courier jacket, seen small and far away in the yard outside the window, carrying a cardboard box, calm expression. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+The open magazine shows only one large glossy photograph of a tooth character with a bright glossy pure white molar-shaped head wearing an elegant dark suit, plus plain abstract colored blocks. There are no letters, no words, no numbers and no lettering anywhere on the magazine or anywhere in the frame.
+Composition: GENNADY sits MIDDLE at the desk in the foreground with the magazine raised, the window behind him, LEV small and distant in the yard outside. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm desk lamp against cold blue night window, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG kurier_p01_08_cliff
+@use kurier_p01_07_journal
+# Сцена 8 — Image. В кадре: ГЕННАДИЙ тянется к телефону, ЛЕВ за окном. Клиффхэнгер.
+3D Pixar style, vertical 9:16. Same small shabby warehouse office at night, desk lamp, closed magazine lying on the desk, an old desk phone on the corner of the desk, wide window with the dark yard behind.
+CRITICAL CHARACTER LOCK: GENNADY — cartoon tooth character, large molar-shaped head with dull yellowish enamel, thick stern dark eyebrows, narrow scheming eyes and a slow crooked smile drawn directly on the enamel, small neck, wearing a plain grey manager shirt with a dark tie and a plain dark vest, standing up beside the desk, one hand slowly reaching toward the desk phone, the other resting on the closed magazine. LEV — cartoon tooth character, large molar-shaped head with bright glossy pure white enamel, small neck, wearing a plain cheap orange courier jacket, seen small and far away in the yard outside the window, walking away with a cardboard box. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+The closed magazine on the desk shows only one large glossy photograph of a tooth character in an elegant dark suit and plain abstract colored blocks, with no letters, no words and no numbers anywhere in the frame.
+Composition: GENNADY stands MIDDLE RIGHT next to the desk reaching for the phone, the desk and magazine in the foreground LEFT, LEV small and distant outside the window. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic dramatic warm lamp light with long shadows against the cold night window, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== VID kurier_p01_01_hero_anim
+@use kurier_p01_01_hero
+@duration 8
+# Сцена 1 — Animation. Лев снимает часы и надевает куртку. Хук. 8 секунд.
+Animate this exact scene. This is an emotional cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- LEV: cartoon TOOTH character from the reference image, large molar tooth-shaped head with bright glossy pure white enamel, plain cheap orange courier jacket over a grey t-shirt, plain dark trousers, plain grey shoulder bag, stands MIDDLE. He is the only character in the whole video.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. LEV stays bright glossy pure white for the entire video.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: luxurious marble entrance hall, marble console table with a wristwatch and a keyring on it, tall windows with golden morning light, wide staircase behind. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH: determined and quietly sad, eyes steady, eyebrows lowered, jaw set, slow deliberate hand movements, one firm nod at the end. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: starts on a slow push in toward LEV, one cut to a slightly lower angle as he pulls the jacket collar, then holds steady.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: LEV takes off the wristwatch and places it on the marble table next to the keyring. LEV says in Russian, firm and quiet: «Месяц без денег и без фамилии.»
+2.5–5.0s: LEV pulls the cheap orange courier jacket collar straight and looks at his reflection direction. LEV says in Russian, determined: «Хочу знать, кто останется рядом, когда я никто.»
+5.0–8.0s: LEV pats the shoulder bag, gives one short nod and turns toward the exit. LEV says in Russian, with a small proud smile: «Одну привычку я всё-таки заберу.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: quiet echo of a large empty hall, soft footsteps on marble, a light metallic clink of the watch on the table.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID kurier_p01_02_sklad_anim
+@use kurier_p01_02_sklad
+@duration 6
+# Сцена 2 — Animation. Геннадий гоняет Льва на складе. Первый намёк на улыбку. 6 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- GENNADY: cartoon TOOTH character from the reference image, large molar tooth-shaped head with dull yellowish enamel, plain grey manager shirt with dark tie and dark vest, holding a plain clipboard, stands LEFT.
+- LEV: cartoon TOOTH character from the reference image, large molar tooth-shaped head with bright glossy pure white enamel, plain cheap orange courier jacket over a grey t-shirt, plain dark trousers, holding one cardboard box, stands RIGHT.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. GENNADY stays dull yellowish, LEV stays bright glossy pure white for the entire video. The two characters never swap features and never blend into each other.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: warehouse interior, tall metal racks, stacks of plain cardboard boxes, a pallet trolley, cold daylight from high windows. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: GENNADY is bossy and impatient, eyebrows pressed down, sharp pointing gesture with the clipboard toward the boxes, never touching anyone. LEV is patient and polite, calm eyes, then a wide bright smile. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: quick cut between a wide two shot and a tighter shot on LEV's smile, then back to the wide shot.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: GENNADY taps the clipboard and points at the stack of boxes, standing on his own side of the aisle. GENNADY says in Russian, strict and impatient: «Курьер, коробки сами не поедут.» Then LEV lifts the box and smiles brightly. LEV says in Russian, calm and polite: «Уже иду.»
+3.0–6.0s: GENNADY narrows his eyes at LEV's bright smile and leans back slightly. GENNADY says in Russian, suspicious and grumpy: «И улыбку убери. Слишком дорогая для склада.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: distant warehouse hum, cardboard shifting, wheels of a trolley far away.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID kurier_p01_03_obed_anim
+@use kurier_p01_03_obed
+@duration 8
+# Сцена 3 — Animation. Маша делится обедом. Линия любви. 8 секунд.
+Animate this exact scene. This is a warm gentle cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- MASHA: cartoon TOOTH character from the reference image, medium molar tooth-shaped head with clean light cream-white enamel, plain light blue cashier apron over a white shirt, holding a plain lunch box, sits LEFT.
+- LEV: cartoon TOOTH character from the reference image, large molar tooth-shaped head with bright glossy pure white enamel, plain cheap orange courier jacket over a grey t-shirt, sits RIGHT.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. MASHA stays light cream-white, LEV stays bright glossy pure white for the entire video. The two characters never swap features and never blend into each other.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: small shabby staff break room, plain table, two simple chairs, an old kettle on a shelf, a rainy window, soft warm lamp light. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: MASHA is warm and generous, soft round eyes, gentle smile, calm slow gestures. LEV is surprised and touched, eyebrows lifted, small grateful smile. No physical contact between the characters, they only pass the food across the table. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: soft slow push in on the table, one cut to a closer shot on LEV's reaction, then back.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: MASHA slides half of the sandwich across the table toward LEV. MASHA says in Russian, warm and simple: «Держи половину. Тут все злые от усталости.»
+2.5–5.0s: LEV looks at the food, then at her, eyebrows raised. LEV says in Russian, quietly surprised: «Почему ты добрая ко мне?»
+5.0–8.0s: MASHA shrugs and smiles, then points lightly at his bright smile. MASHA says in Russian, cheerful and kind: «Потому что могу. И потому что у тебя улыбка как с обложки.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: rain on the window, a quiet kettle, soft paper rustle of the lunch box.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID kurier_p01_04_product_anim
+@use kurier_p01_04_product
+@duration 10
+# Сцена 4 — Animation. PRODUCT HERO. Тайный ритуал, RL 410 назван вслух, реплика-якорь. 10 секунд.
+Animate this exact scene. This is an emotional cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- LEV: cartoon TOOTH character from the reference image, large molar tooth-shaped head with bright glossy pure white enamel, plain cheap orange courier jacket over a grey t-shirt, plain dark trousers, stands MIDDLE in front of the small mirror. He is the only character in the whole video.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: the tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. LEV stays bright glossy pure white for the entire video.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: tiny cramped storage room, metal shelves with plain boxes, a small cracked mirror, a small sink, one bare warm bulb. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: quiet pride mixed with loneliness, calm steady eyes, small warm smile, slow careful movements as if handling something precious. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: very slow push in on LEV and the device in his hand, one soft cut to a slightly tighter shot at the middle of the scene, then a slow hold. The device stays large, steady and fully visible in frame the whole time, only the hand moves.
+
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo: the Revyline RL 410 slider portable oral irrigator, a compact palm-sized slider body with softly rounded corners, kept STRICTLY in the closed compact configuration for the entire video, one slim slightly curved nozzle pointing up from the top, one small round control button on the front face, a small uppercase REVYLINE logo on the body, identical colors, finish and proportions to the attached reference photo. It never slides open, never unfolds, never extends, never telescopes and never transforms. Only one product in the whole frame, held only by LEV, zero changes, no morphing, no extra buttons or logos. Fingers never cover the nozzle or the REVYLINE logo. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: LEV takes the device out of the inner pocket of the cheap courier jacket and holds it up at chest height, fully visible. LEV says in Russian, calm and warm: «Ревилайн Эр Эль четыреста десять. Слайдер, двести грамм.»
+2.5–5.0s: LEV turns the device slightly so the whole body is visible, the device itself stays unchanged. LEV says in Russian, matter of fact: «Складывается в карман куртки, поэтому ездит со мной куда угодно.»
+5.0–7.5s: LEV points at the nozzle with one finger without covering it, then holds the device steady again. LEV says in Russian, confident: «Струя до девятисот шестидесяти килопаскалей вымывает то, что щётка не достаёт.»
+7.5–10.0s: LEV looks into the cracked mirror and smiles a wide bright smile, the device still in his hand. LEV says in Russian, quiet and a little sad: «Привычка, единственное, что я не смог бросить.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. The character speaks STRICTLY one line at a time, each line finishes before the next begins, with clear pauses. He stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+
+Ambient sound only: faint warehouse hum through the wall, a quiet electrical buzz of the bulb, soft cloth rustle of the jacket.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+10 seconds, vertical 9:16.
+
+=== VID kurier_p01_05_sveta_anim
+@use kurier_p01_05_sveta
+@duration 6
+# Сцена 5 — Animation. Света застукала, running gag. 6 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- SVETA: cartoon TOOTH character from the reference image, medium molar tooth-shaped head with slightly yellowish enamel, plain pink warehouse vest over a white blouse, stands LEFT in the open doorway.
+- LEV: cartoon TOOTH character from the reference image, large molar tooth-shaped head with bright glossy pure white enamel, plain cheap orange courier jacket over a grey t-shirt, stands RIGHT near the mirror.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. SVETA stays slightly yellowish, LEV stays bright glossy pure white for the entire video. The two characters never swap features and never blend into each other.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: tiny cramped storage room, metal shelves with plain boxes, small cracked mirror, one bare warm bulb, open door with cold corridor light. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH: SVETA is loudly amazed and nosy, wide eyes, raised eyebrows, open palm gesture toward the device from a distance. LEV is caught by surprise, startled eyes, then a quick fake casual smile. No physical contact between the characters. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: fast cut from the doorway to a tighter shot on LEV's startled face, then back to the two shot.
+
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo: the Revyline RL 410 slider portable oral irrigator, compact palm-sized slider body with softly rounded corners, kept STRICTLY in the closed compact configuration for the entire video, slim slightly curved nozzle pointing up, one small round control button on the front face, small uppercase REVYLINE logo, identical colors and proportions to the attached reference photo. It never slides open, never unfolds, never extends and never transforms. Only one product in the whole frame, held only by LEV, zero changes, no morphing. Fingers never cover the nozzle or the REVYLINE logo. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: SVETA pushes the door open and freezes in the doorway, pointing an open palm toward the device. SVETA says in Russian, loud and amazed: «Откуда у курьера ТАКОЙ ирригатор?!»
+3.0–6.0s: LEV lowers the device slightly and shrugs with a fast fake casual smile. LEV says in Russian, casually and a bit too quickly: «С распродажи.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: a door swinging open, distant warehouse hum, quiet electrical buzz of the bulb.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID kurier_p01_06_prishur_anim
+@use kurier_p01_06_prishur
+@duration 8
+# Сцена 6 — Animation. Света не верит, просит артикул. Призыв репликой. 8 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- SVETA: cartoon TOOTH character from the reference image, medium molar tooth-shaped head with slightly yellowish enamel, plain pink warehouse vest over a white blouse, arms crossed, stands LEFT.
+- LEV: cartoon TOOTH character from the reference image, large molar tooth-shaped head with bright glossy pure white enamel, plain cheap orange courier jacket over a grey t-shirt, stands RIGHT.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. SVETA stays slightly yellowish, LEV stays bright glossy pure white for the entire video. The two characters never swap features and never blend into each other.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: tiny cramped storage room, metal shelves with plain boxes, small cracked mirror, one bare warm bulb, open door behind. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: SVETA is ironic and disbelieving, eyes narrowed to slits, one eyebrow high, slow sceptical nodding, arms crossed. LEV is calm and evasive, small guilty smile, eyes sliding to the side. No physical contact between the characters. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: slow push in on SVETA's narrowed eyes, one cut to LEV, then a wider two shot.
+
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo: the Revyline RL 410 slider portable oral irrigator, compact palm-sized slider body with softly rounded corners, kept STRICTLY in the closed compact configuration for the entire video, slim slightly curved nozzle pointing up, one small round control button, small uppercase REVYLINE logo, identical colors and proportions to the attached reference photo. It never slides open, never unfolds, never extends and never transforms. Only one product in the whole frame, held only by LEV, zero changes, no morphing. Fingers never cover the nozzle or the REVYLINE logo. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: SVETA narrows her eyes and nods slowly with heavy irony. SVETA says in Russian, sceptical and drawling: «На распродаже. Ага.»
+2.5–5.0s: SVETA unfolds her arms and gestures toward the device with an open palm. SVETA says in Russian, demanding and cheerful: «Ладно, артикул скинь, себе такой же хочу.»
+5.0–8.0s: LEV lifts the device slightly, smiles and tilts his head toward the camera direction. LEV says in Russian, calm with a small smirk: «Он под видео. Смотри и не задавай вопросов.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: distant warehouse hum, quiet electrical buzz of the bulb, faint footsteps in the corridor.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID kurier_p01_07_journal_anim
+@use kurier_p01_07_journal
+@duration 8
+# Сцена 7 — Animation. Геннадий узнаёт лицо с обложки. 8 секунд.
+Animate this exact scene. This is a dramatic cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions. The tooth character printed on the magazine photograph is also a tooth, never a human.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- GENNADY: cartoon TOOTH character from the reference image, large molar tooth-shaped head with dull yellowish enamel, plain grey manager shirt with dark tie and dark vest, sits MIDDLE at the desk holding the open magazine.
+- LEV: cartoon TOOTH character from the reference image, large molar tooth-shaped head with bright glossy pure white enamel, plain cheap orange courier jacket, seen small and far away in the yard beyond the window, carrying a cardboard box, he never speaks in this scene.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. GENNADY stays dull yellowish, LEV stays bright glossy pure white for the entire video. The two characters never swap features and never blend into each other.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: small shabby warehouse office at night, desk with a lamp and a mug, a glossy business magazine, wide window showing the dark yard. The magazine shows only one large glossy photograph of a tooth character in an elegant dark suit and plain abstract color blocks, with no letters, no words and no numbers anywhere in the frame at any moment. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH: slow dawning realization, eyes widening step by step, eyebrows lifting, head turning slowly from the magazine to the window and back. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: slow push in on GENNADY, one cut to the magazine in his hands, one cut to the window with LEV far outside, back to GENNADY.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: GENNADY turns a page of the magazine and stops, staring at the photograph. GENNADY says in Russian, slowly and flatly: «Наследник империи, богатейшая семья страны.»
+2.5–5.0s: GENNADY lifts the magazine closer, his eyes widening, then turns his head toward the window where LEV is walking far outside.
+5.0–8.0s: GENNADY looks back at the photograph, then again at the window, frozen. GENNADY says in Russian, quiet and stunned: «Где я видел эту улыбку?»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Only GENNADY speaks, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: quiet night hum, a clock ticking, paper pages turning, faint wind outside.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID kurier_p01_08_cliff_anim
+@use kurier_p01_08_cliff
+@duration 8
+# Сцена 8 — Animation. Клиффхэнгер, рука к телефону, вопрос зрителю. 8 секунд.
+Animate this exact scene. This is a dramatic cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions. The tooth character printed on the magazine photograph is also a tooth, never a human.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- GENNADY: cartoon TOOTH character from the reference image, large molar tooth-shaped head with dull yellowish enamel, plain grey manager shirt with dark tie and dark vest, stands MIDDLE RIGHT beside the desk, one hand slowly reaching toward the desk phone.
+- LEV: cartoon TOOTH character from the reference image, large molar tooth-shaped head with bright glossy pure white enamel, plain cheap orange courier jacket, seen small and far away in the yard beyond the window, walking away with a cardboard box, he never speaks in this scene.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. GENNADY stays dull yellowish, LEV stays bright glossy pure white for the entire video. The two characters never swap features and never blend into each other.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: small shabby warehouse office at night, desk with a lamp, a closed glossy magazine on the desk, an old desk phone, wide window with the dark yard. The magazine shows only one large glossy photograph of a tooth character in an elegant dark suit and plain abstract color blocks, with no letters, no words and no numbers anywhere in the frame at any moment. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH: cold scheming satisfaction, narrowed eyes, slow crooked smile spreading, very slow deliberate hand movement toward the phone, one glance at the window. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: slow push in on the hand approaching the phone, one cut to GENNADY's face, one cut to the window with LEV far outside, then a slow hold on GENNADY.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: GENNADY taps the closed magazine with two fingers and glances at the window. GENNADY says in Russian, cold and satisfied: «Улыбка на миллион таскает мои коробки за копейки.»
+2.5–5.0s: GENNADY starts moving his hand very slowly toward the desk phone. GENNADY says in Russian, quiet and threateningly calm: «Завтра он поймёт, что я всё знаю.»
+5.0–8.0s: GENNADY stops his hand right above the phone, looks straight toward the camera direction with a crooked smile and freezes. GENNADY says in Russian, sly and inviting: «Звонить его отцу или подождать? Решайте в комментариях.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Only GENNADY speaks, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: quiet night hum, a clock ticking, a faint creak of the chair, wind outside the window.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.

@@ -28,6 +28,7 @@ from typing import Any, Callable
 import httpx
 
 from .config import Config
+from .scrub import scrub
 
 # Инструкция переписчику. Бренд и реплики трогать нельзя — это продакшн-промпты.
 LLM_INSTRUCTION = (
@@ -579,6 +580,93 @@ class ClaudeSoftener:
         return text, f"переписано Claude ({self.model})"
 
 
+def find_claude_exe() -> str | None:
+    """Где лежит claude CLI: PATH, затем обычные места установки на Windows.
+
+    ВНИМАНИЕ: десктопное приложение Claude (MSIX в WindowsApps) — это НЕ CLI,
+    у него нет неинтерактивного режима. Нужен отдельно поставленный
+    Claude Code CLI.
+    """
+    exe = shutil.which("claude")
+    if exe:
+        return exe
+    home = Path.home()
+    for p in (
+        home / ".local" / "bin" / "claude.exe",
+        home / ".local" / "bin" / "claude",
+        Path(os.getenv("LOCALAPPDATA", "")) / "Programs" / "claude" / "claude.exe",
+        Path(os.getenv("APPDATA", "")) / "npm" / "claude.cmd",
+    ):
+        try:
+            if p.is_file():
+                return str(p)
+        except OSError:
+            continue
+    return None
+
+
+class ClaudeCliSoftener:
+    """Переписывание через Claude Code CLI в неинтерактивном режиме (-p).
+
+    Главное отличие от ClaudeSoftener: работает на ПОДПИСКЕ, а не на
+    API-кредитах — ANTHROPIC_API_KEY не нужен вовсе. Предельная стоимость
+    нулевая, пока не упёрся в лимиты подписки, поэтому в цепочке он стоит
+    после бесплатных Ollama и Gemini, но перед платным API.
+
+    Цена — время: каждый вызов поднимает отдельный процесс, это заметно
+    медленнее HTTP-запроса к локальной Ollama.
+    """
+
+    name = "claude-cli"
+
+    def __init__(self, cfg: Config) -> None:
+        self.exe = str(cfg.get("moderation.soften.claude_cli_path", "") or "").strip() \
+            or find_claude_exe()
+        self.model = str(cfg.get("moderation.soften.claude_cli_model", "opus") or "opus")
+        self.timeout = int(cfg.get("moderation.soften.claude_cli_timeout_sec", 240))
+        self.extra_args = [
+            str(a) for a in (cfg.get("moderation.soften.claude_cli_args", []) or [])
+        ]
+
+    @property
+    def available(self) -> bool:
+        return bool(self.exe)
+
+    def _run(self, args: list[str], text: str | None) -> subprocess.CompletedProcess:
+        return subprocess.run(
+            args, input=text, capture_output=True, text=True,
+            encoding="utf-8", errors="replace", timeout=self.timeout,
+        )
+
+    def soften(self, prompt: str, attempt: int, category: str = "policy") -> tuple[str, str]:
+        if not self.exe:
+            raise SoftenError(
+                "claude CLI не найден. Десктопное приложение не подходит — нужен "
+                "Claude Code CLI; путь можно задать в moderation.soften.claude_cli_path"
+            )
+        text = f"{_instruction(attempt, category)}\n\nПромпт:\n{prompt}"
+        base = [self.exe, "-p", "--model", self.model, *self.extra_args]
+        # Две формы вызова: сначала текст через stdin (не упирается в предел
+        # длины командной строки Windows — наши промпты бывают по 6000+
+        # символов вместе с инструкцией), при пустом ответе — аргументом.
+        try:
+            res = self._run(base, text)
+            out = (res.stdout or "").strip()
+            if not out:
+                res = self._run([self.exe, "-p", text, "--model", self.model,
+                                 *self.extra_args], None)
+                out = (res.stdout or "").strip()
+        except subprocess.TimeoutExpired as exc:
+            raise SoftenError(f"claude CLI не ответил за {self.timeout}с") from exc
+        except OSError as exc:
+            raise SoftenError(f"claude CLI не запустился: {type(exc).__name__}") from exc
+
+        if not out:
+            err = scrub((res.stderr or "").strip())[:200] or f"код возврата {res.returncode}"
+            raise SoftenError(f"claude CLI вернул пустой ответ ({err})")
+        return _strip_fence(out), f"переписано Claude CLI ({self.model})"
+
+
 class Softener:
     """Композиция: выбранный LLM-бэкенд с фоллбэком на правила.
 
@@ -674,10 +762,12 @@ def build_softener(cfg: Config, log: Callable[[str], None] | None = None) -> Sof
 
     ollama = OllamaSoftener(cfg)
     gemini = GeminiSoftener(cfg)
+    claude_cli = ClaudeCliSoftener(cfg)
     claude = ClaudeSoftener(cfg)
-    # Приоритет: локальная Ollama первой — бесплатно, без квот и без отправки
-    # промптов наружу; затем Gemini, затем Claude.
-    chain = [ollama, gemini, claude]
+    # Порядок — по цене. Ollama бесплатна и локальна; у Gemini бесплатный
+    # тариф; Claude CLI идёт по подписке (предельная цена нулевая, но ест
+    # общие лимиты); Claude по API — единственный за деньги.
+    chain = [ollama, gemini, claude_cli, claude]
 
     def compose(primary: Any) -> Softener:
         """Собрать смягчитель, отдав остальные бэкенды в запас на второй заход."""
@@ -688,6 +778,8 @@ def build_softener(cfg: Config, log: Callable[[str], None] | None = None) -> Sof
         return compose(ollama if ollama.available else None)
     if backend == "gemini":
         return compose(gemini if gemini.available else None)
+    if backend == "claude-cli":
+        return compose(claude_cli if claude_cli.available else None)
     if backend == "claude":
         return compose(claude if claude.available else None)
 
@@ -794,7 +886,15 @@ def backend_status(cfg: Config) -> list[dict[str, object]]:
     gem = GeminiSoftener(cfg)
     out.append({"id": "gemini", "title": f"Gemini ({gem.model})", "available": gem.available,
                 "detail": "ключ в .env" if gem.available else "нет GEMINI_API_KEY"})
+    cli = ClaudeCliSoftener(cfg)
+    out.append({
+        "id": "claude-cli", "title": f"Claude CLI ({cli.model})", "available": cli.available,
+        "detail": (f"по подписке, без ключа: {cli.exe}" if cli.available else
+                   "claude CLI не найден — десктопное приложение не подходит, "
+                   "нужен Claude Code CLI"),
+    })
     cl = ClaudeSoftener(cfg)
-    out.append({"id": "claude", "title": f"Claude ({cl.model})", "available": cl.available,
-                "detail": "ключ в .env" if cl.available else "нет ANTHROPIC_API_KEY или пакета anthropic"})
+    out.append({"id": "claude", "title": f"Claude API ({cl.model})", "available": cl.available,
+                "detail": "ключ в .env (платно)" if cl.available
+                else "нет ANTHROPIC_API_KEY или пакета anthropic"})
     return out

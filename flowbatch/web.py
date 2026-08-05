@@ -1506,7 +1506,7 @@ class AppState:
 
     def set_soften_backend(self, backend: str) -> dict[str, Any]:
         backend = (backend or "auto").strip().lower()
-        allowed = {"auto", "rules", "ollama", "gemini", "claude"}
+        allowed = {"auto", "rules", "ollama", "gemini", "claude-cli", "claude"}
         if backend not in allowed:
             raise ValueError(f"неизвестный бэкенд {backend!r}")
         self.cfg.set("moderation.soften.backend", backend)
