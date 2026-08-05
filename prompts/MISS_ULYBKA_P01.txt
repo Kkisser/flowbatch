@@ -1,0 +1,363 @@
+@project MISS_ULYBKA_P01
+
+=== IMG miss_ulybka_p01_01_hero
+# Сцена 1 — Image. В кадре: ДАША. Эталонный кадр Даши. Приезд на конкурс.
+3D Pixar style, vertical 9:16. Bright sunny morning outside a grand concert hall with wide marble steps, a red carpet and a row of long glossy unbranded luxury cars, no logos and no plates anywhere.
+CRITICAL CHARACTER LOCK: DASHA — cartoon tooth character, bright white glossy enamel, large rounded molar-shaped head with a small neck, simple friendly cartoon eyes with warm brown irises, thin expressive eyebrows and a calm confident smile drawn directly on the enamel, wearing a simple hand-knitted mustard cardigan over a plain white blouse, a plain dark blue skirt and flat brown shoes, standing on the red carpet holding an old plain cardboard suitcase with a rope handle, chin up, quietly determined. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+IMPORTANT BACKGROUND RULE: every other tooth character is fully clothed and clearly a tooth, not a human — elegant tooth characters in evening dresses stepping out of the cars far behind, slightly out of focus.
+Composition: DASHA centred in the foreground on the red carpet, the marble steps and cars behind her. Everyone full body, from head to feet, not cropped.
+No captions or text on screen, no lettering on banners, sashes, posters or signs, all surfaces completely blank. Cinematic warm morning sunlight, wide low-angle shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG miss_ulybka_p01_02_swap
+# Сцена 2 — Image. В кадре: КРИСТИНА одна. Эталонный кадр Кристины. Подмена щётки.
+3D Pixar style, vertical 9:16. A backstage dressing room, warm round bulb lights framing a large mirror, two dressing tables, hanging garment bags, an old plain cardboard suitcase lying open on the far table.
+CRITICAL CHARACTER LOCK: KRISTINA — cartoon tooth character, creamy off-white enamel with a faint cool grey shade, large rounded molar-shaped head with a small neck, sharp arched eyebrows, long dark lashes and glossy pink lips drawn directly on the enamel, a sweet smile that does not reach the eyes, wearing a sparkling pale pink sequin gown, elbow-length satin gloves, a small plain silver tiara and pale pink high heels, holding a plain unbranded old toothbrush with bent worn bristles between two fingers. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: KRISTINA standing beside the far dressing table next to the open cardboard suitcase, turned slightly toward the mirror, full body from head to feet, not cropped.
+No captions or text on screen, no lettering on sashes, labels, mirrors or signs, all surfaces completely blank. Cinematic warm bulb light with soft shadows, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG miss_ulybka_p01_03_host
+# Сцена 3 — Image. В кадре: ВЕДУЩИЙ один. Эталонный кадр Ведущего. Объявление первого тура.
+3D Pixar style, vertical 9:16. A bright contest stage with a glossy runway, a plain shimmering curtain backdrop, warm spotlights and a blurred audience in the dark.
+CRITICAL CHARACTER LOCK: VEDUSHIY — cartoon tooth character, warm white enamel with a light beige tint, large rounded molar-shaped head with a small neck, wide theatrical cartoon eyes, high raised eyebrows and a broad showman grin drawn directly on the enamel, wearing a shiny turquoise sequin tuxedo jacket, a black bow tie, black trousers and polished black shoes, holding a plain unbranded microphone in one hand, other arm thrown wide in a presenting gesture. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+IMPORTANT BACKGROUND RULE: every other tooth character is fully clothed and clearly a tooth, not a human — a blurred row of seated tooth characters in the dark audience.
+Composition: VEDUSHIY standing centre stage in a spotlight, full body from head to feet, runway leading toward the camera. Everyone full body, not cropped.
+No captions or text on screen, no lettering on the backdrop, screens, banners or signs, all surfaces completely blank. Cinematic stage spotlight with warm rim light, low-angle medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG miss_ulybka_p01_04_mirror
+@use miss_ulybka_p01_01_hero
+@product rl410
+# Сцена 4 — Image. В кадре: ДАША одна. Паника у зеркала, находит ирригатор в косметичке.
+3D Pixar style, vertical 9:16. The same backstage dressing room, warm round bulb lights around the large mirror, the open cardboard suitcase on the table, a plain unbranded old worn toothbrush lying on the table top, a small open fabric cosmetic pouch beside it.
+CRITICAL CHARACTER LOCK: DASHA — cartoon tooth character, bright white glossy enamel, large rounded molar-shaped head with a small neck, warm brown cartoon eyes, thin expressive eyebrows, mouth slightly open in surprise turning to relief, wearing the same hand-knitted mustard cardigan over a plain white blouse, plain dark blue skirt and flat brown shoes, standing at the dressing table and lifting the portable irrigator out of the open pouch with one hand. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. She remains exactly like her reference image.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The device is the Revyline RL 410 slider portable oral irrigator: a small compact cordless handheld irrigator with a smooth rounded rectangular body, one round mode button on the front face, a small uppercase REVYLINE logo on the body and a short slim detachable nozzle rising from the top. Its exact colors, proportions, materials, button, logo placement and nozzle shape are copied strictly from the attached reference photo. It always stays in its CLOSED, fully retracted, compact configuration and never slides open, never unfolds, never extends, never telescopes, never transforms, and never grows a hose, a cord, a display or extra buttons. Only one product in the whole frame, held only in DASHA's hand. The fingers never cover the nozzle or the REVYLINE logo. Zero changes, no morphing.
+Composition: DASHA on the left at the dressing table, mirror and bulb lights behind her, the irrigator raised in her hand and fully visible. Everyone full body, from head to feet, not cropped.
+No captions or text on screen, no lettering on labels, mirrors, packaging or signs, all surfaces completely blank. Cinematic warm bulb light, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG miss_ulybka_p01_05_product
+@use miss_ulybka_p01_01_hero
+@product rl410
+# Сцена 5 — Image. В кадре: ДАША одна. Продукт-хиро, RL 410 показан целиком.
+3D Pixar style, vertical 9:16. The same backstage dressing room, warm round bulb lights around the large mirror, soft glowing background, the dressing table in front.
+CRITICAL CHARACTER LOCK: DASHA — cartoon tooth character, bright white glossy enamel, large rounded molar-shaped head with a small neck, warm brown cartoon eyes, thin expressive eyebrows and a warm confident smile, wearing the same hand-knitted mustard cardigan over a plain white blouse, plain dark blue skirt and flat brown shoes, standing facing the camera and holding the portable irrigator up in front of her at chest height with both hands, presenting it clearly. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. She remains exactly like her reference image.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The device is the Revyline RL 410 slider portable oral irrigator: a small compact cordless handheld irrigator with a smooth rounded rectangular body, one round mode button on the front face, a small uppercase REVYLINE logo on the body and a short slim detachable nozzle rising from the top. Its exact colors, proportions, materials, button, logo placement and nozzle shape are copied strictly from the attached reference photo. It always stays in its CLOSED, fully retracted, compact configuration and never slides open, never unfolds, never extends, never telescopes, never transforms, and never grows a hose, a cord, a display or extra buttons. Only one product in the whole frame, held only in DASHA's hands, shown whole and sharp, no extreme macro zoom on a single detail. The fingers never cover the nozzle or the REVYLINE logo. Zero changes, no morphing.
+Composition: DASHA centred, the irrigator clearly readable in the middle of the frame, mirror bulbs glowing softly behind her. Everyone full body, from head to feet, not cropped.
+No captions or text on screen, no lettering on labels, packaging, mirrors or signs, all surfaces completely blank. Cinematic soft warm key light with a gentle highlight on the device, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG miss_ulybka_p01_06_runway
+@use miss_ulybka_p01_01_hero
+@use miss_ulybka_p01_02_swap
+@use miss_ulybka_p01_03_host
+# Сцена 6 — Image. В кадре: ДАША, ВЕДУЩИЙ, КРИСТИНА. Выход под вспышки.
+3D Pixar style, vertical 9:16. The bright contest stage with the glossy runway, plain shimmering curtain backdrop, warm spotlights and bursts of white camera flashes from the dark audience.
+CRITICAL CHARACTER LOCK: DASHA — cartoon tooth character, bright white glossy enamel, large rounded molar-shaped head with a small neck, warm brown cartoon eyes and a radiant confident smile, wearing the same hand-knitted mustard cardigan over a plain white blouse, plain dark blue skirt and flat brown shoes, walking down the middle of the runway toward the camera. VEDUSHIY — cartoon tooth character, warm white enamel with a light beige tint, large molar-shaped head, wide theatrical eyes and a broad grin, in a shiny turquoise sequin tuxedo jacket, black bow tie and black trousers, standing on the RIGHT edge of the runway with the plain microphone raised, applauding with his free hand. KRISTINA — cartoon tooth character, creamy off-white enamel with a faint cool grey shade, large molar-shaped head, sharp arched eyebrows and glossy pink lips, in a sparkling pale pink sequin gown, satin gloves and a small plain silver tiara, standing on the LEFT at the edge of the stage, arms crossed, smile frozen. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+IMPORTANT BACKGROUND RULE: every other tooth character is fully clothed and clearly a tooth, not a human — a blurred row of seated tooth characters clapping in the dark audience.
+Composition: DASHA centred on the runway walking forward, VEDUSHIY right, KRISTINA left, camera flashes flaring behind them. Everyone full body, from head to feet, not cropped.
+No captions or text on screen, no lettering on the backdrop, sashes, screens or signs, all surfaces completely blank. Cinematic stage spotlight with cool flash accents, low-angle wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG miss_ulybka_p01_07_call
+@use miss_ulybka_p01_02_swap
+# Сцена 7 — Image. В кадре: КРИСТИНА одна. Звонок маме из коридора.
+3D Pixar style, vertical 9:16. A narrow backstage corridor behind the stage, dim warm wall lamps, plain painted walls, hanging cables and a stack of empty flight cases.
+CRITICAL CHARACTER LOCK: KRISTINA — cartoon tooth character, creamy off-white enamel with a faint cool grey shade, large rounded molar-shaped head with a small neck, sharp arched eyebrows, long dark lashes and glossy pink lips drawn directly on the enamel, tense narrowed eyes, wearing the sparkling pale pink sequin gown, elbow-length satin gloves, a small plain silver tiara and pale pink high heels, pressing a plain unbranded smartphone to the side of her head with one hand, the other hand clenched at her side. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. She remains exactly like her reference image.
+Composition: KRISTINA standing alone in the corridor, slightly turned away from the camera, the lit stage doorway glowing far behind her. Full body from head to feet, not cropped.
+No captions or text on screen, no lettering on the phone screen, walls, cases or signs, all surfaces completely blank. Cinematic moody warm corridor light with a cool rim from the doorway, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG miss_ulybka_p01_08_cliff
+@use miss_ulybka_p01_01_hero
+@use miss_ulybka_p01_02_swap
+# Сцена 8 — Image. В кадре: ДАША впереди, КРИСТИНА за спиной с пропуском. Клиффхэнгер.
+3D Pixar style, vertical 9:16. The same backstage dressing room, warm round bulb lights around the large mirror, garment bags on the rail, the open cardboard suitcase on the far table.
+CRITICAL CHARACTER LOCK: DASHA — cartoon tooth character, bright white glossy enamel, large rounded molar-shaped head with a small neck, warm brown cartoon eyes and a warm happy smile, wearing the same hand-knitted mustard cardigan over a plain white blouse, plain dark blue skirt and flat brown shoes, standing in the foreground facing the camera, one hand on her hip. KRISTINA — cartoon tooth character, creamy off-white enamel with a faint cool grey shade, large molar-shaped head, sharp arched eyebrows and glossy pink lips, sly narrowed eyes, in the sparkling pale pink sequin gown, satin gloves and small plain silver tiara, standing several steps behind DASHA in the dim part of the room, holding a completely blank white contestant pass card on a plain ribbon up in front of her, looking down at it. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: DASHA large in the foreground centre, KRISTINA smaller and softly out of focus in the background behind her right shoulder, clear separation between them, no contact. Everyone full body, from head to feet, not cropped.
+No captions or text on screen, the pass card is completely blank with no lettering, no lettering on labels, mirrors or signs, all surfaces completely blank. Cinematic warm foreground bulb light with a darker cooler background, medium shot with shallow depth of field, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== VID miss_ulybka_p01_01_hero_anim
+@use miss_ulybka_p01_01_hero
+@duration 8
+# Сцена 1 — Animation. Даша приезжает, Кристина колко приветствует. Хук. 8 секунд.
+Animate this exact scene. This is a warm, gentle, friendly comedic cartoon moment, with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- DASHA: cartoon TOOTH character from the reference image, molar tooth-shaped head with bright white glossy enamel, hand-knitted mustard cardigan over a plain white blouse, plain dark blue skirt, flat brown shoes, holding an old plain cardboard suitcase, stands MIDDLE.
+- KRISTINA: cartoon TOOTH character, molar tooth-shaped head with creamy off-white enamel with a faint cool grey shade, sparkling pale pink sequin gown, satin gloves, small plain silver tiara, walks past in the BACKGROUND on the LEFT and only turns her head to speak, never comes close.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. DASHA stays bright white for the entire video, KRISTINA stays creamy off-white for the entire video.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: sunny marble steps of a concert hall, red carpet, a row of long glossy unbranded cars with no logos, blurred elegant tooth characters in the far background. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: DASHA is calm and quietly determined, chin up, steady eyes, a small confident smile; KRISTINA is sugary on the surface with sharp arched eyebrows and a cool sideways glance. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: slow push-in on DASHA, one quick cut to KRISTINA in the background, then back to DASHA.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: DASHA stands on the red carpet, lifts the cardboard suitcase slightly and looks straight into the camera. DASHA says in Russian, calm and steady: «У них лимузины. У меня картонный чемодан.»
+3.0–5.5s: Cut to KRISTINA walking past in the background, turning her head. KRISTINA says in Russian, sweetly and coolly: «Милая, ты дверью не ошиблась?»
+5.5–8.0s: Back to DASHA, she smiles warmly and shrugs one shoulder. DASHA says in Russian, light and confident: «Улыбку по машине не оценивают.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: soft outdoor city air, distant car doors closing, faint chatter far away, light footsteps on carpet.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID miss_ulybka_p01_02_swap_anim
+@use miss_ulybka_p01_02_swap
+@duration 8
+# Сцена 2 — Animation. Кристина подкладывает облезлую щётку в чемодан Даши. 8 секунд.
+Animate this exact scene. This is a light, playful, comedic cartoon moment, with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- KRISTINA: cartoon TOOTH character from the reference image, molar tooth-shaped head with creamy off-white enamel with a faint cool grey shade, sparkling pale pink sequin gown, elbow-length satin gloves, small plain silver tiara, pale pink high heels, holding a plain unbranded old toothbrush with bent worn bristles, stands MIDDLE. She is completely alone in the room for the whole video.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. KRISTINA stays creamy off-white for the entire video.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: backstage dressing room, warm round bulb lights around a large mirror, two dressing tables, hanging garment bags, an old plain cardboard suitcase lying open on the far table. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: KRISTINA is sugary and pleased with herself, sharp arched eyebrows, narrowed sly eyes, a slow satisfied smile, elegant unhurried gestures. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: slow lateral dolly following her hand, one cut to a medium shot of her at the mirror.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: KRISTINA turns the worn plain toothbrush slowly between two gloved fingers and looks at it. KRISTINA says in Russian, sweetly, almost to herself: «Милая соседка. Такая простая.»
+3.0–5.5s: She leans over the open cardboard suitcase and lays the worn toothbrush inside, then straightens up. KRISTINA says in Russian, quietly and slyly: «Пусть выйдет вот с этой.»
+5.5–8.0s: She turns to the mirror and checks her own smile, tilting her head. KRISTINA says in Russian, satisfied and cool: «Первое место уже моё.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: faint hum of dressing room bulbs, soft rustle of fabric, distant muffled voices behind a door, light heel taps.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID miss_ulybka_p01_03_host_anim
+@use miss_ulybka_p01_03_host
+@duration 6
+# Сцена 3 — Animation. Ведущий объявляет первый тур и десять минут. 6 секунд.
+Animate this exact scene. This is an energetic, friendly, comedic cartoon moment, with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- VEDUSHIY: cartoon TOOTH character from the reference image, molar tooth-shaped head with warm white enamel with a light beige tint, shiny turquoise sequin tuxedo jacket, black bow tie, black trousers, polished black shoes, plain unbranded microphone in one hand, stands MIDDLE on the stage.
+- Blurred seated tooth characters in the dark audience, fully clothed and clearly teeth, never in focus, never speaking.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. VEDUSHIY stays warm white for the entire video.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: bright contest stage, glossy runway, plain shimmering curtain backdrop, warm spotlights, dark blurred audience. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH: VEDUSHIY is a broad theatrical showman, wide eyes, high raised eyebrows, big grin, sweeping arm gestures, leaning into the microphone. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: fast push-in from wide to medium, small handheld sway, one quick cut to a lower angle.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: VEDUSHIY throws one arm wide and raises the microphone, spotlights swing across the stage. VEDUSHIY says in Russian, loudly and theatrically: «Первый тур. Фотопроба улыбки.»
+3.0–6.0s: He steps forward to the edge of the runway and holds up an open palm. VEDUSHIY says in Russian, with pressing emphasis: «У вас ровно десять минут.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: distant audience murmur, soft applause swell, faint spotlight hum.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID miss_ulybka_p01_04_mirror_anim
+@use miss_ulybka_p01_04_mirror
+@product rl410
+@duration 8
+# Сцена 4 — Animation. Даша находит подмену и достаёт ирригатор. 8 секунд.
+Animate this exact scene. This is an emotional but gentle cartoon moment, with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- DASHA: cartoon TOOTH character from the reference image, molar tooth-shaped head with bright white glossy enamel, hand-knitted mustard cardigan over a plain white blouse, plain dark blue skirt, flat brown shoes, stands MIDDLE at the dressing table. She is completely alone in the room for the whole video.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. DASHA stays bright white for the entire video.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: backstage dressing room, warm round bulb lights around a large mirror, the open cardboard suitcase, a plain unbranded old worn toothbrush on the table, a small open fabric cosmetic pouch. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: DASHA moves from quiet shock to worry to sudden relief, wide eyes then a small hopeful smile, shoulders dropping and lifting. Keep it a touching, soft cartoon moment, never distressing. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: quick cut from a close view of her hand on the table to a medium shot, then a small push-in as she lifts the device.
+
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo. The device is the Revyline RL 410 slider portable oral irrigator: compact cordless handheld body with a smooth rounded rectangular shape, one round mode button on the front face, a small uppercase REVYLINE logo and a short slim detachable nozzle on top. It always stays in its CLOSED, fully retracted, compact configuration and never slides open, never unfolds, never extends, never telescopes, never transforms, and never grows a hose, a cord, a display or extra buttons. Only one product in the whole frame, held only by DASHA, zero changes, no morphing. Her fingers never cover the nozzle or the REVYLINE logo. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: DASHA picks up the worn plain toothbrush from the table, holds it up and stares at it, eyebrows lifting. DASHA says in Russian, quietly and taken aback: «Это не моя щётка.»
+3.0–5.5s: She lowers the brush, glances at the mirror and presses her lips together. DASHA says in Russian, worried but composed: «Десять минут. И зелень между зубов.»
+5.5–8.0s: She opens the small fabric pouch and lifts the compact irrigator out, her face brightening. DASHA says in Russian, with sudden relief: «Стоп. У меня же есть он.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: faint hum of dressing room bulbs, soft rustle of fabric, a distant muffled announcement behind a door, quiet zipper of the pouch.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID miss_ulybka_p01_05_product_anim
+@use miss_ulybka_p01_05_product
+@product rl410
+@duration 10
+# Сцена 5 — Animation. Продукт-хиро RL 410, модель названа вслух, экспресс-ритуал. 10 секунд.
+Animate this exact scene. This is a warm, friendly, upbeat cartoon moment, with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- DASHA: cartoon TOOTH character from the reference image, molar tooth-shaped head with bright white glossy enamel, hand-knitted mustard cardigan over a plain white blouse, plain dark blue skirt, flat brown shoes, stands MIDDLE facing the camera. She is completely alone in the room for the whole video.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. DASHA stays bright white for the entire video.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: backstage dressing room, warm round bulb lights around a large mirror, dressing table in front, soft glowing background. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: DASHA is warm, proud and confident, bright eyes, relaxed eyebrows, an easy genuine smile, calm assured gestures. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: very slow push-in on DASHA and the device, the device stays large and steady in the middle of the frame, no whip pans, no shaky handheld, no macro dive on any detail.
+
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo. The device is the Revyline RL 410 slider portable oral irrigator: compact cordless handheld body with a smooth rounded rectangular shape, one round mode button on the front face, a small uppercase REVYLINE logo and a short slim detachable nozzle on top. Its exact colors, proportions, button, logo placement and nozzle shape are copied strictly from the reference photo. It always stays in its CLOSED, fully retracted, compact configuration and never slides open, never unfolds, never extends, never telescopes, never transforms, and never grows a hose, a cord, a display or extra buttons. The device stays large and near-static in frame, only her thumb moves on the button. Only one product in the whole frame, held only by DASHA, zero changes, no morphing. Her fingers never cover the nozzle or the REVYLINE logo. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: DASHA holds the compact irrigator up in front of her at chest height with both hands, turning it slightly so the front face is clearly visible. DASHA says in Russian, warm and clear: «Ирригатор Ревилайн Эр Эль четыреста десять. Слайдер.»
+3.0–6.0s: She keeps the device steady in one hand and gives a light easy shrug with the other. DASHA says in Russian, friendly and matter-of-fact: «Складывается и живёт в косметичке. Всего двести граммов.»
+6.0–8.5s: Her thumb presses the round button once, she lifts the device toward her mouth and demonstrates a short quick cleaning motion, the device itself never changing shape. DASHA says in Russian, calm and practical: «Мягкий режим. Струя вымывает всё, что застряло.»
+8.5–10.0s: She lowers the device, smiles brightly at the camera and gives a small nod. DASHA says in Russian, cheerful: «И тридцать дней без розетки.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: faint hum of dressing room bulbs, a short soft water jet sound, light water droplets, quiet button click.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+10 seconds, vertical 9:16.
+
+=== VID miss_ulybka_p01_06_runway_anim
+@use miss_ulybka_p01_06_runway
+@duration 8
+# Сцена 6 — Animation. Слоу-мо выход Даши под вспышки, реакция Кристины. 8 секунд.
+Animate this exact scene. This is a warm, triumphant, comedic cartoon moment, with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- DASHA: cartoon TOOTH character from the reference image, molar tooth-shaped head with bright white glossy enamel, hand-knitted mustard cardigan over a plain white blouse, plain dark blue skirt, flat brown shoes, walks MIDDLE down the runway toward the camera.
+- VEDUSHIY: cartoon TOOTH character from the reference image, molar tooth-shaped head with warm white enamel with a light beige tint, shiny turquoise sequin tuxedo jacket, black bow tie, black trousers, plain unbranded microphone, stands RIGHT at the edge of the runway.
+- KRISTINA: cartoon TOOTH character from the reference image, molar tooth-shaped head with creamy off-white enamel with a faint cool grey shade, sparkling pale pink sequin gown, satin gloves, small plain silver tiara, stands LEFT at the edge of the stage with arms crossed.
+- Blurred seated tooth characters in the dark audience, fully clothed and clearly teeth, never in focus, never speaking.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. DASHA stays bright white, VEDUSHIY stays warm white, KRISTINA stays creamy off-white for the entire video. The three characters never touch, never swap positions and never merge.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: bright contest stage, glossy runway, plain shimmering curtain backdrop, warm spotlights, bursts of white camera flashes from the dark audience. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH: DASHA is radiant and confident with a wide genuine smile; VEDUSHIY is delighted and theatrical, clapping; KRISTINA holds a frozen smile with sharp arched eyebrows and stiff shoulders. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: slow motion tracking shot moving backward in front of DASHA, one cut to VEDUSHIY, one cut to KRISTINA, then back.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: DASHA steps onto the runway in slow motion, camera flashes flare, she smiles wide. VEDUSHIY says in Russian, loudly and warmly: «Участница из провинции. Прошу на подиум.»
+3.0–5.5s: Cut to VEDUSHIY clapping with one hand against the microphone, leaning forward. VEDUSHIY says in Russian, delighted: «Вот это улыбка!»
+5.5–8.0s: Cut to KRISTINA at the side of the stage, arms crossed, her smile freezing and her eyebrows dropping. KRISTINA says in Russian, tight and disbelieving: «Этого не может быть.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: camera shutter clicks, warm audience applause, distant murmur, soft footsteps on the runway.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID miss_ulybka_p01_07_call_anim
+@use miss_ulybka_p01_07_call
+@duration 6
+# Сцена 7 — Animation. Кристина звонит маме, объявляет план Б. 6 секунд.
+Animate this exact scene. This is a tense but soft, comedic cartoon moment, with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- KRISTINA: cartoon TOOTH character from the reference image, molar tooth-shaped head with creamy off-white enamel with a faint cool grey shade, sparkling pale pink sequin gown, elbow-length satin gloves, small plain silver tiara, pale pink high heels, holding a plain unbranded smartphone to the side of her head, stands MIDDLE. She is completely alone in the corridor for the whole video, the voice on the phone is never heard and no one else ever appears.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. KRISTINA stays creamy off-white for the entire video.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: narrow backstage corridor, dim warm wall lamps, plain painted walls, hanging cables, a stack of empty flight cases, a glowing stage doorway far behind. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: KRISTINA is tense and cold, narrowed eyes, sharp arched eyebrows, tight lips, one hand clenched, small controlled movements. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: slow creeping push-in from a medium shot, one quick cut to a slightly lower angle.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: KRISTINA presses the phone closer and glances back toward the glowing doorway. KRISTINA says in Russian, tense and low: «Мама, она прошла.»
+3.0–6.0s: She turns away from the doorway, her free hand slowly closing, her chin lifting. KRISTINA says in Russian, cold and decided: «Переходим к плану Б.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: distant muffled applause behind the wall, faint corridor air hum, quiet heel taps on concrete.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID miss_ulybka_p01_08_cliff_anim
+@use miss_ulybka_p01_08_cliff
+@duration 8
+# Сцена 8 — Animation. Призыв репликой Даши, за спиной Кристина с пропуском. Клиффхэнгер. 8 секунд.
+Animate this exact scene. This is a warm, friendly cartoon moment that turns playfully suspenseful, with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- DASHA: cartoon TOOTH character from the reference image, molar tooth-shaped head with bright white glossy enamel, hand-knitted mustard cardigan over a plain white blouse, plain dark blue skirt, flat brown shoes, stands MIDDLE in the foreground facing the camera.
+- KRISTINA: cartoon TOOTH character from the reference image, molar tooth-shaped head with creamy off-white enamel with a faint cool grey shade, sparkling pale pink sequin gown, satin gloves, small plain silver tiara, stands far BEHIND DASHA in the dim part of the room, holding a completely blank white pass card on a plain ribbon. The two characters never touch and never come close to each other.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. DASHA stays bright white and KRISTINA stays creamy off-white for the entire video, they never merge or exchange features.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: backstage dressing room, warm round bulb lights around the large mirror, garment bags on a rail, the open cardboard suitcase on the far table, a darker cooler background area. The pass card stays completely blank with no lettering. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: DASHA is warm, happy and open toward the camera; KRISTINA is quietly sly, narrowed eyes and a slow one-sided smile as she studies the card. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: static medium shot on DASHA with shallow depth of field, then the camera slowly lowers and racks focus past her shoulder onto KRISTINA in the background.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: DASHA looks straight into the camera, smiling, and taps her hand lightly against her own palm. DASHA says in Russian, warm and bright: «Первый тур мой. Артикул ирригатора под роликом.»
+3.0–5.5s: She tilts her head and gestures downward toward the viewer. DASHA says in Russian, friendly and inviting: «Пишите в комментариях, какой тур будет следующим.»
+5.5–8.0s: The camera lowers and the focus shifts to KRISTINA far behind her, slowly turning the blank pass card in her gloved fingers, one eyebrow rising. KRISTINA says in Russian, quiet and sly: «Второго тура у тебя не будет.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: faint hum of dressing room bulbs, soft rustle of fabric, distant muffled applause behind a door.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.

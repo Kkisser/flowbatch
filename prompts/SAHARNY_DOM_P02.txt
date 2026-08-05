@@ -1,6 +1,7 @@
 @project SAHARNY_DOM_P02
 
 === IMG sahdom_p02_01_hero
+@use SAHARNY_DOM_P01 :: sahdom_p01_07_karamel
 # Сцена 1 — Image. Эталонный кадр ДИМЫ. В кадре: ДИМА один утром у пустого тайника. Товара нет.
 3D Pixar style, vertical 9:16. Candy villa bedroom in the early morning, cool pale daylight through an amber caramel-glass window, waffle-panel walls, biscuit floor tiles, a low bed with a thick marshmallow mattress lifted and pushed aside, a small black camera tripod standing in the corner.
 CRITICAL CHARACTER LOCK: DIMA — cartoon tooth character, clean bright white enamel, large molar-shaped head, oversized grey hoodie with the hood down and grey sneakers, alarmed wide eyes and lowered eyebrows, kneeling beside the bed with one hand holding the lifted mattress edge and the other palm pressed to the empty space underneath. Only DIMA appears in this frame, no other character is present anywhere in the shot or in the background. He is a fully original fictional animated tooth character, his head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
@@ -8,6 +9,7 @@ Composition: DIMA on the right kneeling in three-quarter view, the lifted mattre
 No captions or text on screen. Cinematic cool morning key light with soft warm bounce, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
 
 === IMG sahdom_p02_02_liza
+@use SAHARNY_DOM_P01 :: sahdom_p01_08_cliffhanger
 @product rl410
 # Сцена 2 — Image. Эталонный кадр ЛИЗЫ. В кадре: ЛИЗА одна в исповедальне с ирригатором. Товар в кадре.
 3D Pixar style, vertical 9:16. Small candy villa diary booth, warm lamp light, a marshmallow stool, a simple black camera tripod facing the character, waffle-panel wall behind.
@@ -19,6 +21,7 @@ No captions or text on screen. Cinematic soft warm lamp key light with gentle pr
 === IMG sahdom_p02_03_task
 @use sahdom_p02_01_hero
 @use sahdom_p02_02_liza
+@use SAHARNY_DOM_P01 :: sahdom_p01_07_karamel
 # Сцена 3 — Image. Эталонный кадр ЖАННЫ и АРТЁМА. В кадре: КАРАМЕЛЬ, ДИМА, ЛИЗА, ЖАННА, АРТЁМ. Комната тортов.
 3D Pixar style, vertical 9:16. A bright candy villa room completely filled with giant glossy layer cakes on pedestals, cream swirls and berry glaze everywhere, waffle-panel walls, biscuit floor tiles, warm cheerful daylight.
 CRITICAL CHARACTER LOCK: KARAMEL — cartoon tooth character, warm amber caramel-toned glossy enamel, large molar-shaped head, long sparkling golden sequin gown with a small collar, a slim golden hand microphone in her right hand, sweet theatrical smile with one raised eyebrow, standing in the doorway. DIMA — cartoon tooth character, clean bright white enamel, molar-shaped head, oversized grey hoodie with the hood down and grey sneakers, calm focused expression, hands in his hoodie pocket. LIZA — cartoon tooth character, light creamy yellow enamel, molar-shaped head, soft pink ruffled dress and pink wristbands, delighted round eyes, leaning toward a cake. ZHANNA — cartoon tooth character, yellow enamel, molar-shaped head, bright red tracksuit with white stripes, large round dark sunglasses resting on the enamel, wide open mouth and both hands reaching toward a cake. ARTEM — cartoon tooth character, yellow enamel, molar-shaped head, dark green buttoned cardigan over a white shirt, small rectangular glasses resting on the enamel, arms crossed, calm analytical half-smile. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
@@ -50,6 +53,7 @@ No captions or text on screen. Cinematic soft warm lamp key light with gentle pr
 @use sahdom_p02_01_hero
 @use sahdom_p02_02_liza
 @use sahdom_p02_03_task
+@use SAHARNY_DOM_P01 :: sahdom_p01_07_karamel
 # Сцена 6 — Image. В кадре: КАРАМЕЛЬ, ЖАННА под аркой сканера, ЛИЗА, ДИМА, АРТЁМ. Красный сигнал.
 3D Pixar style, vertical 9:16. The candy villa ceremony hall at night, dramatic show lighting, a wide glowing arch of soft light standing over a round candy-pink podium, a tall glossy chocolate-brown door on the back wall standing slightly open with warm friendly light behind it.
 CRITICAL CHARACTER LOCK: KARAMEL — cartoon tooth character, warm amber caramel-toned glossy enamel, large molar-shaped head, long sparkling golden sequin gown, slim golden hand microphone, sweet theatrical smile. ZHANNA — cartoon tooth character, yellow enamel, molar-shaped head, bright red tracksuit with white stripes, large round dark sunglasses resting on the enamel, comically indignant open mouth and raised eyebrows, standing under the glowing arch which shines soft red light over her. LIZA — cartoon tooth character, clean bright white enamel, molar-shaped head, soft pink ruffled dress and pink wristbands, one hand near her mouth hiding a small smile. DIMA — cartoon tooth character, clean bright white enamel, molar-shaped head, oversized grey hoodie with the hood down and grey sneakers, calm still expression. ARTEM — cartoon tooth character, yellow enamel, molar-shaped head, dark green buttoned cardigan over a white shirt, small rectangular glasses resting on the enamel, arms crossed, one eyebrow raised. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images, except that LIZA's enamel is now clean bright white instead of light creamy yellow.
@@ -68,7 +72,7 @@ Composition: LIZA on the left in three-quarter view with the product extended be
 No captions or text on screen. Cinematic warm low key light with soft shadows, medium two-shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
 
 === IMG sahdom_p02_08_cliffhanger
-@use sahdom_p02_03_task
+@use SAHARNY_DOM_P01 :: sahdom_p01_07_karamel
 # Сцена 8 — Image. Клиффхэнгер. В кадре: КАРАМЕЛЬ одна в исповедальне, за ней открытая дверь виллы.
 3D Pixar style, vertical 9:16. The candy villa diary booth at night, warm lamp light, a marshmallow stool, a small black camera tripod facing the character, and behind her an open doorway leading outside where bright backlight floods in and hides everything beyond as a bright glowing rectangle.
 CRITICAL CHARACTER LOCK: KARAMEL — cartoon tooth character, warm amber caramel-toned glossy enamel, large molar-shaped head, long sparkling golden sequin gown with a small collar, sweet bored smile with one raised eyebrow, sitting on the stool and holding a tall glass of sparkling pink lemonade in one hand, looking straight into the camera. Only KARAMEL appears in this frame, absolutely no other character is present anywhere in the shot or in the background, the bright doorway behind her is empty. She is a fully original fictional animated tooth character, her head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. She remains exactly like her reference image.

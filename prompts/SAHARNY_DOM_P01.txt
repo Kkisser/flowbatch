@@ -1,0 +1,270 @@
+@project SAHARNY_DOM_P01
+
+=== IMG sahdom_p01_01_hero
+# Сцена 1 — Image. Эталонный кадр. В кадре: КАЧОК, СКАНДАЛИСТКА, МИЛАШКА, ТИХОНЯ. Заезд в дом.
+3D Pixar style, vertical 9:16. Bright candy-colored reality-show villa hall in the daytime, warm cheerful atmosphere: walls built from giant golden waffle panels, floor tiled with biscuit squares, soft marshmallow sofas, amber caramel-glass windows, a swimming pool in the background filled with dark fizzy cola-colored liquid, a tall glossy chocolate-brown door on the far wall.
+CRITICAL CHARACTER LOCK: KACHOK — cartoon tooth character, deep yellow enamel, large molar-shaped head, orange sleeveless sports tank top, blue shorts, white wristband, big confident grin, standing at the waffle wall with a bitten piece in his hand. SKANDALISTKA — cartoon tooth character, yellow enamel, molar-shaped head, bright red tracksuit with white stripes, large round dark sunglasses resting on the enamel, loud open mouth, one arm raised while pointing at the pool. MILASHKA — cartoon tooth character, light creamy yellow enamel, molar-shaped head, soft pink ruffled dress and pink wristbands, big round shy eyes, hands clasped together, looking at the chocolate door. TIHONYA — cartoon tooth character, pale creamy yellow enamel, molar-shaped head, oversized grey hoodie with the hood down and grey sneakers, calm suspicious narrowed eyes, standing slightly apart from the others with arms crossed. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: the four characters spread across the hall, KACHOK left at the waffle wall, SKANDALISTKA next to him pointing right, MILASHKA in the middle facing the chocolate door, TIHONYA on the right standing back. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic bright warm key light with soft candy-colored bounce, wide establishing shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG sahdom_p01_02_host
+@use sahdom_p01_01_hero
+# Сцена 2 — Image. Эталонный кадр КАРАМЕЛИ. В кадре: КАРАМЕЛЬ на лестнице, четверо участников внизу.
+3D Pixar style, vertical 9:16. The same candy villa hall, evening show lighting with warm spotlights and glittering highlights, a wide staircase made of glossy amber caramel leading down into the hall.
+CRITICAL CHARACTER LOCK: KARAMEL — cartoon tooth character, warm amber caramel-toned glossy enamel, large molar-shaped head, long sparkling golden sequin gown with a small collar, a slim golden hand microphone held in her right hand, sweet theatrical smile with raised eyebrows, descending the staircase. KACHOK — cartoon tooth character, deep yellow enamel, molar-shaped head, orange sleeveless sports tank top, blue shorts, white wristband, staring upward with an open mouth. SKANDALISTKA — cartoon tooth character, yellow enamel, molar-shaped head, bright red tracksuit with white stripes, large round dark sunglasses on the enamel, one hand on her hip. MILASHKA — cartoon tooth character, light creamy yellow enamel, molar-shaped head, soft pink ruffled dress and pink wristbands, big round eyes, hands clasped. TIHONYA — cartoon tooth character, pale creamy yellow enamel, molar-shaped head, oversized grey hoodie with the hood down, grey sneakers, calm watchful expression. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: KARAMEL elevated on the staircase in the upper third of the frame, the four participants standing together in the lower half looking up at her. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm spotlight from above with sparkling rim light, low-angle wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG sahdom_p01_03_safe
+@use sahdom_p01_01_hero
+@product rl410
+# Сцена 3 — Image. В кадре: ТИХОНЯ один у открытого сейфа ночью. Товар в кадре.
+3D Pixar style, vertical 9:16. A narrow candy-villa corridor at night, cool moonlight through an amber caramel-glass window, waffle-panel walls, a small wall niche with an open metal safe glowing softly from inside.
+CRITICAL CHARACTER LOCK: TIHONYA — cartoon tooth character, pale creamy yellow enamel, molar-shaped head, oversized grey hoodie with the hood down and grey sneakers, wide surprised eyes and slightly open mouth, crouching in front of the open safe, one hand holding a completely blank cream-colored card with no writing of any kind on it. Only TIHONYA appears in this frame, no other character. He is a fully original fictional animated tooth character, his head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. He remains exactly like his reference image.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The product is the Revyline RL 410 Slider portable oral irrigator: a compact slim rectangular hand-held body shown in its closed collapsed travel position, the retractable water tank forming the lower part of the body, a short curved nozzle fixed on the top, one round control button on the upper front face, small uppercase REVYLINE lettering on the body. Its exact body colors, proportions, finish, button, nozzle and lettering match the attached reference photo exactly. It always stays in this closed compact form: it never slides open, never unfolds, never extends, never transforms and never changes color. Only one product in the whole frame, standing upright inside the open safe, nothing covering the nozzle or the REVYLINE lettering. Zero changes, no morphing, no extra buttons or logos.
+Composition: TIHONYA on the left crouching in profile, the open glowing safe with the product on the right at chest height. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic cool moonlight with a warm glow spilling from the safe, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG sahdom_p01_04_product
+@use sahdom_p01_01_hero
+@product rl410
+# Сцена 4 — Image. Продуктовая сцена. В кадре: ТИХОНЯ с ирригатором у камеры-дневника. Товар крупно и целиком.
+3D Pixar style, vertical 9:16. A small candy-villa diary booth at night, soft warm lamp light, a marshmallow stool, a simple black camera tripod facing the character, waffle-panel wall behind.
+CRITICAL CHARACTER LOCK: TIHONYA — cartoon tooth character, pale creamy yellow enamel, molar-shaped head, oversized grey hoodie with the hood down and grey sneakers, calm focused expression with slightly raised eyebrows, sitting on the stool and holding the product up in both hands in front of his chest, presenting it toward the camera. Only TIHONYA appears in this frame, no other character. He is a fully original fictional animated tooth character, his head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. He remains exactly like his reference image.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The product is the Revyline RL 410 Slider portable oral irrigator: a compact slim rectangular hand-held body shown in its closed collapsed travel position, the retractable water tank forming the lower part of the body, a short curved nozzle fixed on the top, one round control button on the upper front face, small uppercase REVYLINE lettering on the body. Its exact body colors, proportions, finish, button, nozzle and lettering match the attached reference photo exactly. It always stays in this closed compact form: it never slides open, never unfolds, never extends, never transforms and never changes color. Only one product in the whole frame, held only in TIHONYA's hands, fingers never covering the nozzle or the REVYLINE lettering, the whole product fully inside the frame with no extreme macro zoom. Zero changes, no morphing, no extra buttons or logos.
+Composition: TIHONYA centered facing the camera, the product raised and clearly readable at chest height, the tripod camera silhouette in the lower foreground corner. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic soft warm lamp key light with gentle product highlight, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG sahdom_p01_05_alliance
+@use sahdom_p01_01_hero
+@product rl410
+# Сцена 5 — Image. В кадре: ТИХОНЯ (уже белый) и МИЛАШКА за колонной. Товар передаётся из рук в руки.
+3D Pixar style, vertical 9:16. Morning in the candy villa behind a thick marzipan column, soft golden daylight, waffle-panel wall, biscuit floor tiles.
+CRITICAL CHARACTER LOCK: TIHONYA — cartoon tooth character, now clean bright white enamel, molar-shaped head, oversized grey hoodie with the hood down and grey sneakers, calm quiet half-smile, holding the product out toward MILASHKA. MILASHKA — cartoon tooth character, light creamy yellow enamel, molar-shaped head, soft pink ruffled dress and pink wristbands, big round delighted eyes, both hands reaching toward the product without touching it yet. Only TIHONYA and MILASHKA appear in this frame, no other character. Both are fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images, except that TIHONYA's enamel is now white instead of creamy yellow.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The product is the Revyline RL 410 Slider portable oral irrigator: a compact slim rectangular hand-held body shown in its closed collapsed travel position, the retractable water tank forming the lower part of the body, a short curved nozzle fixed on the top, one round control button on the upper front face, small uppercase REVYLINE lettering on the body. Its exact body colors, proportions, finish, button, nozzle and lettering match the attached reference photo exactly. It always stays in this closed compact form: it never slides open, never unfolds, never extends, never transforms and never changes color. Only one product in the whole frame, held only in TIHONYA's hand, fingers never covering the nozzle or the REVYLINE lettering. Zero changes, no morphing, no extra buttons or logos.
+Composition: TIHONYA on the left in profile, MILASHKA on the right facing him, the product between them at chest height, the marzipan column framing the left edge. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm morning side light, medium two-shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG sahdom_p01_06_ceremony
+@use sahdom_p01_01_hero
+@use sahdom_p01_02_host
+# Сцена 6 — Image. В кадре: КАРАМЕЛЬ, КАЧОК под аркой сканера, СКАНДАЛИСТКА, МИЛАШКА, ТИХОНЯ. Красный сигнал.
+3D Pixar style, vertical 9:16. The candy villa ceremony hall at night, dramatic show lighting, a wide glowing arch of soft light standing over a round candy-pink podium, the tall glossy chocolate-brown door on the back wall standing slightly ajar with warm light behind it.
+CRITICAL CHARACTER LOCK: KARAMEL — cartoon tooth character, warm amber caramel-toned glossy enamel, molar-shaped head, long sparkling golden sequin gown, slim golden hand microphone in her right hand, sweet theatrical smile. KACHOK — cartoon tooth character, deep yellow enamel, molar-shaped head, orange sleeveless sports tank top, blue shorts, white wristband, confused raised eyebrows and open mouth, standing under the glowing arch which shines soft red light over him. SKANDALISTKA — cartoon tooth character, yellow enamel, molar-shaped head, bright red tracksuit with white stripes, large round dark sunglasses on the enamel, both hands raised in surprise. MILASHKA — cartoon tooth character, light creamy yellow enamel, molar-shaped head, soft pink ruffled dress and pink wristbands, wide startled eyes, one hand near her mouth. TIHONYA — cartoon tooth character, clean bright white enamel, molar-shaped head, oversized grey hoodie with the hood down and grey sneakers, calm quiet expression. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images, except that TIHONYA's enamel is now white instead of creamy yellow.
+Composition: KARAMEL on the left beside the podium, KACHOK centered under the glowing arch in soft red light, SKANDALISTKA, MILASHKA and TIHONYA standing in a row on the right, the chocolate door behind them. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic dramatic show lighting with a soft red glow from the arch, wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG sahdom_p01_07_karamel
+@use sahdom_p01_02_host
+# Сцена 7 — Image. В кадре: только КАРАМЕЛЬ перед закрытой шоколадной дверью.
+3D Pixar style, vertical 9:16. The candy villa ceremony hall at night, empty, warm sparkling spotlight, the tall glossy chocolate-brown door on the back wall now fully closed.
+CRITICAL CHARACTER LOCK: KARAMEL — cartoon tooth character, warm amber caramel-toned glossy enamel, large molar-shaped head, long sparkling golden sequin gown with a small collar, slim golden hand microphone held near her mouth, sweet satisfied smile with one raised eyebrow, standing calmly and looking straight into the camera. Only KARAMEL appears in this frame, absolutely no other character is present anywhere in the shot or in the background. She is a fully original fictional animated tooth character, her head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. She remains exactly like her reference image.
+Composition: KARAMEL centered in the frame facing the camera, the closed chocolate door filling the background behind her. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm spotlight with sparkling rim light and soft falloff into darkness, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG sahdom_p01_08_cliffhanger
+@use sahdom_p01_01_hero
+@product rl410
+# Сцена 8 — Image. Клиффхэнгер. В кадре: МИЛАШКА ночью прячет ирригатор под матрас. Товар в кадре.
+3D Pixar style, vertical 9:16. A candy villa bedroom at night, cool blue moonlight through an amber caramel-glass window, a low bed with a thick marshmallow mattress, waffle-panel wall, a small camera tripod in the corner.
+CRITICAL CHARACTER LOCK: MILASHKA — cartoon tooth character, light creamy yellow enamel, molar-shaped head, soft pink ruffled dress and pink wristbands, calm confident half-smile with narrowed eyes, kneeling beside the bed, one hand lifting the edge of the mattress and the other holding the product. Only MILASHKA appears in this frame, no other character. She is a fully original fictional animated tooth character, her head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. She remains exactly like her reference image. Her enamel keeps the exact same creamy yellow shade despite the cool night lighting.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The product is the Revyline RL 410 Slider portable oral irrigator: a compact slim rectangular hand-held body shown in its closed collapsed travel position, the retractable water tank forming the lower part of the body, a short curved nozzle fixed on the top, one round control button on the upper front face, small uppercase REVYLINE lettering on the body. Its exact body colors, proportions, finish, button, nozzle and lettering match the attached reference photo exactly. It always stays in this closed compact form: it never slides open, never unfolds, never extends, never transforms and never changes color. Only one product in the whole frame, held only in MILASHKA's hand, fingers never covering the nozzle or the REVYLINE lettering. Zero changes, no morphing, no extra buttons or logos.
+Composition: MILASHKA on the right kneeling by the bed and turning her head toward the camera, the lifted mattress edge and the product on the left, the tripod camera silhouette in the far background. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic cool moonlight key with soft warm fill, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== VID sahdom_p01_01_hero_anim
+@use sahdom_p01_01_hero
+@duration 8
+# Сцена 1 — Animation. Заезд, хук в первые 2 секунды. 8 секунд.
+Animate this exact scene. This is a warm comedic cartoon moment, with fast dynamic editing.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- KACHOK: cartoon TOOTH character from the reference image, molar tooth-shaped head with deep yellow enamel, orange sleeveless sports tank top, blue shorts, white wristband, stands LEFT.
+- SKANDALISTKA: cartoon TOOTH character from the reference image, molar tooth-shaped head with yellow enamel, bright red tracksuit with white stripes, large round dark sunglasses on the enamel, stands MIDDLE-LEFT.
+- MILASHKA: cartoon TOOTH character from the reference image, molar tooth-shaped head with light creamy yellow enamel, soft pink ruffled dress and pink wristbands, stands MIDDLE-RIGHT.
+- TIHONYA: cartoon TOOTH character from the reference image, molar tooth-shaped head with pale creamy yellow enamel, oversized grey hoodie with the hood down and grey sneakers, stands RIGHT.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. KACHOK stays deep yellow, SKANDALISTKA stays yellow, MILASHKA stays light creamy yellow, TIHONYA stays pale creamy yellow for the whole video.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: candy villa hall with giant golden waffle wall panels, biscuit floor tiles, marshmallow sofas, amber caramel-glass windows, a pool of dark fizzy cola-colored liquid in the background, a tall glossy chocolate-brown door on the far wall. Nothing new appears during the video.
+EMOTIONAL INTENSITY — HIGH: wide delighted eyes, raised eyebrows, big open smiles, bouncy energetic body movement, KACHOK chewing happily, SKANDALISTKA pointing broadly, MILASHKA turning her head with round curious eyes, TIHONYA staying still with narrowed watchful eyes and crossed arms. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: fast push-in on the waffle wall at the start, quick cut to a wide hall shot, then a slow drift toward TIHONYA on the right.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.0s: KACHOK bites a piece off the waffle wall and holds it up, beaming. KACHOK says in Russian, delighted and loud: «Я откусил стену. Она вафельная!»
+2.0–4.0s: quick cut to SKANDALISTKA pointing at the cola pool with a wide gesture. SKANDALISTKA says in Russian, loud and theatrical: «Тут в бассейне кола, я проверила.»
+4.0–6.0s: MILASHKA turns her head toward the chocolate door, hands clasped, eyes round. MILASHKA says in Russian, quietly puzzled: «А почему вон та дверь шоколадная?»
+6.0–8.0s: the camera drifts to TIHONYA standing apart with crossed arms, eyes narrowing. TIHONYA says in Russian, calm and low: «Слишком сладко. Так не бывает.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: light crunchy bites, soft footsteps on tiles, faint fizzing from the pool, distant room tone.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID sahdom_p01_02_host_anim
+@use sahdom_p01_02_host
+@duration 8
+# Сцена 2 — Animation. Выход ведущей Карамели. 8 секунд.
+Animate this exact scene. This is a comedic theatrical cartoon moment, with fast dynamic editing.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- KARAMEL: cartoon TOOTH character from the reference image, molar tooth-shaped head with warm amber caramel-toned glossy enamel, long sparkling golden sequin gown, slim golden hand microphone in her right hand, stands MIDDLE on the staircase, elevated.
+- KACHOK: cartoon TOOTH character from the reference image, molar tooth-shaped head with deep yellow enamel, orange tank top, blue shorts, white wristband, stands LEFT below.
+- SKANDALISTKA: cartoon TOOTH character from the reference image, molar tooth-shaped head with yellow enamel, bright red tracksuit with white stripes, large round dark sunglasses on the enamel, stands MIDDLE-LEFT below.
+- MILASHKA: cartoon TOOTH character from the reference image, molar tooth-shaped head with light creamy yellow enamel, soft pink ruffled dress and pink wristbands, stands MIDDLE-RIGHT below.
+- TIHONYA: cartoon TOOTH character from the reference image, molar tooth-shaped head with pale creamy yellow enamel, oversized grey hoodie with the hood down and grey sneakers, stands RIGHT below.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. KARAMEL stays amber caramel-toned, KACHOK stays deep yellow, SKANDALISTKA stays yellow, MILASHKA stays light creamy yellow, TIHONYA stays pale creamy yellow.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: candy villa hall with a wide glossy amber caramel staircase, waffle wall panels, biscuit floor, warm show spotlights and glittering highlights. Nothing new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM: KARAMEL is smooth, sweet and theatrical with slow elegant gestures and a knowing smile; the four below react with raised eyebrows, tilted heads and small nervous shifts of weight. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: low-angle shot rising toward KARAMEL on the staircase, one cut to the group looking up, then back to KARAMEL for a slow push-in.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.0s: KARAMEL steps down the caramel staircase and spreads one arm wide, microphone raised. KARAMEL says in Russian, sweetly and melodically: «Добро пожаловать в Сахарный дом.»
+2.0–4.0s: she stops on the last step and tilts her head with a knowing smile. KARAMEL says in Russian, slow and playful: «Дом кормит. Дом и спросит.»
+4.0–6.0s: cut to the group, SKANDALISTKA lifts her chin and folds her arms. SKANDALISTKA says in Russian, sharply curious: «Спросит о чём?»
+6.0–8.0s: cut back to KARAMEL, she leans slightly toward the camera with a sugary smile. KARAMEL says in Russian, sweet and unhurried: «О ваших зубах, дорогая.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: soft footsteps on the staircase, faint fabric rustle, quiet room tone, light crowd shuffle.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID sahdom_p01_03_safe_anim
+@use sahdom_p01_03_safe
+@product rl410
+@duration 6
+# Сцена 3 — Animation. Тихоня находит сейф с ирригатором. 6 секунд.
+Animate this exact scene. This is a quiet, gentle, suspenseful cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- TIHONYA: cartoon TOOTH character from the reference image, molar tooth-shaped head with pale creamy yellow enamel, oversized grey hoodie with the hood down and grey sneakers, stands LEFT, crouching. He is alone for the entire video.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: his tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. TIHONYA stays pale creamy yellow for the whole video.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: narrow candy villa corridor at night, waffle wall panels, amber caramel-glass window with cool moonlight, a wall niche with an open metal safe glowing softly, a completely blank cream-colored card with no writing on it. Nothing new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM: careful quiet movement, wide surprised eyes, slow cautious hands, a small glance over the shoulder. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: slow handheld drift along the corridor, then a smooth push-in toward the open safe.
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo, only one product in the whole frame, standing upright inside the open safe, zero changes, no morphing. It stays in its closed compact form and never slides open, unfolds, extends or transforms. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–3.0s: TIHONYA walks slowly to the niche, crouches and sees the open safe with the product glowing inside, eyes widening. TIHONYA says in Russian, in a careful whisper: «Сейф. И он не заперт.»
+3.0–6.0s: he lifts the blank cream card, looks at it, then glances over his shoulder. TIHONYA says in Russian, quietly reading aloud: «На весь дом. Один.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. He speaks STRICTLY one line at a time, each line finishes before the next begins, with clear pauses. He stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+Ambient sound only: quiet footsteps, faint metallic creak of the safe door, distant night room tone.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+6 seconds, vertical 9:16.
+
+=== VID sahdom_p01_04_product_anim
+@use sahdom_p01_04_product
+@product rl410
+@duration 10
+# Сцена 4 — Animation. ПРОДУКТОВАЯ СЦЕНА. Модель названа вслух, преображение эмали на 7 секунде. 10 секунд.
+Animate this exact scene. This is a calm, warm, confident cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- TIHONYA: cartoon TOOTH character from the reference image, molar tooth-shaped head, oversized grey hoodie with the hood down and grey sneakers, sits MIDDLE on a marshmallow stool facing the camera. He is alone for the entire video.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: his tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. ONE SINGLE CONTROLLED CHANGE IS ALLOWED AND NOTHING ELSE: his enamel is pale creamy yellow from 0.0s to 7.0s, and from 7.0s to 10.0s it becomes clean bright white. The shade change is smooth and affects only the enamel color. His shape, clothes, proportions and features do not change at any moment.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: small candy villa diary booth at night, warm lamp, marshmallow stool, a simple black camera tripod facing him, waffle wall panels behind. Nothing new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM: calm focused eyes, small confident smile, unhurried precise hand movements while presenting the product, a quiet satisfied look at the end. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed apart from the single allowed enamel shade change.
+CAMERA STYLE: locked medium shot with a very slow push-in, one gentle tilt down to the product and back up.
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo, only one product in the whole frame, held only by TIHONYA in his hands, zero changes, no morphing. It stays in its closed compact form and never slides open, unfolds, extends, transforms or changes color. His fingers never cover the nozzle or the REVYLINE lettering. Keep the whole product inside the frame, no extreme macro zoom on a single detail. The product stays large and steady in frame, only his hand moves.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.5s: TIHONYA raises the product in both hands and turns it slightly toward the camera, holding it steady. TIHONYA says in Russian, calm and clear: «Ревилайн Эр Эл четыреста десять. Один на весь дом.»
+2.5–5.0s: he keeps the product steady at chest height and taps the round button once with his thumb. TIHONYA says in Russian, calm and explanatory: «Три режима, и струя достаёт там, куда щётка не дотянется.»
+5.0–7.0s: he turns the product slightly to show the compact body, still holding it firmly. TIHONYA says in Russian, matter-of-fact: «И до тридцати дней от одной зарядки. Розеток здесь нет.»
+7.0–10.0s: his enamel smoothly turns clean bright white, he lowers the product and looks straight into the camera with a small satisfied smile. TIHONYA says in Russian, quietly and confidently: «Пока они едят мебель, я держу иммунитет.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. He speaks STRICTLY one line at a time, each line finishes before the next begins, with clear pauses. He stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+Ambient sound only: quiet room tone, a soft single button click, faint lamp hum.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+10 seconds, vertical 9:16.
+
+=== VID sahdom_p01_05_alliance_anim
+@use sahdom_p01_05_alliance
+@product rl410
+@duration 6
+# Сцена 5 — Animation. Альянс, передача продукта. 6 секунд.
+Animate this exact scene. This is a soft, gentle, friendly cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- TIHONYA: cartoon TOOTH character from the reference image, molar tooth-shaped head with clean bright white enamel, oversized grey hoodie with the hood down and grey sneakers, stands LEFT.
+- MILASHKA: cartoon TOOTH character from the reference image, molar tooth-shaped head with light creamy yellow enamel, soft pink ruffled dress and pink wristbands, stands RIGHT.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. TIHONYA stays clean bright white for the whole video, MILASHKA stays light creamy yellow for the whole video and her enamel never becomes white.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: candy villa corner behind a thick marzipan column in the morning, waffle wall panels, biscuit floor tiles, warm golden daylight. Nothing new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM: quiet conspiratorial energy, lowered voices, quick glances aside, MILASHKA with delighted round eyes and a bright grateful smile. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: slow lateral dolly revealing them from behind the column, ending on a steady two-shot.
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo, only one product in the whole frame, held only by TIHONYA and then by MILASHKA, zero changes, no morphing. It stays in its closed compact form and never slides open, unfolds, extends, transforms or changes color. Fingers never cover the nozzle or the REVYLINE lettering. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–3.0s: TIHONYA glances aside, then holds the product out toward MILASHKA at chest height. TIHONYA says in Russian, quietly: «Держи. Только между нами.»
+3.0–6.0s: MILASHKA takes the product carefully in both hands, her eyes going round and bright. MILASHKA says in Russian, sweetly and warmly: «Конечно. Мы же альянс.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: faint morning room tone, soft footsteps, quiet cloth rustle.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+6 seconds, vertical 9:16.
+
+=== VID sahdom_p01_06_ceremony_anim
+@use sahdom_p01_06_ceremony
+@duration 8
+# Сцена 6 — Animation. Церемония сканера, Качок выбывает. 8 секунд.
+Animate this exact scene. This is a comedic dramatic cartoon moment, with fast dynamic editing.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- KARAMEL: cartoon TOOTH character from the reference image, molar tooth-shaped head with warm amber caramel-toned glossy enamel, long sparkling golden sequin gown, golden hand microphone, stands LEFT.
+- KACHOK: cartoon TOOTH character from the reference image, molar tooth-shaped head with deep yellow enamel, orange tank top, blue shorts, white wristband, stands MIDDLE under the glowing arch.
+- SKANDALISTKA: cartoon TOOTH character from the reference image, molar tooth-shaped head with yellow enamel, bright red tracksuit with white stripes, large round dark sunglasses on the enamel, stands RIGHT.
+- MILASHKA: cartoon TOOTH character from the reference image, molar tooth-shaped head with light creamy yellow enamel, soft pink ruffled dress and pink wristbands, stands RIGHT next to SKANDALISTKA.
+- TIHONYA: cartoon TOOTH character from the reference image, molar tooth-shaped head with clean bright white enamel, oversized grey hoodie with the hood down and grey sneakers, stands FAR RIGHT.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. KARAMEL stays amber caramel-toned, KACHOK stays deep yellow, SKANDALISTKA stays yellow, MILASHKA stays light creamy yellow, TIHONYA stays clean bright white. The soft red light from the arch never repaints anyone's enamel.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: candy villa ceremony hall at night, a wide glowing arch of soft light over a round candy-pink podium, a tall glossy chocolate-brown door on the back wall that slowly slides open with warm friendly light behind it. Nothing new appears during the video.
+EMOTIONAL INTENSITY — HIGH: KARAMEL is smooth and theatrical, KACHOK is comically confused with raised eyebrows and a shrug, SKANDALISTKA throws her hands up, MILASHKA covers her mouth with round startled eyes, TIHONYA stays calm and still. The tone stays light and playful, everyone smiles at the end. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: wide shot of the hall, quick cut to the arch glowing soft red over KACHOK, cut to the reacting row, then a wide shot as the chocolate door slides open.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.0s: KARAMEL raises the microphone and gestures elegantly toward the glowing arch. KARAMEL says in Russian, sweetly and grandly: «Сканер покажет, кто берёг зубы.»
+2.0–4.0s: KACHOK steps under the arch, the light turns soft red above him, he shrugs with comically raised eyebrows. KACHOK says in Russian, confused and a bit sheepish: «У меня красный? Я же только торт ел.»
+4.0–6.0s: cut to MILASHKA covering her mouth as the chocolate door slowly slides open behind them. MILASHKA says in Russian, in a startled whisper: «Дверь открывается.»
+6.0–8.0s: KACHOK turns, waves cheerfully with both hands and walks calmly toward the open door. KACHOK says in Russian, cheerful and relaxed: «Ну, пока, ребята.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: a soft electronic chime from the arch, a low smooth sliding sound of the door, quiet shuffling feet, night room tone.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID sahdom_p01_07_karamel_anim
+@use sahdom_p01_07_karamel
+@duration 6
+# Сцена 7 — Animation. Карамель подводит итог в камеру. 6 секунд.
+Animate this exact scene. This is a playful, theatrical cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. She must NEVER turn into a human, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- KARAMEL: cartoon TOOTH character from the reference image, molar tooth-shaped head with warm amber caramel-toned glossy enamel, long sparkling golden sequin gown, slim golden hand microphone, stands MIDDLE facing the camera. She is completely alone for the entire video, no other character enters the frame or appears in the background at any moment.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: her tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same gown. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. KARAMEL stays warm amber caramel-toned for the whole video.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: empty candy villa ceremony hall at night, the tall glossy chocolate-brown door fully closed behind her, warm sparkling spotlight, darkness at the edges. Nothing new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM: sweet satisfied smile, one raised eyebrow, a slow elegant turn toward the camera, a small playful wink at the end. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: slow steady push-in toward her, ending on a stable medium shot.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–3.0s: KARAMEL turns smoothly toward the camera and lifts the microphone with a satisfied smile. KARAMEL says in Russian, sweetly and slowly: «Минус один. Сладких снов.»
+3.0–6.0s: she leans slightly forward, tilts her head and gives a small playful wink. KARAMEL says in Russian, sweetly and playfully: «Ты ещё пожалеешь.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. She speaks STRICTLY one line at a time, each line finishes before the next begins, with clear pauses. She stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+Ambient sound only: faint fabric rustle, quiet empty-hall room tone.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+6 seconds, vertical 9:16.
+
+=== VID sahdom_p01_08_cliffhanger_anim
+@use sahdom_p01_08_cliffhanger
+@product rl410
+@duration 8
+# Сцена 8 — Animation. Клиффхэнгер и призыв репликой. 8 секунд.
+Animate this exact scene. This is a quiet, tense, playful cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. She must NEVER turn into a human, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- MILASHKA: cartoon TOOTH character from the reference image, molar tooth-shaped head with light creamy yellow enamel, soft pink ruffled dress and pink wristbands, kneels RIGHT beside the bed. She is completely alone for the entire video.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: her tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same dress. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. MILASHKA stays light creamy yellow for the whole video and her enamel never turns white; the cool moonlight never repaints her enamel colour.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: candy villa bedroom at night, cool blue moonlight through an amber caramel-glass window, a low bed with a thick marshmallow mattress, waffle wall panels, a small black camera tripod in the corner. Nothing new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM: careful silent movements, narrowed confident eyes, a small knowing half-smile, one calm direct look into the camera at the end. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: slow low push-in toward the bed, one cut to a steady frontal shot as she turns to the camera.
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo, only one product in the whole frame, held only by MILASHKA, zero changes, no morphing. It stays in its closed compact form and never slides open, unfolds, extends, transforms or changes color. Her fingers never cover the nozzle or the REVYLINE lettering. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–3.0s: MILASHKA quietly lifts the mattress edge, slides the product underneath and pats the mattress back down, then turns her head to the camera with a knowing half-smile. MILASHKA says in Russian, calm and quiet: «Здесь каждый сам за себя.»
+3.0–5.5s: she settles on her knees facing the camera, hands folded, looking straight into the lens. MILASHKA says in Russian, calm and friendly: «Артикул под видео, если хотите такой же.»
+5.5–8.0s: she tilts her head and raises her eyebrows invitingly, still looking into the camera. MILASHKA says in Russian, playfully: «Пишите в комментариях, кто вылетит следующим.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. She speaks STRICTLY one line at a time, each line finishes before the next begins, with clear pauses. She stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+Ambient sound only: soft mattress rustle, quiet breathing-free night room tone, faint wind outside the window.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.

@@ -1,6 +1,7 @@
 @project MISS_ULYBKA_P02
 
 === IMG miss_ulybka_p02_01_gate
+@use MISS_ULYBKA_P01 :: miss_ulybka_p01_01_hero
 # Сцена 1 — Image. В кадре: ДАША, ОХРАННИК. Эталонный кадр части, вводится Охранник. Пропуска нет.
 3D Pixar style, vertical 9:16. Early morning at a side entrance of a grand concert hall, a low metal turnstile, a small glass security booth, plain painted walls, cool morning light through tall windows.
 CRITICAL CHARACTER LOCK: DASHA — cartoon tooth character, bright white glossy enamel, large rounded molar-shaped head with a small neck, simple friendly cartoon eyes with warm brown irises, thin expressive eyebrows, worried but determined expression drawn directly on the enamel, wearing a simple hand-knitted mustard cardigan over a plain white blouse, a plain dark blue skirt and flat brown shoes, standing at the turnstile with one hand searching an empty cardigan pocket. OKHRANNIK — cartoon tooth character, warm greyish-white enamel, very large broad rounded molar-shaped head with a small neck, small calm cartoon eyes, straight thick eyebrows and a flat neutral mouth drawn directly on the enamel, wearing a plain dark navy security uniform shirt with no logos, plain dark trousers, black boots and a plain unbranded dark cap, standing on the other side of the turnstile with arms crossed, completely calm and neutral. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
@@ -8,6 +9,7 @@ Composition: DASHA on the LEFT in front of the turnstile, OKHRANNIK on the RIGHT
 No captions or text on screen, no lettering on badges, signs, uniforms, booth glass or posters, all surfaces completely blank. Cinematic cool morning light with soft shadows, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
 
 === IMG miss_ulybka_p02_02_kristina
+@use MISS_ULYBKA_P01 :: miss_ulybka_p01_02_swap
 # Сцена 2 — Image. В кадре: КРИСТИНА одна. Проходит мимо поста со своим пропуском.
 3D Pixar style, vertical 9:16. The same side entrance corridor just past the turnstile, plain painted walls, tall windows with cool morning light, a soft glowing doorway further down the corridor.
 CRITICAL CHARACTER LOCK: KRISTINA — cartoon tooth character, creamy off-white enamel with a faint cool grey shade, large rounded molar-shaped head with a small neck, sharp arched eyebrows, long dark lashes and glossy pink lips drawn directly on the enamel, a sugary smile that does not reach the narrowed eyes, wearing a sparkling pale pink sequin gown, elbow-length satin gloves, a small plain silver tiara and pale pink high heels, holding a completely blank white pass card on a plain ribbon and dangling it lightly between two gloved fingers. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. She remains exactly like her reference image.
@@ -15,7 +17,7 @@ Composition: KRISTINA centred in the corridor walking toward the camera, turned 
 No captions or text on screen, the pass card is completely blank with no lettering, no lettering on walls, badges or signs, all surfaces completely blank. Cinematic cool corridor light with a warm rim from the doorway, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
 
 === IMG miss_ulybka_p02_03_dresses
-@use miss_ulybka_p02_01_gate
+@use MISS_ULYBKA_P01 :: miss_ulybka_p01_01_hero
 # Сцена 3 — Image. В кадре: ДАША одна. Пробирается через служебный вход за стойкой с платьями.
 3D Pixar style, vertical 9:16. A narrow service corridor behind the stage, dim warm wall lamps, plain concrete walls, a tall rolling garment rack packed with long shimmering dresses in soft pastel colours, stacked empty flight cases along one wall.
 CRITICAL CHARACTER LOCK: DASHA — cartoon tooth character, bright white glossy enamel, large rounded molar-shaped head with a small neck, warm brown cartoon eyes wide with playful mischief, thin expressive eyebrows, mouth pressed into a suppressed grin drawn directly on the enamel, wearing the same hand-knitted mustard cardigan over a plain white blouse, plain dark blue skirt and flat brown shoes, crouching slightly and peeking out from between two hanging dresses while pushing the rolling garment rack forward with one hand. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. She remains exactly like her reference image.
@@ -23,8 +25,8 @@ Composition: DASHA centred behind the garment rack, half hidden by the hanging d
 No captions or text on screen, no lettering on tags, cases, walls or signs, all surfaces completely blank. Cinematic dim warm corridor light with soft pastel bounce from the dresses, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
 
 === IMG miss_ulybka_p02_04_tea
-@use miss_ulybka_p02_01_gate
-@use miss_ulybka_p02_02_kristina
+@use MISS_ULYBKA_P01 :: miss_ulybka_p01_01_hero
+@use MISS_ULYBKA_P01 :: miss_ulybka_p01_02_swap
 # Сцена 4 — Image. В кадре: КРИСТИНА, ДАША, три соседки по гримёрке. Чай и синие улыбки. Эталон трио.
 3D Pixar style, vertical 9:16. A backstage dressing room, warm round bulb lights framing a long mirror, dressing tables, hanging garment bags, a small tray with plain white porcelain cups of dark tea on the nearest table.
 CRITICAL CHARACTER LOCK: KRISTINA — cartoon tooth character, creamy off-white enamel with a faint cool grey shade, large rounded molar-shaped head with a small neck, sharp arched eyebrows, long dark lashes and glossy pink lips, a sugary hostess smile, wearing the sparkling pale pink sequin gown, elbow-length satin gloves, a small plain silver tiara and pale pink high heels, standing on the RIGHT near the door holding the tray of cups. DASHA — cartoon tooth character, bright white glossy enamel, large rounded molar-shaped head with a small neck, warm brown cartoon eyes, thin expressive eyebrows and a polite friendly smile, wearing the hand-knitted mustard cardigan over a plain white blouse, plain dark blue skirt and flat brown shoes, standing in the MIDDLE taking one cup with both hands. THREE NEIGHBOUR CHARACTERS — three cartoon tooth characters with bright white glossy enamel, large rounded molar-shaped heads with small necks, simple friendly cartoon eyes and soft smiles, wearing simple pastel contest dresses in mint green, pale lilac and soft peach with plain blank sashes, seated and standing on the LEFT along the mirror, each holding a white porcelain cup. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
@@ -43,7 +45,7 @@ Composition: DASHA centred with the irrigator clearly readable in the middle of 
 No captions or text on screen, no lettering on labels, packaging, cups, sashes, mirrors or signs, all surfaces completely blank. Cinematic soft warm key light with a gentle highlight on the device, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
 
 === IMG miss_ulybka_p02_06_interview
-@use miss_ulybka_p02_01_gate
+@use MISS_ULYBKA_P01 :: miss_ulybka_p01_01_hero
 # Сцена 6 — Image. В кадре: ДАША, ЧЛЕН ЖЮРИ. Вводится Член жюри. Тур интервью.
 3D Pixar style, vertical 9:16. A bright contest stage set up for interviews, a tall plain stool, a long jury table with plain water glasses, a shimmering curtain backdrop, warm spotlights and a blurred audience in the dark.
 CRITICAL CHARACTER LOCK: DASHA — cartoon tooth character, bright white glossy enamel with no blue tint at all, large rounded molar-shaped head with a small neck, warm brown cartoon eyes, thin expressive eyebrows and an open honest smile drawn directly on the enamel, wearing the hand-knitted mustard cardigan over a plain white blouse, plain dark blue skirt and flat brown shoes, standing beside the tall stool in the spotlight with hands calmly clasped. CHLEN ZHYURI — cartoon tooth character, pale cream enamel, large rounded molar-shaped head with a small neck, small narrow cartoon eyes behind thin rectangular glasses, one raised sceptical eyebrow and a flat pursed mouth drawn directly on the enamel, wearing a dark grey suit jacket, a plain burgundy tie and dark trousers, seated at the jury table holding a completely blank clipboard. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
@@ -52,7 +54,7 @@ Composition: DASHA standing on the RIGHT in the spotlight, CHLEN ZHYURI seated a
 No captions or text on screen, the clipboard is completely blank, no lettering on the backdrop, name plates, screens or signs, all surfaces completely blank. Cinematic warm stage spotlight with cool fill on the jury table, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
 
 === IMG miss_ulybka_p02_07_mother
-@use miss_ulybka_p02_02_kristina
+@use MISS_ULYBKA_P01 :: miss_ulybka_p01_02_swap
 # Сцена 7 — Image. В кадре: КРИСТИНА, МАМА КРИСТИНЫ. Вводится Мама. Услуга за услугу.
 3D Pixar style, vertical 9:16. A dim backstage corridor behind the stage, warm wall lamps, plain painted walls, heavy velvet drapes to one side, a glowing stage doorway far behind.
 CRITICAL CHARACTER LOCK: KRISTINA — cartoon tooth character, creamy off-white enamel with a faint cool grey shade, large rounded molar-shaped head with a small neck, sharp arched eyebrows, long dark lashes and glossy pink lips drawn directly on the enamel, tight pressed mouth and narrowed tense eyes, wearing the sparkling pale pink sequin gown, elbow-length satin gloves, a small plain silver tiara and pale pink high heels, standing on the LEFT with both hands clenched at her sides. MAMA — cartoon tooth character, pale yellow enamel, very large rounded molar-shaped head with a small neck, heavy lidded cartoon eyes behind oversized dark sunglasses pushed up, thin drawn eyebrows and a cool closed smile drawn directly on the enamel, wearing a long plush cream faux-fur coat, a chunky pearl necklace, large ring-shaped earrings, a dark dress and dark heels, standing on the RIGHT calmly adjusting the collar of her coat. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
@@ -60,7 +62,8 @@ Composition: KRISTINA left, MAMA right, both turned slightly toward each other w
 No captions or text on screen, no lettering on walls, drapes, badges or signs, all surfaces completely blank. Cinematic moody warm corridor light with a cool rim from the doorway, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
 
 === IMG miss_ulybka_p02_08_blackout
-@use miss_ulybka_p02_01_gate
+@use MISS_ULYBKA_P01 :: miss_ulybka_p01_01_hero
+@use MISS_ULYBKA_P01 :: miss_ulybka_p01_03_host
 # Сцена 8 — Image. В кадре: ВЕДУЩИЙ, ДАША. Оглашение полуфиналисток. Клиффхэнгер.
 3D Pixar style, vertical 9:16. The bright contest stage, glossy runway, plain shimmering curtain backdrop, warm spotlights, a blurred audience in the dark.
 CRITICAL CHARACTER LOCK: VEDUSHIY — cartoon tooth character, warm white enamel with a light beige tint, large rounded molar-shaped head with a small neck, wide theatrical cartoon eyes, high raised eyebrows and a broad showman grin drawn directly on the enamel, wearing a shiny turquoise sequin tuxedo jacket, a black bow tie, black trousers and polished black shoes, standing on the RIGHT holding a plain unbranded microphone raised toward his mouth, one arm lifted for effect. DASHA — cartoon tooth character, bright white glossy enamel with no blue tint at all, large rounded molar-shaped head with a small neck, warm brown cartoon eyes and a nervous hopeful smile, wearing the hand-knitted mustard cardigan over a plain white blouse, plain dark blue skirt and flat brown shoes, standing on the LEFT in a short line of contestants with her hands clasped in front of her. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
