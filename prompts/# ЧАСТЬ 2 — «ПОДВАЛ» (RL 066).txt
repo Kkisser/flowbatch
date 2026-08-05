@@ -1,0 +1,484 @@
+# ЧАСТЬ 2 — «ПОДВАЛ» (RL 066)
+
+---
+
+## БЛОК A — СЦЕНАРИЙ И РЕПЛИКИ НА УТВЕРЖДЕНИЕ
+
+**Логлайн.** Отец оставляет дочерей в подвале старого дома на «сикс севен» дней с полными стеллажами еды. Одна считает, вторая жуёт.
+
+**Сюжет сухо.** Отец спускает дочерей в подвал. Показывает стеллажи с едой. Уходит и закрывает дверь. Жёлтая набирает сладкое, белая делит по дням и ищет второй выход. У жёлтой ноют зубы. Белая достаёт щётку. Сладкое кончилось. Белая находит за стеллажом старую дверь.
+
+### Сцена 1 — Спуск (8 с)
+Тусклая лампа над каменной лестницей. Отец спускается первым, важно, ведя рукой по стене.
+- Отец (оборачивается, палец вверх): «Вы останетесь тут. Ровно сикс севен дней.»
+- Жёлтая (насмешливо): «Сикс севен дней? Да легко.»
+
+### Сцена 2 — Стеллажи (8 с)
+Огромный подвал, уходящие вдаль металлические стеллажи. Слева крупы, овощи, вода, орехи. Справа сладости, чипсы, газировка, шоколад. Отец встаёт посередине.
+- Отец (торжественно): «Еды здесь хватит с запасом. Но расходовать надо с умом.»
+- Белая (кивая): «Я всё поделю по дням.»
+- Жёлтая (не отрывая глаз от шоколада): «Перестань. Нам точно хватит.»
+
+### Сцена 3 — Отец уходит (8 с)
+Отец разворачивается и лениво машет рукой, поднимаясь по лестнице. Дверь закрывается.
+- Отец (не оборачиваясь): «Я ушёл. Пока.»
+- Белая (тихо, с тревогой): «Теперь мы вдвоём. Надо экономить.»
+- Жёлтая (отталкивает воздух ладонью, уходя вправо): «Отвали от меня. Я пойду шоколадку съем.»
+
+### Сцена 4 — Отец снаружи (8 с)
+Отец у закрытой двери, крутит ключ на пальце, склонив голову набок.
+- Отец (сам себе, с наслаждением): «Интересно, какая из моих дочерей окажется умнее.»
+Ловит ключ в ладонь и уходит, насвистывая.
+
+### Сцена 5 — Два подхода (10 с)
+Жёлтая идёт по проходу, волоча пакет со сладостями и газировкой.
+- Жёлтая (во весь голос): «Сестра всё усложняет! Тут еды на год!»
+Переход. Белая в другом проходе раскладывает еду кучками по дням и подписывает картонками.
+- Белая (себе под нос): «С такой едой я точно не буду голодать. Главное не трогать чужой день.»
+Поднимает голову и оглядывает стену.
+- Белая (тише, с прищуром): «И надо найти, есть ли отсюда ещё один выход.»
+
+### Сцена 6 — Зубы заныли (8 с)
+Жёлтая сидит на полу среди фантиков, обхватив щёку, раскачивается.
+- Жёлтая (почти скулит): «Ой, зубы ноют. Прям сверлит.»
+- Белая (спокойно, без злорадства): «Ты за два дня съела недельный запас сладкого. Чего ты ждала?»
+
+### Сцена 7 — ПРОДУКТ, Ревилайн RL 066 (10 с)
+Белая расстёгивает рюкзак и достаёт чёрную электрическую щётку.
+- Белая (тепло): «Хорошо, что я взяла Ревилайн Эр Эль ноль шестьдесят шесть.»
+Нажимает кнопку, мягкий гул, жёлтая моргает.
+- Белая (бодро): «Звуковая, три режима и таймер на две минуты.»
+- Белая (с улыбкой): «И заряда хватит на два месяца. Даже тут.»
+Белая начинает чистить зубы, жёлтая отворачивается, но косится одним глазом.
+
+### Сцена 8 — Полка пуста (8 с)
+Жёлтая бежит к правому стеллажу и тормозит: полки голые.
+- Жёлтая (голос срывается): «Где, где всё сладкое?!»
+Бежит вдоль стеллажей, дёргая каждую полку.
+- Жёлтая (в отчаянии): «Тут ничего не осталось!»
+
+### Сцена 9 — Дверь за стеллажом, клиффхэнгер (10 с)
+Белая в дальнем углу отодвигает пустой стеллаж. За ним старая ржавая железная дверь с колесом-запором. В руке фонарик.
+- Белая (шёпотом): «Что это такое?..»
+Из-под двери пробивается тонкая полоска света.
+- Белая (ещё тише): «Не может быть…»
+- Белая (в камеру): «Пиши свою версию, что за этой дверью. Артикул щётки в описании.»
+
+**В монтаже:** плашка «Продолжение следует», артикулы WB и Ozon, маркировка РП, субтитры, музыка, ускорение до ~130%.
+
+---
+
+## БЛОК B — ОЧЕРЕДЬ FLOWBATCH
+
+```
+@project ZUBY_PODVAL_P01
+
+=== IMG podval_p01_01_hero
+# Сцена 1 — Image. В кадре: ЗОЛОТОЙ, БЕЛАЯ, ЖЁЛТАЯ. Эталонный кадр части: спуск по лестнице.
+3D Pixar style, vertical 9:16. Old stone staircase leading down into a large food storage cellar, one dim warm bulb hanging above, rough stone walls, a heavy metal door at the top of the stairs standing open, cozy amber light below.
+CRITICAL CHARACTER LOCK: GOLD is an adult cartoon tooth character with a large molar-shaped head of glossy metallic gold enamel, dark charcoal tailored suit, golden tie, polished dark shoes, smug half-smile with one corner of the mouth raised, one index finger raised as he turns back on the stairs. WHITE is an adult cartoon tooth character, slim molar-shaped head with bright white glossy enamel, fitted mint-green dress, white sneakers, small hiking backpack on her shoulders, attentive careful expression, looking up at the ceiling and walls. YELLOW is an adult cartoon tooth character with a large round molar-shaped head of dull yellowish enamel, oversized orange hoodie, black leggings, chunky sneakers, bored confident smirk, arms folded. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: GOLD MIDDLE, lower on the stairs, turning back toward the others. WHITE LEFT and slightly above him, YELLOW RIGHT and slightly above him. Only these three characters in the whole frame, no one else. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm dim bulb light with soft shadows, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podval_p01_02_shelves
+@use podval_p01_01_hero
+# Сцена 2 — Image. В кадре: ЗОЛОТОЙ, БЕЛАЯ, ЖЁЛТАЯ. Стеллажи с едой.
+3D Pixar style, vertical 9:16. Huge bright food storage cellar, long metal shelving racks receding into the distance on both sides. Left racks are filled with grain jars, vegetables, water bottles and nuts. Right racks are filled with candy, chips, soda bottles and chocolate bars. Warm amber cellar light.
+CRITICAL CHARACTER LOCK: GOLD, WHITE and YELLOW are the exact same adult cartoon tooth characters as in the attached reference image, identical enamel colors, identical clothes, identical proportions. GOLD stands exactly in the middle of the aisle with both arms spread wide, eyebrows raised, grand solemn expression. WHITE looks to the left racks, counting silently, lips moving, focused. YELLOW looks only to the right racks, eyes wide, mouth watering with a huge greedy grin. All heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: GOLD MIDDLE facing camera between the racks, WHITE LEFT, YELLOW RIGHT. Only these three characters in the whole frame. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm amber light with deep perspective down the aisle, wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podval_p01_03_fatherleaves
+@use podval_p01_01_hero
+# Сцена 3 — Image. В кадре: ЗОЛОТОЙ на лестнице, БЕЛАЯ и ЖЁЛТАЯ внизу.
+3D Pixar style, vertical 9:16. Bottom of the stone staircase inside the food cellar, the heavy metal door at the top, warm dim bulb light, shelving racks visible behind.
+CRITICAL CHARACTER LOCK: GOLD is the exact same adult cartoon tooth character as in the attached reference image, metallic gold enamel, dark charcoal suit, golden tie, walking up the stairs with his back to the others and lazily waving one hand over his shoulder. WHITE is the exact same character as in the reference, bright white enamel, mint-green dress, white sneakers, taking one step toward her sister with a worried expression. YELLOW is the exact same character as in the reference, dull yellowish enamel, oversized orange hoodie, black leggings, already turning away to the right, pushing the air away with one palm. All heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: GOLD upper MIDDLE on the stairs seen from behind, WHITE lower LEFT, YELLOW lower RIGHT walking out of frame. Only these three characters in the whole frame. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm dim light, medium wide low angle shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podval_p01_04_keyoutside
+@use podval_p01_01_hero
+# Сцена 4 — Image. В кадре: только ЗОЛОТОЙ у двери снаружи.
+3D Pixar style, vertical 9:16. Narrow corridor of an old house on the upper floor, a heavy closed iron cellar door in the wall, warm evening light through a dusty window, wooden floorboards.
+CRITICAL CHARACTER LOCK: GOLD is the exact same adult cartoon tooth character as in the attached reference image, large molar-shaped head with glossy metallic gold enamel, dark charcoal tailored suit, golden tie, polished dark shoes. He stands in front of the closed door, head tilted to one side, spinning a large old key on one finger, one eyebrow raised to the maximum, wide satisfied smirk. Only GOLD is in this frame, no other character appears anywhere, no WHITE, no YELLOW. His head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: GOLD MIDDLE, the iron door behind him. Full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm evening side light, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podval_p01_05_twoways
+@use podval_p01_01_hero
+# Сцена 5 — Image. В кадре: ЖЁЛТАЯ в проходе с пакетом, БЕЛАЯ в соседнем проходе.
+3D Pixar style, vertical 9:16. Inside the food cellar between two long metal shelving racks, warm amber light, deep perspective down the aisle.
+CRITICAL CHARACTER LOCK: YELLOW is the exact same adult cartoon tooth character as in the attached reference image, dull yellowish enamel round molar head, oversized orange hoodie, black leggings, chunky sneakers. She drags a huge bag stuffed to the top with candy and soda bottles, laughing out loud, tossing a sweet into her mouth. WHITE is the exact same character as in the reference, bright white enamel, mint-green dress, white sneakers, seen further away in the next aisle, kneeling beside neat little piles of food laid out on the floor and labelling them with small pieces of cardboard. GOLD does not appear anywhere in this frame. All heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: YELLOW large in the foreground of the aisle, WHITE small and further back through a gap in the racks. Only these two characters in the whole frame. Both full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm amber light, wide shot with deep perspective, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podval_p01_06_toothache
+@use podval_p01_01_hero
+# Сцена 6 — Image. В кадре: ЖЁЛТАЯ на полу среди фантиков, БЕЛАЯ рядом.
+3D Pixar style, vertical 9:16. Floor of the food cellar between shelving racks, a big pile of colorful sweet wrappers on the ground, warm amber light.
+CRITICAL CHARACTER LOCK: YELLOW is the exact same adult cartoon tooth character as in the attached reference image, dull yellowish enamel, oversized orange hoodie, black leggings, chunky sneakers. She sits on the floor among the wrappers, holding one cheek with both hands, face scrunched up in a comic unhappy grimace, rocking slightly. WHITE is the exact same character as in the reference, bright white enamel, mint-green dress, white sneakers, crouching down nearby with one eyebrow raised, calm and not mocking. GOLD does not appear anywhere in this frame. All heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: YELLOW MIDDLE-LEFT sitting on the floor, WHITE RIGHT crouching beside her but not touching her. Only these two characters in the whole frame. Both full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm amber light, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podval_p01_07_product
+@use podval_p01_01_hero
+@product rl066
+# Сцена 7 — Image. В кадре: БЕЛАЯ со щёткой RL 066, ЖЁЛТАЯ смотрит. Продуктовая сцена.
+3D Pixar style, vertical 9:16. Inside the food cellar between shelving racks, warm amber light, WHITE's small backpack open on the floor beside her.
+CRITICAL CHARACTER LOCK: WHITE is the exact same adult cartoon tooth character as in the attached reference image, bright white glossy enamel molar-shaped head, fitted mint-green dress, white sneakers. She holds one electric toothbrush upright and steady in her right hand, warm confident smile. YELLOW is the exact same character as in the reference, dull yellowish enamel, oversized orange hoodie, black leggings, chunky sneakers, sitting on the floor and looking up at the toothbrush, blinking with curiosity. GOLD does not appear anywhere in this frame. All heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The toothbrush is the Revyline RL 066: glossy piano-black body, slender elongated handle with rounded-rectangular soft-oval cross-section tapering to a rounded bottom, subtle small uppercase "REVYLINE" logo near the lower front, one narrow vertical glossy black display strip in the upper-middle front, one single round power button below it with polished chrome/silver ring and matte black center, one thin chrome ring separating the handle from the removable brush head, slim slightly curved black stem with tiny vertical "REVYLINE" lettering, oval brush head with white bristles and one central sky-blue accent, compact dense W-shaped wave bristle profile. Do not change its color, shape, button, head, or add extra buttons/logos. Only one product in the whole frame, held only in WHITE's hand. Zero changes, no morphing. The whole toothbrush stays inside the frame, fingers do not cover the brush head or the REVYLINE logo.
+Composition: WHITE MIDDLE-RIGHT standing and holding the toothbrush clearly visible at chest height, YELLOW LEFT sitting on the floor. Only these two characters in the whole frame. Both full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm amber light, medium shot with the product clearly readable, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podval_p01_08_emptyshelf
+@use podval_p01_01_hero
+# Сцена 8 — Image. В кадре: только ЖЁЛТАЯ у пустого стеллажа.
+3D Pixar style, vertical 9:16. Right side shelving rack in the food cellar, completely bare metal shelves, only dust and two crumpled wrappers on the floor, cool dim light down the empty aisle.
+CRITICAL CHARACTER LOCK: YELLOW is the exact same adult cartoon tooth character as in the attached reference image, dull yellowish enamel round molar head, oversized orange hoodie, black leggings, chunky sneakers. She stands frozen in front of the bare rack, one hand sliding along the empty shelf, eyes huge and round with tiny pupils, mouth open in comic disbelief. Only YELLOW is in this frame, no other character appears anywhere, no GOLD, no WHITE. Her head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: YELLOW MIDDLE facing the empty rack, camera slightly low, the long empty aisle receding behind her. Full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic cool dim light, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG podval_p01_09_door
+@use podval_p01_01_hero
+# Сцена 9 — Image. В кадре: только БЕЛАЯ у найденной двери. Клиффхэнгер.
+3D Pixar style, vertical 9:16. Far dark corner of the food cellar, one empty metal shelving rack pushed aside, revealing an old rusty iron door in the stone wall with a massive round wheel lock, a thin bright strip of light glowing from under the door, dust in the air.
+CRITICAL CHARACTER LOCK: WHITE is the exact same adult cartoon tooth character as in the attached reference image, slim molar-shaped head with bright white glossy enamel, fitted mint-green dress, white sneakers, small hiking backpack. She stands frozen in front of the door, eyes huge, mouth slightly open in amazement, one hand reaching toward the wheel lock. In her other hand she holds a simple rigid cylindrical metal flashlight, a completely separate solid handheld object with a clear round lens, held away from her body, never merging with her hand or arm. Only WHITE is in this frame, no other character appears anywhere, no GOLD, no YELLOW. Her head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: WHITE MIDDLE-LEFT in profile facing the door, the rusty iron door RIGHT, the pushed aside rack behind her. Full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic dark scene lit by the flashlight beam and the strip of light under the door, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== VID podval_p01_01_hero_anim
+@use podval_p01_01_hero
+@duration 8
+# Сцена 1 — Animation. Хук: отец объявляет срок. 8 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- GOLD: adult cartoon TOOTH character from the reference image, large molar-shaped head with glossy metallic gold enamel, dark charcoal tailored suit, golden tie, stands MIDDLE on the stairs.
+- WHITE: adult cartoon TOOTH character from the reference image, slim molar-shaped head with bright white enamel, fitted mint-green dress, white sneakers, small hiking backpack, stands LEFT.
+- YELLOW: adult cartoon TOOTH character from the reference image, large round molar-shaped head with dull yellowish enamel, oversized orange hoodie, black leggings, chunky sneakers, stands RIGHT.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. GOLD stays metallic gold, WHITE stays bright white, YELLOW stays dull yellow in every single frame.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: old stone staircase, one dim warm bulb, rough stone walls, a heavy metal door standing open at the top. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: GOLD is important and theatrical, sliding one hand along the wall, index finger raised, slow weighty delivery. WHITE is watchful and slightly uneasy, looking up at the door. YELLOW is mocking and relaxed, snorting and folding her arms. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: follows the group down the stairs, quick push in on GOLD as he turns, fast cut to YELLOW.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.5s: GOLD walks down first, sliding one hand along the wall, then turns back halfway and raises one index finger. GOLD says in Russian, grandly and slowly: «Вы останетесь тут. Ровно сикс севен дней.»
+3.5–5.5s: WHITE freezes and looks up at the heavy metal door above. No dialogue.
+5.5–8.0s: YELLOW snorts, shakes her head and folds her arms. YELLOW says in Russian, mockingly: «Сикс севен дней? Да легко.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: footsteps on stone, a faint hum of the bulb, quiet echo of the cellar.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID podval_p01_02_shelves_anim
+@use podval_p01_02_shelves
+@duration 8
+# Сцена 2 — Animation. Стеллажи и два взгляда на еду. 8 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- GOLD: adult cartoon TOOTH character from the reference image, metallic gold enamel molar head, dark charcoal suit, golden tie, stands MIDDLE.
+- WHITE: adult cartoon TOOTH character from the reference image, bright white enamel, mint-green dress, white sneakers, stands LEFT.
+- YELLOW: adult cartoon TOOTH character from the reference image, dull yellowish enamel, oversized orange hoodie, black leggings, stands RIGHT.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. GOLD stays metallic gold, WHITE stays bright white, YELLOW stays dull yellow in every single frame.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: huge food cellar, long metal racks, left side with grain jars, vegetables, water and nuts, right side with candy, chips, soda and chocolate. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: GOLD is solemn and grand, arms spread. WHITE is calculating and serious, lips moving as she counts. YELLOW is greedy and impatient, eyes fixed on the sweets, swallowing. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: wide shot down the aisle, quick cut to WHITE looking left, quick cut to YELLOW looking right, back to wide.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: GOLD stands exactly in the middle and spreads both arms toward the racks, eyebrows up. GOLD says in Russian, solemnly and slowly: «Еды здесь хватит с запасом. Но расходовать надо с умом.»
+3.0–5.5s: WHITE looks at the left racks and nods seriously. WHITE says in Russian, seriously: «Я всё поделю по дням.»
+5.5–8.0s: YELLOW keeps staring at the chocolate on the right and waves a hand without looking away. YELLOW says in Russian, dismissively: «Перестань. Нам точно хватит.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: quiet cellar echo, faint electric hum, light footsteps.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID podval_p01_03_fatherleaves_anim
+@use podval_p01_03_fatherleaves
+@duration 8
+# Сцена 3 — Animation. Отец уходит, дверь закрывается. 8 секунд.
+Animate this exact scene. This is a comedic cartoon moment with a light sibling squabble told only through poses and tone.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- GOLD: adult cartoon TOOTH character from the reference image, metallic gold enamel, dark charcoal suit, golden tie, walking UP the stairs with his back to camera.
+- WHITE: adult cartoon TOOTH character from the reference image, bright white enamel, mint-green dress, white sneakers, stands LEFT below.
+- YELLOW: adult cartoon TOOTH character from the reference image, dull yellowish enamel, oversized orange hoodie, black leggings, stands RIGHT below.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. GOLD stays metallic gold, WHITE stays bright white, YELLOW stays dull yellow in every single frame.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: bottom of the stone staircase, the heavy metal door at the top, shelving racks behind. Nothing new appears during the video. There is no physical contact between the characters at any moment.
+
+EMOTIONAL INTENSITY — MEDIUM: GOLD is casual and unbothered, lazy wave without turning. WHITE is quiet and worried, stepping closer. YELLOW is impatient and already leaving, waving the air away, standing at the opposite side of the frame with her back half turned. The disagreement is shown only by distance and turned backs. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: low angle on the stairs, then the door closes and the camera drops to a two shot of the sisters at opposite ends of frame.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: GOLD walks up the stairs without turning and waves one hand lazily over his shoulder. GOLD says in Russian, casually: «Я ушёл. Пока.»
+2.5–4.5s: The heavy metal door closes above with a deep echoing thud and the lock clicks. No dialogue.
+4.5–6.5s: WHITE takes one step toward her sister, worried. WHITE says in Russian, quietly and anxiously: «Теперь мы вдвоём. Надо экономить.»
+6.5–8.0s: YELLOW pushes the air away with one palm and walks off to the right without looking back. YELLOW says in Russian, annoyed and offhand: «Отвали от меня. Я пойду шоколадку съем.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: footsteps on stone, a heavy door thud, a lock click, cellar echo.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID podval_p01_04_keyoutside_anim
+@use podval_p01_04_keyoutside
+@duration 8
+# Сцена 4 — Animation. Отец крутит ключ и уходит. 8 секунд.
+Animate this exact scene. This is a comedic cartoon moment with a smug punchline.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — only one character in this whole video and no one else ever appears:
+- GOLD: adult cartoon TOOTH character from the reference image, large molar-shaped head with glossy metallic gold enamel, dark charcoal tailored suit, golden tie, polished dark shoes, stands MIDDLE.
+WHITE and YELLOW never appear in this video at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: his tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. GOLD stays metallic gold enamel in every single frame.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: old house corridor, the closed iron cellar door, a dusty window with warm evening light, wooden floorboards, one large old key. The key is a separate rigid solid metal object, it never merges with his hand. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: GOLD is enormously pleased with himself, head tilted, eyebrow raised to the maximum, savoring the line, then a satisfied smirk. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: slow push in on GOLD, then a small pan as he walks out of frame.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.0s: GOLD stands in front of the closed iron door, spinning the key on one finger, head tilted to one side. No dialogue.
+2.0–5.5s: GOLD looks at the door with a wide smirk. GOLD says in Russian, slowly, with great satisfaction: «Интересно, какая из моих дочерей окажется умнее.»
+5.5–8.0s: GOLD catches the key in his palm, turns and walks away down the corridor, whistling quietly. No dialogue.
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. He speaks alone, with clear pauses. He stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+
+Ambient sound only: creaking floorboards, a metal key jingle, quiet whistling, a distant clock tick.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID podval_p01_05_twoways_anim
+@use podval_p01_05_twoways
+@duration 10
+# Сцена 5 — Animation. Два подхода к запасам, белая ищет выход. 10 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing and one hard cut.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- YELLOW: adult cartoon TOOTH character from the reference image, dull yellowish enamel round molar head, oversized orange hoodie, black leggings, chunky sneakers, walks down the aisle in the FOREGROUND.
+- WHITE: adult cartoon TOOTH character from the reference image, bright white enamel, mint-green dress, white sneakers, kneels in the next aisle, then in her own shot.
+GOLD never appears in this video at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. WHITE stays bright white and YELLOW stays dull yellow in every single frame.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: metal shelving racks, one huge bag of candy and soda dragged by YELLOW, small neat piles of food on the floor beside WHITE with little cardboard labels, a bare stone wall at the end of the aisle. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH for YELLOW, LOW and focused for WHITE: YELLOW is loud and triumphant, laughing, tossing sweets into her mouth. WHITE is quiet and methodical, then narrows her eyes as she studies the wall. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: tracking shot following YELLOW down the aisle, HARD CUT to a low angle on WHITE, slow drift up to the wall.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.5s: YELLOW drags the huge bag down the aisle, laughing and tossing sweets into her mouth one after another. YELLOW says in Russian, loudly and pleased with herself: «Сестра всё усложняет! Тут еды на год!»
+3.5–4.5s: HARD CUT to the next aisle. WHITE kneels beside her neat piles and labels one with a piece of cardboard. No dialogue.
+4.5–7.5s: WHITE keeps sorting, concentrated. WHITE says in Russian, quietly to herself: «С такой едой я точно не буду голодать. Главное не трогать чужой день.»
+7.5–10.0s: WHITE lifts her head and scans the far stone wall of the cellar, narrowing her eyes. WHITE says in Russian, quieter, thoughtfully: «И надо найти, есть ли отсюда ещё один выход.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: plastic bag rustle, wrappers, footsteps, quiet cellar echo.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+10 seconds, vertical 9:16.
+
+=== VID podval_p01_06_toothache_anim
+@use podval_p01_06_toothache
+@duration 8
+# Сцена 6 — Animation. У жёлтой ноют зубы. 8 секунд.
+Animate this exact scene. This is a soft comedic cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- YELLOW: adult cartoon TOOTH character from the reference image, dull yellowish enamel, oversized orange hoodie, black leggings, chunky sneakers, sits on the floor MIDDLE-LEFT.
+- WHITE: adult cartoon TOOTH character from the reference image, bright white enamel, mint-green dress, white sneakers, crouches RIGHT.
+GOLD never appears in this video at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. WHITE stays bright white and YELLOW stays dull yellow in every single frame, YELLOW never becomes whiter.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: cellar floor between racks, a big pile of colorful wrappers around YELLOW, warm amber light. Nothing new appears during the video. There is no physical contact between the characters.
+
+EMOTIONAL INTENSITY — MEDIUM: YELLOW is whiny and miserable in a comic way, rocking slightly, holding her cheek. WHITE is calm, gentle and matter of fact, one eyebrow raised, no mocking at all. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: medium two shot, quick cut to a close up on YELLOW, quick cut back.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.5s: YELLOW sits among the wrappers holding her cheek with both hands and rocking back and forth. YELLOW says in Russian, whining softly: «Ой, зубы ноют. Прям сверлит.»
+3.5–5.0s: WHITE crouches down nearby and looks at the pile of wrappers, one eyebrow raised. No dialogue.
+5.0–8.0s: WHITE looks back at her sister calmly. WHITE says in Russian, evenly and gently: «Ты за два дня съела недельный запас сладкого. Чего ты ждала?»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: quiet cellar echo, faint wrapper rustle.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID podval_p01_07_product_anim
+@use podval_p01_07_product
+@product rl066
+@duration 10
+# Сцена 7 — Animation. Продуктовая сцена, RL 066 в руках у белой. 10 секунд.
+Animate this exact scene. This is a warm friendly cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- WHITE: adult cartoon TOOTH character from the reference image, bright white enamel, mint-green dress, white sneakers, stands MIDDLE-RIGHT and holds the toothbrush.
+- YELLOW: adult cartoon TOOTH character from the reference image, dull yellowish enamel, oversized orange hoodie, black leggings, chunky sneakers, sits on the floor LEFT.
+GOLD never appears in this video at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. WHITE stays bright white enamel and YELLOW stays dull yellow enamel in every single frame — YELLOW does NOT become whiter or cleaner at any moment of this video, her enamel shade never changes.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: cellar aisle between racks, warm amber light, WHITE's small backpack open on the floor. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: WHITE is warm, calm and confident. YELLOW is curious, blinks at the hum, then turns away but keeps peeking with one eye. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: steady medium shot on WHITE with the product clearly readable, one slow gentle push in, one quick cut to YELLOW reacting, back to the medium shot. No extreme macro zoom.
+
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo: the Revyline RL 066, glossy piano-black body, slender elongated handle with rounded-rectangular soft-oval cross-section tapering to a rounded bottom, subtle small uppercase "REVYLINE" logo near the lower front, one narrow vertical glossy black display strip in the upper-middle front, one single round power button below it with polished chrome/silver ring and matte black center, one thin chrome ring separating the handle from the removable brush head, slim slightly curved black stem with tiny vertical "REVYLINE" lettering, oval brush head with white bristles and one central sky-blue accent. Do not change its color, shape, button, head, or add extra buttons or logos. Only one product in the whole frame, held only by WHITE, zero changes, no morphing, the toothbrush never bends, stretches or transforms. Keep the whole product inside the frame, no extreme macro zoom on a single detail. Her fingers never cover the brush head or the REVYLINE logo. The toothbrush stays large and steady in frame, only her hand and thumb move.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: WHITE unzips her backpack and lifts out the black electric toothbrush, holding it upright and steady, kind smile. WHITE says in Russian, warmly: «Хорошо, что я взяла Ревилайн Эр Эль ноль шестьдесят шесть.»
+3.0–5.5s: WHITE presses the round power button with her thumb, a soft hum starts, YELLOW blinks. WHITE says in Russian, brightly: «Звуковая, три режима и таймер на две минуты.»
+5.5–8.0s: WHITE holds the toothbrush steady, smiling. WHITE says in Russian, calmly and warmly: «И заряда хватит на два месяца. Даже тут.»
+8.0–10.0s: WHITE starts brushing her teeth, YELLOW turns away but keeps peeking with one eye. No dialogue.
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: quiet cellar echo, the soft electric hum of the toothbrush.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+10 seconds, vertical 9:16.
+
+=== VID podval_p01_08_emptyshelf_anim
+@use podval_p01_08_emptyshelf
+@duration 8
+# Сцена 8 — Animation. Полки пусты, паника. 8 секунд.
+Animate this exact scene. This is a comedic panic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — only one character in this whole video and no one else ever appears:
+- YELLOW: adult cartoon TOOTH character from the reference image, dull yellowish enamel round molar head, oversized orange hoodie, black leggings, chunky sneakers, MIDDLE.
+GOLD and WHITE never appear in this video at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: her tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. YELLOW stays dull yellow enamel in every single frame.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: long metal shelving racks, all shelves completely bare, dust and two crumpled wrappers on the floor, dim cellar light. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — VERY HIGH but comedic: YELLOW is in cartoon disbelief and panic, eyes huge with tiny pupils, exaggerated running, big theatrical shout at the ceiling. It stays funny, not frightening. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: close on the bare shelf, fast cut to a tracking shot running along the racks, fast cut to a low angle as she shouts.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: YELLOW runs up to the rack and skids to a stop, slides her hand along the bare shelf and shakes it, eyes going huge. YELLOW says in Russian, voice cracking: «Где, где всё сладкое?!»
+3.0–5.5s: YELLOW runs along the racks pulling at every shelf one after another, all of them empty. No dialogue.
+5.5–8.0s: YELLOW stops in the middle of the aisle, throws both arms wide and shouts at the ceiling, the echo rolls through the cellar. YELLOW says in Russian, in comic despair: «Тут ничего не осталось!»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. She speaks alone, with clear pauses. She stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+
+Ambient sound only: rattling metal shelves, running footsteps, cellar echo.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID podval_p01_09_door_anim
+@use podval_p01_09_door
+@duration 10
+# Сцена 9 — Animation. Найденная дверь, клиффхэнгер и призыв. 10 секунд.
+Animate this exact scene. This is a tense but gentle cartoon mystery moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — only one character in this whole video and no one else ever appears:
+- WHITE: adult cartoon TOOTH character from the reference image, slim molar-shaped head with bright white enamel, fitted mint-green dress, white sneakers, small hiking backpack, MIDDLE-LEFT.
+GOLD and YELLOW never appear in this video at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: her tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. WHITE stays bright white enamel in every single frame.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: dark far corner of the cellar, one empty metal rack sliding aside with a metal screech, an old rusty iron door with a massive round wheel lock, a thin strip of light glowing from under it, dust in the air. She holds a simple rigid cylindrical metal flashlight — a completely separate solid handheld prop with a round lens, always clearly separate from her hand and body, it never merges with her arm, never bends and never changes shape. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH: WHITE is amazed and cautious, eyes huge, the flashlight beam trembling slightly, breath held, then a small determined look to camera. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: slow push in as the rack slides aside, tilt up the iron door, then settle on a medium shot of WHITE.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: WHITE pushes the empty rack aside, it screeches away and reveals the old rusty iron door with the wheel lock. She freezes, the flashlight beam trembling. WHITE says in Russian, whispering: «Что это такое?..»
+3.0–6.0s: WHITE reaches one hand toward the wheel lock, the thin strip of light under the door grows a little brighter. WHITE says in Russian, even quieter, in disbelief: «Не может быть…»
+6.0–10.0s: WHITE turns her head slightly toward camera, still holding the flashlight steady. WHITE says in Russian, calmly and directly to the viewer: «Пиши свою версию, что за этой дверью. Артикул щётки в описании.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. She speaks alone, with clear pauses. She stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+
+Ambient sound only: a heavy metal rack screeching on stone, dripping water, a low cellar hum.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+10 seconds, vertical 9:16.
+```

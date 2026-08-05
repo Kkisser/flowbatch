@@ -1,0 +1,410 @@
+@project ZUBY_OSTROV_P01
+
+=== IMG ostrov_p01_01_hero
+# Сцена 1 — Image. В кадре: ЗОЛОТОЙ, БЕЛАЯ, ЖЁЛТАЯ. Эталонный кадр части: высадка на пляж.
+3D Pixar style, vertical 9:16. Empty white sand tropical beach at early morning, tall palm trees swaying, calm turquoise water, a small white motor boat moored at the shoreline, warm golden sunrise light.
+CRITICAL CHARACTER LOCK: GOLD is an adult cartoon tooth character with a large molar-shaped head of glossy metallic gold enamel, dark charcoal tailored suit, golden tie, polished dark shoes, smug half-smile with one corner of the mouth raised, one eyebrow lifted, arms spread wide in a grand theatrical gesture, chest puffed out. WHITE is an adult cartoon tooth character, slim molar-shaped head with bright white glossy enamel, fitted mint-green dress, white sneakers, small hiking backpack on her shoulders, calm careful expression, hands clasped together in front of her. YELLOW is an adult cartoon tooth character with a large round molar-shaped head of dull yellowish enamel, oversized orange hoodie, black leggings, chunky sneakers, loud confident grin, head thrown back, hands slapping her own knees. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: GOLD stands MIDDLE on the wet sand with arms spread, WHITE stands LEFT stepping carefully off the boat, YELLOW stands RIGHT having just jumped down and splashed sand. Only these three characters in the whole frame, no one else. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm sunrise light, wide establishing shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG ostrov_p01_02_backpacks
+@use ostrov_p01_01_hero
+# Сцена 2 — Image. В кадре: ЗОЛОТОЙ, БЕЛАЯ, ЖЁЛТАЯ. Раздача рюкзаков.
+3D Pixar style, vertical 9:16. Same tropical beach, morning, the white motor boat behind them, palm shadows on the sand.
+CRITICAL CHARACTER LOCK: GOLD, WHITE and YELLOW are the exact same adult cartoon tooth characters as in the attached reference image, identical enamel colors, identical clothes, identical proportions. GOLD holds two identical small canvas supply backpacks and lifts one index finger up, eyebrows raised, strict expression. WHITE takes her backpack with both hands and already peeks inside it, focused. YELLOW grabs her backpack with one hand and throws it over her shoulder without looking, rolling her eyes. All heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: GOLD MIDDLE facing camera, WHITE LEFT, YELLOW RIGHT. Only these three characters in the whole frame. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm morning light, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG ostrov_p01_03_boatleaves
+@use ostrov_p01_01_hero
+# Сцена 3 — Image. В кадре: ЗОЛОТОЙ на катере, сёстры маленькими фигурками на берегу.
+3D Pixar style, vertical 9:16. Open turquoise sea, the small white motor boat moving away from a tropical beach, white wake behind it, bright morning sky.
+CRITICAL CHARACTER LOCK: GOLD is the exact same adult cartoon tooth character as in the attached reference image, metallic gold enamel molar-shaped head, dark charcoal suit, golden tie. He stands at the boat helm, one hand on the wheel, the other lazily waving, eyebrow raised to the maximum, wide satisfied smirk. WHITE and YELLOW are the exact same characters as in the reference, standing very small and far away on the distant beach, WHITE in a mint-green dress, YELLOW in an orange hoodie. All heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: GOLD large in the foreground at the helm facing camera, the beach and the two tiny figures far behind him. Only these three characters in the whole frame. GOLD full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic bright sea light, low angle hero shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG ostrov_p01_04_twoways
+@use ostrov_p01_01_hero
+# Сцена 4 — Image. В кадре: ЖЁЛТАЯ на переднем плане, БЕЛАЯ вдали. Два подхода к припасам.
+3D Pixar style, vertical 9:16. Hot midday tropical beach, harsh bright sunlight, palm shadows, glittering sea.
+CRITICAL CHARACTER LOCK: YELLOW is the exact same adult cartoon tooth character as in the attached reference image, dull yellowish enamel round molar-shaped head, oversized orange hoodie, black leggings, chunky sneakers. She lies sprawled on the sand, her canvas backpack wide open beside her, colorful sweet wrappers scattered all around, both cheeks puffed full, eyes happily squeezed shut. WHITE is the exact same character as in the reference, bright white enamel, mint-green dress, white sneakers, sitting far away at the other end of the beach beside a flat stone, carefully sorting small food items into tiny separate piles, eyebrows drawn together in concentration. GOLD does not appear anywhere in this frame. All heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: YELLOW large in the foreground lying on the sand, WHITE small in the deep background on the right. Only these two characters in the whole frame. Both full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic harsh midday light, wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG ostrov_p01_05_camp
+@use ostrov_p01_01_hero
+# Сцена 5 — Image. В кадре: только БЕЛАЯ. Готовый лагерь.
+3D Pixar style, vertical 9:16. Edge of a tropical jungle meeting the beach, afternoon, warm dappled light through palm leaves.
+CRITICAL CHARACTER LOCK: WHITE is the exact same adult cartoon tooth character as in the attached reference image, slim molar-shaped head with bright white glossy enamel, fitted mint-green dress, white sneakers, small hiking backpack. She stands proudly beside a finished small shelter built from branches and wide palm leaves, wiping her forehead with the back of her hand, satisfied warm smile. Empty coconut shells are arranged under a tilted broad leaf to collect rain water. Only WHITE is in this frame, no other character appears anywhere, no GOLD, no YELLOW. Her head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: WHITE stands MIDDLE-LEFT, the leaf shelter behind her on the right, coconut shells in the foreground. Full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm afternoon light, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG ostrov_p01_06_complaint
+@use ostrov_p01_01_hero
+# Сцена 6 — Image. В кадре: БЕЛАЯ и ЖЁЛТАЯ у лагеря на закате.
+3D Pixar style, vertical 9:16. Tropical beach at orange sunset, long shadows, the small leaf shelter camp on the right, calm sea behind.
+CRITICAL CHARACTER LOCK: YELLOW is the exact same adult cartoon tooth character as in the attached reference image, dull yellowish enamel, oversized orange hoodie, black leggings, chunky sneakers. She kneels on the sand near the camp, rubbing her cheek with one palm, mouth twisted in a sour unhappy grimace. WHITE is the exact same character as in the reference, bright white enamel, mint-green dress, white sneakers, standing calmly with one eyebrow raised, arms folded. GOLD does not appear anywhere in this frame. All heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: YELLOW LEFT kneeling lower in frame, WHITE RIGHT standing beside the shelter. Only these two characters in the whole frame. Both full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic orange sunset light, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG ostrov_p01_07_product
+@use ostrov_p01_01_hero
+@product rl066
+# Сцена 7 — Image. В кадре: БЕЛАЯ со щёткой RL 066, ЖЁЛТАЯ смотрит. Продуктовая сцена.
+3D Pixar style, vertical 9:16. Tropical beach camp at warm orange sunset, the leaf shelter behind, soft rim light on the characters.
+CRITICAL CHARACTER LOCK: WHITE is the exact same adult cartoon tooth character as in the attached reference image, bright white glossy enamel molar-shaped head, fitted mint-green dress, white sneakers, her small backpack open beside her. She holds one electric toothbrush upright and steady in her right hand, warm proud smile. YELLOW is the exact same character as in the reference, dull yellowish enamel, oversized orange hoodie, black leggings, chunky sneakers, leaning forward with her neck stretched out, eyes lit up with curiosity. GOLD does not appear anywhere in this frame. All heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The toothbrush is the Revyline RL 066: glossy piano-black body, slender elongated handle with rounded-rectangular soft-oval cross-section tapering to a rounded bottom, subtle small uppercase "REVYLINE" logo near the lower front, one narrow vertical glossy black display strip in the upper-middle front, one single round power button below it with polished chrome/silver ring and matte black center, one thin chrome ring separating the handle from the removable brush head, slim slightly curved black stem with tiny vertical "REVYLINE" lettering, oval brush head with white bristles and one central sky-blue accent, compact dense W-shaped wave bristle profile. Do not change its color, shape, button, head, or add extra buttons/logos. Only one product in the whole frame, held only in WHITE's hand. Zero changes, no morphing. The whole toothbrush stays inside the frame, fingers do not cover the brush head or the REVYLINE logo.
+Composition: WHITE MIDDLE-RIGHT holding the toothbrush clearly visible at chest height, YELLOW LEFT leaning in. Only these two characters in the whole frame. Both full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm sunset light, medium shot with the product clearly readable, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG ostrov_p01_08_emptybag
+@use ostrov_p01_01_hero
+# Сцена 8 — Image. В кадре: только ЖЁЛТАЯ. Ночь, пустой рюкзак.
+3D Pixar style, vertical 9:16. Tropical beach at night, deep blue moonlight, a small burnt out campfire with grey ash, palm silhouettes against the starry sky.
+CRITICAL CHARACTER LOCK: YELLOW is the exact same adult cartoon tooth character as in the attached reference image, dull yellowish enamel round molar-shaped head, oversized orange hoodie, black leggings, chunky sneakers. She sits on the sand beside the dead campfire, holding her canvas backpack upside down and shaking it, eyes huge and round, pupils tiny, mouth open in comic panic. Only YELLOW is in this frame, no other character appears anywhere, no GOLD, no WHITE. Her head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: YELLOW MIDDLE, the dead fire in front of her, empty dark beach around. Full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic cool blue moonlight, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG ostrov_p01_09_sail
+@use ostrov_p01_01_hero
+# Сцена 9 — Image. В кадре: БЕЛАЯ у воды, ЖЁЛТАЯ спит вдали. Клиффхэнгер.
+3D Pixar style, vertical 9:16. Tropical beach at early morning, soft pink and gold sunrise, calm sea, a small white sailing boat far away on the horizon line.
+CRITICAL CHARACTER LOCK: WHITE is the exact same adult cartoon tooth character as in the attached reference image, bright white glossy enamel, mint-green dress, white sneakers, standing at the water edge with both arms raised high above her head, waving, eyes wide and shining with hope, mouth open in a shout. YELLOW is the exact same character as in the reference, dull yellowish enamel, oversized orange hoodie, black leggings, chunky sneakers, lying face down asleep on the sand about ten meters behind, hugging her empty canvas backpack. GOLD does not appear anywhere in this frame. All heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: WHITE MIDDLE at the shoreline facing the sea and slightly toward camera, YELLOW small in the background on the left lying on the sand, the distant white sail on the horizon. Only these two characters in the whole frame. Both full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic soft sunrise light, wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== VID ostrov_p01_01_hero_anim
+@use ostrov_p01_01_hero
+@duration 8
+# Сцена 1 — Animation. Хук: отец объявляет, что они остаются одни. 8 секунд.
+Animate this exact scene. This is a bright comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- GOLD: adult cartoon TOOTH character from the reference image, large molar-shaped head with glossy metallic gold enamel, dark charcoal tailored suit, golden tie, polished dark shoes, stands MIDDLE.
+- WHITE: adult cartoon TOOTH character from the reference image, slim molar-shaped head with bright white enamel, fitted mint-green dress, white sneakers, small hiking backpack, stands LEFT.
+- YELLOW: adult cartoon TOOTH character from the reference image, large round molar-shaped head with dull yellowish enamel, oversized orange hoodie, black leggings, chunky sneakers, stands RIGHT.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. GOLD stays metallic gold, WHITE stays bright white, YELLOW stays dull yellow in every single frame.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: empty white sand beach, palm trees swaying in the wind, calm turquoise water, one small white motor boat moored at the shoreline. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH: GOLD is theatrical and pleased with himself, wide gestures, slow weighty delivery, eyebrow raised. YELLOW throws her head back and laughs loudly, slapping her knees. WHITE shrinks slightly, eyes go huge, hands clasp together. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: starts on a wide establishing shot, quick push in on GOLD, then a fast cut to YELLOW laughing, then a fast cut to WHITE.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: GOLD spreads both arms wide as if presenting the island as a gift, chest puffed out. GOLD says in Russian, grandly and slowly: «Вот здесь вы и останетесь. Одни. На сикс севен дней.»
+3.0–5.5s: YELLOW throws her head back and laughs, slapping her own knees. YELLOW says in Russian, laughing and waving it off: «Сикс севен дней? Пап, тут пляж и кокосы! Это же курорт!»
+5.5–8.0s: WHITE looks down at the dry sand, eyebrows tilted up, hands clasped. WHITE says in Russian, quietly and worried: «Пап, а пресная вода тут есть?»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: soft sea waves, light wind in palm leaves, distant seagulls.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID ostrov_p01_02_backpacks_anim
+@use ostrov_p01_02_backpacks
+@duration 8
+# Сцена 2 — Animation. Раздача рюкзаков, два разных отношения. 8 секунд.
+Animate this exact scene. This is a light comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- GOLD: adult cartoon TOOTH character from the reference image, metallic gold enamel molar head, dark charcoal suit, golden tie, stands MIDDLE.
+- WHITE: adult cartoon TOOTH character from the reference image, bright white enamel, mint-green dress, white sneakers, stands LEFT.
+- YELLOW: adult cartoon TOOTH character from the reference image, dull yellowish enamel, oversized orange hoodie, black leggings, stands RIGHT.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. GOLD stays metallic gold, WHITE stays bright white, YELLOW stays dull yellow in every single frame.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: the same beach, the moored white motor boat behind them, two identical small canvas supply backpacks. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: GOLD strict and instructive, index finger raised, eyebrows up. WHITE serious and quick, nodding, already counting with her eyes. YELLOW dismissive, rolling her eyes so far only the whites show, waving one hand. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: medium wide shot, quick cut to WHITE, quick cut to YELLOW, slight handheld energy.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: GOLD hands out the two backpacks and raises one index finger. GOLD says in Russian, strictly and slowly: «Здесь припасы. Каждой свой. Но расходовать надо с умом.»
+3.0–5.5s: WHITE takes hers with both hands and immediately looks inside, nodding fast. WHITE says in Russian, serious and focused: «Я поняла. Поделю на дни.»
+5.5–8.0s: YELLOW snatches hers with one hand, throws it over her shoulder without looking, rolls her eyes and waves a hand. YELLOW says in Russian, bored and dismissive: «Да это вообще ерунда.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: soft sea waves, light wind, fabric rustle of the backpacks.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID ostrov_p01_03_boatleaves_anim
+@use ostrov_p01_03_boatleaves
+@duration 8
+# Сцена 3 — Animation. Отец уплывает и бросает фразу. 8 секунд.
+Animate this exact scene. This is a comedic cartoon moment with a smug punchline.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- GOLD: adult cartoon TOOTH character from the reference image, metallic gold enamel molar head, dark charcoal suit, golden tie, stands MIDDLE at the boat helm.
+- WHITE and YELLOW: the same two cartoon TOOTH characters from the reference image, tiny and far away on the distant beach, WHITE in a mint-green dress, YELLOW in an orange hoodie, they only stand still and get smaller.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. GOLD stays metallic gold, WHITE stays bright white, YELLOW stays dull yellow in every single frame.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: open turquoise sea, one small white motor boat with a wheel and a low windshield, the tropical beach shrinking in the background. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: GOLD is relaxed and enormously pleased with himself, lazy wave, eyebrow raised to the maximum, savoring every word, then a slow wink. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: low angle on GOLD at the helm, slow push in for the line, then a wide pull back as the boat leaves toward the horizon.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.0s: The boat pulls away from the shore, GOLD holds the wheel with one hand and waves lazily with the other, the two tiny figures on the beach get smaller. No dialogue.
+2.0–5.0s: GOLD turns to camera and raises one eyebrow with a wide smirk. GOLD says in Russian, slowly, savoring every word: «Вернусь через сикс или севен лет.»
+5.0–8.0s: GOLD winks, pushes the throttle, the boat speeds up and shrinks toward the horizon, only the empty beach and the sea remain. No dialogue.
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. GOLD stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: boat engine, splashing water, wind, distant seagulls.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID ostrov_p01_04_twoways_anim
+@use ostrov_p01_04_twoways
+@duration 10
+# Сцена 4 — Animation. Жёлтая съедает всё, белая делит по дням. 10 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing and one hard cut.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- YELLOW: adult cartoon TOOTH character from the reference image, dull yellowish enamel round molar head, oversized orange hoodie, black leggings, chunky sneakers, lies on the sand in the FOREGROUND.
+- WHITE: adult cartoon TOOTH character from the reference image, bright white enamel, mint-green dress, white sneakers, sits at the far end of the beach in the BACKGROUND, then in her own shot.
+GOLD never appears in this video at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. WHITE stays bright white and YELLOW stays dull yellow in every single frame.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: hot midday beach, one open canvas backpack beside YELLOW with scattered colorful wrappers, one flat stone beside WHITE with small piles of food sorted on it. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH for YELLOW, LOW and focused for WHITE: YELLOW is blissful with full cheeks, then lazily unbothered. WHITE is quiet and concentrated, eyebrows drawn together, lips moving as she counts. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: close on YELLOW, quick push out, HARD CUT to a completely different angle on WHITE, slow drift in.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: YELLOW stuffs food into her mouth with both hands, cheeks puffed, eyes squeezed shut in bliss. YELLOW says in Russian, with a full mouth, humming happily: «Ммм, вот это отдых!»
+2.5–5.5s: YELLOW turns the backpack upside down and shakes it, one single crumb falls out. She shrugs, lies back and puts her hands behind her head. YELLOW says in Russian, lazily, looking at the sky: «Ну и ладно. Само как-нибудь появится.»
+5.5–6.5s: HARD CUT to the other end of the beach. WHITE lays out her supplies on a flat stone and sorts them into small equal piles. No dialogue.
+6.5–10.0s: WHITE counts the piles with one finger, eyebrows drawn together. WHITE says in Russian, quietly to herself: «Раз, два, три. Хватит ровно. Если не жадничать.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: sea waves, hot wind, wrapper rustle, sand shifting.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+10 seconds, vertical 9:16.
+
+=== VID ostrov_p01_05_camp_anim
+@use ostrov_p01_05_camp
+@duration 8
+# Сцена 5 — Animation. Ускоренный монтаж стройки лагеря. 8 секунд.
+Animate this exact scene. This is a light comedic cartoon montage with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — only one character in this whole video and no one else ever appears:
+- WHITE: adult cartoon TOOTH character from the reference image, slim molar-shaped head with bright white enamel, fitted mint-green dress, white sneakers, small hiking backpack, stands MIDDLE.
+GOLD and YELLOW never appear in this video at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: her tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. WHITE stays bright white enamel in every single frame.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: jungle edge meeting the beach, branches, wide palm leaves, one long stick, coconuts, empty coconut shells, a small leaf shelter being built. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: WHITE is busy, capable and cheerful, quick efficient movements, a small comic hop when a coconut lands on her foot, then she laughs it off. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: fast montage of three short angles, then a smooth pull back to reveal the finished camp.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.0s: WHITE carries branches and wide leaves and ties a shelter frame together, fast montage cuts. No dialogue.
+2.0–4.0s: WHITE knocks a coconut down with a long stick, it lands on her foot, she hops on one leg shaking her foot and then laughs. No dialogue.
+4.0–8.0s: WHITE arranges empty coconut shells under a tilted broad leaf, wipes her forehead and looks over the finished camp with satisfaction, camera pulls back. WHITE says in Russian, calmly and warmly: «Вода будет. Еда будет. Главное не паниковать.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. She speaks alone, with clear pauses. She stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+
+Ambient sound only: jungle birds, sea waves, rustling leaves, a hollow coconut knock.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID ostrov_p01_06_complaint_anim
+@use ostrov_p01_06_complaint
+@duration 8
+# Сцена 6 — Animation. Жалоба на липкие зубы. 8 секунд.
+Animate this exact scene. This is a soft comedic cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- YELLOW: adult cartoon TOOTH character from the reference image, dull yellowish enamel, oversized orange hoodie, black leggings, chunky sneakers, kneels LEFT.
+- WHITE: adult cartoon TOOTH character from the reference image, bright white enamel, mint-green dress, white sneakers, stands RIGHT.
+GOLD never appears in this video at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. WHITE stays bright white and YELLOW stays dull yellow in every single frame, YELLOW never becomes whiter.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: the beach camp at orange sunset, the small leaf shelter, coconut shells, calm sea behind. Nothing new appears during the video. There is no physical contact between the characters.
+
+EMOTIONAL INTENSITY — MEDIUM: YELLOW is whiny and sour, rubbing her cheek, mouth twisted. WHITE is calm and slightly amused, one eyebrow raised, arms folded, no mocking. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: medium two shot, quick cut to YELLOW close up, quick cut back.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: YELLOW crawls up to the camp, rubs her cheek with one palm and grimaces. YELLOW says in Russian, whining: «Слушай, у меня во рту как будто болото. Зубы липкие, аж противно.»
+3.0–5.5s: WHITE raises one eyebrow and folds her arms calmly. WHITE says in Russian, calmly and evenly: «Ну ты за день сожрала всё, что было сладкого на этом острове.»
+5.5–8.0s: YELLOW puffs her cheeks out, offended. YELLOW says in Russian, sulking: «И что теперь делать?»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: evening sea waves, light wind, distant birds.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID ostrov_p01_07_product_anim
+@use ostrov_p01_07_product
+@product rl066
+@duration 10
+# Сцена 7 — Animation. Продуктовая сцена, RL 066 в руках у белой. 10 секунд.
+Animate this exact scene. This is a warm friendly cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- WHITE: adult cartoon TOOTH character from the reference image, bright white enamel, mint-green dress, white sneakers, stands MIDDLE-RIGHT and holds the toothbrush.
+- YELLOW: adult cartoon TOOTH character from the reference image, dull yellowish enamel, oversized orange hoodie, black leggings, chunky sneakers, sits LEFT.
+GOLD never appears in this video at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. WHITE stays bright white enamel and YELLOW stays dull yellow enamel in every single frame — YELLOW does NOT become whiter or cleaner at any moment of this video, her enamel shade never changes.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: the beach camp at warm sunset, the leaf shelter, the open canvas backpack beside WHITE. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: WHITE is warm, proud and friendly. YELLOW is curious, then startled by the hum, then stubbornly dismissive. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: steady medium shot on WHITE with the product clearly readable, one slow gentle push in, one quick cut to YELLOW reacting, back to the medium shot. No extreme macro zoom.
+
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo: the Revyline RL 066, glossy piano-black body, slender elongated handle with rounded-rectangular soft-oval cross-section tapering to a rounded bottom, subtle small uppercase "REVYLINE" logo near the lower front, one narrow vertical glossy black display strip in the upper-middle front, one single round power button below it with polished chrome/silver ring and matte black center, one thin chrome ring separating the handle from the removable brush head, slim slightly curved black stem with tiny vertical "REVYLINE" lettering, oval brush head with white bristles and one central sky-blue accent. Do not change its color, shape, button, head, or add extra buttons or logos. Only one product in the whole frame, held only by WHITE, zero changes, no morphing, the toothbrush never bends, stretches or transforms. Keep the whole product inside the frame, no extreme macro zoom on a single detail. Her fingers never cover the brush head or the REVYLINE logo. The toothbrush stays large and steady in frame, only her hand and thumb move.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: WHITE opens her backpack and lifts out the black electric toothbrush, holding it upright and steady, warm smile. WHITE says in Russian, warmly: «Хорошо, что я взяла с собой Ревилайн Эр Эль ноль шестьдесят шесть.»
+3.0–5.5s: WHITE presses the round power button with her thumb, the brush head starts to vibrate softly, YELLOW flinches back in surprise. WHITE says in Russian, brightly: «Звуковая, три режима и таймер на две минуты.»
+5.5–8.0s: WHITE rocks the toothbrush lightly in her hand, still smiling. WHITE says in Russian, calmly and warmly: «И заряда хватит на два месяца. Здесь это важно.»
+8.0–10.0s: WHITE starts brushing her teeth, YELLOW looks at her from under her brows and turns away. YELLOW says in Russian, muttering stubbornly under her breath: «Да ну, ерунда всё это.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: evening sea waves, light wind, the soft electric hum of the toothbrush.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+10 seconds, vertical 9:16.
+
+=== VID ostrov_p01_08_emptybag_anim
+@use ostrov_p01_08_emptybag
+@duration 8
+# Сцена 8 — Animation. Пустой рюкзак ночью. 8 секунд.
+Animate this exact scene. This is a comedic panic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — only one character in this whole video and no one else ever appears:
+- YELLOW: adult cartoon TOOTH character from the reference image, dull yellowish enamel round molar head, oversized orange hoodie, black leggings, chunky sneakers, MIDDLE.
+GOLD and WHITE never appear in this video at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: her tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. YELLOW stays dull yellow enamel in every single frame.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: night beach under blue moonlight, a burnt out campfire with grey ash, palm silhouettes, empty coconut shells, one canvas backpack. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — VERY HIGH but comedic: YELLOW is in cartoon panic, eyes huge with tiny pupils, exaggerated running and searching, big theatrical shout. It stays funny, not frightening. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: close on the backpack, fast cut to a wide running shot, fast cut to a low angle as she drops to her knees.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: YELLOW turns the backpack inside out, shakes it and sticks her head inside, then pulls it out with huge round eyes. YELLOW says in Russian, whispering with a trembling voice: «Нет-нет-нет, где всё?»
+3.0–5.5s: YELLOW jumps up and runs along the beach kicking up sand, looking under palm trees and flipping over coconut shells. No dialogue.
+5.5–8.0s: YELLOW stops, throws both arms wide and shouts at the empty island, then drops to her knees in the sand. YELLOW says in Russian, shouting at the top of her voice: «Тут вообще есть нечего!»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. She speaks alone, with clear pauses. She stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+
+Ambient sound only: night sea waves, wind in palm leaves, sand crunching, crickets.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID ostrov_p01_09_sail_anim
+@use ostrov_p01_09_sail
+@duration 10
+# Сцена 9 — Animation. Парус на горизонте, клиффхэнгер и призыв. 10 секунд.
+Animate this exact scene. This is an emotional hopeful cartoon moment with one hard cut.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- WHITE: adult cartoon TOOTH character from the reference image, bright white enamel, mint-green dress, white sneakers, at the shoreline MIDDLE.
+- YELLOW: adult cartoon TOOTH character from the reference image, dull yellowish enamel, oversized orange hoodie, black leggings, lying face down asleep in the BACKGROUND.
+GOLD never appears in this video at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same texture and glossiness, same small neck, same arms and legs, same clothes. No re-texturing, no re-modeling, no style drift, no morphing between cuts. WHITE stays bright white and YELLOW stays dull yellow in every single frame.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: beach at soft pink sunrise, the small leaf shelter, calm sea, one small white sailing boat far away on the horizon, one empty canvas backpack under YELLOW. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH for WHITE, ZERO for YELLOW: WHITE freezes, then bursts into hope, eyes shining, big waving arms, jumping. YELLOW is deeply asleep and does not react to anything. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: medium on WHITE, quick push toward the horizon, HARD CUT to YELLOW asleep, then a slow pull back to a wide shot with both of them.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: WHITE steps out of the shelter, stretches, looks at the sea and freezes, eyes going wide. WHITE says in Russian, whispering: «Корабль…»
+2.5–5.0s: WHITE runs to the water and waves both arms above her head, jumping. WHITE says in Russian, shouting joyfully: «Эй! Мы здесь!»
+5.0–6.5s: HARD CUT to YELLOW asleep face down in the sand hugging her empty backpack, not hearing anything. No dialogue.
+6.5–10.0s: Camera pulls back to a wide shot, WHITE turns her head toward camera with a small smile. WHITE says in Russian, calmly and directly to the viewer: «Пиши в комментариях, кто спасётся первой. Артикул щётки в описании.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: morning sea waves, gentle wind, seagulls, quiet snoring.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+10 seconds, vertical 9:16.

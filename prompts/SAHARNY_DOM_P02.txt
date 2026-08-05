@@ -1,0 +1,271 @@
+@project SAHARNY_DOM_P02
+
+=== IMG sahdom_p02_01_hero
+# Сцена 1 — Image. Эталонный кадр ДИМЫ. В кадре: ДИМА один утром у пустого тайника. Товара нет.
+3D Pixar style, vertical 9:16. Candy villa bedroom in the early morning, cool pale daylight through an amber caramel-glass window, waffle-panel walls, biscuit floor tiles, a low bed with a thick marshmallow mattress lifted and pushed aside, a small black camera tripod standing in the corner.
+CRITICAL CHARACTER LOCK: DIMA — cartoon tooth character, clean bright white enamel, large molar-shaped head, oversized grey hoodie with the hood down and grey sneakers, alarmed wide eyes and lowered eyebrows, kneeling beside the bed with one hand holding the lifted mattress edge and the other palm pressed to the empty space underneath. Only DIMA appears in this frame, no other character is present anywhere in the shot or in the background. He is a fully original fictional animated tooth character, his head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel.
+Composition: DIMA on the right kneeling in three-quarter view, the lifted mattress and the empty dark gap under it on the left, the tripod camera silhouette in the background corner. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic cool morning key light with soft warm bounce, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG sahdom_p02_02_liza
+@product rl410
+# Сцена 2 — Image. Эталонный кадр ЛИЗЫ. В кадре: ЛИЗА одна в исповедальне с ирригатором. Товар в кадре.
+3D Pixar style, vertical 9:16. Small candy villa diary booth, warm lamp light, a marshmallow stool, a simple black camera tripod facing the character, waffle-panel wall behind.
+CRITICAL CHARACTER LOCK: LIZA — cartoon tooth character, light creamy yellow enamel, large molar-shaped head, soft pink ruffled dress and pink wristbands, confident half-smile with narrowed playful eyes, sitting on the stool and slowly turning the product in both hands in front of her chest. Only LIZA appears in this frame, no other character is present anywhere in the shot or in the background. She is a fully original fictional animated tooth character, her head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. She remains exactly like her reference image.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The product is the Revyline RL 410 Slider portable oral irrigator: a compact slim rectangular hand-held body shown in its closed collapsed travel position, the retractable water tank forming the lower part of the body, a short curved nozzle fixed on the top, one round control button on the upper front face, small uppercase REVYLINE lettering on the body. Its exact body colors, proportions, finish, button, nozzle and lettering match the attached reference photo exactly. It always stays in this closed compact form: it never slides open, never unfolds, never extends, never transforms and never changes color. Only one product in the whole frame, held only in LIZA's hands, fingers never covering the nozzle or the REVYLINE lettering, the whole product fully inside the frame with no extreme macro zoom. Zero changes, no morphing, no extra buttons or logos.
+Composition: LIZA centered facing the camera, the product held steady at chest height and clearly readable, the tripod camera silhouette in the lower foreground corner. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic soft warm lamp key light with gentle product highlight, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG sahdom_p02_03_task
+@use sahdom_p02_01_hero
+@use sahdom_p02_02_liza
+# Сцена 3 — Image. Эталонный кадр ЖАННЫ и АРТЁМА. В кадре: КАРАМЕЛЬ, ДИМА, ЛИЗА, ЖАННА, АРТЁМ. Комната тортов.
+3D Pixar style, vertical 9:16. A bright candy villa room completely filled with giant glossy layer cakes on pedestals, cream swirls and berry glaze everywhere, waffle-panel walls, biscuit floor tiles, warm cheerful daylight.
+CRITICAL CHARACTER LOCK: KARAMEL — cartoon tooth character, warm amber caramel-toned glossy enamel, large molar-shaped head, long sparkling golden sequin gown with a small collar, a slim golden hand microphone in her right hand, sweet theatrical smile with one raised eyebrow, standing in the doorway. DIMA — cartoon tooth character, clean bright white enamel, molar-shaped head, oversized grey hoodie with the hood down and grey sneakers, calm focused expression, hands in his hoodie pocket. LIZA — cartoon tooth character, light creamy yellow enamel, molar-shaped head, soft pink ruffled dress and pink wristbands, delighted round eyes, leaning toward a cake. ZHANNA — cartoon tooth character, yellow enamel, molar-shaped head, bright red tracksuit with white stripes, large round dark sunglasses resting on the enamel, wide open mouth and both hands reaching toward a cake. ARTEM — cartoon tooth character, yellow enamel, molar-shaped head, dark green buttoned cardigan over a white shirt, small rectangular glasses resting on the enamel, arms crossed, calm analytical half-smile. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+Composition: KARAMEL on the left in the doorway raising the microphone, ZHANNA and LIZA in the middle leaning toward the giant cakes, DIMA and ARTEM standing back on the right with folded arms. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic bright warm key light with soft candy-colored bounce, wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG sahdom_p02_04_blackmail
+@use sahdom_p02_02_liza
+@use sahdom_p02_03_task
+@product rl410
+# Сцена 4 — Image. В кадре: ЛИЗА (уже белая) и ЖАННА в коридоре. Товар в кадре.
+3D Pixar style, vertical 9:16. A narrow candy villa corridor at night, cool moonlight through an amber caramel-glass window, waffle-panel walls, a marzipan column on the left edge.
+CRITICAL CHARACTER LOCK: LIZA — cartoon tooth character, now clean bright white enamel, molar-shaped head, soft pink ruffled dress and pink wristbands, caught-off-guard wide eyes and a nervous half-smile, standing with the product held close to her chest. ZHANNA — cartoon tooth character, yellow enamel, molar-shaped head, bright red tracksuit with white stripes, large round dark sunglasses resting on the enamel, triumphant grin with raised eyebrows, standing with one hand on her hip and the other pointing lightly at LIZA. Only LIZA and ZHANNA appear in this frame, no other character is present anywhere in the shot or in the background. Both are fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images, except that LIZA's enamel is now clean bright white instead of light creamy yellow.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The product is the Revyline RL 410 Slider portable oral irrigator: a compact slim rectangular hand-held body shown in its closed collapsed travel position, the retractable water tank forming the lower part of the body, a short curved nozzle fixed on the top, one round control button on the upper front face, small uppercase REVYLINE lettering on the body. Its exact body colors, proportions, finish, button, nozzle and lettering match the attached reference photo exactly. It always stays in this closed compact form: it never slides open, never unfolds, never extends, never transforms and never changes color. Only one product in the whole frame, held only in LIZA's hands, fingers never covering the nozzle or the REVYLINE lettering. Zero changes, no morphing, no extra buttons or logos.
+Composition: LIZA on the left in three-quarter view holding the product, ZHANNA on the right facing her, the corridor stretching into darkness behind them. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic cool moonlight key with a soft warm fill, medium two-shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG sahdom_p02_05_product
+@use sahdom_p02_01_hero
+@product rl095
+# Сцена 5 — Image. Продуктовая сцена. В кадре: ДИМА у сейфа недели номер два со щёткой. Товар крупно и целиком.
+3D Pixar style, vertical 9:16. A quiet candy villa alcove at night, warm lamp light, waffle-panel walls, a wall niche with a second open metal safe glowing softly from inside, a small black camera tripod facing the character.
+CRITICAL CHARACTER LOCK: DIMA — cartoon tooth character, clean bright white enamel, large molar-shaped head, oversized grey hoodie with the hood down and grey sneakers, calm confident expression with a small satisfied smile, standing in front of the open safe and holding the product up in both hands in front of his chest, presenting it toward the camera, with a completely blank cream-colored card with no writing of any kind on it lying on the shelf of the safe. Only DIMA appears in this frame, no other character is present anywhere in the shot or in the background. He is a fully original fictional animated tooth character, his head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. He remains exactly like his reference image.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The product is the Revyline RL 095 Cloud Dancer sonic electric toothbrush: a slim elongated handle with a rounded-rectangular soft-oval cross-section tapering to a rounded bottom, one single round power button on the upper front face, small uppercase REVYLINE lettering on the handle, a thin ring separating the handle from the removable brush head, a slim slightly curved stem and an oval brush head with soft white bristles. Its exact body color, shade, finish, proportions, button, lettering, brush head and bristles match the attached reference photo exactly and are never changed or recolored. Only one product in the whole frame, held only in DIMA's hands, fingers never covering the brush head or the REVYLINE lettering, the whole product fully inside the frame with no extreme macro zoom. Zero changes, no morphing, no extra buttons or logos.
+Composition: DIMA centered facing the camera, the product raised and clearly readable at chest height, the glowing open safe just behind his shoulder. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic soft warm lamp key light with gentle product highlight, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG sahdom_p02_06_ceremony
+@use sahdom_p02_01_hero
+@use sahdom_p02_02_liza
+@use sahdom_p02_03_task
+# Сцена 6 — Image. В кадре: КАРАМЕЛЬ, ЖАННА под аркой сканера, ЛИЗА, ДИМА, АРТЁМ. Красный сигнал.
+3D Pixar style, vertical 9:16. The candy villa ceremony hall at night, dramatic show lighting, a wide glowing arch of soft light standing over a round candy-pink podium, a tall glossy chocolate-brown door on the back wall standing slightly open with warm friendly light behind it.
+CRITICAL CHARACTER LOCK: KARAMEL — cartoon tooth character, warm amber caramel-toned glossy enamel, large molar-shaped head, long sparkling golden sequin gown, slim golden hand microphone, sweet theatrical smile. ZHANNA — cartoon tooth character, yellow enamel, molar-shaped head, bright red tracksuit with white stripes, large round dark sunglasses resting on the enamel, comically indignant open mouth and raised eyebrows, standing under the glowing arch which shines soft red light over her. LIZA — cartoon tooth character, clean bright white enamel, molar-shaped head, soft pink ruffled dress and pink wristbands, one hand near her mouth hiding a small smile. DIMA — cartoon tooth character, clean bright white enamel, molar-shaped head, oversized grey hoodie with the hood down and grey sneakers, calm still expression. ARTEM — cartoon tooth character, yellow enamel, molar-shaped head, dark green buttoned cardigan over a white shirt, small rectangular glasses resting on the enamel, arms crossed, one eyebrow raised. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images, except that LIZA's enamel is now clean bright white instead of light creamy yellow.
+Composition: KARAMEL on the left beside the podium, ZHANNA centered under the glowing arch in soft red light, LIZA, DIMA and ARTEM standing in a row on the right, the chocolate door behind them. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic dramatic show lighting with a soft red glow from the arch, wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG sahdom_p02_07_return
+@use sahdom_p02_01_hero
+@use sahdom_p02_02_liza
+@product rl410
+# Сцена 7 — Image. В кадре: ЛИЗА протягивает ирригатор, ДИМА отказывается. Товар в кадре.
+3D Pixar style, vertical 9:16. Candy villa hall in the late evening, warm low lamp light, waffle-panel walls, biscuit floor tiles, marshmallow sofas in the background.
+CRITICAL CHARACTER LOCK: LIZA — cartoon tooth character, clean bright white enamel, molar-shaped head, soft pink ruffled dress and pink wristbands, guilty apologetic eyes and slightly lowered eyebrows, standing with both arms extended and holding the product out toward DIMA. DIMA — cartoon tooth character, clean bright white enamel, molar-shaped head, oversized grey hoodie with the hood down and grey sneakers, calm distant expression with a level gaze, hands in his hoodie pocket, not reaching for the product. Only LIZA and DIMA appear in this frame, no other character is present anywhere in the shot or in the background. Both are fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photo. The product is the Revyline RL 410 Slider portable oral irrigator: a compact slim rectangular hand-held body shown in its closed collapsed travel position, the retractable water tank forming the lower part of the body, a short curved nozzle fixed on the top, one round control button on the upper front face, small uppercase REVYLINE lettering on the body. Its exact body colors, proportions, finish, button, nozzle and lettering match the attached reference photo exactly. It always stays in this closed compact form: it never slides open, never unfolds, never extends, never transforms and never changes color. Only one product in the whole frame, held only in LIZA's hands, fingers never covering the nozzle or the REVYLINE lettering. Zero changes, no morphing, no extra buttons or logos.
+Composition: LIZA on the left in three-quarter view with the product extended between them, DIMA on the right standing still and slightly turned away. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm low key light with soft shadows, medium two-shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG sahdom_p02_08_cliffhanger
+@use sahdom_p02_03_task
+# Сцена 8 — Image. Клиффхэнгер. В кадре: КАРАМЕЛЬ одна в исповедальне, за ней открытая дверь виллы.
+3D Pixar style, vertical 9:16. The candy villa diary booth at night, warm lamp light, a marshmallow stool, a small black camera tripod facing the character, and behind her an open doorway leading outside where bright backlight floods in and hides everything beyond as a bright glowing rectangle.
+CRITICAL CHARACTER LOCK: KARAMEL — cartoon tooth character, warm amber caramel-toned glossy enamel, large molar-shaped head, long sparkling golden sequin gown with a small collar, sweet bored smile with one raised eyebrow, sitting on the stool and holding a tall glass of sparkling pink lemonade in one hand, looking straight into the camera. Only KARAMEL appears in this frame, absolutely no other character is present anywhere in the shot or in the background, the bright doorway behind her is empty. She is a fully original fictional animated tooth character, her head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. She remains exactly like her reference image.
+Composition: KARAMEL centered facing the camera in the foreground, the glowing open doorway framed behind her shoulder. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm lamp key light with a strong bright backlight from the doorway, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== VID sahdom_p02_01_hero_anim
+@use sahdom_p02_01_hero
+@duration 8
+# Сцена 1 — Animation. Хук: пропажа ирригатора, обыск, исповедальня. 8 секунд.
+Animate this exact scene. This is an emotional cartoon moment, with fast dynamic editing.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. He must NEVER turn into a human, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- DIMA: cartoon TOOTH character from the reference image, molar tooth-shaped head with clean bright white enamel, oversized grey hoodie with the hood down and grey sneakers, stands MIDDLE. He is completely alone for the entire video.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: his tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. DIMA stays clean bright white for the whole video.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: candy villa bedroom in the early morning, waffle wall panels, biscuit floor tiles, a low bed with a thick marshmallow mattress, a small black camera tripod in the corner. Nothing new appears during the video.
+EMOTIONAL INTENSITY — HIGH: quick worried movements, wide alarmed eyes, lowered eyebrows, fast searching hands, then a slow heavy sit-down and a quiet hurt look into the camera. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: fast handheld push-in on the empty gap under the mattress, quick cut to a wider shot of the room, then a slow settle into a frontal medium shot.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.5s: DIMA lifts the mattress edge and stares at the empty space underneath, eyes going wide. DIMA says in Russian, alarmed and quiet: «Тайник пустой. Его нет.»
+2.5–5.0s: he quickly checks under the bed and pulls open a small drawer, then straightens up with empty hands. DIMA says in Russian, tense and disbelieving: «Я оставлял его здесь. Точно здесь.»
+5.0–8.0s: he sits down slowly on the floor and turns to look straight into the tripod camera. DIMA says in Russian, quiet and hurt: «Я ей доверял.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. He speaks STRICTLY one line at a time, each line finishes before the next begins, with clear pauses. He stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+Ambient sound only: soft mattress rustle, a wooden drawer sliding, quiet footsteps, faint morning room tone.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID sahdom_p02_02_liza_anim
+@use sahdom_p02_02_liza
+@product rl410
+@duration 6
+# Сцена 2 — Animation. Лиза в исповедальне с украденным ирригатором. 6 секунд.
+Animate this exact scene. This is a playful, slightly sly cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. She must NEVER turn into a human, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- LIZA: cartoon TOOTH character from the reference image, molar tooth-shaped head with light creamy yellow enamel, soft pink ruffled dress and pink wristbands, sits MIDDLE on a marshmallow stool. She is completely alone for the entire video.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: her tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same dress. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. LIZA stays light creamy yellow for the whole video and her enamel never turns white here.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: small candy villa diary booth, warm lamp, marshmallow stool, a black camera tripod facing her, waffle wall panels behind. Nothing new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM: relaxed confident posture, narrowed playful eyes, a slow knowing half-smile, unhurried hands turning the product, one small wink at the end. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: locked frontal medium shot with a very slow push-in.
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo, only one product in the whole frame, held only by LIZA, zero changes, no morphing. It stays in its closed compact form and never slides open, unfolds, extends, transforms or changes color. Her fingers never cover the nozzle or the REVYLINE lettering. Keep the whole product inside the frame, no extreme macro zoom on a single detail. The product stays large and steady in frame, only her hands move slowly.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–3.0s: LIZA slowly turns the product in her hands and glances at the camera from under her eyebrows. LIZA says in Russian, calm and amused: «Он думает, что тут дружба.»
+3.0–6.0s: she holds the product steady at chest height, looks straight into the lens and gives a small wink. LIZA says in Russian, sweetly and confidently: «Это игра, детка.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. She speaks STRICTLY one line at a time, each line finishes before the next begins, with clear pauses. She stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+Ambient sound only: quiet room tone, faint lamp hum, soft fabric rustle.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+6 seconds, vertical 9:16.
+
+=== VID sahdom_p02_03_task_anim
+@use sahdom_p02_03_task
+@duration 8
+# Сцена 3 — Animation. Задание недели в комнате тортов. 8 секунд.
+Animate this exact scene. This is a comedic cartoon moment, with fast dynamic editing.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- KARAMEL: cartoon TOOTH character from the reference image, molar tooth-shaped head with warm amber caramel-toned glossy enamel, long sparkling golden sequin gown, golden hand microphone, stands LEFT in the doorway.
+- ZHANNA: cartoon TOOTH character from the reference image, molar tooth-shaped head with yellow enamel, bright red tracksuit with white stripes, large round dark sunglasses on the enamel, stands MIDDLE-LEFT.
+- LIZA: cartoon TOOTH character from the reference image, molar tooth-shaped head with light creamy yellow enamel, soft pink ruffled dress and pink wristbands, stands MIDDLE.
+- DIMA: cartoon TOOTH character from the reference image, molar tooth-shaped head with clean bright white enamel, oversized grey hoodie with the hood down and grey sneakers, stands RIGHT.
+- ARTEM: cartoon TOOTH character from the reference image, molar tooth-shaped head with yellow enamel, dark green buttoned cardigan over a white shirt, small rectangular glasses on the enamel, stands FAR RIGHT.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. KARAMEL stays amber caramel-toned, ZHANNA stays yellow, LIZA stays light creamy yellow, DIMA stays clean bright white, ARTEM stays yellow.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: bright candy villa room filled with giant glossy layer cakes on pedestals, cream swirls and berry glaze, waffle wall panels, biscuit floor tiles. Nothing new appears during the video.
+EMOTIONAL INTENSITY — HIGH: KARAMEL is smooth and theatrical with slow elegant gestures; ZHANNA and LIZA are wide-eyed and eager, leaning toward the cakes and giving in with comic speed; DIMA and ARTEM stay still with folded arms and dry amused expressions. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: wide establishing shot of the cake room, quick cut to ZHANNA and LIZA reaching for a cake, then a lateral drift to DIMA and ARTEM standing back.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.0s: KARAMEL raises the microphone and gestures elegantly across the room of giant cakes. KARAMEL says in Russian, sweetly and grandly: «Задание недели. Комната тортов.»
+2.0–4.0s: she tilts her head with a knowing smile while the others stare at the cakes. KARAMEL says in Russian, slow and playful: «Час не откусить, и получите звонок домой.»
+4.0–6.0s: ZHANNA immediately leans in and scoops a big piece of cream, LIZA follows her with delighted round eyes. ZHANNA says in Russian, loud and excited: «Час? Да это же вообще легко.»
+6.0–8.0s: the camera drifts to ARTEM and DIMA standing back with folded arms, ARTEM raises one eyebrow. ARTEM says in Russian, dry and calm: «Пятая минута. Как всегда.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: soft footsteps on tiles, light cream squelch, quiet excited murmur, bright room tone.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID sahdom_p02_04_blackmail_anim
+@use sahdom_p02_04_blackmail
+@product rl410
+@duration 8
+# Сцена 4 — Animation. Жанна застукивает Лизу, преображение эмали Лизы на 2 секунде. 8 секунд.
+Animate this exact scene. This is a tense but playful comedic cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- LIZA: cartoon TOOTH character from the reference image, molar tooth-shaped head, soft pink ruffled dress and pink wristbands, stands LEFT, holding the product.
+- ZHANNA: cartoon TOOTH character from the reference image, molar tooth-shaped head with yellow enamel, bright red tracksuit with white stripes, large round dark sunglasses on the enamel, stands RIGHT.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. ZHANNA stays yellow for the whole video. ONE SINGLE CONTROLLED CHANGE IS ALLOWED AND NOTHING ELSE: LIZA's enamel is light creamy yellow from 0.0s to 2.0s and becomes clean bright white from 2.0s to 8.0s. The shade change is smooth and affects only her enamel color; her shape, dress, proportions and features do not change at any moment.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: narrow candy villa corridor at night, cool moonlight through an amber caramel-glass window, waffle wall panels, a marzipan column on the left edge. Nothing new appears during the video.
+EMOTIONAL INTENSITY — HIGH: LIZA is caught off guard with wide startled eyes and a nervous smile; ZHANNA is triumphant with a big grin and raised eyebrows. They stay at opposite sides of the corridor and never touch each other. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed apart from the single allowed enamel shade change.
+CAMERA STYLE: slow reveal past the marzipan column, quick cut to ZHANNA appearing at the other end of the corridor, then a steady two-shot.
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo, only one product in the whole frame, held only by LIZA, zero changes, no morphing. It stays in its closed compact form and never slides open, unfolds, extends, transforms or changes color. Her fingers never cover the nozzle or the REVYLINE lettering. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.5s: LIZA finishes her secret ritual with the product, her enamel turning clean bright white, then freezes as ZHANNA steps into the corridor behind her. ZHANNA says in Russian, loud and delighted: «Так вот куда ты бегаешь.»
+2.5–5.0s: LIZA turns around holding the product close to her chest, glancing left and right. LIZA says in Russian, quietly and quickly: «Тише. Я всё объясню.»
+5.0–8.0s: ZHANNA folds her arms, leans back and grins widely, tapping one foot. ZHANNA says in Russian, smug and unhurried: «Делись. Или я всем расскажу.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: quiet footsteps, faint night room tone, soft fabric rustle.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID sahdom_p02_05_product_anim
+@use sahdom_p02_05_product
+@product rl095
+@duration 10
+# Сцена 5 — Animation. ПРОДУКТОВАЯ СЦЕНА. Сейф номер два, модель названа вслух. 10 секунд.
+Animate this exact scene. This is a calm, warm, confident cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. He must NEVER turn into a human, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- DIMA: cartoon TOOTH character from the reference image, molar tooth-shaped head with clean bright white enamel, oversized grey hoodie with the hood down and grey sneakers, stands MIDDLE in front of the open safe. He is completely alone for the entire video.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: his tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. DIMA stays clean bright white for the whole video.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: quiet candy villa alcove at night, warm lamp, waffle wall panels, a wall niche with a second open metal safe glowing softly, a completely blank cream-colored card with no writing on it lying on the safe shelf, a small black camera tripod facing him. Nothing new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM: calm focused eyes, a small confident smile, unhurried precise hand movements while presenting the product, a quiet satisfied look into the camera at the end. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: locked medium shot with a very slow push-in, one gentle tilt down to the product and back up.
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo, only one product in the whole frame, held only by DIMA in his hands, zero changes, no morphing, no recoloring, no extra buttons or logos. His fingers never cover the brush head or the REVYLINE lettering. Keep the whole product inside the frame, no extreme macro zoom on a single detail. The product stays large and steady in frame, only his hand moves slowly.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.5s: DIMA lifts the product out of the open safe and turns it toward the camera, holding it steady in both hands. DIMA says in Russian, calm and clear: «Ревилайн Эр Эл ноль девяносто пять Клауд Дансер.»
+2.5–5.0s: he keeps the product steady at chest height and taps the round button once with his thumb. DIMA says in Russian, calm and explanatory: «Звуковая, до тридцати трёх тысяч колебаний в минуту.»
+5.0–7.5s: he turns the product slightly to show the brush head, still holding it firmly. DIMA says in Russian, matter-of-fact: «Четыре режима и таймер. Чистишь ровно столько, сколько нужно.»
+7.5–10.0s: he lowers the product, glances at the blank card on the safe shelf and looks straight into the camera with a small smile. DIMA says in Russian, quietly and confidently: «Один потерял. Другой нашёл.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. He speaks STRICTLY one line at a time, each line finishes before the next begins, with clear pauses. He stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+Ambient sound only: quiet room tone, a soft single button click, a faint short sonic buzz, faint lamp hum.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+10 seconds, vertical 9:16.
+
+=== VID sahdom_p02_06_ceremony_anim
+@use sahdom_p02_06_ceremony
+@duration 8
+# Сцена 6 — Animation. Церемония сканера, Жанна выбывает. 8 секунд.
+Animate this exact scene. This is a comedic dramatic cartoon moment, with fast dynamic editing.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- KARAMEL: cartoon TOOTH character from the reference image, molar tooth-shaped head with warm amber caramel-toned glossy enamel, long sparkling golden sequin gown, golden hand microphone, stands LEFT.
+- ZHANNA: cartoon TOOTH character from the reference image, molar tooth-shaped head with yellow enamel, bright red tracksuit with white stripes, large round dark sunglasses on the enamel, stands MIDDLE under the glowing arch.
+- LIZA: cartoon TOOTH character from the reference image, molar tooth-shaped head with clean bright white enamel, soft pink ruffled dress and pink wristbands, stands RIGHT.
+- DIMA: cartoon TOOTH character from the reference image, molar tooth-shaped head with clean bright white enamel, oversized grey hoodie with the hood down and grey sneakers, stands RIGHT next to LIZA.
+- ARTEM: cartoon TOOTH character from the reference image, molar tooth-shaped head with yellow enamel, dark green buttoned cardigan over a white shirt, small rectangular glasses on the enamel, stands FAR RIGHT.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. KARAMEL stays amber caramel-toned, ZHANNA stays yellow, LIZA stays clean bright white, DIMA stays clean bright white, ARTEM stays yellow. The soft red light from the arch never repaints anyone's enamel.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: candy villa ceremony hall at night, a wide glowing arch of soft light over a round candy-pink podium, a tall glossy chocolate-brown door on the back wall that slowly slides open with warm friendly light behind it. Nothing new appears during the video.
+EMOTIONAL INTENSITY — HIGH: KARAMEL is smooth and theatrical; ZHANNA is comically indignant with big gestures and a shrug; LIZA hides a small smile behind her hand; DIMA stays calm and still; ARTEM raises one eyebrow. The tone stays light and playful and everyone smiles at the end. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: wide shot of the hall, quick cut to the arch glowing soft red over ZHANNA, cut to the reacting row on the right, then a wide shot as the chocolate door slides open.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.0s: KARAMEL raises the microphone and gestures elegantly toward the glowing arch. KARAMEL says in Russian, sweetly and grandly: «Сканер не смотрит, кто с кем дружит.»
+2.0–4.0s: ZHANNA steps under the arch, the light turns soft red above her, she throws her hands up. ZHANNA says in Russian, comically indignant: «Красный? Но я же следила за всеми.»
+4.0–6.0s: cut to LIZA covering a small smile with her hand and glancing aside. LIZA says in Russian, quietly and sweetly: «За всеми, кроме себя.»
+6.0–8.0s: the chocolate door slides open, ZHANNA shrugs and walks toward it, KARAMEL turns to the camera with a satisfied smile. KARAMEL says in Russian, sweetly and slowly: «Минус два. Сладких снов.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: a soft electronic chime from the arch, a low smooth sliding sound of the door, quiet shuffling feet, night room tone.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
+
+=== VID sahdom_p02_07_return_anim
+@use sahdom_p02_07_return
+@product rl410
+@duration 6
+# Сцена 7 — Animation. Лиза возвращает ирригатор, Дима отказывается. 6 секунд.
+Animate this exact scene. This is a quiet, emotional cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- LIZA: cartoon TOOTH character from the reference image, molar tooth-shaped head with clean bright white enamel, soft pink ruffled dress and pink wristbands, stands LEFT, holding the product out.
+- DIMA: cartoon TOOTH character from the reference image, molar tooth-shaped head with clean bright white enamel, oversized grey hoodie with the hood down and grey sneakers, stands RIGHT, hands in his pocket.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. LIZA stays clean bright white and DIMA stays clean bright white for the whole video.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: candy villa hall in the late evening, warm low lamp light, waffle wall panels, biscuit floor tiles, marshmallow sofas in the background. Nothing new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM: LIZA is apologetic with soft lowered eyebrows and hesitant arms; DIMA is calm and distant with a level gaze and closed posture. They stand apart and never touch each other. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: steady two-shot with a slow push-in, one small cut to DIMA's calm reaction.
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photo, only one product in the whole frame, held only by LIZA, zero changes, no morphing. It stays in its closed compact form and never slides open, unfolds, extends, transforms or changes color. Her fingers never cover the nozzle or the REVYLINE lettering. Keep the whole product inside the frame, no extreme macro zoom on a single detail.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–3.0s: LIZA steps forward and holds the product out toward DIMA with both hands, eyebrows lowered. LIZA says in Russian, quietly and apologetically: «Возьми. Я была неправа.»
+3.0–6.0s: DIMA looks at the product, then calmly turns his head away, hands still in his pocket. DIMA says in Russian, calm and cool: «Оставь. Мне уже есть чем.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+Ambient sound only: quiet evening room tone, soft footsteps, faint fabric rustle.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+6 seconds, vertical 9:16.
+
+=== VID sahdom_p02_08_cliffhanger_anim
+@use sahdom_p02_08_cliffhanger
+@duration 8
+# Сцена 8 — Animation. Клиффхэнгер: силуэт в дверях, призыв репликой. 8 секунд.
+Animate this exact scene. This is a playful, theatrical cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. She must NEVER turn into a human, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- KARAMEL: cartoon TOOTH character from the reference image, molar tooth-shaped head with warm amber caramel-toned glossy enamel, long sparkling golden sequin gown, a tall glass of sparkling pink lemonade in one hand, sits MIDDLE on a marshmallow stool. She is the only character in the video.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: her tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same gown. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. KARAMEL stays warm amber caramel-toned for the whole video.
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+SET DETAIL: candy villa diary booth at night, warm lamp, marshmallow stool, a black camera tripod facing her, and an open doorway behind her filled with bright backlight. ONE SINGLE CONTROLLED CHANGE IS ALLOWED AND NOTHING ELSE: at 5.0s a completely dark round bulky silhouette with small bumps along its top edge appears standing far away in the bright doorway, kept fully black and featureless with no visible face, no eyes and no details at any moment, and it never moves closer and never enters the room. Nothing else new appears during the video.
+EMOTIONAL INTENSITY — MEDIUM: bored elegant posture, a slow sip, one raised eyebrow, then a sweet mischievous smile and a small playful wink into the camera. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and color stay fixed.
+CAMERA STYLE: locked frontal medium shot with a very slow push-in, one small rack focus to the bright doorway behind her and back to her.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+0.0–2.5s: KARAMEL leans back on the stool, swirls the glass and looks into the camera with a bored smile. KARAMEL says in Russian, slowly and sweetly: «Скучно. Слишком тихо.»
+2.5–5.0s: she raises one eyebrow and tilts her head toward the doorway behind her. KARAMEL says in Russian, sweetly and mischievously: «Впустим новенького.»
+5.0–8.0s: the dark round silhouette appears far away in the bright doorway, KARAMEL turns back to the camera with a wide sweet smile and a small wink. KARAMEL says in Russian, playful and inviting: «Артикул под видео. А в комментариях пишите, кто там на пороге.»
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. She speaks STRICTLY one line at a time, each line finishes before the next begins, with clear pauses. She stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+Ambient sound only: faint glass clink, quiet room tone, a soft low door creak from the bright doorway.
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+8 seconds, vertical 9:16.
