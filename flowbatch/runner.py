@@ -608,8 +608,9 @@ class Runner:
         if not pattern:
             return
         try:
-            done = self.log.completed_ids(project=self.project_id) if self.log else set()
-            number = len(done) + 1
+            # Номер закреплён за задачей: перегенерация третьего отрывка
+            # оставит ему тройку, а не займёт следующий свободный номер.
+            number = self.log.sequence_for(job.id, project=self.project_id) if self.log else 1
             name = pattern.replace("{n}", str(number)).replace("{id}", job.id)
             self.client.rename_media(item.name, name)
             self.console.print(f"  переименовано в Flow: {name.replace('{name}', '…')}")

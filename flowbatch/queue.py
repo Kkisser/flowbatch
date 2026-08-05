@@ -220,6 +220,26 @@ class RunLog:
                 found = m.group(1)
         return found
 
+    def sequence_for(self, job_id: str, project: str | None = None) -> int:
+        """Порядковый номер задачи внутри проекта, устойчивый к перегенерациям.
+
+        Номер — это позиция задачи в порядке ПЕРВОГО успеха. Если задачу
+        переделывают, она уже есть в списке и получает свой прежний номер,
+        поэтому нумерация остаётся сплошной: 1, 2, 3 — сколько бы раз
+        третий отрывок ни перегенерировали. Новая задача встаёт в конец.
+        """
+        seen: list[str] = []
+        for rec in self.records():
+            if rec.get("status") != STATUS_OK or not rec.get("id"):
+                continue
+            if project is not None and rec.get("project") != project:
+                continue
+            rid = str(rec["id"])
+            if rid not in seen:
+                seen.append(rid)
+        target = str(job_id)
+        return seen.index(target) + 1 if target in seen else len(seen) + 1
+
     def completed_ids(self, project: str | None = None) -> set[str]:
         """id задач, уже успешно выполненных — их при резюме пропускаем.
 
