@@ -597,23 +597,36 @@ class Runner:
         self._notify_status(job, STATUS_OK, result_path=str(dest))
 
     def _rename_result(self, item: Any, job: Job) -> None:
-        """Дать свежей плитке сквозной номер внутри проекта.
+        """Переименовать свежую плитку в Flow сразу после успеха.
 
-        Шаблон в generation.rename_pattern: {n} — номер, {name} — имя,
-        которое дал Flow, {id} — id задачи. Пустой шаблон выключает.
+        Шаблон в generation.rename_pattern: {id} — id задачи, {name} — имя,
+        которое дал Flow, {n} — сквозной номер внутри проекта. Пустой шаблон
+        выключает. generation.rename_kinds ограничивает типы: по умолчанию
+        только видео — картинки живут промежуточными кадрами и в монтаж
+        не попадают.
+
+        Вызывается только на успешном пути, поэтому отклонённая модерацией
+        генерация имени не получает: его дождётся удачная перегенерация.
         Любая ошибка только логируется: генерация уже потрачена, терять
         задачу из-за неудавшегося переименования нельзя.
         """
         pattern = str(self.cfg.get("generation.rename_pattern", "") or "").strip()
         if not pattern:
             return
+        kinds = self.cfg.get("generation.rename_kinds", ["video"])
+        kinds = [str(k).strip().lower() for k in (kinds or [])]
+        if kinds and job.kind not in kinds:
+            return
         try:
             # Номер закреплён за задачей: перегенерация третьего отрывка
             # оставит ему тройку, а не займёт следующий свободный номер.
             number = self.log.sequence_for(job.id, project=self.project_id) if self.log else 1
             name = pattern.replace("{n}", str(number)).replace("{id}", job.id)
-            self.client.rename_media(item.name, name)
-            self.console.print(f"  переименовано в Flow: {name.replace('{name}', '…')}")
+            # Печатаем то, что вернул клиент, а не шаблон: {name} подставляется
+            # уже там, из поля переименования, и в логе должно стоять
+            # фактическое имя, иначе он врёт.
+            actual = self.client.rename_media(item.name, name)
+            self.console.print(f"  имя в Flow: [cyan]{actual}[/cyan]")
         except Exception as exc:  # noqa: BLE001 — не роняем готовую задачу
             self.console.print(
                 f"  [yellow]переименовать в Flow не удалось: "

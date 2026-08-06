@@ -22,8 +22,47 @@ def rec(job_id: str, project: str = P, status: str = "ok") -> str:
                        "url": f"x?name=uuid-{job_id}"}, ensure_ascii=False)
 
 
+
+def check_policy(failures: list[str]) -> None:
+    """Кого переименовываем и во что.
+
+    Требование: имя плитки = id задачи, и только у видео. Картинки —
+    промежуточные кадры, они нужны как референс и в монтаж не идут.
+    """
+    from types import SimpleNamespace
+
+    from flowbatch.config import Config
+    from flowbatch.runner import Runner
+
+    cfg = Config.load(Path(__file__).resolve().parents[1] / "config.yaml")
+    calls: list[tuple[str, str]] = []
+
+    class Client:
+        def rename_media(self, uuid, name):
+            calls.append((uuid, name))
+            return name
+
+    r = Runner.__new__(Runner)
+    r.cfg = cfg
+    r.client = Client()
+    r.log = None
+    r.project_id = "p"
+    r.console = SimpleNamespace(print=lambda *a, **k: None)
+
+    item = SimpleNamespace(name="uuid-1")
+    r._rename_result(item, SimpleNamespace(id="sahdom_p01_08_cliffhanger_anim", kind="video"))
+    r._rename_result(item, SimpleNamespace(id="sahdom_p01_08_cliffhanger", kind="image"))
+
+    if len(calls) != 1:
+        failures.append(f"переименований {len(calls)}, ждали 1 (только видео)")
+        return
+    if calls[0][1] != "sahdom_p01_08_cliffhanger_anim":
+        failures.append(f"видео названо {calls[0][1]!r}, ждали id задачи")
+
+
 def main() -> int:
     failures: list[str] = []
+    check_policy(failures)
     with tempfile.TemporaryDirectory() as td:
         path = Path(td) / "runs.jsonl"
         log = RunLog(path)
