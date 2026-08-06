@@ -504,51 +504,199 @@ class FlowClient:
         поэтому hover обязателен.
         """
         rename_label = self.cfg.locale.get("rename_media", "Переименовать")
-        tiles = self.page.locator(f'{self.cfg.selectors["virtuoso_item_list"]} > div')
-        n = tiles.count()
-        for i in range(n):
-            tile = tiles.nth(i)
-            try:
-                if uuid not in (tile.locator("img, video").first.get_attribute("src") or ""):
-                    continue
-            except Exception:  # noqa: BLE001 — плитка могла уехать из DOM
-                continue
-            tile.scroll_into_view_if_needed(timeout=timeout_ms)
-            tile.hover(timeout=timeout_ms)
-            self.page.wait_for_timeout(400)
-            menu_btn = tile.locator('button[aria-haspopup="menu"]').last
-            if menu_btn.count() == 0:
-                raise FlowError(ERR_UNKNOWN, f"У плитки {uuid[:8]} нет меню «Ещё»")
-            menu_btn.click(timeout=timeout_ms)
-            self.page.wait_for_timeout(500)
-            item = self.page.get_by_role("menuitem", name=rename_label)
-            if item.count() == 0:
-                self.page.keyboard.press("Escape")
-                raise FlowError(ERR_UNKNOWN, f"В меню плитки нет пункта «{rename_label}»")
-            item.first.click(timeout=timeout_ms)
-            self.page.wait_for_timeout(600)
-            # Поле переименования — единственное активное поле ввода.
-            field = self.page.locator(
-                'input:focus, [contenteditable="true"]:focus, [role=dialog] input'
-            ).first
-            if field.count() == 0:
-                self.page.keyboard.press("Escape")
-                raise FlowError(ERR_UNKNOWN, "Поле переименования не появилось")
-            # Поле предзаполнено текущим именем Flow — читаем его, чтобы
-            # шаблон вида "{n}_{name}" сохранил исходное название.
-            try:
-                current = (field.input_value() or "").strip()
-            except Exception:  # noqa: BLE001 — contenteditable вместо input
-                current = (field.inner_text() or "").strip()
-            new_name = new_name.replace("{name}", current) if "{name}" in new_name else new_name
-            field.click()
-            self.page.keyboard.press("Control+A")
-            self.page.keyboard.press("Delete")
-            field.type(new_name, delay=15)
-            self.page.keyboard.press("Enter")
-            self.page.wait_for_timeout(900)
+        list_sel = self.cfg.selectors["virtuoso_item_list"]
+
+        # Плитку ищем ОТ медиа с нужным uuid, а не перебором детей списка:
+        # прямых детей у него всего два, а сами превью лежат на пятнадцатом
+        # уровне вложенности. Перебор находил ровно две плитки из семнадцати,
+        # остальные падали с «не найдена».
+        # Всё взаимодействие — мышью по координатам, а элемент ищется заново
+        # на каждом шаге. Причина: Virtuoso перемонтирует плитку при любой
+        # перерисовке. Локатор Playwright после этого ждёт «стабильности» до
+        # таймаута, а собственный data-атрибут просто исчезает вместе с узлом.
+        # На один uuid в плитке приходится ДВА элемента: постер <img> и сам
+        # <video>. Один из них скрыт и отдаёт нулевой прямоугольник, поэтому
+        # querySelector наугад брал невидимый. Берём самый крупный.
+        find_media = r"""
+        (uuid) => {
+          const all = Array.from(document.querySelectorAll(
+            `[data-testid="virtuoso-item-list"] img[src*="${uuid}"],`
+            + ` [data-testid="virtuoso-item-list"] video[src*="${uuid}"]`));
+          if (!all.length) return null;
+          all[0].scrollIntoView({block: 'center'});
+          let best = null;
+          for (const e of all) {
+            const r = e.getBoundingClientRect();
+            if (!best || r.width * r.height > best.w * best.h) {
+              best = {x: r.x + r.width / 2, y: r.y + r.height / 2, w: r.width, h: r.height};
+            }
+          }
+          return best;
+        }
+        """
+        # Размер до прокрутки не проверяем: за пределами окна virtuoso держит
+        # плитку свёрнутой в нулевую высоту, и осмысленный прямоугольник
+        # появляется только после scrollIntoView.
+        if self.page.evaluate(find_media, uuid) is None:
+            raise FlowError(ERR_STALE_PICKER, f"Плитка с uuid {uuid} не найдена в библиотеке")
+        self.page.wait_for_timeout(500)
+        box = self.page.evaluate(find_media, uuid)
+        if not box or box["w"] < 2 or box["h"] < 2:
+            raise FlowError(
+                ERR_STALE_PICKER,
+                f"Плитка {uuid[:8]} не раскрылась после прокрутки",
+                detail=f"прямоугольник: {box}",
+            )
+
+        self.page.mouse.move(box["x"], box["y"])
+        self.page.wait_for_timeout(500)
+
+        # Кнопка «Ещё» появляется только под курсором и живёт выше по дереву:
+        # поднимаемся от медиа до ближайшего предка, где она есть.
+        btn = self.page.evaluate(
+            r"""
+            (uuid) => {
+              const m = document.querySelector(
+                `[data-testid="virtuoso-item-list"] img[src*="${uuid}"],`
+                + ` [data-testid="virtuoso-item-list"] video[src*="${uuid}"]`);
+              if (!m) return null;
+              let n = m;
+              while (n && n !== document.body) {
+                const bs = n.querySelectorAll('button[aria-haspopup="menu"]');
+                if (bs.length) {
+                  const r = bs[bs.length - 1].getBoundingClientRect();
+                  if (r.width < 2 || r.height < 2) return null;
+                  return {x: r.x + r.width / 2, y: r.y + r.height / 2};
+                }
+                n = n.parentElement;
+              }
+              return null;
+            }
+            """,
+            uuid,
+        )
+        if not btn:
+            raise FlowError(ERR_UNKNOWN, f"У плитки {uuid[:8]} не появилось меню «Ещё»")
+        self.page.mouse.click(btn["x"], btn["y"])
+        self.page.wait_for_timeout(600)
+        item = self.page.get_by_role("menuitem", name=rename_label)
+        if item.count() == 0:
+            self.page.keyboard.press("Escape")
+            raise FlowError(ERR_UNKNOWN, f"В меню плитки нет пункта «{rename_label}»")
+        item.first.click(timeout=timeout_ms)
+        self.page.wait_for_timeout(600)
+        # Поле переименования — единственное активное поле ввода.
+        field = self.page.locator(
+            'input:focus, [contenteditable="true"]:focus, [role=dialog] input'
+        ).first
+        if field.count() == 0:
+            self.page.keyboard.press("Escape")
+            raise FlowError(ERR_UNKNOWN, "Поле переименования не появилось")
+        # Поле предзаполнено текущим именем Flow — читаем его, чтобы
+        # шаблон вида "{n}_{name}" сохранил исходное название.
+        try:
+            current = (field.input_value() or "").strip()
+        except Exception:  # noqa: BLE001 — contenteditable вместо input
+            current = (field.inner_text() or "").strip()
+        new_name = new_name.replace("{name}", current) if "{name}" in new_name else new_name
+        if current == new_name:
+            # Уже названо как надо — незачем перепечатывать. Делает
+            # массовое переименование идемпотентным: повторный проход
+            # по проекту ничего не трогает и идёт втрое быстрее.
+            self.page.keyboard.press("Escape")
+            self.page.wait_for_timeout(200)
             return new_name
-        raise FlowError(ERR_STALE_PICKER, f"Плитка с uuid {uuid} не найдена в библиотеке")
+        field.click()
+        self.page.keyboard.press("Control+A")
+        self.page.keyboard.press("Delete")
+        field.type(new_name, delay=15)
+        self.page.keyboard.press("Enter")
+        self.page.wait_for_timeout(900)
+        return new_name
+
+    def open_project_by_id(self, project_id: str, timeout_ms: int = 60_000) -> str:
+        """Открыть проект по его id и вернуть имя.
+
+        Надёжнее, чем ensure_project по имени: имена в Flow не уникальны
+        (легко завести второй «SAHARNY_DOM_P01» и попасть в пустышку), а
+        список проектов перерисовывается прямо под курсором, и клик по
+        ссылке ловит «element is not stable». id из журнала однозначен.
+        """
+        base = re.sub(r"/flow/project/[0-9a-fA-F-]+.*$", "/flow", self.page.url or "")
+        if "/flow" not in base:
+            base = "https://labs.google/fx/ru/tools/flow"
+        self.page.goto(f"{base}/project/{project_id}", timeout=timeout_ms)
+        self.page.wait_for_timeout(3500)
+        got = self.current_project_id() or ""
+        if got.lower() != project_id.lower():
+            raise FlowError(
+                ERR_UNKNOWN,
+                f"Не удалось открыть проект {project_id[:8]}",
+                detail=f"после перехода в адресе {got[:8] or '—'}",
+            )
+        return self.project_name() or ""
+
+    def rename_many(self, wanted: dict[str, str], on_step: Any = None,
+                    max_rounds: int = 60) -> dict[str, str]:
+        """Переименовать пачку плиток за один проход по библиотеке.
+
+        wanted: {uuid: новое имя}. Возвращает {uuid: что получилось}.
+
+        Список виртуализирован — в DOM живёт лишь окно из полутора десятков
+        плиток, поэтому идём сверху вниз: переименовываем всё, что видно,
+        прокручиваем, повторяем. Плитки, которых так и не встретили,
+        в ответ не попадут — их видно по разнице ключей.
+        """
+        done: dict[str, str] = {}
+        pending = dict(wanted)
+        scroller = self.cfg.selectors["virtuoso_scroller"]
+        to_top = (
+            "(sel) => { document.querySelectorAll(sel).forEach("
+            "s => { if (!s.closest('[role=dialog]')) s.scrollTop = 0; }); }"
+        )
+        scroll_down = (
+            "(sel) => { const s = Array.from(document.querySelectorAll(sel))"
+            ".find(x => !x.closest('[role=dialog]'));"
+            " if (!s) return true;"
+            " s.scrollTop += s.clientHeight * 0.7;"
+            " return s.scrollTop + s.clientHeight >= s.scrollHeight - 4; }"
+        )
+        self.page.evaluate(to_top, scroller)
+        self.page.wait_for_timeout(700)
+
+        # Ровно одно переименование на один свежий снимок DOM. Пакетом нельзя:
+        # диалог переименования перемонтирует виртуализированный список, и все
+        # плитки, найденные до него, разом выпадают из DOM — второе и далее
+        # переименования падали с «плитка не найдена».
+        passes = 0
+        for _ in range(max_rounds):
+            if not pending:
+                break
+            visible = set(self.media_snapshot().keys())
+            hit = next((u for u in pending if u in visible), None)
+            if hit is not None:
+                target = pending.pop(hit)
+                try:
+                    done[hit] = self.rename_media(hit, target)
+                except Exception as exc:  # noqa: BLE001 — одна плитка не рушит проход
+                    done[hit] = f"ОШИБКА: {scrub(str(exc))[:90]}"
+                if on_step:
+                    on_step(hit, done[hit], len(pending))
+                self.page.wait_for_timeout(400)
+                continue
+
+            at_end = self.page.evaluate(scroll_down, scroller)
+            self.page.wait_for_timeout(650)
+            if at_end:
+                # Дошли до дна, а что-то ещё не встретили: список мог
+                # перемотаться после диалога — начинаем сверху. Два пустых
+                # прохода подряд означают, что этих плиток тут просто нет.
+                passes += 1
+                if passes >= 2:
+                    break
+                self.page.evaluate(to_top, scroller)
+                self.page.wait_for_timeout(700)
+        return done
 
     def rename_project(self, name: str) -> str:
         """Переименовать текущий проект и проверить, что имя применилось."""

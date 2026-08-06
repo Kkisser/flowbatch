@@ -879,6 +879,89 @@ def cmd_fetch(args: argparse.Namespace) -> int:
     return 0 if bad == 0 else 1
 
 
+
+def cmd_rename(args: argparse.Namespace) -> int:
+    """Задним числом переименовать уже сгенерированные ролики в Flow.
+
+    Пара к generation.rename_pattern: прогоны, сделанные до появления
+    переименования, остались с именами от Flow вида «Tooth characters
+    talking in shop». Команда проходит по журналу, открывает каждый
+    названный проект и переименовывает плитки в id их задач.
+
+    Идемпотентна: уже правильно названное пропускается.
+    """
+    import re as _re
+
+    from .queue import STATUS_OK
+
+    cfg = Config.load(args.config)
+    log = RunLog(cfg.runs_log())
+    kinds = [k.strip().lower() for k in (args.kinds or "video").split(",") if k.strip()]
+    pattern = str(cfg.get("generation.rename_pattern", "{id}") or "{id}").strip()
+
+    # Свежайший успех на (проект, задача): перегенерации перетирают старое.
+    latest: dict[tuple[str, str], dict[str, Any]] = {}
+    for rec in log.records():
+        if rec.get("status") != STATUS_OK or not rec.get("id") or not rec.get("project"):
+            continue
+        if rec.get("kind") not in kinds:
+            continue
+        latest[(str(rec["project"]), str(rec["id"]))] = rec
+
+    # Раскладываем по проектам, uuid берём из url.
+    by_project: dict[str, dict[str, str]] = {}
+    for (proj, job_id), rec in latest.items():
+        m = _re.search(r"name=([0-9a-fA-F-]{8,})", str(rec.get("url") or ""))
+        if not m:
+            continue
+        by_project.setdefault(proj, {})[m.group(1)] = pattern.replace("{id}", job_id)
+
+    if not by_project:
+        console.print("[yellow]в журнале нет подходящих результатов[/yellow]")
+        return 0
+
+    wanted_names = {n.strip().lower() for n in (args.projects or "").split(",") if n.strip()}
+    total_ok = total_fail = 0
+
+    with FlowClient(cfg) as client:
+        # Идём по id проектов из журнала, а не по именам: имена в Flow не
+        # уникальны, и по имени легко открыть одноимённую пустышку.
+        for pid, plan in by_project.items():
+            try:
+                name = client.open_project_by_id(pid)
+            except Exception as exc:  # noqa: BLE001
+                if wanted_names:
+                    console.print(f"[red]проект {pid[:8]} не открылся: "
+                                  f"{escape(str(exc)[:110])}[/red]")
+                continue
+            if wanted_names and name.strip().lower() not in wanted_names:
+                continue
+            console.print()
+            console.print(f"[bold]{escape(name)}[/bold]  ({pid[:8]})")
+            console.print(f"  роликов в журнале: {len(plan)}")
+            if args.dry_run:
+                for uuid, new in sorted(plan.items(), key=lambda kv: kv[1]):
+                    console.print(f"    {uuid[:8]} -> {escape(new)}")
+                continue
+
+            def step(uuid: str, result: str, left: int) -> None:
+                mark = "[red]" if result.startswith("ОШИБКА") else "[green]"
+                console.print(f"    {mark}{escape(result)}[/] (осталось {left})")
+
+            done = client.rename_many(plan, on_step=step)
+            ok = sum(1 for v in done.values() if not v.startswith("ОШИБКА"))
+            missed = set(plan) - set(done)
+            total_ok += ok
+            total_fail += (len(done) - ok) + len(missed)
+            if missed:
+                console.print(f"  [yellow]не нашлось в библиотеке: {len(missed)}[/yellow]")
+
+    console.print()
+    console.print(f"[bold]Итог:[/bold] переименовано {total_ok}"
+                  + (f", не удалось {total_fail}" if total_fail else ""))
+    return 0 if not total_fail else 1
+
+
 # --------------------------------------------------------------------- parser
 
 
@@ -913,6 +996,14 @@ def build_parser() -> argparse.ArgumentParser:
     br.add_argument("--tabs", type=int, default=1,
                     help="сколько вкладок Flow должно быть открыто (1–7, по вкладке на прогон)")
     br.set_defaults(func=cmd_browser)
+
+    rn = sub.add_parser("rename", help="переименовать уже сгенерированные ролики в Flow по журналу")
+    rn.add_argument("--projects", required=True,
+                    help="имена проектов Flow через запятую")
+    rn.add_argument("--kinds", default="video",
+                    help="какие типы переименовывать: video | image | video,image")
+    rn.add_argument("--dry-run", action="store_true", help="только показать план")
+    rn.set_defaults(func=cmd_rename)
 
     w = sub.add_parser("ui", help="локальная веб-панель управления очередью")
     w.add_argument("--source", default="jobs.yaml", help="очередь по умолчанию: .xlsx или jobs.yaml")
