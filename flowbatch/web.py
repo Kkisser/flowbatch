@@ -215,15 +215,38 @@ border:1px solid var(--line2);background:#0e141f;color:var(--dim);transition:all
 background:color-mix(in srgb,var(--sc) 11%,transparent);font-weight:600}
 .tchip.busy{opacity:.4;cursor:not-allowed}
 .tchip:disabled{cursor:not-allowed;opacity:.5}
-.chain{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.chain:not(:empty){margin-top:9px}
-.chain .lbl{font-size:11.5px;color:var(--dim2);text-transform:uppercase;letter-spacing:.06em}
-.cchip{font:12px/1.3 inherit;border-radius:8px;padding:4px 4px 4px 10px;
-border:1px dashed var(--line2);background:#0e141f;color:var(--dim);
-display:inline-flex;gap:4px;align-items:center}
-.cchip .cx{background:none;border:none;color:var(--dim2);cursor:pointer;
-font-size:12px;padding:0 5px;line-height:1}
-.cchip .cx:hover{color:var(--err)}
+/* очередь очередей — карточки как в плеере */
+.queue{display:flex;flex-direction:column;gap:5px}
+.queue:not(:empty){margin-top:10px}
+.qitem{display:flex;align-items:center;gap:9px;padding:7px 10px;
+border:1px solid var(--line);border-radius:10px;background:#0e141f;
+transition:border-color .12s, opacity .12s}
+.qitem.now{border-color:color-mix(in srgb,var(--sc) 45%,var(--line));
+background:color-mix(in srgb,var(--sc) 6%,#0e141f)}
+.qitem[draggable="true"]{cursor:grab}
+.qitem.dragging{opacity:.45}
+.qitem.dropmark{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.qplay{color:var(--sc);font-size:12px;width:14px;text-align:center}
+.qgrip{color:var(--dim2);font-size:13px;cursor:grab;user-select:none}
+.qnum{color:var(--dim2);font-size:11.5px;min-width:14px;text-align:right}
+.qmeta{min-width:0;flex:1}
+.qmeta b{font-size:12.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qmeta span{font-size:11px;color:var(--dim2);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qcounts{font-size:11.5px;color:var(--dim);white-space:nowrap}
+.qtag{font-size:10.5px;color:var(--sc);border:1px solid color-mix(in srgb,var(--sc) 40%,transparent);
+border-radius:20px;padding:1px 8px;white-space:nowrap}
+.qud{display:flex;flex-direction:column;gap:1px}
+.qmv{background:none;border:none;color:var(--dim2);cursor:pointer;font-size:9px;
+padding:0 3px;line-height:1.1}
+.qmv:hover:not(:disabled){color:var(--fg)}
+.qmv:disabled{opacity:.25;cursor:default}
+.qitem .cx{background:none;border:none;color:var(--dim2);cursor:pointer;
+font-size:13px;padding:2px 5px;line-height:1}
+.qitem .cx:hover{color:var(--err)}
+/* форма «добавить в очередь» */
+.addq{margin-top:8px;padding:10px;border:1px dashed var(--line2);border-radius:10px;
+background:#0c1119}
+.addq textarea{margin-top:8px;min-height:90px}
 
 .pbwrap{margin-top:10px}
 .pb{height:7px;border-radius:5px;background:#141b28;overflow:hidden;display:flex}
@@ -428,6 +451,43 @@ display:none;z-index:99;box-shadow:0 10px 34px #000c}
 const $ = s => document.querySelector(s);
 const S = { sel:{}, sort:{}, q:{}, logSlots:'' };
 let LAST = null;
+let DRAG = null;   // {sid, idx} — перетаскиваемый элемент очереди очередей
+
+document.addEventListener('dragstart', e=>{
+  const it = e.target.closest('.qitem[draggable="true"]');
+  if (!it) return;
+  DRAG = {sid:+it.dataset.sid, idx:+it.dataset.idx};
+  it.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+});
+document.addEventListener('dragover', e=>{
+  if (!DRAG) return;
+  const it = e.target.closest('.qitem[draggable="true"]');
+  if (it && +it.dataset.sid === DRAG.sid){
+    e.preventDefault();
+    document.querySelectorAll('.qitem.dropmark').forEach(x=>x.classList.remove('dropmark'));
+    if (+it.dataset.idx !== DRAG.idx) it.classList.add('dropmark');
+  }
+});
+document.addEventListener('drop', async e=>{
+  if (!DRAG) return;
+  const it = e.target.closest('.qitem[draggable="true"]');
+  const d = DRAG; DRAG = null;
+  document.querySelectorAll('.qitem.dropmark,.qitem.dragging')
+    .forEach(x=>x.classList.remove('dropmark','dragging'));
+  if (!it || +it.dataset.sid !== d.sid) return;
+  e.preventDefault();
+  const to = +it.dataset.idx;
+  if (to === d.idx) return;
+  try{ await api('/api/slot/chain',{id:d.sid, move_from:d.idx, move_to:to}); }
+  catch(err){ toast(err.message); }
+  tick();
+});
+document.addEventListener('dragend', ()=>{
+  DRAG = null;
+  document.querySelectorAll('.qitem.dropmark,.qitem.dragging')
+    .forEach(x=>x.classList.remove('dropmark','dragging'));
+});
 
 const PAL = 7;
 const pcol = sid => `var(--p${((sid-1)%PAL)+1})`;
@@ -520,18 +580,34 @@ function slotTemplate(s){
     <input type="text" id="s${n}-src" list="queuefiles"
            placeholder="или имя файла из папки промптов">
     <button class="btn sm" id="s${n}-load" title="прочитать файл и показать задачи">Разобрать</button>
-    <button class="btn ghost sm" id="s${n}-chainbtn"
-            title="поставить этот файл В ХВОСТ: пойдёт в этой же вкладке после текущей очереди. Работает и во время прогона — так серии с @use на предыдущую идут одна за другой">⛓ в цепочку</button>
     <button class="btn ghost sm" id="s${n}-pastebtn">текстом…</button>
   </div>
   <div id="s${n}-paste" hidden>
     <textarea id="s${n}-ptext" spellcheck="false" placeholder="@project Название проекта&#10;&#10;=== IMG K1&#10;Текст промпта...&#10;&#10;=== VID K1_anim&#10;@use K1&#10;@duration 8&#10;Animate this image..."></textarea>
     <div class="row"><button class="btn sm" id="s${n}-parse">Разобрать и загрузить</button>
-      <button class="btn ghost sm" id="s${n}-parsechain"
-              title="текст станет очередью в хвосте цепочки">⛓ текст в цепочку</button>
       <button class="btn ghost sm" id="s${n}-phelp">формат?</button></div>
   </div>
-  <div class="chain" id="s${n}-chain"></div>
+  <div class="queue" id="s${n}-queue"></div>
+  <div class="row">
+    <button class="btn ghost sm" id="s${n}-addq"
+            title="поставить ещё одну очередь в хвост: пойдёт в этой же вкладке сама, когда текущая закончится. Работает и во время прогона — так серии с @use на предыдущую идут одна за другой">＋ Добавить в очередь</button>
+  </div>
+  <div class="addq" id="s${n}-addform" hidden>
+    <div class="row">
+      <button class="btn sm" id="s${n}-aqpick">📂 Файл с диска…</button>
+      <input type="file" id="s${n}-aqfile" hidden
+             accept=".txt,.text,.prompts,.yaml,.yml,.xlsx,.xlsm">
+      <input type="text" id="s${n}-aqsrc" list="queuefiles"
+             placeholder="или имя файла из папки промптов">
+    </div>
+    <textarea id="s${n}-aqtext" spellcheck="false"
+              placeholder="…или вставь очередь текстом сюда (@project, === IMG …)"></textarea>
+    <div class="row">
+      <button class="btn primary sm" id="s${n}-aqok">＋ Добавить в очередь</button>
+      <button class="btn ghost sm" id="s${n}-aqcancel">отмена</button>
+      <span class="mut">файл ИЛИ текст — что заполнено, то и добавится</span>
+    </div>
+  </div>
   <div class="tchips" id="s${n}-tabs"></div>
   <div class="row" style="margin-top:9px">
     <select id="s${n}-kind" style="flex:0"><option value="">все типы</option>
@@ -615,16 +691,35 @@ function buildSlot(s, isOnly){
     try{ S.sel[s.id].clear(); await api('/api/slot/parse',{id:s.id, text:g('ptext').value});
          g('paste').hidden=true; toast('Разобрано и загружено','ok'); }catch(e){toast(e.message);} tick();
   };
-  g('chainbtn').onclick = async () => {
-    const v = g('src').value.trim();
-    if (!v) { toast('Сначала укажи файл, который поставить в цепочку'); return; }
-    try{ await api('/api/slot/chain',{id:s.id, add:v}); g('src').value='';
-         toast('В цепочку: '+v,'ok'); }catch(e){toast(e.message);} tick();
+  g('addq').onclick = () => { g('addform').hidden = !g('addform').hidden; };
+  g('aqcancel').onclick = () => {
+    g('addform').hidden = true; g('aqsrc').value=''; g('aqtext').value='';
   };
-  g('parsechain').onclick = async () => {
-    try{ await api('/api/slot/chain',{id:s.id, text:g('ptext').value});
-         g('ptext').value=''; g('paste').hidden=true;
-         toast('Текст добавлен в цепочку','ok'); }catch(e){toast(e.message);} tick();
+  g('aqpick').onclick = () => g('aqfile').click();
+  g('aqfile').onchange = async (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (!f) return;
+    if (f.size > 8*1024*1024) { toast('Файл больше 8 МБ — это точно очередь?'); return; }
+    try{
+      const buf = await f.arrayBuffer();
+      let bin=''; const bytes=new Uint8Array(buf);
+      for (let i=0;i<bytes.length;i++) bin += String.fromCharCode(bytes[i]);
+      await api('/api/slot/chain',{id:s.id, name:f.name, data:btoa(bin)});
+      g('addform').hidden = true;
+      toast('В очередь: '+f.name,'ok');
+    }catch(err){ toast(err.message); }
+    e.target.value='';
+    tick();
+  };
+  g('aqok').onclick = async () => {
+    const txt = g('aqtext').value.trim(), src = g('aqsrc').value.trim();
+    if (!txt && !src) { toast('Укажи файл или вставь текст очереди'); return; }
+    try{
+      await api('/api/slot/chain', txt ? {id:s.id, text:txt} : {id:s.id, add:src});
+      g('aqsrc').value=''; g('aqtext').value=''; g('addform').hidden = true;
+      toast('Добавлено в очередь','ok');
+    }catch(e){ toast(e.message); }
+    tick();
   };
   g('phelp').onclick = () => openDlg('help');
   g('tgl').onclick = () => { S.q[s.id]=!S.q[s.id]; if(LAST) renderSlots(LAST); };
@@ -691,14 +786,43 @@ function updateSlot(el, s, st){
       title="${busy?('занята прогоном '+esc(t.owner_label||'')):(mine?'клик — открепить':'клик — выбрать для этого прогона')}">${esc(name)}${busy?' · '+esc(t.owner_label||''):''}</button>`;
   }).join('') : '<span class="mut">нет открытых вкладок — запусти браузер (кнопка в шапке)</span>');
 
-  // цепочка: что пойдёт в этой вкладке после текущей очереди
-  g('chain').innerHTML = (s.chain||[]).length
-    ? '<span class="lbl">дальше</span>' + s.chain.map((name,i)=>
-        `<span class="cchip">${i+1}. ${esc(name)}
-           <button class="cx" data-chsid="${s.id}" data-chidx="${i}"
-             title="убрать из цепочки">✕</button></span>`).join('')
-      + (s.running ? '<span class="mut" style="font-size:11px">стартует сама после текущей</span>' : '')
-    : '';
+  // очередь очередей (как в плеере): сейчас + дальше, с перетаскиванием.
+  // Во время перетаскивания контейнер не перерисовываем — иначе браузер
+  // обрывает drag на полпути.
+  if (!(DRAG && DRAG.sid === s.id)){
+    const ch = s.chain||[];
+    if (ch.length){
+      const rowsAll = s.rows||[];
+      const nimg = rowsAll.filter(r=>r.kind==='image').length;
+      const cnt = (i,v)=>[i?('🖼 '+i):'', v?('🎬 '+v):''].filter(Boolean).join(' · ')||'пусто';
+      let html = `
+        <div class="qitem now">
+          <span class="qplay">${s.running?'▶':'⏸'}</span>
+          <div class="qmeta"><b>${esc(s.queue_project||base(s.source)||'—')}</b>
+            <span>${esc(base(s.source)||'')}</span></div>
+          <span class="qcounts">${cnt(nimg, rowsAll.length-nimg)}</span>
+          <span class="qtag">${s.running?'играет':'сейчас'}</span>
+        </div>`;
+      html += ch.map((e,i)=>`
+        <div class="qitem" draggable="true" data-sid="${s.id}" data-idx="${i}"
+             title="тяни за карточку, чтобы поменять порядок">
+          <span class="qgrip">⠿</span><span class="qnum">${i+1}</span>
+          <div class="qmeta"><b>${esc(e.project||e.name)}</b><span>${esc(e.name)}</span></div>
+          <span class="qcounts">${cnt(e.img, e.vid)}</span>
+          <span class="qud">
+            <button class="qmv" data-chsid="${s.id}" data-chidx="${i}" data-dir="-1"
+                    ${i===0?'disabled':''} title="выше">▲</button>
+            <button class="qmv" data-chsid="${s.id}" data-chidx="${i}" data-dir="1"
+                    ${i===ch.length-1?'disabled':''} title="ниже">▼</button>
+          </span>
+          <button class="cx" data-chsid="${s.id}" data-chidx="${i}"
+                  title="убрать из очереди (файл не трогается)">✕</button>
+        </div>`).join('');
+      g('queue').innerHTML = html;
+    } else {
+      g('queue').innerHTML = '';
+    }
+  }
 
   // прогресс
   const c = s.counts||{}, total = (s.rows||[]).length;
@@ -860,6 +984,13 @@ document.body.addEventListener('click', async e=>{
     try{ await api('/api/slot/rows',{id:+rst.dataset.restore, reset:true}); }catch(err){ toast(err.message); }
     tick(); return;
   }
+  const mv = e.target.closest('.qmv');
+  if (mv && !mv.disabled){
+    const i = +mv.dataset.chidx;
+    try{ await api('/api/slot/chain',{id:+mv.dataset.chsid, move_from:i, move_to:i+(+mv.dataset.dir)}); }
+    catch(err){ toast(err.message); }
+    tick(); return;
+  }
   const cx = e.target.closest('.cx');
   if (cx){
     try{ await api('/api/slot/chain',{id:+cx.dataset.chsid, remove:+cx.dataset.chidx}); }
@@ -1002,7 +1133,11 @@ class RunSlot:
         # Смысл — серии с @use на предыдущие: вторая серия не может стартовать,
         # пока первой нет в журнале, а вручную караулить финал не хочется.
         # Добавлять МОЖНО во время прогона — на этом всё и держится.
-        self.chain: list[str] = []
+        # Элемент — словарь {path, name, project, img, vid}: панель рисует
+        # карточки в стиле плеера, ей нужны проект и счётчики задач.
+        self.chain: list[dict[str, Any]] = []
+        # Замок: HTTP-поток добавляет/двигает, поток прогона снимает голову.
+        self._chain_lock = threading.Lock()
         self.thread: threading.Thread | None = None
         self.parallel: ParallelRunner | None = None
         self.project: str | None = None      # имя проекта после старта
@@ -1087,12 +1222,18 @@ class RunSlot:
     UPLOAD_MAX = 8 * 1024 * 1024
 
     def upload_queue(self, name: str, data_b64: str) -> str:
-        """Сохранить выбранный в проводнике файл в папку промптов и разобрать.
+        """Сохранить выбранный в проводнике файл и сделать ТЕКУЩЕЙ очередью."""
+        self._require_idle()
+        dest = self.save_upload(name, data_b64)
+        self.load_queue(dest)
+        return dest
+
+    def save_upload(self, name: str, data_b64: str) -> str:
+        """Сохранить файл из проводника в папку промптов, вернуть путь.
 
         Браузер отдаёт содержимое, а не путь, — поэтому файл именно копируется
         к себе. Заодно он появляется в списке папки и переживает перезапуск.
         """
-        self._require_idle()
         # Только имя файла: '..', слэши и абсолютные пути из name вырезаются,
         # иначе через него можно было бы писать куда угодно.
         safe = Path(str(name or "")).name.strip()
@@ -1124,7 +1265,6 @@ class RunSlot:
             dest = folder / f"{stem}_{n}{suf}"
         dest.write_bytes(blob)
         self.console.print(f"файл принят: {dest}")
-        self.load_queue(str(dest))
         return str(dest)
 
     def parse_text(self, text: str) -> None:
@@ -1143,27 +1283,59 @@ class RunSlot:
 
     # -------------------------------------------------------------- цепочка
 
-    def chain_add(self, source: str) -> None:
-        """Поставить очередь в хвост цепочки. Разрешено ВО ВРЕМЯ прогона.
+    def _queue_meta(self, p: Path) -> dict[str, Any]:
+        """Разобрать очередь и вернуть карточку для цепочки.
 
-        Файл валидируется сразу: узнать о битой очереди в момент добавления
-        лучше, чем через час, когда до неё дойдёт очередь.
+        Заодно это валидация: узнать о битом файле в момент добавления
+        лучше, чем через час, когда до него дойдёт очередь.
         """
-        p = self.cfg.resolve_queue(source)
-        if p.suffix.lower() in (".txt", ".text", ".prompts"):
-            _, errors, _ = parse_prompts(
+        suffix = p.suffix.lower()
+        project: str | None = None
+        jobs: list[Any] = []
+        if suffix in (".txt", ".text", ".prompts"):
+            jobs, errors, meta = parse_prompts(
                 p.read_text(encoding="utf-8-sig"),
                 self.cfg.out_dir(), self.cfg.products_dir(),
             )
             if errors:
                 raise ValueError(
-                    "в цепочку не добавлен, ошибки разбора:\n"
+                    "в очередь не добавлен, ошибки разбора:\n"
                     + "\n".join(f"• {e}" for e in errors)
                 )
-        if len(self.chain) >= 10:
-            raise ValueError("в цепочке уже 10 очередей — хватит")
-        self.chain.append(str(p))
-        self.console.print(f"в цепочку добавлен: {p.name} (позиция {len(self.chain)})")
+            project = meta.get("project")
+        elif suffix in (".xlsx", ".xlsm"):
+            sheet = SheetQueue(p)
+            jobs = [r.job for r in sheet.load(
+                statuses=("TODO", "IN_PROGRESS", "DONE", "ERROR", "SKIP"))]
+            project = sheet.project_name
+        else:
+            jobs = load_jobs(p)
+        img = sum(1 for j in jobs if getattr(j, "kind", "") == "image")
+        return {
+            "path": str(p), "name": p.name, "project": project,
+            "img": img, "vid": len(jobs) - img,
+        }
+
+    def chain_add(self, source: str) -> None:
+        """Поставить очередь в хвост цепочки. Разрешено ВО ВРЕМЯ прогона."""
+        p = self.cfg.resolve_queue(source)
+        entry = self._queue_meta(p)
+        with self._chain_lock:
+            if len(self.chain) >= 10:
+                raise ValueError("в очереди уже 10 файлов — хватит")
+            self.chain.append(entry)
+            pos = len(self.chain)
+        self.console.print(f"в очередь добавлен: {p.name} (позиция {pos})")
+        self.app.save_ui()
+
+    def chain_move(self, src: int, dst: int) -> None:
+        """Переставить элемент цепочки (перетаскивание в панели)."""
+        with self._chain_lock:
+            if not (0 <= src < len(self.chain)):
+                return
+            dst = max(0, min(dst, len(self.chain) - 1))
+            entry = self.chain.pop(src)
+            self.chain.insert(dst, entry)
         self.app.save_ui()
 
     def chain_add_text(self, text: str) -> None:
@@ -1183,10 +1355,12 @@ class RunSlot:
         self.chain_add(str(path))
 
     def chain_remove(self, index: int) -> None:
-        if 0 <= index < len(self.chain):
+        with self._chain_lock:
+            if not (0 <= index < len(self.chain)):
+                return
             gone = self.chain.pop(index)
-            self.console.print(f"из цепочки убран: {Path(gone).name}")
-            self.app.save_ui()
+        self.console.print(f"из очереди убран: {gone['name']}")
+        self.app.save_ui()
 
     def remove_rows(self, ids: list[str] | None, reset: bool = False) -> None:
         self._require_idle()
@@ -1342,9 +1516,12 @@ class RunSlot:
     def _run_chain(self, jobs: list[Any], dry: bool, tab_ids: list[str]) -> None:
         go_on = self._run_source(jobs, dry, tab_ids)
         while go_on and self.chain:
-            nxt = self.chain.pop(0)
+            with self._chain_lock:
+                if not self.chain:
+                    break
+                nxt = self.chain.pop(0)["path"]
             self.app.save_ui()
-            self.console.print(f"[bold cyan]цепочка:[/bold cyan] перехожу к {Path(nxt).name}")
+            self.console.print(f"[bold cyan]очередь:[/bold cyan] перехожу к {Path(nxt).name}")
             try:
                 self._load_queue(nxt)
             except Exception as exc:  # noqa: BLE001 — битый файл не должен ронять панель
@@ -1507,7 +1684,8 @@ class RunSlot:
             "queue_project": self.queue_project,
             "project": self.project,
             "tabs": self.tabs_selected,
-            "chain": [Path(c).name for c in self.chain],
+            "chain": [{k: e.get(k) for k in ("name", "project", "img", "vid")}
+                      for e in self.chain],
             "rows": rows,
             "counts": counts,
             "removed": len(self.removed),
@@ -1737,7 +1915,8 @@ class AppState:
         data.update({
             "endpoint": self.cfg.get("cdp.endpoint"),
             "soften_backend": self.cfg.get("moderation.soften.backend"),
-            "slots": [{"source": s.source, "chain": s.chain} for s in self.slots],
+            "slots": [{"source": s.source, "chain": [e["path"] for e in s.chain]}
+                      for s in self.slots],
         })
         try:
             Path(UI_FILE).write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
@@ -1960,9 +2139,19 @@ def make_handler(state: AppState, token: str = "") -> type[BaseHTTPRequestHandle
                         slot.chain_add(str(payload["add"]))
                     elif payload.get("text"):
                         slot.chain_add_text(str(payload["text"]))
+                    elif payload.get("name") and payload.get("data"):
+                        # файл из проводника — сохранить в папку промптов
+                        # и сразу в хвост очереди
+                        saved = slot.save_upload(
+                            str(payload["name"]), str(payload["data"]))
+                        slot.chain_add(saved)
+                    elif payload.get("move_from") is not None:
+                        slot.chain_move(int(payload["move_from"]),
+                                        int(payload.get("move_to", 0)))
                     elif payload.get("remove") is not None:
                         slot.chain_remove(int(payload["remove"]))
-                    self._json({"ok": True, "chain": [Path(c).name for c in slot.chain]})
+                    self._json({"ok": True,
+                                "chain": [e["name"] for e in slot.chain]})
                 elif u.path == "/api/slot/rows":
                     state.slot(payload.get("id")).remove_rows(
                         payload.get("ids"), reset=bool(payload.get("reset")))

@@ -1,0 +1,384 @@
+@project DYNASTY_P02
+
+=== IMG dynasty_p02_01_bathroom
+@use DYNASTY_P01 :: dynasty_p01_06_portrait_day
+@product rl095
+# Сцена 1 — Image. Эталон серии. В кадре: АВГУСТ, МАРТА, ГОША (золотой), МАРК. Ванная-дворец, хук.
+3D Pixar style, vertical 9:16. A palatial marble bathroom inside a wealthy golden mansion: a long white marble vanity with a wide basin, polished gold taps, a tall gilded mirror above it, marble columns along the walls, a tall porcelain vase on a slim pedestal at the right edge, soft morning light through a frosted arched window, warm and echoing.
+CRITICAL CHARACTER LOCK: AVGUST — cartoon tooth character, large molar-shaped head with polished bright golden enamel, deep burgundy velvet robe with satin lapels, a small gold signet ring on one hand, standing MIDDLE at the vanity, holding the product raised in one hand, proud ceremonial expression. GOSHA — cartoon tooth character, the smallest, his whole crown and body covered in an even glossy GOLDEN painted layer, light cream jacket with a small dark bow tie, standing RIGHT in front of the basin, stiff and frightened, a single tiny water droplet sitting on his golden cheek. MARTA — cartoon tooth character, molar-shaped head with soft pearl-white enamel, long slim deep-blue dress with a thin silver belt, standing LEFT with one hand thrown up in alarm, eyes wide. MARK — cartoon tooth character, slightly taller than GOSHA, rounded milk-tooth-shaped crown with matte milky-white enamel and a soft milky glow, plain grey buttoned waistcoat over a white shirt, standing FAR LEFT by a column, watching quietly. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images. GOSHA is fully GOLDEN in this frame, never white. No physical contact between characters, the product never touches anyone.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos. The product is the Revyline RL 095 Special Color Edition Cloud Dancer sonic toothbrush: a slim straight cylindrical handle with a soft gradient finish running from pale sky blue at the base to clean white toward the top, a small illuminated indicator panel on the front upper part of the handle, one round control button below it, and a slim white detachable brush head with white bristles at the top. Its exact colours, gradient direction, proportions, finish, button, indicator panel, brush head and lettering match the attached reference photos exactly. Do not change its colour or shape, do not add extra buttons, screens, hoses, logos or decorations. Only one product in the whole frame, held only in AVGUST's hand. The whole product stays inside the frame, no extreme macro zoom on a single detail. Zero changes, no morphing, no transforming, no extending, no shape shifting.
+Composition: the family lined up along the marble vanity, AVGUST centred with the product raised, golden GOSHA cornered against the basin on the right, MARTA lunging a step forward on the left with her hand up. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic soft morning bathroom light with gold and marble highlights, medium-wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG dynasty_p02_02_recap
+@use dynasty_p02_01_bathroom
+@product rl095
+# Сцена 2 — Image. В кадре: все четверо. Ре-кап одной репликой, Август объясняет ритуал.
+3D Pixar style, vertical 9:16. The same palatial marble bathroom, gilded mirror, gold taps, soft morning light.
+CRITICAL CHARACTER LOCK: AVGUST — cartoon tooth character, polished bright golden enamel molar-shaped head, deep burgundy velvet robe with satin lapels, gold signet ring, standing MIDDLE, chin lifted, one hand on his lapel, the product still in the other hand. GOSHA — the smallest cartoon tooth character, fully GOLDEN glossy painted crown and body, light cream jacket with a small dark bow tie, standing RIGHT, forcing a small smile, eyes anxious. MARTA — cartoon tooth character, pearl-white enamel molar-shaped head, long deep-blue dress with a thin silver belt, standing LEFT, hands lowered but fists tight. MARK — cartoon tooth character with a rounded milk-tooth-shaped crown, matte milky-white enamel, plain grey buttoned waistcoat over a white shirt, standing FAR LEFT by a column. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images. No physical contact between characters.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos. The product is the Revyline RL 095 Special Color Edition Cloud Dancer sonic toothbrush: a slim straight cylindrical handle with a soft gradient finish running from pale sky blue at the base to clean white toward the top, a small illuminated indicator panel on the front upper part of the handle, one round control button below it, and a slim white detachable brush head with white bristles at the top. Do not change its colour or shape, do not add extra buttons, screens, hoses, logos or decorations. Only one product in the whole frame, held only in AVGUST's hand. Zero changes, no morphing, no transforming, no extending, no shape shifting.
+Composition: AVGUST centred and imperial in front of the gilded mirror, the family arranged along the vanity, the mirror reflecting the gold. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic soft morning light, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG dynasty_p02_03_hero_rl095
+@use dynasty_p02_01_bathroom
+@product rl095
+# Сцена 3 — Image. Product hero. Август полирует СВОЮ щёку строго насухо. Улика «золото воды не любит».
+3D Pixar style, vertical 9:16. The same palatial marble bathroom, the gilded mirror behind, gold taps closed and completely dry, not a single drop of water anywhere, warm morning light.
+CRITICAL CHARACTER LOCK: AVGUST — cartoon tooth character, polished bright golden enamel molar-shaped head, deep burgundy velvet robe with satin lapels, gold signet ring, standing MIDDLE and slightly turned to the mirror, holding the product up beside his own golden cheek, showman expression, one eyebrow raised. GOSHA — the smallest cartoon tooth character, fully GOLDEN glossy painted crown and body, light cream jacket with a small dark bow tie, standing RIGHT, watching intently. MARTA — cartoon tooth character, pearl-white enamel molar-shaped head, long deep-blue dress with a thin silver belt, standing LEFT, watching the dry taps with quiet relief. MARK — cartoon tooth character with a rounded milk-tooth-shaped crown, matte milky-white enamel, plain grey buttoned waistcoat over a white shirt, standing FAR LEFT. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images. No physical contact between characters.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos. The product is the Revyline RL 095 Special Color Edition Cloud Dancer sonic toothbrush: a slim straight cylindrical handle with a soft gradient finish running from pale sky blue at the base to clean white toward the top, a small illuminated indicator panel on the front upper part of the handle, one round control button below it, and a slim white detachable brush head with white bristles at the top. Its exact colours, gradient direction, proportions, finish, button, indicator panel, brush head and lettering match the attached reference photos exactly. Do not change its colour or shape, do not add extra buttons, screens, hoses, logos or decorations. Only one product in the whole frame, held only in AVGUST's hand, shown large and clearly, the whole product inside the frame, no extreme macro zoom on a single detail. The brush head is completely dry, no water, no foam, no toothpaste, no droplets on the product. Zero changes, no morphing, no transforming, no extending, no shape shifting.
+Composition: AVGUST large and centred with the product held clearly beside his golden cheek, the closed dry gold taps visible behind him, the family watching from both sides. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm morning light with a clean highlight along the product, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG dynasty_p02_04_gosha_turn
+@use dynasty_p02_01_bathroom
+@product rl095
+# Сцена 4 — Image. Очередь Гоши. Август протягивает щётку, Гоша боится.
+3D Pixar style, vertical 9:16. The same palatial marble bathroom, the gold tap now open with a thin stream of water running into the basin, light steam rising, morning light.
+CRITICAL CHARACTER LOCK: AVGUST — cartoon tooth character, polished bright golden enamel molar-shaped head, deep burgundy velvet robe with satin lapels, gold signet ring, standing MIDDLE, holding the product out toward the empty space in front of GOSHA without touching him, expectant impatient face. GOSHA — the smallest cartoon tooth character, fully GOLDEN glossy painted crown and body, light cream jacket with a small dark bow tie, standing RIGHT and pressed back against the marble vanity, eyes huge and terrified, small hands raised defensively. MARTA — cartoon tooth character, pearl-white enamel molar-shaped head, long deep-blue dress with a thin silver belt, standing LEFT, frozen, eyes darting toward the porcelain vase on its pedestal. MARK — cartoon tooth character with a rounded milk-tooth-shaped crown, matte milky-white enamel, plain grey buttoned waistcoat over a white shirt, standing FAR LEFT, watching closely. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images. GOSHA stays fully golden, no gold is washed off in this frame. No physical contact between characters, the product never touches anyone.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos. The product is the Revyline RL 095 Special Color Edition Cloud Dancer sonic toothbrush: a slim straight cylindrical handle with a soft gradient finish running from pale sky blue at the base to clean white toward the top, a small illuminated indicator panel on the front upper part of the handle, one round control button below it, and a slim white detachable brush head with white bristles at the top. Do not change its colour or shape, do not add extra buttons, screens, hoses, logos or decorations. Only one product in the whole frame, held only in AVGUST's hand. Zero changes, no morphing, no transforming, no extending, no shape shifting.
+Composition: tense triangle — AVGUST offering the product in the centre, golden GOSHA backed against the vanity on the right, MARTA's eyes flicking to the tall vase on the left. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic morning light with soft steam and a running water highlight, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG dynasty_p02_05_vase
+@use dynasty_p02_01_bathroom
+@product rl095
+# Сцена 5 — Image. Ваза падает, Август у осколков, Марта беззвучно говорит «беги».
+3D Pixar style, vertical 9:16. The same palatial marble bathroom, the tall porcelain vase toppling off its slim pedestal at the right, large smooth cartoon pieces of porcelain scattered across the marble floor, water still running in the basin, morning light.
+CRITICAL CHARACTER LOCK: AVGUST — cartoon tooth character, polished bright golden enamel molar-shaped head, deep burgundy velvet robe with satin lapels, gold signet ring, crouched LOW on the RIGHT over the fallen porcelain pieces, mouth open in comic despair, the product forgotten in his lowered hand. MARTA — cartoon tooth character, pearl-white enamel molar-shaped head, long deep-blue dress with a thin silver belt, standing MIDDLE and half turned away from AVGUST, silently mouthing a word toward GOSHA, one eyebrow raised meaningfully. GOSHA — the smallest cartoon tooth character, fully GOLDEN glossy painted crown and body, light cream jacket with a small dark bow tie, already turning to run toward the LEFT edge of the frame, one foot lifted. MARK — cartoon tooth character with a rounded milk-tooth-shaped crown, matte milky-white enamel, plain grey buttoned waistcoat over a white shirt, standing FAR LEFT by the column, watching the escape with a quiet unreadable face. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images. No physical contact between characters, no one is hurt, the porcelain pieces are large, smooth and rounded, not sharp.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos. The product is the Revyline RL 095 Special Color Edition Cloud Dancer sonic toothbrush: a slim straight cylindrical handle with a soft gradient finish running from pale sky blue at the base to clean white toward the top, a small illuminated indicator panel on the front upper part of the handle, one round control button below it, and a slim white detachable brush head with white bristles at the top. Do not change its colour or shape, do not add extra buttons, screens, hoses, logos or decorations. Only one product in the whole frame, held only in AVGUST's hand. Zero changes, no morphing, no transforming, no extending, no shape shifting.
+Composition: diagonal energy — AVGUST crouched over the porcelain on the right, MARTA upright in the centre mouthing silently, golden GOSHA mid-turn escaping left, MARK still by the column. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic morning light, dynamic diagonal composition, medium-wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG dynasty_p02_06_touchup
+@use dynasty_p02_01_bathroom
+# Сцена 6 — Image. Ночь. Марта подкрашивает смытое пятнышко на щеке Гоши.
+3D Pixar style, vertical 9:16. A narrow marble side corridor of the mansion at night, one small warm wall lamp, deep blue shadows, a tall door standing slightly ajar with a thin strip of warm light spilling from the gap, a small open jar of thick golden paint and a slim wooden brush resting on a low marble ledge.
+CRITICAL CHARACTER LOCK: MARTA — cartoon tooth character, pearl-white enamel molar-shaped head, long deep-blue dress with a thin silver belt, kneeling on the LEFT, holding the slim wooden brush up in the air near GOSHA's cheek without touching him, focused tender expression, eyes soft. GOSHA — the smallest cartoon tooth character, fully GOLDEN glossy painted crown and body with one small dull pale patch on his cheek where the gold has thinned, light cream jacket with a small dark bow tie, standing very still on the RIGHT, sleepy and trusting. All fully original fictional animated tooth characters, all heads ARE tooth shapes with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. They remain exactly like their reference images. Only MARTA and GOSHA appear in this frame, no other character appears anywhere, not in the background, not in the door gap, not in any reflection. No physical contact between characters, the brush is not touching anyone.
+Composition: intimate two-shot in the warm lamplight, the golden paint jar catching a small highlight on the ledge, the thin bright strip of the half-open door behind them. Everyone full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic warm lamplight against cool night shadows, close two-shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG dynasty_p02_07_mark_hands
+@use dynasty_p02_01_bathroom
+# Сцена 7 — Image. Марк один в тёмном коридоре, смотрит на свои молочные руки. Эталон Марка соло.
+3D Pixar style, vertical 9:16. A long dark marble corridor of the mansion at night, tall arched windows on one side letting in cool blue moonlight, a strip of warm light from a distant half-open door far behind, deep shadows, silence.
+CRITICAL CHARACTER LOCK: MARK — cartoon tooth character, rounded milk-tooth-shaped crown with matte milky-white enamel and a soft milky glow, plain grey buttoned waistcoat over a white shirt, standing alone in the MIDDLE of the corridor in the moonlight, both small hands held up in front of him, looking down at them, a quiet thoughtful sad expression, shoulders steady. All fully original fictional animated tooth characters, the head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. He remains exactly like his reference image, matte milky-white enamel, never golden, never glossy gold. ONLY MARK appears in this frame — absolutely no other character appears anywhere in the shot, not in the background, not in the shadows, not in any reflection or window.
+Composition: MARK small and alone in the centre of a long empty corridor, cool moonbeams crossing the marble floor, his milky enamel softly catching the light. Full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic cool moonlight with deep quiet shadows, wide lonely shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG dynasty_p02_08_butler
+# Сцена 8 — Image. Эталон СЕРЕБРЯКОВА. Он один выходит из темноты с подносом, обращается за кадр.
+3D Pixar style, vertical 9:16. The same long dark marble corridor of the mansion at night, cool blue moonlight through tall arched windows, deep shadows along the walls, a service door standing open in the darkness behind.
+CRITICAL CHARACTER LOCK: SEREBRYAKOV — cartoon tooth character, large molar-shaped head with brushed metallic SILVER enamel with a cool grey sheen, dressed in a formal black butler livery coat with a stand-up collar, two neat rows of small silver buttons and silver cuffs, spotless white gloves, holding a polished silver tray flat in one gloved hand and a small white polishing cloth in the other, narrow clever eyes, a thin sly one-sided smile, standing MIDDLE and stepping forward out of the shadow toward the camera, addressing someone off screen. All fully original fictional animated tooth characters, the head IS a tooth shape with a small neck, smooth glossy enamel, no hair, no human skin, features directly on the enamel. His enamel is silver, never gold, never white. ONLY SEREBRYAKOV appears in this frame — absolutely no other character appears anywhere in the shot, not in the background, not in the shadows, not in the tray reflection, not in any window.
+Composition: low slightly tilted angle looking up at SEREBRYAKOV as he emerges from the dark into a shaft of moonlight, the polished silver tray catching a hard highlight, the corridor receding into black behind him. Full body, from head to feet, not cropped.
+No captions or text on screen. Cinematic hard cool moonlight with strong contrast and deep shadow, low-angle medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== VID dynasty_p02_01_bathroom_anim
+@use dynasty_p02_01_bathroom
+@product rl095
+@duration 8
+# Сцена 1 — Animation. Хук: Марта кричит «Стойте!». 8 секунд.
+Animate this exact scene. This is an emotional suspenseful cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- AVGUST: cartoon TOOTH character from the reference image, large molar tooth-shaped head with polished bright golden enamel, deep burgundy velvet robe with satin lapels, gold signet ring, stands MIDDLE holding the product raised.
+- GOSHA: cartoon TOOTH character from the reference image, the smallest, whole crown and body covered in an even glossy GOLDEN painted layer, light cream jacket with a small dark bow tie, stands RIGHT against the basin.
+- MARTA: cartoon TOOTH character from the reference image, pearl-white enamel molar tooth-shaped head, long deep-blue dress with a thin silver belt, stands LEFT with one hand raised.
+- MARK: cartoon TOOTH character from the reference image, rounded milk-tooth-shaped crown with matte milky-white enamel, plain grey buttoned waistcoat over a white shirt, stands FAR LEFT by a column.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel colour and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. AVGUST stays golden, GOSHA stays fully golden and loses no gold at any moment, MARTA stays pearl-white, MARK stays matte milky-white for the entire video.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: palatial marble bathroom, long white marble vanity, wide basin, polished gold taps, tall gilded mirror, marble columns, a tall porcelain vase on a slim pedestal at the right. Nothing new appears during the video.
+
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photos: the Revyline RL 095 Special Color Edition Cloud Dancer sonic toothbrush, a slim straight cylindrical handle with a soft gradient finish running from pale sky blue at the base to clean white toward the top, a small illuminated indicator panel on the front upper part of the handle, one round control button below it, a slim white detachable brush head with white bristles at the top. Only one product in the whole frame, held only by AVGUST, zero changes, no morphing, no transforming, no extending, no shape shifting. Keep the whole product inside the frame, no extreme macro zoom on a single detail. The product never touches any character.
+
+EMOTIONAL INTENSITY — HIGH: MARTA erupts with a sudden alarmed shout, hand thrown up, eyes enormous. AVGUST freezes mid-gesture, eyebrows shooting up, confused and slightly annoyed. GOSHA holds his breath, pressed back against the marble, the tiny droplet trembling on his golden cheek. MARK's eyes narrow slightly, thinking. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and colour stay fixed. No physical contact between characters at any moment.
+
+CAMERA STYLE: opens on a tight shot of the raised product and the droplet on the golden cheek, hard cut to MARTA shouting, hard cut wide to the frozen family.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.0s: MARTA throws her hand up and steps forward. MARTA says in Russian, loud and alarmed: «Стойте!»
+2.0–5.0s: AVGUST freezes with the product raised and turns his head to her. AVGUST says in Russian, puzzled and impatient: «Что такое, Марта?»
+5.0–8.0s: MARTA lowers her hand and forces a stiff smile. MARTA says in Russian, flustered and improvising: «Я воду проверю. Вдруг горячая.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: a large tiled marble bathroom room tone with a light echo, a faint drip into the basin.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID dynasty_p02_02_recap_anim
+@use dynasty_p02_02_recap
+@product rl095
+@duration 6
+# Сцена 2 — Animation. Ре-кап одной репликой: воскресный ритуал. 6 секунд.
+Animate this exact scene. This is an emotional cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- AVGUST: cartoon TOOTH character from the reference image, polished bright golden enamel molar tooth-shaped head, deep burgundy velvet robe with satin lapels, gold signet ring, stands MIDDLE.
+- GOSHA: cartoon TOOTH character from the reference image, the smallest, fully GOLDEN glossy painted crown and body, light cream jacket with a small dark bow tie, stands RIGHT.
+- MARTA: cartoon TOOTH character from the reference image, pearl-white enamel molar tooth-shaped head, long deep-blue dress with a thin silver belt, stands LEFT.
+- MARK: cartoon TOOTH character from the reference image, rounded milk-tooth-shaped crown with matte milky-white enamel, plain grey buttoned waistcoat over a white shirt, stands FAR LEFT.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel colour and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. AVGUST stays golden, GOSHA stays fully golden, MARTA stays pearl-white, MARK stays matte milky-white for the entire video.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: palatial marble bathroom, marble vanity, gold taps, tall gilded mirror, marble columns. Nothing new appears during the video.
+
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photos: the Revyline RL 095 Special Color Edition Cloud Dancer sonic toothbrush, a slim straight cylindrical handle with a gradient from pale sky blue at the base to clean white toward the top, a small illuminated indicator panel on the front upper part of the handle, one round control button below it, a slim white detachable brush head with white bristles. Only one product in the whole frame, held only by AVGUST, zero changes, no morphing, no transforming, no extending, no shape shifting.
+
+EMOTIONAL INTENSITY — MEDIUM: AVGUST is pompous and pleased with himself, chin up, chest out, a small self-satisfied smile. GOSHA answers quietly with a nervous smile. MARTA's eyes flick to the tap. MARK stays still. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and colour stay fixed. No physical contact between characters.
+
+CAMERA STYLE: slow push in on AVGUST in front of the gilded mirror, cut to GOSHA's nervous smile.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: AVGUST straightens his robe and lifts his chin in front of the mirror. AVGUST says in Russian, pompous and warm: «Сегодня воскресенье. Золотой сын обязан сиять.»
+3.0–6.0s: GOSHA gives a small tight smile without moving from the vanity. GOSHA says in Russian, quiet and careful: «Я и так сияю, пап.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: a large tiled marble bathroom room tone with a light echo, the soft rustle of a velvet robe.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID dynasty_p02_03_hero_rl095_anim
+@use dynasty_p02_03_hero_rl095
+@product rl095
+@duration 10
+# Сцена 3 — Animation. Product hero: RL 095 насухо, «золото воды не любит». 10 секунд.
+Animate this exact scene. This is a warm comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- AVGUST: cartoon TOOTH character from the reference image, polished bright golden enamel molar tooth-shaped head, deep burgundy velvet robe with satin lapels, gold signet ring, stands MIDDLE holding the product beside his own cheek.
+- GOSHA: cartoon TOOTH character from the reference image, the smallest, fully GOLDEN glossy painted crown and body, light cream jacket with a small dark bow tie, stands RIGHT.
+- MARTA: cartoon TOOTH character from the reference image, pearl-white enamel molar tooth-shaped head, long deep-blue dress with a thin silver belt, stands LEFT.
+- MARK: cartoon TOOTH character from the reference image, rounded milk-tooth-shaped crown with matte milky-white enamel, plain grey buttoned waistcoat over a white shirt, stands FAR LEFT.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel colour and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. AVGUST stays golden and his gold never runs or fades, GOSHA stays fully golden, MARTA stays pearl-white, MARK stays matte milky-white for the entire video.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: palatial marble bathroom, gilded mirror, marble vanity, gold taps closed and dry. No water runs anywhere in this scene, no droplets, no foam, no toothpaste. Nothing new appears during the video.
+
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photos: the Revyline RL 095 Special Color Edition Cloud Dancer sonic toothbrush, a slim straight cylindrical handle with a soft gradient finish running from pale sky blue at the base to clean white toward the top, a small illuminated indicator panel on the front upper part of the handle, one round control button below it, a slim white detachable brush head with white bristles at the top. Only one product in the whole frame, held only by AVGUST, zero changes, no morphing, no transforming, no extending, no shape shifting, no extra buttons, screens, hoses or logos. Keep the whole product large and inside the frame at all times, near-static, only AVGUST's hand and expression move, no extreme macro zoom on a single detail. The brush head stays completely dry.
+
+EMOTIONAL INTENSITY — MEDIUM: AVGUST performs like a showman presenting a family relic, eyebrow raised, small proud smile, precise theatrical movements. He glances at the closed dry tap with theatrical horror on the last line. GOSHA watches wide-eyed. MARTA quietly relaxes. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and colour stay fixed. No physical contact between characters.
+
+CAMERA STYLE: push in on AVGUST as he raises the product, hold on a steady clean shot of the product beside his golden cheek, quick cut to the closed dry gold tap, back to AVGUST.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: AVGUST turns to the mirror and raises the product beside his own golden cheek. AVGUST says in Russian, showman-proud: «Смотрите, как это делают Золотовы.»
+3.0–6.0s: AVGUST holds the product steady and fully visible. AVGUST says in Russian, clear and ceremonial: «Ревилайн Эр Эль ноль девяносто пять, Клауд Дэнсер.»
+6.0–8.0s: AVGUST moves the product slowly along his cheek without water. AVGUST says in Russian, satisfied: «Четыре режима. Таймер две минуты.»
+8.0–10.0s: AVGUST glances at the closed dry tap and pulls the product away from it. AVGUST says in Russian, sharply and firmly: «И никакой воды. Золото воды не любит!»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: a large tiled marble bathroom room tone with a light echo, a quiet electric brush motor hum.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+10 seconds, vertical 9:16.
+
+=== VID dynasty_p02_04_gosha_turn_anim
+@use dynasty_p02_04_gosha_turn
+@product rl095
+@duration 6
+# Сцена 4 — Animation. Очередь Гоши, вода уже течёт. 6 секунд.
+Animate this exact scene. This is an emotional suspenseful cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- AVGUST: cartoon TOOTH character from the reference image, polished bright golden enamel molar tooth-shaped head, deep burgundy velvet robe with satin lapels, gold signet ring, stands MIDDLE offering the product forward.
+- GOSHA: cartoon TOOTH character from the reference image, the smallest, fully GOLDEN glossy painted crown and body, light cream jacket with a small dark bow tie, stands RIGHT pressed back against the vanity.
+- MARTA: cartoon TOOTH character from the reference image, pearl-white enamel molar tooth-shaped head, long deep-blue dress with a thin silver belt, stands LEFT.
+- MARK: cartoon TOOTH character from the reference image, rounded milk-tooth-shaped crown with matte milky-white enamel, plain grey buttoned waistcoat over a white shirt, stands FAR LEFT.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel colour and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. GOSHA stays fully golden for the entire video, no gold washes off, no paint runs, no colour change happens in this scene. AVGUST stays golden, MARTA stays pearl-white, MARK stays matte milky-white.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: palatial marble bathroom, the gold tap open with a thin stream of water running into the basin, light steam, the tall porcelain vase on its slim pedestal at the right. Nothing new appears during the video.
+
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photos: the Revyline RL 095 Special Color Edition Cloud Dancer sonic toothbrush, a slim straight cylindrical handle with a gradient from pale sky blue at the base to clean white toward the top, a small illuminated indicator panel, one round control button below it, a slim white detachable brush head with white bristles. Only one product in the whole frame, held only by AVGUST, zero changes, no morphing, no transforming, no extending, no shape shifting. The product never touches any character.
+
+EMOTIONAL INTENSITY — HIGH: AVGUST holds the product out impatiently, brows raised, tapping one foot. GOSHA shrinks back against the marble, eyes enormous, small hands up, swallowing hard. MARTA's eyes flick from GOSHA to the tall vase and back. MARK leans forward slightly. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and colour stay fixed. No physical contact between characters at any moment.
+
+CAMERA STYLE: hard cut between the offered product, GOSHA's terrified eyes, the running water, and MARTA's darting glance, accelerating.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: AVGUST extends the product toward GOSHA without touching him. AVGUST says in Russian, impatient and firm: «Теперь ты. Не позорь фамилию.»
+3.0–6.0s: GOSHA presses back against the vanity and swallows. GOSHA says in Russian, small and desperate: «А можно… потом?»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: a large tiled marble bathroom room tone with a light echo, running water into a basin.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID dynasty_p02_05_vase_anim
+@use dynasty_p02_05_vase
+@product rl095
+@duration 10
+# Сцена 5 — Animation. Ваза падает, Август к осколкам, Марта беззвучно «беги», Гоша убегает. 10 секунд.
+Animate this exact scene. This is a comedic and suspenseful cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- AVGUST: cartoon TOOTH character from the reference image, polished bright golden enamel molar tooth-shaped head, deep burgundy velvet robe with satin lapels, gold signet ring, crouches LOW on the RIGHT over the fallen porcelain pieces.
+- MARTA: cartoon TOOTH character from the reference image, pearl-white enamel molar tooth-shaped head, long deep-blue dress with a thin silver belt, stands MIDDLE.
+- GOSHA: cartoon TOOTH character from the reference image, the smallest, fully GOLDEN glossy painted crown and body, light cream jacket with a small dark bow tie, runs toward the LEFT edge.
+- MARK: cartoon TOOTH character from the reference image, rounded milk-tooth-shaped crown with matte milky-white enamel, plain grey buttoned waistcoat over a white shirt, stands FAR LEFT by the column.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel colour and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. GOSHA stays fully golden for the entire video, AVGUST stays golden, MARTA stays pearl-white, MARK stays matte milky-white.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: palatial marble bathroom, the tall porcelain vase toppling from its slim pedestal and breaking into large smooth rounded cartoon pieces on the marble floor, water running in the basin. The pieces are big, smooth and blunt, never sharp. Nobody is hurt and nobody is touched by anything. Nothing new appears during the video.
+
+ABSOLUTE PRODUCT LOCK — the product stays 100% identical to the attached reference photos: the Revyline RL 095 Special Color Edition Cloud Dancer sonic toothbrush, a slim straight cylindrical handle with a gradient from pale sky blue at the base to clean white toward the top, a small illuminated indicator panel, one round control button below it, a slim white detachable brush head with white bristles. Only one product in the whole frame, held only by AVGUST in his lowered hand, zero changes, no morphing, no transforming, no extending, no shape shifting.
+
+EMOTIONAL INTENSITY — HIGH: MARTA makes a small clumsy step, the vase wobbles and tips, she gasps theatrically. AVGUST spins and drops into a crouch over the pieces, comic despair, hands spread wide. MARTA turns away from him and silently mouths one word toward GOSHA with a sharp meaningful look. GOSHA's eyes widen and he bolts out of frame. MARK watches with a quiet, tired half-smile. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and colour stay fixed. No physical contact between characters at any moment.
+
+CAMERA STYLE: quick whip to the wobbling vase, fast cut to the pieces on the marble, cut to AVGUST crouching in despair, cut to MARTA mouthing silently, cut to GOSHA bolting, cut to MARK.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: MARTA takes a clumsy step and the tall vase tips off its pedestal and breaks on the marble. MARTA says in Russian, loud and theatrically startled: «Ой!»
+2.5–5.5s: AVGUST drops into a crouch over the porcelain pieces, hands spread. AVGUST says in Russian, in comic despair: «Ваза прадеда!»
+5.5–7.5s: MARTA turns away from him and mouths silently toward GOSHA, almost without sound. MARTA whispers in Russian, barely audible: «Беги.»
+7.5–10.0s: GOSHA bolts out of the frame, MARK watches the empty doorway. MARK says in Russian, quiet and flat: «Опять спасают его.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: a large tiled marble bathroom room tone with a light echo, running water, the dull ceramic clatter of porcelain pieces on marble, quick footsteps.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+10 seconds, vertical 9:16.
+
+=== VID dynasty_p02_06_touchup_anim
+@use dynasty_p02_06_touchup
+@duration 6
+# Сцена 6 — Animation. Ночь, Марта подкрашивает смытое пятнышко. 6 секунд.
+Animate this exact scene. This is a soft, gentle, touching cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, each head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. They must NEVER turn into humans, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- MARTA: cartoon TOOTH character from the reference image, pearl-white enamel molar tooth-shaped head, long deep-blue dress with a thin silver belt, kneels LEFT holding a slim wooden brush in the air.
+- GOSHA: cartoon TOOTH character from the reference image, the smallest, fully GOLDEN glossy painted crown and body with one small dull pale patch on his cheek, light cream jacket with a small dark bow tie, stands RIGHT.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel colour and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. GOSHA stays golden and only the one small pale patch slowly fills in with gold, nothing else about him changes. MARTA stays pearl-white and never gets any gold on herself. No other character appears at any moment, not in the background, not in the door gap.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame. Every head is completely bald smooth tooth enamel.
+
+SET DETAIL: a narrow marble side corridor at night, one small warm wall lamp, a tall door slightly ajar with a thin strip of warm light, a small open jar of golden paint and a slim wooden brush on a low marble ledge. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: a warm quiet bedtime mood. MARTA works slowly and carefully, gentle focused eyes, a small reassuring smile. GOSHA stands patiently, sleepy, blinking slowly, then looks up with a worried question. Concern is shown as a soft touching cartoon moment, never as distress. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and colour stay fixed. No physical contact between characters, the brush never touches anyone.
+
+CAMERA STYLE: slow gentle push in on the small pale patch filling with gold, cut to GOSHA's sleepy worried eyes, cut to MARTA's calm face.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: MARTA lifts the brush near the pale patch and the gold slowly fills it in. MARTA says in Russian, warm and quiet: «Ещё чуть-чуть. И спать.»
+2.5–4.5s: GOSHA looks up at her. GOSHA says in Russian, small and worried: «Мам, а если он узнает?»
+4.5–6.0s: MARTA lowers the brush and smiles softly. MARTA says in Russian, calm and certain: «Не узнает.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voices.
+
+Ambient sound only: a quiet night corridor room tone, a very faint hum from the wall lamp, the tiny sound of a brush against a glass jar.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID dynasty_p02_07_mark_hands_anim
+@use dynasty_p02_07_mark_hands
+@duration 6
+# Сцена 7 — Animation. Марк один, смотрит на свои молочные руки. 6 секунд.
+Animate this exact scene. This is a soft, emotional, quiet cartoon moment.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, the head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. He must NEVER turn into a human, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — only this character appears and no one else ever appears:
+- MARK: cartoon TOOTH character from the reference image, rounded milk-tooth-shaped crown with matte milky-white enamel and a soft milky glow, plain grey buttoned waistcoat over a white shirt, stands alone in the MIDDLE of the corridor.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: the tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel colour and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. MARK stays matte milky-white for the entire video, he never turns golden, never turns glossy, and no crack or change appears on him. ABSOLUTELY NO OTHER CHARACTER appears at any moment, in any frame, in the background, in the shadows, in the windows or in any reflection.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on the head at any moment, in every single frame. The head is completely bald smooth tooth enamel.
+
+SET DETAIL: a long dark marble corridor at night, tall arched windows with cool blue moonlight, a distant strip of warm light from a half-open door far behind. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: MARK lifts both small hands and turns them slowly in the moonlight, looking down at them, a quiet thoughtful sadness, one slow blink, then he lets his hands fall and looks up into the dark. Sadness is shown as a warm touching cartoon moment, never as distress. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and colour stay fixed.
+
+CAMERA STYLE: slow push in from a wide lonely corridor shot to a medium on MARK, then a soft tilt down to his hands and back up to his face.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: MARK turns his hands slowly in the moonlight and looks down at them. MARK says in Russian, quiet and thoughtful: «Значит, красят только золотых.»
+3.0–6.0s: MARK lets his hands fall and looks up into the dark corridor. MARK says in Russian, flat and quietly bitter: «А меня даже красить не стали.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+
+Ambient sound only: a quiet empty corridor room tone, a faint distant clock ticking, one soft footstep on marble.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID dynasty_p02_08_butler_anim
+@use dynasty_p02_08_butler
+@duration 8
+# Сцена 8 — Animation. Клиффхэнгер: Серебряков выходит из темноты, обращается за кадр. Призыв репликой. 8 секунд.
+Animate this exact scene. This is a suspenseful comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — NO HUMANS EVER: every character in this video is a TOOTH character, never a human. In every frame, in every close-up, in every camera angle and after every cut, the head IS a tooth shape — a rounded tooth crown with a small neck, smooth glossy enamel, and simple cartoon eyes, eyebrows and mouth drawn directly on the enamel surface. He must NEVER turn into a human, gain human skin, a human face, a nose, ears, a chin, cheekbones, hair or human body proportions.
+
+CRITICAL CHARACTER LOCK — only this character appears and no one else ever appears:
+- SEREBRYAKOV: cartoon TOOTH character from the reference image, large molar tooth-shaped head with brushed metallic SILVER enamel and a cool grey sheen, formal black butler livery coat with a stand-up collar, two neat rows of small silver buttons, silver cuffs, spotless white gloves, a polished silver tray flat in one gloved hand and a small white polishing cloth in the other, stands MIDDLE stepping out of the shadow toward the camera.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: the tooth body stays 100% IDENTICAL to the reference image in every single frame — same tooth shape, silhouette, proportions, enamel colour and shade, same surface texture and glossiness, same feature placement, same small neck, same arms and legs, same livery, same white gloves. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. SEREBRYAKOV stays metallic silver for the entire video, never gold, never white. ABSOLUTELY NO OTHER CHARACTER appears at any moment, in any frame, in the background, in the shadows, in the tray reflection or in any window. He speaks toward someone off screen who is never shown.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on the head at any moment, in every single frame. The head is completely bald smooth tooth enamel.
+
+SET DETAIL: a long dark marble corridor at night, cool blue moonlight through tall arched windows, deep shadows, an open service door in the darkness behind. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: SEREBRYAKOV is smooth, unhurried and quietly delighted with himself. He keeps polishing the silver tray in slow circles while he speaks, a thin one-sided smile widening, one eyebrow arching, eyes glinting. He steps forward into the moonlight and finally looks straight into the camera lens. Big expressive Pixar-style acting. Only expression and pose change — the model, head shape, texture and colour stay fixed.
+
+CAMERA STYLE: starts low and wide with him half in shadow, slow push in as he steps into the moonlight, hard cut to a tight shot of the polishing cloth circling the tray, back to a close shot as he looks into the lens and holds.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: his voice comes out of the darkness before he is fully visible, the tray catching a first glint of moonlight. SEREBRYAKOV says in Russian, silky and unhurried: «Тоже это видели, господин Марк?»
+2.5–5.0s: he steps fully into the moonlight, polishing the tray in slow circles. SEREBRYAKOV says in Russian, amused and slow: «Какая интересная семья.»
+5.0–8.0s: he stops polishing and looks straight into the camera lens with a thin smile. SEREBRYAKOV says in Russian, quiet and conspiratorial: «Пишите, кому мне рассказать первому.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated — do not rush the line. Everyone stays full body in frame, not cropped. No morphing, no humans, no new objects, no sudden changes. No reverb or pitch effects on the voice.
+
+Ambient sound only: a quiet empty corridor room tone, the soft squeak of a cloth on polished metal, one slow footstep on marble.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production — do not generate any music track.
+
+8 seconds, vertical 9:16.

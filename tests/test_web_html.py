@@ -136,11 +136,17 @@ def main() -> int:
         if f'id="{eid}"' not in HTML:
             failures.append(f"в разметке нет элемента с id={eid!r}, а скрипт его ищет")
     # То же для шаблона прогона: кнопка и её обработчик.
-    for name in ("kill", "pick", "file", "load", "start", "stop"):
+    for name in ("kill", "pick", "file", "load", "start", "stop",
+                 "addq", "aqpick", "aqfile", "aqsrc", "aqtext", "aqok", "aqcancel",
+                 "queue"):
         if f'id="s${{n}}-{name}"' not in HTML:
-            failures.append(f"в шаблоне прогона нет кнопки {name!r}")
-        if f"g('{name}')" not in HTML:
-            failures.append(f"кнопка {name!r} есть, но обработчика на неё нет")
+            failures.append(f"в шаблоне прогона нет элемента {name!r}")
+        if name != "queue" and f"g('{name}')" not in HTML:
+            failures.append(f"элемент {name!r} есть, но обработчика на него нет")
+    # Очередь очередей: перетаскивание и перестановка должны быть в скрипте.
+    for marker in ("dragstart", "move_from", "qitem", "DRAG"):
+        if marker not in HTML:
+            failures.append(f"в скрипте нет {marker!r} — очередь-плеер сломана")
 
     if failures:
         print("FAIL")
