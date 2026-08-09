@@ -375,6 +375,47 @@ class FlowClient:
             return None
         return loc.first.input_value()
 
+    def ensure_workspace(self, timeout_ms: int = 60_000) -> None:
+        """Вернуть вкладку проекта в рабочий вид с редактором промпта.
+
+        Вкладку могли оставить в галерее медиа (полноэкранная библиотека
+        с сайдбаром) или в просмотрщике — там редактор и навигация скрыты,
+        и любой клик по ним висит до таймаута. Сначала пробуем Escape
+        (закрывает оверлеи), не помогло — перезагрузка вкладки: она всегда
+        открывает проект в виде по умолчанию.
+        """
+        ed = self.page.locator(self.cfg.selectors["prompt_editor"])
+        back_label = self.cfg.locale.get("back_button", "Назад")
+
+        def visible() -> bool:
+            # Редактора мало: у полноэкранной галереи медиа есть СВОЯ строка
+            # промпта, и по одному редактору она неотличима от рабочего вида.
+            # Кнопка «Назад» в галерее скрыта — по ней и отличаем.
+            try:
+                if not ed.first.is_visible():
+                    return False
+                back = self.page.locator("button").filter(has_text=back_label)
+                return back.count() > 0 and back.first.is_visible()
+            except Exception:  # noqa: BLE001 — нет элемента = не видим
+                return False
+
+        if visible():
+            return
+        for _ in range(2):
+            try:
+                self.page.keyboard.press("Escape")
+                self.page.wait_for_timeout(700)
+            except Exception:  # noqa: BLE001
+                break
+            if visible():
+                return
+        self.reload_page(timeout_ms)
+        if not visible():
+            raise FlowError(
+                ERR_UNKNOWN,
+                "Редактор промпта не появился даже после перезагрузки вкладки",
+            )
+
     def goto_projects_list(self, timeout_ms: int = 30_000) -> None:
         """Уйти с проекта на список проектов кнопкой «Назад».
 
@@ -387,7 +428,15 @@ class FlowClient:
             back = self.page.locator("button").filter(has_text=back_label)
             if back.count() == 0:
                 raise FlowError(ERR_UNKNOWN, f"Кнопка «{back_label}» не найдена")
-            back.first.click()
+            try:
+                back.first.click(timeout=8_000)
+            except Exception:  # noqa: BLE001 — таймаут клика, а не логики
+                # Кнопка в DOM, но «not visible»: вкладка стоит в галерее
+                # медиа или просмотрщике, где навигация скрыта. Возвращаем
+                # рабочий вид (Escape, при нужде перезагрузка) и повторяем.
+                self.ensure_workspace()
+                back = self.page.locator("button").filter(has_text=back_label)
+                back.first.click(timeout=timeout_ms)
 
         # Список рендерится на клиенте: сразу после перехода кнопок ещё нет.
         self.page.locator("button").filter(has_text=create_label).first.wait_for(

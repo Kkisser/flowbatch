@@ -1,0 +1,456 @@
+@project OBRYV_P02
+
+=== IMG obryv_p02_00_zub
+# Эталон сезона. Зуб соло, без товара. Источник внешности для серий 2, 3 и 4.
+3D Pixar style, vertical 9:16. A tall rocky cliff outcrop over a deep mountain gorge at golden hour: warm orange-gold sunset light, a winding river far below, scattered glowing clouds, volumetric light, gentle haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes, thick dark eyebrows, a small nose, calm confident closed mouth, and no hair of any kind. Fully anthropomorphic body: natural arms with elbows, wrists and five-fingered hands, legs with knees, relaxed upright stance. Wears a light beige button-up shirt with sleeves rolled to the elbows, a thin brown belt, khaki chino trousers and white sneakers.
+TOOTH-HEAD RULE, HIGHEST PRIORITY: his head IS a tooth crown made of smooth glossy enamel, with eyes, eyebrows and mouth drawn directly on the enamel surface. It never becomes a human head, never gains hair, a scalp, ears or a human skull shape. His clothed body stays exactly as described.
+Composition: ZUB stands alone on the flat top of the rock in three-quarter view toward the camera, both hands empty and visible, feet apart, calm neutral expression. No other character appears anywhere in the frame. No product appears anywhere in the frame.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Friendly cinematic cartoon look, not scary. Cinematic golden-hour backlight, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG obryv_p02_00_karamel
+# Эталон сезона. Карамель соло. Источник внешности для пост-титра и серии 4.
+3D Pixar style, vertical 9:16. The shadowed stony floor of a deep mountain gorge at dusk, cool blue rock walls rising on both sides, a thin strip of warm orange sky far above, soft volumetric haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: KARAMEL is a glamorous female cartoon character whose head is a translucent amber hard-candy sphere, glossy polished caramel with swirling golden-orange sugar patterns inside that catch the light, strictly candy-like, NOT flame-like, no fire textures, no glow, no hair of any kind. Bold long dark lashes, smoky expressive eyes, plump lips drawn on the candy surface. Warm amber-tan skin, fully anthropomorphic elegant arms and legs. Wears a shimmering gold sequin cocktail dress and gold high heels.
+Composition: KARAMEL stands alone in three-quarter view toward the camera, arms crossed, chin slightly raised, a dry unimpressed expression. Her dress is a little dusty from the fall. No other character appears anywhere in the frame. No product appears anywhere in the frame.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Friendly cinematic cartoon look, not scary. Cool dusk light with a warm rim from above, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG obryv_p02_01_hook
+@use obryv_p02_00_zub
+@product rl230
+# Сцена 1 — Image. В кадре: Зуб, Пончик. Эталонный кадр Пончика. Хук.
+3D Pixar style, vertical 9:16. A tall rocky cliff outcrop over a deep mountain gorge at golden hour: warm orange-gold sunset light, a winding river far below, scattered glowing clouds, volumetric light, gentle haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes, thick dark eyebrows, a small nose, a tired resigned mouth, and no hair of any kind. Fully anthropomorphic body: natural arms with elbows, wrists and five-fingered hands, legs with knees, wide braced stance, bent forward over the edge. Wears a light beige button-up shirt with sleeves rolled to the elbows, a thin brown belt, khaki chino trousers and white sneakers. PONCHIK is a round cartoon character whose head IS a plump glazed ring donut: golden-brown fried dough with a thick glossy pink strawberry glaze on top, scattered multicolored sprinkles, a small hole in the middle of the crown, simple round cartoon eyes, thick eyebrows and a wide hopeful smile drawn directly on the glaze, and no hair of any kind. Round soft body, short arms with five-fingered hands, short legs, wears a blue and white horizontally striped sleeveless sailor shirt and dark blue rolled-up trousers, barefoot. Everything about him looks sticky and glossy.
+TOOTH-HEAD RULE, HIGHEST PRIORITY: ZUB's head IS a tooth crown of smooth glossy enamel and PONCHIK's head IS a glazed donut ring, with eyes, eyebrows and mouths drawn directly on those surfaces. Neither ever becomes a human head, never gains hair, a scalp, ears or a human skull shape. Their clothed bodies stay exactly as described.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos. The device is the Revyline RL 230 portable oral irrigator: a slim upright bottle-shaped handheld body, the upper half glossy black, the lower half a translucent smoky-grey water reservoir that tapers gently toward the base, a thin slightly curved black nozzle rising from the top, small uppercase "REVYLINE" lettering near the top of the black body, a narrow front control strip with two small square buttons and a vertical column of four tiny mode indicator dots, a small charging-port flap on the lower reservoir. Its exact colors, proportions, finish, buttons, nozzle and lettering match the attached reference photos exactly. Do not change its color or shape, do not add extra buttons, displays, hoses or logos. Only one product in the whole frame, held only in ZUB's right fist, gripped around the middle of the body so that the nozzle and the lettering stay fully uncovered by his fingers. Zero changes, no morphing, the device never opens, extends or transforms.
+Composition: ZUB stands braced at the very edge of the rock in three-quarter view. His left hand grips PONCHIK's wrist; PONCHIK dangles full-body over the void, one sticky glazed hand slipping, sprinkles drifting loose around him, looking up with a cheerful pleading grin. ZUB's right fist holds the RL 230 out to the side, safely away from the edge, the whole device clearly visible. Warm sunset rim light on both of them.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Friendly dramatic cartoon look, not scary, comedic rescue tone. Cinematic golden-hour backlight, wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p02_02_pity
+@use obryv_p02_01_hook
+# Сцена 2 — Image. Крупно Пончик снизу-сверху, кисть Зуба сверху кадра. Товара в кадре нет.
+3D Pixar style, vertical 9:16. Deep mountain gorge at golden hour seen from the cliff edge looking down, a winding river blurred far below, warm orange-gold light, volumetric haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: PONCHIK is a round cartoon character whose head IS a plump glazed ring donut: golden-brown fried dough with a thick glossy pink strawberry glaze on top, scattered multicolored sprinkles, a small hole in the middle of the crown, simple round cartoon eyes now huge and wheedling, thick raised eyebrows, a wide ingratiating smile drawn directly on the glaze, and no hair of any kind. Round soft body, short arms with five-fingered hands, short legs, blue and white horizontally striped sleeveless sailor shirt, dark blue rolled-up trousers, barefoot, sticky and glossy all over.
+TOOTH-HEAD RULE, HIGHEST PRIORITY: PONCHIK's head IS a glazed donut ring with the eyes, eyebrows and mouth drawn directly on the glaze. It never becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+Composition: close-up from slightly above. PONCHIK dangles over the gorge, held by the wrist; only ZUB's hand and forearm in a rolled beige sleeve enter the very top of the frame, his face is not visible. PONCHIK's free arm gestures earnestly, loose sprinkles drift around him in the warm light.
+Full body of PONCHIK visible, not cropped. No product appears anywhere in the frame. No captions or text on screen, no lettering on any rock, sign or surface. Friendly comedic cartoon look, not scary. Cinematic golden-hour light, close-up, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG obryv_p02_03_pressure
+@use obryv_p02_01_hook
+@product rl230
+# Сцена 3 — Image. Абсурдный бит, фича 900 кПа. В кадре: Зуб, Пончик.
+3D Pixar style, vertical 9:16. A tall rocky cliff outcrop over a deep mountain gorge at golden hour: warm orange-gold sunset light, a winding river far below, volumetric light, gentle haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes now looking flatly into the distance, thick dark eyebrows, a small nose, a deadpan mouth, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands, legs with knees, braced stance at the edge. Light beige button-up shirt with sleeves rolled to the elbows, thin brown belt, khaki chino trousers, white sneakers. PONCHIK is a round cartoon character whose head IS a plump glazed ring donut with thick glossy pink strawberry glaze, multicolored sprinkles, a small hole in the crown, simple cartoon eyes now offended and narrowed, thick eyebrows, an indignant open mouth drawn directly on the glaze, and no hair of any kind. Round body, short arms and legs, blue and white striped sleeveless sailor shirt, dark blue rolled-up trousers, sticky and glossy.
+TOOTH-HEAD RULE, HIGHEST PRIORITY: ZUB's head IS a tooth crown of smooth glossy enamel and PONCHIK's head IS a glazed donut ring. Neither ever becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos. The device is the Revyline RL 230 portable oral irrigator: a slim upright bottle-shaped handheld body, the upper half glossy black, the lower half a translucent smoky-grey water reservoir that tapers gently toward the base, a thin slightly curved black nozzle rising from the top, small uppercase "REVYLINE" lettering near the top of the black body, a narrow front control strip with two small square buttons and a vertical column of four tiny mode indicator dots, a small charging-port flap on the lower reservoir. Do not change its color or shape, do not add extra buttons, displays, hoses or logos. Only one product in the whole frame, held only in ZUB's right hand, raised chest-high and turned toward the camera so the whole device including the nozzle and the lettering is uncovered by his fingers. Zero changes, no morphing, the device never opens, extends or transforms.
+Composition: medium shot from the side. ZUB holds the RL 230 up in his right hand and studies the horizon past it with a completely flat expression, while his left hand still grips PONCHIK's wrist at the edge. PONCHIK hangs below and to the left, mouth open in comic outrage, a few sprinkles popping off him.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Friendly comedic cartoon look, not scary. Cinematic golden-hour side light, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p02_04_sorry
+@use obryv_p02_01_hook
+@product rl230
+# Сцена 4 — Image. Крупно лицо Зуба и левая рука. Пончик только кистью в кадре.
+3D Pixar style, vertical 9:16. Cliff edge over a deep mountain gorge at golden hour, warm orange-gold light, blurred gorge behind, volumetric haze, very shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes now closed, thick dark eyebrows drawn together, a small nose, a quiet regretful mouth, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands. Light beige button-up shirt with sleeves rolled to the elbows.
+TOOTH-HEAD RULE, HIGHEST PRIORITY: ZUB's head IS a tooth crown of smooth glossy enamel with the eyes, eyebrows and mouth drawn directly on the enamel. It never becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos: the Revyline RL 230 portable oral irrigator, glossy black upper half, translucent smoky-grey reservoir below, thin slightly curved black nozzle on top, small uppercase "REVYLINE" lettering near the top of the black body, narrow front control strip with two small square buttons and four tiny mode indicator dots. Do not change its color or shape, do not add extra buttons, displays, hoses or logos. Only one product in the whole frame, resting safely in ZUB's right hand at the lower edge of the frame, fully visible, never covered by fingers. Zero changes, no morphing, the device never opens, extends or transforms.
+Composition: tight close-up on ZUB's head and left hand. His eyes are closed, face turned slightly away. His left hand holds a glazed pink sticky wrist that is beginning to slide out of his grip; only that hand belongs to PONCHIK, PONCHIK's face is out of frame. A few loose sprinkles hang in the warm air.
+Not cropped awkwardly, the head and both hands are fully readable. No captions or text on screen, no lettering on any rock, sign or surface. Soft emotional cartoon look, gentle and touching, not scary. Cinematic golden-hour rim light, close-up, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p02_05_fall
+@use obryv_p02_01_hook
+# Сцена 5 — Image. Пончик соло в падении. Зуба в кадре нет, товара в кадре нет.
+3D Pixar style, vertical 9:16. Dramatic top-down angle straight into a deep mountain gorge at golden hour, a winding river far below, warm orange-gold light, volumetric haze, high detail.
+CRITICAL CHARACTER LOCK: PONCHIK is a round cartoon character whose head IS a plump glazed ring donut: golden-brown fried dough with thick glossy pink strawberry glaze, scattered multicolored sprinkles, a small hole in the middle of the crown, simple round cartoon eyes wide with comic surprise, thick eyebrows and a wide open shouting mouth drawn directly on the glaze, and no hair of any kind. Round soft body, short arms with five-fingered hands reaching up, short legs kicking, blue and white horizontally striped sleeveless sailor shirt, dark blue rolled-up trousers, barefoot, sticky and glossy.
+TOOTH-HEAD RULE, HIGHEST PRIORITY: PONCHIK's head IS a glazed donut ring with the eyes, eyebrows and mouth drawn directly on the glaze. It never becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+Composition: PONCHIK tumbles backwards down into the gorge in a comic cartoon arc, arms up, in the middle of the frame at a small distance. Behind and above him trails a long spiral of colorful sprinkles scattering into the wind and catching the sunset. No landing is visible. ZUB does not appear anywhere in this shot, no hand, no silhouette, no reflection. No product appears anywhere in the frame.
+PONCHIK full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Light comedic cartoon fall, playful and harmless, not scary, no injury. Cinematic golden-hour light, wide top-down shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG obryv_p02_06_rescue
+@use obryv_p02_00_zub
+@product rl230
+# Сцена 6 — Image. Зуб соло, спасение товара. Пончика в кадре нет.
+3D Pixar style, vertical 9:16. Cliff top over a deep mountain gorge at golden hour, warm sunset backlight, volumetric light, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes now soft with relief, thick dark eyebrows, a small nose, a gentle sincere mouth, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands, legs with knees, kneeling on one knee. Light beige button-up shirt with sleeves rolled to the elbows, thin brown belt, khaki chino trousers, white sneakers.
+TOOTH-HEAD RULE, HIGHEST PRIORITY: his head IS a tooth crown of smooth glossy enamel with the eyes, eyebrows and mouth drawn directly on the enamel. It never becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos: the Revyline RL 230 portable oral irrigator, glossy black upper half, translucent smoky-grey tapering reservoir below, thin slightly curved black nozzle on top, small uppercase "REVYLINE" lettering near the top of the black body, narrow front control strip with two small square buttons and four tiny mode indicator dots, small charging-port flap on the reservoir. Do not change its color or shape, do not add extra buttons, displays, hoses or logos. Only one product in the whole frame, cradled in both of ZUB's hands against his chest, the entire device visible with the nozzle up and the lettering readable, never covered by his fingers. Zero changes, no morphing, the device never opens, extends or transforms.
+Composition: medium shot. ZUB kneels on one knee near the edge, holding the RL 230 to his chest with both hands like something precious, exhaling with relief, eyes soft. Golden dust drifts in the air behind him over the gorge. PONCHIK does not appear anywhere in this shot, no hand, no silhouette.
+Full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Warm sincere cartoon look, not scary. Cinematic golden-hour backlight, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p02_07_hero
+@use obryv_p02_00_zub
+@product rl230
+# Сцена 7 — Image. PRODUCT HERO. Зуб соло, товар целиком в кадре.
+3D Pixar style, vertical 9:16. Cliff top over a deep mountain gorge at golden hour, wide warm sunset sky behind, volumetric light, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes, thick dark eyebrows, a small nose, a calm proud closed-lip smile, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands, legs with knees, standing upright. Light beige button-up shirt with sleeves rolled to the elbows, thin brown belt, khaki chino trousers, white sneakers.
+TOOTH-HEAD RULE, HIGHEST PRIORITY: his head IS a tooth crown of smooth glossy enamel with the eyes, eyebrows and mouth drawn directly on the enamel. It never becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos. The device is the Revyline RL 230 portable oral irrigator: a slim upright bottle-shaped handheld body, the upper half glossy black, the lower half a translucent smoky-grey water reservoir tapering gently toward the base, a thin slightly curved black nozzle rising from the top, small uppercase "REVYLINE" lettering near the top of the black body, a narrow front control strip with two small square buttons and a vertical column of four tiny mode indicator dots, a small charging-port flap on the lower reservoir. Do not change its color or shape, do not add extra buttons, displays, hoses or logos. Only one product in the whole frame, held in both hands at chest height and presented toward the camera, the ENTIRE device visible at a comfortable medium-close distance with no extreme macro zoom on any detail, never covered by his fingers. Zero changes, no morphing, the device never opens, extends or transforms.
+Composition: medium-close shot. ZUB stands on the cliff top facing the camera in three-quarter view, presenting the RL 230 chest-high in both hands. The sunset lays a soft warm glow along the glossy black body and the smoky reservoir; the gorge blurs behind him. PONCHIK does not appear anywhere in this shot.
+Full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Confident warm cartoon look. Cinematic golden-hour light, medium-close shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p02_08_next
+@use obryv_p02_00_zub
+@product rl230
+# Сцена 8 — Image. Крючок на серию 3. В кадре: Зуб и розовая масса Жужи, только глаза. Пончика нет.
+3D Pixar style, vertical 9:16. Cliff top over a deep mountain gorge, late golden hour turning cooler, long shadows on the rock, wind, volumetric haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes now looking down in weary disbelief, thick dark eyebrows, a small nose, a flat resigned mouth, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands, legs with knees, one leg pulling upward mid-step. Light beige button-up shirt with sleeves rolled to the elbows, thin brown belt, khaki chino trousers, white sneakers.
+TOOTH-HEAD RULE, HIGHEST PRIORITY: his head IS a tooth crown of smooth glossy enamel with the eyes, eyebrows and mouth drawn directly on the enamel. It never becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos: the Revyline RL 230 portable oral irrigator, glossy black upper half, translucent smoky-grey tapering reservoir below, thin slightly curved black nozzle on top, small uppercase "REVYLINE" lettering near the top of the black body, narrow front control strip with two small square buttons and four tiny mode indicator dots. Do not change its color or shape, do not add extra buttons, displays, hoses or logos. Only one product in the whole frame, held down at ZUB's side in one hand, fully visible, never covered by his fingers. Zero changes, no morphing, the device never opens, extends or transforms.
+Composition: medium wide shot. ZUB is walking away from the edge toward the camera and cannot lift his foot: his white sneaker is stuck to a glossy pink-grey blob of chewed gum on the rock, thin sticky threads stretching as he pulls. Two big shiny cartoon eyes with long lashes and a sweet naive smile have just opened in the middle of the gum blob. The blob has no body and no limbs yet, only the mass and the eyes. PONCHIK does not appear anywhere in this shot.
+ZUB full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Light comedic cartoon look, playful, not scary. Cinematic low warm sun, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p02_09_camp
+@use obryv_p02_05_fall
+@use obryv_p02_00_karamel
+# Сцена 9 — Image. Пост-титр, опция. Дно ущелья, костёр. В кадре: Пончик, Карамель. Зуба и товара нет.
+3D Pixar style, vertical 9:16. The shadowed stony floor of a deep mountain gorge at dusk, cool blue rock walls rising on both sides, a thin strip of warm orange sky far above, a small crackling campfire throwing warm orange light on the stones, soft volumetric haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: PONCHIK is a round cartoon character whose head IS a plump glazed ring donut, golden-brown fried dough with thick glossy pink strawberry glaze, scattered multicolored sprinkles, a small hole in the crown, simple round cartoon eyes now blinking in friendly surprise, thick eyebrows and an open cheerful mouth drawn directly on the glaze, no hair of any kind; round soft body, short arms and legs, blue and white horizontally striped sleeveless sailor shirt, dark blue rolled-up trousers, barefoot, sticky and glossy, slightly dusty from the fall. KARAMEL is a glamorous female cartoon character whose head is a translucent amber hard-candy sphere, glossy polished caramel with swirling golden-orange sugar patterns inside, strictly candy-like, NOT flame-like, no fire textures, no glow, no hair of any kind; bold long dark lashes, smoky eyes now flat and annoyed, plump lips; warm amber-tan skin, elegant anthropomorphic arms and legs, shimmering gold sequin cocktail dress, gold high heels.
+TOOTH-HEAD RULE, HIGHEST PRIORITY: PONCHIK's head IS a glazed donut ring and KARAMEL's head IS an amber candy sphere, with eyes, eyebrows and mouths drawn directly on those surfaces. Neither ever becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+Composition: medium wide two-shot beside the campfire. PONCHIK has just landed sitting on a flat stone at the left, legs out, looking over at KARAMEL with a friendly surprised grin. KARAMEL sits on a stone at the right, arms crossed, staring into the fire without turning her head. ZUB does not appear anywhere in this shot. No product appears anywhere in the frame.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Dry comedic cartoon look, not scary. Warm firelight against cool dusk, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== VID obryv_p02_01_hook_anim
+@use obryv_p02_01_hook
+@product rl230
+@duration 8
+# Сцена 1 — Animation. Зуб возвращается к краю, Пончик соскальзывает и повисает. 8 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — TOOTH AND DONUT HEADS, NEVER HUMAN HEADS: in every frame, in every close-up, in every camera angle and after every cut, ZUB's head IS a glossy ivory-white tooth crown and PONCHIK's head IS a glazed pink donut ring, with simple cartoon eyes, eyebrows and mouths drawn directly on those surfaces. Neither ever gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, large glossy ivory-white molar-shaped head with two soft bumps, brown eyes, thick dark eyebrows, small nose, light beige rolled-sleeve shirt, thin brown belt, khaki chinos, white sneakers, braced at the cliff edge, RIGHT of frame.
+- PONCHIK: cartoon character from the reference image, glazed pink donut head with sprinkles and a hole in the crown, blue and white striped sleeveless sailor shirt, dark blue rolled-up trousers, barefoot, dangling over the void, LEFT of frame.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each character stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, colors and shade, same surface texture and glossiness, same feature placement, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. ZUB stays ivory-white, PONCHIK stays golden-brown with pink glaze.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: a rocky cliff outcrop over a deep mountain gorge at golden hour, a winding river far below, scattered clouds, drifting golden dust. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: ZUB is worn out and unsurprised, eyebrows low, shoulders heavy. PONCHIK is loud, hopeful and shameless, eyes wide, big expressive cartoon acting. Only expression and pose change, the models, head shapes, textures and colors stay fixed.
+
+CAMERA STYLE: starts on a wide shot of the cliff, slow push in toward the edge, one quick cut to a slightly lower angle when PONCHIK slips.
+
+ABSOLUTE PRODUCT LOCK — the Revyline RL 230 portable irrigator stays 100% identical to the attached reference photos, glossy black upper half, translucent smoky-grey reservoir, thin curved black nozzle on top, "REVYLINE" lettering, only one product in the whole frame, held only by ZUB in his right fist, the whole device inside the frame, never covered by fingers, no extreme macro zoom on a single detail, zero changes, no morphing, the device never opens, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: ZUB walks back to the cliff edge, sighs, and reaches his left hand down over the void. ZUB says in Russian, tired and flat: «Да сколько можно…»
+3.0–5.0s: PONCHIK grabs the offered hand, his glazed palm slips on his own glaze, and he swings out over the void, sprinkles drifting loose around him. No dialogue.
+5.0–8.0s: PONCHIK looks up with a wide hopeful grin, free arm waving. PONCHIK says in Russian, loud and shameless: «Спасай! Мы же почти братаны!»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voices. No captions or text on screen at any moment.
+
+Ambient sound only: steady mountain wind over the cliff, a faint distant river far below, occasional soft bird cries.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID obryv_p02_02_pity_anim
+@use obryv_p02_02_pity
+@duration 6
+# Сцена 2 — Animation. Пончик давит жалостью. 6 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — DONUT HEAD, NEVER A HUMAN HEAD: in every frame and after every cut, PONCHIK's head IS a glazed pink donut ring with simple cartoon eyes, eyebrows and mouth drawn directly on the glaze. It never gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- PONCHIK: cartoon character from the reference image, glazed pink donut head with multicolored sprinkles and a hole in the crown, blue and white striped sleeveless sailor shirt, dark blue rolled-up trousers, barefoot, dangling in the CENTRE of frame.
+- Only a hand and forearm in a rolled beige sleeve enter the very top of the frame. No face other than PONCHIK's is ever visible.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: PONCHIK stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, glaze color and shade, same sprinkle placement, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: a deep mountain gorge at golden hour blurred far below, warm haze, a few loose sprinkles floating in the air. Nothing new appears during the video. No product appears at any moment.
+
+EMOTIONAL INTENSITY — HIGH: PONCHIK is pleading and theatrical, eyes huge and glossy, eyebrows arched, big expressive cartoon acting, then a smug little beat. Only expression and pose change, the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: slow push in on PONCHIK, one small cut to an even tighter framing on the last line.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: PONCHIK swings gently, pressing one hand to his chest with enormous sincerity. PONCHIK says in Russian, wheedling and earnest: «Я изменюсь! Начну бегать!»
+2.5–4.0s: his smile freezes, his eyes slide sideways, two sprinkles drop off him. No dialogue.
+4.0–6.0s: PONCHIK brightens up completely. PONCHIK says in Russian, cheerful and matter-of-fact: «С понедельника!»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Everyone stays fully in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voices. No captions or text on screen at any moment.
+
+Ambient sound only: steady mountain wind, a faint distant river far below.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID obryv_p02_03_pressure_anim
+@use obryv_p02_03_pressure
+@product rl230
+@duration 8
+# Сцена 3 — Animation. Абсурдный бит, фича 900 кПа. 8 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — TOOTH AND DONUT HEADS, NEVER HUMAN HEADS: in every frame, in every close-up and after every cut, ZUB's head IS a glossy ivory-white tooth crown and PONCHIK's head IS a glazed pink donut ring, with simple cartoon eyes, eyebrows and mouths drawn directly on those surfaces. Neither ever gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, light beige rolled-sleeve shirt, thin brown belt, khaki chinos, white sneakers, braced at the edge, RIGHT of frame.
+- PONCHIK: cartoon character from the reference image, glazed pink donut head with sprinkles, blue and white striped sailor shirt, dark blue rolled-up trousers, dangling LEFT and below.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each character stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, colors and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. ZUB stays ivory-white, PONCHIK stays golden-brown with pink glaze.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: a rocky cliff outcrop over a deep mountain gorge at golden hour, drifting golden dust. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: ZUB is completely deadpan, looking past the device at the horizon, no smile. PONCHIK swings from smug to comically insulted, mouth wide open. Big expressive cartoon acting. Only expression and pose change, the models, head shapes, textures and colors stay fixed.
+
+CAMERA STYLE: medium side shot, small push in on ZUB for his lines, one quick cut down to PONCHIK for the last line.
+
+ABSOLUTE PRODUCT LOCK — the Revyline RL 230 portable irrigator stays 100% identical to the attached reference photos, glossy black upper half, translucent smoky-grey reservoir, thin curved black nozzle on top, "REVYLINE" lettering, only one product in the whole frame, held only by ZUB, raised chest-high and near-static, the whole device inside the frame, never covered by fingers, no extreme macro zoom on a single detail, zero changes, no morphing, the device never opens, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–1.5s: ZUB raises the RL 230 in his right hand and looks past it into the distance, face flat. No dialogue.
+1.5–4.0s: ZUB says in Russian, calm and gloomy, still not looking down: «Он держит девятьсот килопаскалей.»
+4.0–6.0s: a short beat, then ZUB says in Russian, exactly as flat: «А ты не держишь слово.»
+6.0–8.0s: PONCHIK's mouth drops open, a few sprinkles pop off him. PONCHIK says in Russian, deeply offended: «Это удар ниже глазури!»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voices. No captions or text on screen at any moment.
+
+Ambient sound only: steady mountain wind over the cliff, a faint distant river far below, occasional soft bird cries.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID obryv_p02_04_sorry_anim
+@use obryv_p02_04_sorry
+@product rl230
+@duration 4
+# Сцена 4 — Animation. «Прости, братан», пальцы разжимаются. 4 секунды.
+Animate this exact scene. This is a soft emotional cartoon moment.
+
+TOP PRIORITY RULE — TOOTH HEAD, NEVER A HUMAN HEAD: in every frame and after every cut, ZUB's head IS a glossy ivory-white tooth crown with simple cartoon eyes, eyebrows and mouth drawn directly on the enamel. It never gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, brown eyes now closed, thick dark eyebrows, light beige rolled-sleeve shirt, CENTRE of frame in close-up.
+- Only a glazed pink sticky hand belonging to PONCHIK is visible at the lower edge of the frame. PONCHIK's face never appears.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: ZUB stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same feature placement, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: a blurred golden-hour gorge behind him, a few loose sprinkles hanging in the warm air. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: quiet regret, eyes closed, eyebrows drawn together, a small tight mouth. Touching and gentle, not distressing. Only expression and pose change, the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: static tight close-up with a very slow drift down toward his hand.
+
+ABSOLUTE PRODUCT LOCK — the Revyline RL 230 portable irrigator stays 100% identical to the attached reference photos, only one product in the whole frame, resting in ZUB's right hand at the lower edge, the whole device inside the frame, never covered by fingers, no extreme macro zoom, zero changes, no morphing, the device never opens, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.0s: ZUB closes his eyes and turns his head slightly away. ZUB says in Russian, quiet and warm: «Прости, братан.»
+2.0–4.0s: his fingers slowly open and the glazed pink hand slides gently out of his grip and out of the bottom of the frame. No dialogue.
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voice. No captions or text on screen at any moment.
+
+Ambient sound only: steady mountain wind, a faint distant river far below.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+4 seconds, vertical 9:16.
+
+=== VID obryv_p02_05_fall_anim
+@use obryv_p02_05_fall
+@duration 6
+# Сцена 5 — Animation. Падение Пончика со шлейфом посыпки. 6 секунд.
+Animate this exact scene. This is a light comedic cartoon moment.
+
+TOP PRIORITY RULE — DONUT HEAD, NEVER A HUMAN HEAD: in every frame and after every cut, PONCHIK's head IS a glazed pink donut ring with simple cartoon eyes, eyebrows and mouth drawn directly on the glaze. It never gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- PONCHIK: cartoon character from the reference image, glazed pink donut head with multicolored sprinkles and a hole in the crown, blue and white striped sleeveless sailor shirt, dark blue rolled-up trousers, barefoot, tumbling in the CENTRE of frame.
+- ZUB does not appear at any moment, no hand, no silhouette, no reflection.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: PONCHIK stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, glaze color and shade, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: a deep mountain gorge at golden hour seen from above, a winding river far below, warm haze. Nothing new appears during the video. No landing is ever shown. No product appears at any moment.
+
+EMOTIONAL INTENSITY — HIGH: comic outrage, eyes wide, mouth open in a long shout, arms windmilling. Playful cartoon physics, harmless, no injury, not scary. Only expression and pose change, the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: top-down shot, the camera holds at the cliff level while PONCHIK gets smaller into the gorge.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.0s: PONCHIK tumbles backwards down into the gorge in a soft comic arc, arms up. No dialogue.
+2.0–4.5s: PONCHIK says in Russian, shouting upward, the voice fading with distance: «Ты ещё пожалее-е-ешь!»
+4.5–6.0s: a long spiral of colorful sprinkles trails after him and catches the sunset, then he shrinks into the haze. No dialogue.
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voice beyond the natural fade with distance. No captions or text on screen at any moment.
+
+Ambient sound only: rushing mountain wind, a faint distant river far below.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID obryv_p02_06_rescue_anim
+@use obryv_p02_06_rescue
+@product rl230
+@duration 6
+# Сцена 6 — Animation. Спасение товара, «Я выбираю тебя». 6 секунд.
+Animate this exact scene. This is a warm emotional cartoon moment.
+
+TOP PRIORITY RULE — TOOTH HEAD, NEVER A HUMAN HEAD: in every frame and after every cut, ZUB's head IS a glossy ivory-white tooth crown with simple cartoon eyes, eyebrows and mouth drawn directly on the enamel. It never gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, brown eyes soft with relief, light beige rolled-sleeve shirt, thin brown belt, khaki chinos, white sneakers, kneeling on one knee in the CENTRE of frame.
+- PONCHIK does not appear at any moment, no hand, no silhouette.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: ZUB stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+SET DETAIL: cliff top over a deep mountain gorge at golden hour, golden dust drifting behind him. Nothing new appears during the video.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+EMOTIONAL INTENSITY — MEDIUM: relief and quiet sincerity, a long exhale, soft eyes, a small warm smile. Big readable cartoon acting without exaggeration. Only expression and pose change, the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: medium shot, slow push in as he brings the device to his chest.
+
+ABSOLUTE PRODUCT LOCK — the Revyline RL 230 portable irrigator stays 100% identical to the attached reference photos, glossy black upper half, translucent smoky-grey reservoir, thin curved black nozzle on top, "REVYLINE" lettering, only one product in the whole frame, held only by ZUB in both hands, the whole device inside the frame with the nozzle up and the lettering readable, never covered by fingers, no extreme macro zoom on a single detail, zero changes, no morphing, the device never opens, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: ZUB pulls the RL 230 up with both hands and presses it to his chest, exhaling. No dialogue.
+2.5–5.0s: he looks down at the device. ZUB says in Russian, relieved and completely serious: «Я выбираю тебя.»
+5.0–6.0s: he lifts his eyes to the horizon, golden dust drifting past. No dialogue.
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. He stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voice. No captions or text on screen at any moment.
+
+Ambient sound only: steady mountain wind over the cliff, a faint distant river far below, occasional soft bird cries.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID obryv_p02_07_hero_anim
+@use obryv_p02_07_hero
+@product rl230
+@duration 10
+# Сцена 7 — Animation. PRODUCT HERO, модель названа вслух. 10 секунд.
+Animate this exact scene. This is a warm confident cartoon moment.
+
+TOP PRIORITY RULE — TOOTH HEAD, NEVER A HUMAN HEAD: in every frame and after every cut, ZUB's head IS a glossy ivory-white tooth crown with simple cartoon eyes, eyebrows and mouth drawn directly on the enamel. It never gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, calm proud expression, light beige rolled-sleeve shirt, thin brown belt, khaki chinos, white sneakers, standing in the CENTRE of frame facing camera in three-quarter view.
+- PONCHIK does not appear at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: ZUB stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: cliff top with a wide warm sunset sky behind, the gorge blurred, drifting golden dust. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — LOW to MEDIUM: calm, proud, sincere, a small closed-lip smile and one slow nod. Only expression and pose change, the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: locked medium-close shot, an extremely slow push in. The device stays large and near-static in frame throughout, only his hands and face move.
+
+ABSOLUTE PRODUCT LOCK — the Revyline RL 230 portable irrigator stays 100% identical to the attached reference photos: slim upright bottle-shaped body, glossy black upper half, translucent smoky-grey tapering reservoir, thin slightly curved black nozzle on top, small uppercase "REVYLINE" lettering near the top of the black body, narrow front control strip with two small square buttons and four tiny mode indicator dots. Only one product in the whole frame, held only by ZUB in both hands at chest height, the ENTIRE device visible at a comfortable medium-close distance, never covered by fingers, no extreme macro zoom on a single detail, zero changes, no morphing, the device never opens, extends or transforms, no water jet is ever emitted.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.5s: ZUB presents the RL 230 toward the camera in both hands, holding it steady. ZUB says in Russian, calm and clear: «Ревилайн Эр Эль двести тридцать.»
+3.5–7.5s: he turns the device very slightly so the sunset runs along the black body and the smoky reservoir. ZUB says in Russian, unhurried: «Резервуар триста миллилитров, четыре режима, влезает в карман.»
+7.5–8.5s: a short beat, he nods once. No dialogue.
+8.5–10.0s: ZUB says in Russian, with a small satisfied smile: «Вот это я понимаю. Компактность.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. He stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voice. No captions or text on screen at any moment.
+
+Ambient sound only: steady mountain wind over the cliff, a faint distant river far below.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+10 seconds, vertical 9:16.
+
+=== VID obryv_p02_08_next_anim
+@use obryv_p02_08_next
+@product rl230
+@duration 8
+# Сцена 8 — Animation. Крючок на серию 3, кед прилип, призыв. 8 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — TOOTH HEAD, NEVER A HUMAN HEAD: in every frame and after every cut, ZUB's head IS a glossy ivory-white tooth crown with simple cartoon eyes, eyebrows and mouth drawn directly on the enamel. It never gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, weary expression, light beige rolled-sleeve shirt, thin brown belt, khaki chinos, white sneakers, CENTRE of frame.
+- A glossy pink-grey blob of chewed gum stuck to the rock at his foot, with two big shiny cartoon eyes and long lashes that open in the middle of the mass. The blob has no body and no limbs at any moment, only the mass and the eyes.
+- PONCHIK does not appear at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: ZUB stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: cliff top in late golden hour, long shadows on the rock, stronger wind. Nothing new appears during the video besides the sticky threads already described.
+
+EMOTIONAL INTENSITY — MEDIUM: ZUB is weary and resigned, eyebrows flat, a small tired sigh. The gum blob is sweet and clingy. Big readable cartoon acting. Only expression and pose change, the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: medium wide shot, one quick cut down to the stuck sneaker, then back up to ZUB looking straight into the camera.
+
+ABSOLUTE PRODUCT LOCK — the Revyline RL 230 portable irrigator stays 100% identical to the attached reference photos, only one product in the whole frame, held only by ZUB down at his side, the whole device inside the frame, never covered by fingers, no extreme macro zoom, zero changes, no morphing, the device never opens, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.0s: ZUB turns to walk away and cannot lift his foot, his white sneaker stuck to the pink gum blob, thin sticky threads stretching as he pulls. No dialogue.
+2.0–3.5s: two big shiny eyes with long lashes open in the middle of the gum blob and smile up at him. ZHUZHA says in Russian, sweetly and slowly: «Приве-е-ет.»
+3.5–5.5s: ZUB looks straight into the camera, completely deadpan. ZUB says in Russian, tired: «Артикул под видео.»
+5.5–8.0s: a short beat, then ZUB says in Russian, resigned: «И пишите, кого спасать следующим.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. ZUB stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voices. No captions or text on screen at any moment.
+
+Ambient sound only: stronger mountain wind, a faint distant river far below, a soft sticky stretching sound.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID obryv_p02_09_camp_anim
+@use obryv_p02_09_camp
+@duration 6
+# Сцена 9 — Animation. Пост-титр, опция. Костёр на дне ущелья. 6 секунд.
+Animate this exact scene. This is a dry comedic cartoon moment.
+
+TOP PRIORITY RULE — DONUT AND CANDY HEADS, NEVER HUMAN HEADS: in every frame and after every cut, PONCHIK's head IS a glazed pink donut ring and KARAMEL's head IS a translucent amber hard-candy sphere, with simple cartoon eyes, eyebrows and mouths drawn directly on those surfaces. Neither ever gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- PONCHIK: cartoon character from the reference image, glazed pink donut head with sprinkles, blue and white striped sleeveless sailor shirt, dark blue rolled-up trousers, barefoot, sitting on a flat stone, LEFT of frame.
+- KARAMEL: cartoon character from the reference image, amber hard-candy sphere head with swirling golden-orange sugar inside, strictly candy-like and never flame-like, warm amber-tan skin, gold sequin cocktail dress, gold high heels, sitting on a stone with arms crossed, RIGHT of frame.
+- ZUB does not appear at any moment, no hand, no silhouette.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each character stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, colors and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: the shadowed stony floor of a deep gorge at dusk, a small crackling campfire between them, cool blue rock walls, a thin strip of warm sky far above. Nothing new appears during the video. No product appears at any moment.
+
+EMOTIONAL INTENSITY — LOW: PONCHIK is friendly and surprised, KARAMEL is flatly annoyed and does not turn her head. Dry deadpan cartoon acting. Only expression and pose change, the models, head shapes, textures and colors stay fixed.
+
+CAMERA STYLE: locked medium wide two-shot, no camera movement.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.0s: PONCHIK settles on the stone with a small comic bounce and notices KARAMEL across the fire. No dialogue.
+2.0–3.5s: PONCHIK says in Russian, cheerful and surprised: «И ты тут?»
+3.5–6.0s: KARAMEL keeps staring into the fire without turning her head. KARAMEL says in Russian, flat and gloomy: «Молчи.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voices. No captions or text on screen at any moment.
+
+Ambient sound only: a small crackling campfire, a faint hollow wind in the gorge.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+6 seconds, vertical 9:16.

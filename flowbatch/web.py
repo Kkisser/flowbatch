@@ -215,6 +215,15 @@ border:1px solid var(--line2);background:#0e141f;color:var(--dim);transition:all
 background:color-mix(in srgb,var(--sc) 11%,transparent);font-weight:600}
 .tchip.busy{opacity:.4;cursor:not-allowed}
 .tchip:disabled{cursor:not-allowed;opacity:.5}
+.chain{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chain:not(:empty){margin-top:9px}
+.chain .lbl{font-size:11.5px;color:var(--dim2);text-transform:uppercase;letter-spacing:.06em}
+.cchip{font:12px/1.3 inherit;border-radius:8px;padding:4px 4px 4px 10px;
+border:1px dashed var(--line2);background:#0e141f;color:var(--dim);
+display:inline-flex;gap:4px;align-items:center}
+.cchip .cx{background:none;border:none;color:var(--dim2);cursor:pointer;
+font-size:12px;padding:0 5px;line-height:1}
+.cchip .cx:hover{color:var(--err)}
 
 .pbwrap{margin-top:10px}
 .pb{height:7px;border-radius:5px;background:#141b28;overflow:hidden;display:flex}
@@ -511,13 +520,18 @@ function slotTemplate(s){
     <input type="text" id="s${n}-src" list="queuefiles"
            placeholder="или имя файла из папки промптов">
     <button class="btn sm" id="s${n}-load" title="прочитать файл и показать задачи">Разобрать</button>
+    <button class="btn ghost sm" id="s${n}-chainbtn"
+            title="поставить этот файл В ХВОСТ: пойдёт в этой же вкладке после текущей очереди. Работает и во время прогона — так серии с @use на предыдущую идут одна за другой">⛓ в цепочку</button>
     <button class="btn ghost sm" id="s${n}-pastebtn">текстом…</button>
   </div>
   <div id="s${n}-paste" hidden>
     <textarea id="s${n}-ptext" spellcheck="false" placeholder="@project Название проекта&#10;&#10;=== IMG K1&#10;Текст промпта...&#10;&#10;=== VID K1_anim&#10;@use K1&#10;@duration 8&#10;Animate this image..."></textarea>
     <div class="row"><button class="btn sm" id="s${n}-parse">Разобрать и загрузить</button>
+      <button class="btn ghost sm" id="s${n}-parsechain"
+              title="текст станет очередью в хвосте цепочки">⛓ текст в цепочку</button>
       <button class="btn ghost sm" id="s${n}-phelp">формат?</button></div>
   </div>
+  <div class="chain" id="s${n}-chain"></div>
   <div class="tchips" id="s${n}-tabs"></div>
   <div class="row" style="margin-top:9px">
     <select id="s${n}-kind" style="flex:0"><option value="">все типы</option>
@@ -601,6 +615,17 @@ function buildSlot(s, isOnly){
     try{ S.sel[s.id].clear(); await api('/api/slot/parse',{id:s.id, text:g('ptext').value});
          g('paste').hidden=true; toast('Разобрано и загружено','ok'); }catch(e){toast(e.message);} tick();
   };
+  g('chainbtn').onclick = async () => {
+    const v = g('src').value.trim();
+    if (!v) { toast('Сначала укажи файл, который поставить в цепочку'); return; }
+    try{ await api('/api/slot/chain',{id:s.id, add:v}); g('src').value='';
+         toast('В цепочку: '+v,'ok'); }catch(e){toast(e.message);} tick();
+  };
+  g('parsechain').onclick = async () => {
+    try{ await api('/api/slot/chain',{id:s.id, text:g('ptext').value});
+         g('ptext').value=''; g('paste').hidden=true;
+         toast('Текст добавлен в цепочку','ok'); }catch(e){toast(e.message);} tick();
+  };
   g('phelp').onclick = () => openDlg('help');
   g('tgl').onclick = () => { S.q[s.id]=!S.q[s.id]; if(LAST) renderSlots(LAST); };
   g('delsel').onclick = async () => {
@@ -665,6 +690,15 @@ function updateSlot(el, s, st){
       data-tab="${esc(t.id)}" ${s.running||busy?'disabled':''}
       title="${busy?('занята прогоном '+esc(t.owner_label||'')):(mine?'клик — открепить':'клик — выбрать для этого прогона')}">${esc(name)}${busy?' · '+esc(t.owner_label||''):''}</button>`;
   }).join('') : '<span class="mut">нет открытых вкладок — запусти браузер (кнопка в шапке)</span>');
+
+  // цепочка: что пойдёт в этой вкладке после текущей очереди
+  g('chain').innerHTML = (s.chain||[]).length
+    ? '<span class="lbl">дальше</span>' + s.chain.map((name,i)=>
+        `<span class="cchip">${i+1}. ${esc(name)}
+           <button class="cx" data-chsid="${s.id}" data-chidx="${i}"
+             title="убрать из цепочки">✕</button></span>`).join('')
+      + (s.running ? '<span class="mut" style="font-size:11px">стартует сама после текущей</span>' : '')
+    : '';
 
   // прогресс
   const c = s.counts||{}, total = (s.rows||[]).length;
@@ -826,6 +860,12 @@ document.body.addEventListener('click', async e=>{
     try{ await api('/api/slot/rows',{id:+rst.dataset.restore, reset:true}); }catch(err){ toast(err.message); }
     tick(); return;
   }
+  const cx = e.target.closest('.cx');
+  if (cx){
+    try{ await api('/api/slot/chain',{id:+cx.dataset.chsid, remove:+cx.dataset.chidx}); }
+    catch(err){ toast(err.message); }
+    tick(); return;
+  }
   const dt = e.target.closest('.dtabs button');
   if (dt){ switchDlg(dt.dataset.t); return; }
 });
@@ -958,6 +998,11 @@ class RunSlot:
         self.sheet_by_id: dict[str, Any] = {}
 
         self.tabs_selected: list[str] = []
+        # Цепочка: очереди, которые пойдут В ЭТОЙ ЖЕ вкладке после текущей.
+        # Смысл — серии с @use на предыдущие: вторая серия не может стартовать,
+        # пока первой нет в журнале, а вручную караулить финал не хочется.
+        # Добавлять МОЖНО во время прогона — на этом всё и держится.
+        self.chain: list[str] = []
         self.thread: threading.Thread | None = None
         self.parallel: ParallelRunner | None = None
         self.project: str | None = None      # имя проекта после старта
@@ -982,8 +1027,12 @@ class RunSlot:
     # --------------------------------------------------------------- очередь
 
     def load_queue(self, source: str) -> None:
-        """Прочитать очередь из .xlsx / .yaml / .txt."""
+        """Прочитать очередь из .xlsx / .yaml / .txt (снаружи, при простое)."""
         self._require_idle()
+        self._load_queue(source)
+
+    def _load_queue(self, source: str) -> None:
+        """Тело загрузки без проверки простоя — цепочка зовёт его из прогона."""
         # Имя без пути ищется в папке промптов — см. Config.resolve_queue.
         p = self.cfg.resolve_queue(source)
         # Храним разрешённый путь: иначе после переезда файлов в prompts/
@@ -1091,6 +1140,53 @@ class RunSlot:
         path = folder / f"pasted_{self.id}.flow.txt"
         path.write_text(text, encoding="utf-8")
         self.load_queue(str(path))
+
+    # -------------------------------------------------------------- цепочка
+
+    def chain_add(self, source: str) -> None:
+        """Поставить очередь в хвост цепочки. Разрешено ВО ВРЕМЯ прогона.
+
+        Файл валидируется сразу: узнать о битой очереди в момент добавления
+        лучше, чем через час, когда до неё дойдёт очередь.
+        """
+        p = self.cfg.resolve_queue(source)
+        if p.suffix.lower() in (".txt", ".text", ".prompts"):
+            _, errors, _ = parse_prompts(
+                p.read_text(encoding="utf-8-sig"),
+                self.cfg.out_dir(), self.cfg.products_dir(),
+            )
+            if errors:
+                raise ValueError(
+                    "в цепочку не добавлен, ошибки разбора:\n"
+                    + "\n".join(f"• {e}" for e in errors)
+                )
+        if len(self.chain) >= 10:
+            raise ValueError("в цепочке уже 10 очередей — хватит")
+        self.chain.append(str(p))
+        self.console.print(f"в цепочку добавлен: {p.name} (позиция {len(self.chain)})")
+        self.app.save_ui()
+
+    def chain_add_text(self, text: str) -> None:
+        """Вставленный текст — в цепочку. Файл свой на каждую позицию."""
+        if not (text or "").strip():
+            raise ValueError("пустой текст — нечего добавлять")
+        _, errors, _ = parse_prompts(text, self.cfg.out_dir(), self.cfg.products_dir())
+        if errors:
+            raise ValueError("ошибки разбора:\n" + "\n".join(f"• {e}" for e in errors))
+        folder = self.cfg.prompts_dir()
+        folder.mkdir(parents=True, exist_ok=True)
+        n = 1
+        while (folder / f"pasted_{self.id}_chain{n}.flow.txt").exists():
+            n += 1
+        path = folder / f"pasted_{self.id}_chain{n}.flow.txt"
+        path.write_text(text, encoding="utf-8")
+        self.chain_add(str(path))
+
+    def chain_remove(self, index: int) -> None:
+        if 0 <= index < len(self.chain):
+            gone = self.chain.pop(index)
+            self.console.print(f"из цепочки убран: {Path(gone).name}")
+            self.app.save_ui()
 
     def remove_rows(self, ids: list[str] | None, reset: bool = False) -> None:
         self._require_idle()
@@ -1237,6 +1333,43 @@ class RunSlot:
         return rest
 
     def _run(self, jobs: list[Any], dry: bool, tab_ids: list[str]) -> None:
+        """Поток прогона: текущая очередь, затем цепочка — в тех же вкладках."""
+        try:
+            self._run_chain(jobs, dry, tab_ids)
+        finally:
+            self.dry_running = False
+
+    def _run_chain(self, jobs: list[Any], dry: bool, tab_ids: list[str]) -> None:
+        go_on = self._run_source(jobs, dry, tab_ids)
+        while go_on and self.chain:
+            nxt = self.chain.pop(0)
+            self.app.save_ui()
+            self.console.print(f"[bold cyan]цепочка:[/bold cyan] перехожу к {Path(nxt).name}")
+            try:
+                self._load_queue(nxt)
+            except Exception as exc:  # noqa: BLE001 — битый файл не должен ронять панель
+                self.last_error = f"цепочка: {Path(nxt).name} не загрузился: {exc}"
+                self.console.print(f"[red]{self.last_error}[/red]")
+                break
+            # Сегмент цепочки идёт как неявный старт: все TODO, без фильтров.
+            jobs2 = [
+                self.jobs_by_id[r["id"]] for r in self.rows
+                if r["id"] not in self.removed and self.statuses.get(r["id"]) in RUNNABLE
+            ]
+            if not jobs2:
+                self.console.print("[yellow]цепочка: в этой очереди нечего запускать — дальше[/yellow]")
+                continue
+            self._skip_completed = self.sheet is None
+            go_on = self._run_source(jobs2, dry, tab_ids)
+        if self.chain and not go_on:
+            self.console.print(
+                f"[yellow]цепочка остановлена, в хвосте осталось: {len(self.chain)} — "
+                "они никуда не делись, запусти слот снова[/yellow]"
+            )
+
+    def _run_source(self, jobs: list[Any], dry: bool, tab_ids: list[str]) -> bool:
+        """Одна очередь. Возвращает, можно ли продолжать цепочку."""
+        go_on = True
         try:
             self.app.prepare_soften(self.console)
 
@@ -1248,8 +1381,12 @@ class RunSlot:
             except FlowClientError as exc:
                 self.last_error = "нет связи с браузером"
                 self.console.print(f"[red]{exc}[/red]")
-                return
+                return False
             try:
+                # Вкладку могли оставить в галерее медиа — редактор скрыт,
+                # и первый же клик повис бы. Чиним до любых действий.
+                if probe.current_project_id() is not None:
+                    probe.ensure_workspace()
                 if self.queue_project:
                     with self.app.project_lock:
                         how = probe.ensure_project(self.queue_project)
@@ -1260,12 +1397,12 @@ class RunSlot:
                 if not pid:
                     self.last_error = "во вкладке открыт список проектов, а не проект"
                     self.console.print(f"[red]{self.last_error}[/red]")
-                    return
+                    return False
                 other = self.app.project_conflict(self.id, pid)
                 if other:
                     self.last_error = f"этот проект уже гоняет {other} — два прогона в одном проекте нельзя"
                     self.console.print(f"[red]{self.last_error}[/red]")
-                    return
+                    return False
                 self.project_id = pid
                 jobs = self._apply_resume(jobs, pid, dry)
             finally:
@@ -1274,7 +1411,7 @@ class RunSlot:
             if not jobs:
                 self.outcome_text = "все выбранные задачи уже выполнены в этом проекте"
                 self.console.print(f"[yellow]{self.outcome_text}[/yellow]")
-                return
+                return True  # цепочке это не мешает
 
             refs_lock = threading.Lock()
             resolvers: list[RefResolver] = []
@@ -1333,6 +1470,10 @@ class RunSlot:
             if outcome.stopped_reason:
                 self.console.print(f"[red]{outcome.stopped_reason}[/red]")
                 self.last_error = outcome.stopped_reason
+                # Остановка — что по «Стоп», что по квоте — глушит и цепочку:
+                # раз человек прервал руками (или кончились кредиты), молча
+                # стартовать следующую серию было бы сюрпризом.
+                go_on = False
             # Квота и «подозрительная активность» бьют по всему аккаунту —
             # глушим и остальные прогоны, каждый доработает текущую задачу.
             if outcome.stop_kind in STOP_QUEUE:
@@ -1340,10 +1481,11 @@ class RunSlot:
         except Exception as exc:  # noqa: BLE001 — падение прогона не роняет панель
             self.last_error = str(exc)[:300]
             self.console.print(f"[red]прогон упал: {exc}[/red]")
+            go_on = False
         finally:
             self.parallel = None
             self.project_id = ""
-            self.dry_running = False
+        return go_on
 
     # ------------------------------------------------------------------ вид
 
@@ -1365,6 +1507,7 @@ class RunSlot:
             "queue_project": self.queue_project,
             "project": self.project,
             "tabs": self.tabs_selected,
+            "chain": [Path(c).name for c in self.chain],
             "rows": rows,
             "counts": counts,
             "removed": len(self.removed),
@@ -1410,11 +1553,21 @@ class AppState:
         sources = (saved or {}).get("slots") or [default_source]
         for src in sources[:MAX_SLOTS]:
             slot = self.add_slot(save=False)
+            # Старый формат — строка-путь, новый — {"source", "chain"}.
+            chain: list[str] = []
+            if isinstance(src, dict):
+                chain = [str(c) for c in (src.get("chain") or [])]
+                src = src.get("source") or ""
             if src:
                 try:
                     slot.load_queue(str(src))
                 except Exception as exc:  # noqa: BLE001 — панель должна открыться всегда
                     slot.console.print(f"[yellow]очередь не загружена: {exc}[/yellow]")
+            for c in chain:
+                try:
+                    slot.chain_add(c)
+                except Exception as exc:  # noqa: BLE001
+                    slot.console.print(f"[yellow]цепочка: {c} не вернулся: {exc}[/yellow]")
 
     # ------------------------------------------------------------------ слоты
 
@@ -1584,7 +1737,7 @@ class AppState:
         data.update({
             "endpoint": self.cfg.get("cdp.endpoint"),
             "soften_backend": self.cfg.get("moderation.soften.backend"),
-            "slots": [s.source for s in self.slots],
+            "slots": [{"source": s.source, "chain": s.chain} for s in self.slots],
         })
         try:
             Path(UI_FILE).write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
@@ -1801,6 +1954,15 @@ def make_handler(state: AppState, token: str = "") -> type[BaseHTTPRequestHandle
                 elif u.path == "/api/slot/parse":
                     state.slot(payload.get("id")).parse_text(payload.get("text") or "")
                     self._json({"ok": True})
+                elif u.path == "/api/slot/chain":
+                    slot = state.slot(payload.get("id"))
+                    if payload.get("add"):
+                        slot.chain_add(str(payload["add"]))
+                    elif payload.get("text"):
+                        slot.chain_add_text(str(payload["text"]))
+                    elif payload.get("remove") is not None:
+                        slot.chain_remove(int(payload["remove"]))
+                    self._json({"ok": True, "chain": [Path(c).name for c in slot.chain]})
                 elif u.path == "/api/slot/rows":
                     state.slot(payload.get("id")).remove_rows(
                         payload.get("ids"), reset=bool(payload.get("reset")))

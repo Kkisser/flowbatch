@@ -1,0 +1,446 @@
+@project OBRYV_P03
+
+=== IMG obryv_p03_00_zhuzha
+# Эталон сезона. Жужа соло. Источник внешности для серии 3 и финала сезона.
+3D Pixar style, vertical 9:16. A tall rocky cliff outcrop over a deep mountain gorge at golden hour: warm orange-gold sunset light, a winding river far below, scattered glowing clouds, volumetric light, gentle haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZHUZHA is a cartoon character made entirely of chewed bubble gum: a soft stretchy glossy pink-grey body that droops slightly and pulls into thin sticky threads, a rounded gum-blob head with big shiny cartoon eyes, long dark lashes and a sweet naive clingy smile drawn directly on the gum surface, and no hair of any kind. Slim gum arms and legs that stretch like taffy, five soft fingers on each hand, and a simple wrap of darker pink gum shaped like a short dress. Her whole surface looks tacky and slightly wet, with a few fine threads trailing from her elbows.
+GUM-HEAD RULE, HIGHEST PRIORITY: her head IS a rounded blob of chewed gum with the eyes, lashes and mouth drawn directly on the gum surface. It never becomes a human head, never gains hair, a scalp, ears or a human skull shape. She is fully anthropomorphic but entirely made of gum, never human skin.
+Composition: ZHUZHA stands alone on the flat top of the rock in three-quarter view toward the camera, hands clasped in front of her, head tilted, a naive happy smile. No other character appears anywhere in the frame. No product appears anywhere in the frame.
+Full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Friendly cinematic cartoon look, not scary, not gross. Cinematic golden-hour backlight, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG obryv_p03_01_stuck
+@use OBRYV_P02 :: obryv_p02_00_zub
+@use obryv_p03_00_zhuzha
+# Сцена 1 — Image. Эталонный кадр серии. В кадре: Зуб, Жужа. Хук-инверсия, товара нет.
+3D Pixar style, vertical 9:16. A tall rocky cliff outcrop over a deep mountain gorge at golden hour: warm orange-gold sunset light, a winding river far below, scattered glowing clouds, volumetric light, gentle haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes now wide with annoyance, thick dark eyebrows, a small nose, a strained open mouth, and no hair of any kind. Fully anthropomorphic body: natural arms with elbows, wrists and five-fingered hands, legs with knees, braced stance at the edge, right arm extended out over the void and shaking. Wears a light beige button-up shirt with sleeves rolled to the elbows, a thin brown belt, khaki chino trousers and white sneakers. ZHUZHA is a cartoon character made entirely of chewed bubble gum: a soft stretchy glossy pink-grey body, a rounded gum-blob head with big shiny cartoon eyes, long dark lashes and a delighted clingy smile drawn directly on the gum surface, no hair of any kind, slim gum arms and legs that stretch like taffy, a wrap of darker pink gum shaped like a short dress, tacky and slightly wet all over.
+TOOTH-HEAD AND GUM-HEAD RULE, HIGHEST PRIORITY: ZUB's head IS a tooth crown of smooth glossy enamel and ZHUZHA's head IS a blob of chewed gum, with eyes, eyebrows and mouths drawn directly on those surfaces. Neither ever becomes a human head, never gains hair, a scalp, ears or a human skull shape. ZHUZHA is entirely made of gum and never has human skin.
+Composition: ZUB stands braced at the very edge of the rock in three-quarter view, shaking his extended right arm hard. ZHUZHA is stuck to his forearm by one long stretched gum thread and swings full-body over the void, completely delighted, arms open toward him. Thin pink threads stretch and sag between them. No product appears anywhere in the frame.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Friendly comedic cartoon look, not scary, not gross. Cinematic golden-hour backlight, wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG obryv_p03_02_sweet
+@use obryv_p03_00_zhuzha
+# Сцена 2 — Image. Крупно Жужа, предплечье Зуба сверху кадра. Товара нет.
+3D Pixar style, vertical 9:16. Deep mountain gorge at golden hour seen from the cliff edge looking down, a winding river blurred far below, warm orange-gold light, volumetric haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZHUZHA is a cartoon character made entirely of chewed bubble gum: a soft stretchy glossy pink-grey body, a rounded gum-blob head with big shiny cartoon eyes now proud and sparkling, long dark lashes, thin raised eyebrows and a beaming smile drawn directly on the gum surface, no hair of any kind, slim stretchy gum arms and legs, a wrap of darker pink gum shaped like a short dress, tacky and slightly wet all over.
+GUM-HEAD RULE, HIGHEST PRIORITY: her head IS a rounded blob of chewed gum with the eyes, lashes and mouth drawn directly on the gum surface. It never becomes a human head, never gains hair, a scalp, ears or a human skull shape. She is entirely made of gum and never has human skin.
+Composition: close-up from slightly above. ZHUZHA swings over the gorge, attached by a long stretched gum thread; only a forearm in a rolled beige sleeve enters the very top of the frame, no face other than hers is visible. She presses one gum hand to her chest with enormous pride, threads sagging around her in the warm light.
+Full body of ZHUZHA visible, not cropped. No product appears anywhere in the frame. No captions or text on screen, no lettering on any rock, sign or surface. Friendly comedic cartoon look, not scary, not gross. Cinematic golden-hour light, close-up, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG obryv_p03_03_break
+@use obryv_p03_01_stuck
+# Сцена 3 — Image. Слом формата: пальцы разжаты, Жужа висит на липкости. Товара нет.
+3D Pixar style, vertical 9:16. A tall rocky cliff outcrop over a deep mountain gorge at golden hour, warm orange-gold light, volumetric haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes now open again in flat disbelief, thick dark eyebrows, a small nose, a small confused mouth, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands, legs with knees, right hand held open with the fingers fully spread. Light beige button-up shirt with sleeves rolled to the elbows, thin brown belt, khaki chino trousers, white sneakers. ZHUZHA is a cartoon character made entirely of chewed bubble gum: soft stretchy glossy pink-grey body, rounded gum-blob head with big shiny cartoon eyes, long dark lashes and a tender knowing smile drawn directly on the gum surface, no hair of any kind, slim stretchy gum arms and legs, a wrap of darker pink gum shaped like a short dress, tacky and slightly wet.
+TOOTH-HEAD AND GUM-HEAD RULE, HIGHEST PRIORITY: ZUB's head IS a tooth crown of smooth glossy enamel and ZHUZHA's head IS a blob of chewed gum. Neither ever becomes a human head, never gains hair, a scalp, ears or a human skull shape. ZHUZHA is entirely made of gum and never has human skin.
+Composition: medium shot from the side. ZUB has opened his hand completely, fingers spread wide, and stares at it. ZHUZHA still hangs over the void from his palm on a single thick gum thread, not falling at all, smiling up at him fondly. No product appears anywhere in the frame.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Friendly comedic cartoon look, not scary, not gross. Cinematic golden-hour side light, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG obryv_p03_04_decision
+@use obryv_p03_01_stuck
+@product rl095
+# Сцена 4 — Image. Зуб достаёт RL 095. В кадре: Зуб, Жужа.
+3D Pixar style, vertical 9:16. A tall rocky cliff outcrop over a deep mountain gorge at golden hour, warm orange-gold light, volumetric haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes narrowed with grim resolve, thick dark eyebrows low, a small nose, a flat determined mouth, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands, legs with knees. Light beige button-up shirt with sleeves rolled to the elbows, thin brown belt, khaki chino trousers, white sneakers. ZHUZHA is a cartoon character made entirely of chewed bubble gum: soft stretchy glossy pink-grey body, rounded gum-blob head with big shiny cartoon eyes now uncertain, long dark lashes, a wavering smile drawn directly on the gum surface, no hair of any kind, slim stretchy gum arms and legs, a wrap of darker pink gum shaped like a short dress.
+TOOTH-HEAD AND GUM-HEAD RULE, HIGHEST PRIORITY: ZUB's head IS a tooth crown of smooth glossy enamel and ZHUZHA's head IS a blob of chewed gum. Neither ever becomes a human head, never gains hair, a scalp, ears or a human skull shape. ZHUZHA is entirely made of gum and never has human skin.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos. The device is the Revyline RL 095 Cloud Dancer sonic electric toothbrush: a slim straight cylindrical handle with a smooth matte finish in a soft gradient running from pale sky-blue at the bottom to clean white at the top, a small narrow indicator display area on the front face of the handle with a single round power button below it, small uppercase "REVYLINE" lettering on the handle, and a slim white detachable brush head on top with a compact rounded field of white bristles. Do not change its color or shape, do not add extra buttons, screens, cables or logos. Only one product in the whole frame, drawn from ZUB's trouser pocket and held in his left hand, the whole device visible and never covered by his fingers. Zero changes, no morphing, the brush head never detaches, extends or transforms.
+Composition: medium shot. ZUB pulls the RL 095 Cloud Dancer out of his pocket with his left hand and holds it up, looking at it grimly, while ZHUZHA still hangs from his right palm over the void, watching the device with growing doubt.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Friendly comedic cartoon look, not scary. Cinematic golden-hour light, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p03_05_release
+@use obryv_p03_01_stuck
+@product rl095
+# Сцена 5 — Image. Продукт в действии: вибрация отлепляет Жужу. В кадре: Зуб, Жужа.
+3D Pixar style, vertical 9:16. A tall rocky cliff outcrop over a deep mountain gorge at golden hour, warm orange-gold light, volumetric haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes calm and focused, thick dark eyebrows, a small nose, a satisfied closed mouth, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands, legs with knees. Light beige button-up shirt with sleeves rolled to the elbows, thin brown belt, khaki chino trousers, white sneakers. ZHUZHA is a cartoon character made entirely of chewed bubble gum: soft stretchy glossy pink-grey body, rounded gum-blob head with big shiny cartoon eyes wide with comic alarm, long dark lashes, an open shouting mouth drawn directly on the gum surface, no hair of any kind, slim stretchy gum arms and legs, a wrap of darker pink gum shaped like a short dress.
+TOOTH-HEAD AND GUM-HEAD RULE, HIGHEST PRIORITY: ZUB's head IS a tooth crown of smooth glossy enamel and ZHUZHA's head IS a blob of chewed gum. Neither ever becomes a human head, never gains hair, a scalp, ears or a human skull shape. ZHUZHA is entirely made of gum and never has human skin.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos: the Revyline RL 095 Cloud Dancer sonic electric toothbrush, a slim straight cylindrical handle with a soft matte gradient from pale sky-blue at the bottom to clean white at the top, a narrow indicator display area on the front face with a single round power button below it, small uppercase "REVYLINE" lettering on the handle, a slim white detachable brush head on top with a compact rounded field of white bristles. Do not change its color or shape, do not add extra buttons, screens, cables or logos. Only one product in the whole frame, held large and steady in ZUB's left hand, the whole device visible and never covered by his fingers. Zero changes, no morphing, the brush head never detaches, extends or transforms. No toothpaste, no foam, no water.
+Composition: medium close shot on ZUB's forearm and hands, filling a good part of the frame. He holds the RL 095 Cloud Dancer against the sticky patch on his forearm; the bristle head is pressed to the gum thread, which is visibly vibrating and letting go. ZHUZHA is peeling away below, stretching into long thin pink threads that are about to snap, mouth open in comic alarm. The gorge glows warm behind.
+Both characters readable, not cropped awkwardly. No captions or text on screen, no lettering on any rock, sign or surface. Friendly comedic cartoon look, not scary, not gross. Cinematic golden-hour light, medium close shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p03_06_rescue
+@use OBRYV_P02 :: obryv_p02_00_zub
+@product rl095
+# Сцена 6 — Image. Зуб соло, спасение товара. Жужи в кадре нет.
+3D Pixar style, vertical 9:16. Cliff top over a deep mountain gorge at golden hour, warm sunset backlight, volumetric light, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes soft with relief, thick dark eyebrows, a small nose, a gentle sincere mouth, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands, legs with knees, kneeling on one knee. Light beige button-up shirt with sleeves rolled to the elbows, thin brown belt, khaki chino trousers, white sneakers.
+TOOTH-HEAD RULE, HIGHEST PRIORITY: his head IS a tooth crown of smooth glossy enamel with the eyes, eyebrows and mouth drawn directly on the enamel. It never becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos: the Revyline RL 095 Cloud Dancer sonic electric toothbrush, a slim straight cylindrical handle with a soft matte gradient from pale sky-blue at the bottom to clean white at the top, a narrow indicator display area on the front face with a single round power button below it, small uppercase "REVYLINE" lettering on the handle, a slim white detachable brush head on top with a compact rounded field of white bristles. Do not change its color or shape, do not add extra buttons, screens, cables or logos. Only one product in the whole frame, cradled in both of ZUB's hands against his chest, the entire device visible with the brush head up and the lettering readable, never covered by his fingers. Zero changes, no morphing, the brush head never detaches, extends or transforms.
+Composition: medium shot. ZUB kneels on one knee near the edge, holding the RL 095 Cloud Dancer to his chest with both hands like something precious, exhaling with relief. Golden dust drifts behind him over the gorge. ZHUZHA does not appear anywhere in this shot, no gum, no threads, no silhouette.
+Full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Warm sincere cartoon look, not scary. Cinematic golden-hour backlight, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p03_07_hero
+@use OBRYV_P02 :: obryv_p02_00_zub
+@product rl095
+# Сцена 7 — Image. PRODUCT HERO. Зуб соло, товар целиком в кадре.
+3D Pixar style, vertical 9:16. Cliff top over a deep mountain gorge at golden hour, wide warm sunset sky behind, volumetric light, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes, thick dark eyebrows, a small nose, a calm proud closed-lip smile, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands, legs with knees, standing upright. Light beige button-up shirt with sleeves rolled to the elbows, thin brown belt, khaki chino trousers, white sneakers.
+TOOTH-HEAD RULE, HIGHEST PRIORITY: his head IS a tooth crown of smooth glossy enamel with the eyes, eyebrows and mouth drawn directly on the enamel. It never becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos. The device is the Revyline RL 095 Cloud Dancer sonic electric toothbrush: a slim straight cylindrical handle with a smooth matte finish in a soft gradient running from pale sky-blue at the bottom to clean white at the top, a small narrow indicator display area on the front face of the handle with a single round power button below it, small uppercase "REVYLINE" lettering on the handle, and a slim white detachable brush head on top with a compact rounded field of white bristles. Do not change its color or shape, do not add extra buttons, screens, cables or logos. Only one product in the whole frame, held in both hands at chest height and presented toward the camera, the ENTIRE device visible at a comfortable medium-close distance with no extreme macro zoom on any detail, never covered by his fingers. Zero changes, no morphing, the brush head never detaches, extends or transforms.
+Composition: medium-close shot. ZUB stands on the cliff top facing the camera in three-quarter view, presenting the RL 095 Cloud Dancer chest-high in both hands. The sunset lays a soft warm glow along the sky-blue to white gradient; the gorge blurs behind him. ZHUZHA does not appear anywhere in this shot.
+Full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Confident warm cartoon look. Cinematic golden-hour light, medium-close shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p03_08_karamel
+@use OBRYV_P02 :: obryv_p02_00_zub
+@use OBRYV_P02 :: obryv_p02_00_karamel
+@product rl410
+# Сцена 8 — Image. Крючок на финал. В кадре: Зуб, Карамель с розовым RL 410. Жужи нет.
+3D Pixar style, vertical 9:16. A rocky plateau above a deep mountain gorge at the very end of golden hour, the sun almost gone, the sky deepening to orange and violet, stronger wind, long shadows, volumetric haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes now widening, thick dark eyebrows, a small nose, a small stunned mouth, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands, legs with knees, turning toward the path with empty hands at his sides. Light beige button-up shirt with sleeves rolled to the elbows, thin brown belt, khaki chino trousers, white sneakers. KARAMEL is a glamorous female cartoon character whose head is a translucent amber hard-candy sphere, glossy polished caramel with swirling golden-orange sugar patterns inside, strictly candy-like, NOT flame-like, no fire textures, no glow, no hair of any kind; bold long dark lashes, smoky triumphant eyes, plump lips with a slow confident half-smile; warm amber-tan skin, elegant anthropomorphic arms and legs; shimmering gold sequin cocktail dress fluttering in the wind, gold high heels.
+TOOTH-HEAD AND CANDY-HEAD RULE, HIGHEST PRIORITY: ZUB's head IS a tooth crown of smooth glossy enamel and KARAMEL's head IS an amber hard-candy sphere. Neither ever becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos. The device is the pink Revyline RL 410 portable oral irrigator: a compact pink handheld body with a pale pink ribbed cap, a thin transparent nozzle on top and small uppercase "REVYLINE" lettering at the bottom of the body, in its closed compact configuration exactly as in the reference photos. Do not change its color or shape, do not add extra buttons, displays, hoses or logos. Only one product in the whole frame, held in KARAMEL's raised right hand, the whole device visible and never covered by her fingers. Zero changes, no morphing, the device never slides open, unfolds, extends or transforms.
+Composition: medium wide shot. KARAMEL walks up onto the plateau along a rocky path from the right, unhurried, holding the pink RL 410 casually raised in her right hand. ZUB stands at the left, turned toward her, hands empty, stunned. The dark gorge drops away behind them. ZHUZHA does not appear anywhere in this shot.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Dramatic but friendly cartoon look, not scary. Cinematic low warm sun with long shadows, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p03_09_camp
+@use obryv_p03_00_zhuzha
+@use OBRYV_P02 :: obryv_p02_05_fall
+# Сцена 9 — Image. Пост-титр, опция. Костёр на дне ущелья. В кадре: Пончик, Жужа-шарик. Зуба и товара нет.
+3D Pixar style, vertical 9:16. The shadowed stony floor of a deep mountain gorge at dusk, cool blue rock walls rising on both sides, a thin strip of deep orange sky far above, a small crackling campfire throwing warm light on the stones, a weathered fallen log beside the fire, soft volumetric haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: PONCHIK is a round cartoon character whose head IS a plump glazed ring donut, golden-brown fried dough with thick glossy pink strawberry glaze, scattered multicolored sprinkles, a small hole in the crown, simple round cartoon eyes now flat with horror, thick eyebrows and an open mouth drawn directly on the glaze, no hair of any kind; round soft body, short arms and legs, blue and white horizontally striped sleeveless sailor shirt, dark blue rolled-up trousers, barefoot, sticky and glossy. ZHUZHA appears here compressed into a soft glossy pink-grey ball of chewed gum about the size of a melon, with her same big shiny cartoon eyes, long dark lashes and sweet naive smile on its surface, thin sticky threads running from the ball to the log, no arms, no legs and no dress in this shot.
+DONUT-HEAD AND GUM RULE, HIGHEST PRIORITY: PONCHIK's head IS a glazed donut ring and ZHUZHA is entirely chewed gum, with the eyes, lashes and mouths drawn directly on those surfaces. Neither ever becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+Composition: medium wide shot beside the campfire. PONCHIK sits on the log at the left, staring straight ahead in flat horror. The pink gum ball has just stuck to the log right next to him at the right, smiling sweetly. ZUB does not appear anywhere in this shot. KARAMEL does not appear in this shot. No product appears anywhere in the frame.
+PONCHIK full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Dry comedic cartoon look, not scary, not gross. Warm firelight against cool dusk, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== VID obryv_p03_01_stuck_anim
+@use obryv_p03_01_stuck
+@duration 8
+# Сцена 1 — Animation. Хук-инверсия: Жужа прилипла сама. 8 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — TOOTH AND GUM HEADS, NEVER HUMAN HEADS: in every frame, in every close-up, in every camera angle and after every cut, ZUB's head IS a glossy ivory-white tooth crown and ZHUZHA's head IS a rounded blob of chewed pink-grey gum, with simple cartoon eyes, eyebrows and mouths drawn directly on those surfaces. Neither ever gains hair, a scalp, ears, a human skull shape or a human face. ZHUZHA is entirely made of gum and never has human skin.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, large glossy ivory-white molar-shaped head with two soft bumps, brown eyes, thick dark eyebrows, small nose, light beige rolled-sleeve shirt, thin brown belt, khaki chinos, white sneakers, braced at the cliff edge, RIGHT of frame.
+- ZHUZHA: cartoon character from the reference image, glossy pink-grey chewed-gum body, gum-blob head with big shiny eyes and long lashes, wrap of darker pink gum shaped like a short dress, swinging over the void, LEFT of frame.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each character stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, colors and shade, same surface texture and glossiness, same feature placement, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. ZUB stays ivory-white, ZHUZHA stays pink-grey gum.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: a rocky cliff outcrop over a deep mountain gorge at golden hour, a winding river far below, drifting golden dust, thin pink gum threads stretching between ZUB's forearm and ZHUZHA. Nothing new appears during the video. No product appears at any moment.
+
+EMOTIONAL INTENSITY — HIGH: ZUB is exasperated, shaking his arm hard, eyebrows high, mouth strained. ZHUZHA is blissfully happy and completely unbothered, swinging and beaming. Big expressive cartoon acting. Only expression and pose change, the models, head shapes, textures and colors stay fixed.
+
+CAMERA STYLE: starts wide on the cliff, one quick cut to a tighter side angle as he shakes his arm.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: ZUB shakes his extended right arm hard; ZHUZHA swings over the void on a long stretching gum thread and does not come off. ZUB says in Russian, strained and exasperated: «Отцепись!»
+3.0–5.5s: the thread stretches thinner and springs back, pulling her closer instead. No dialogue.
+5.5–8.0s: ZHUZHA opens her arms toward him, beaming. ZHUZHA says in Russian, sweetly and delighted: «Мы теперь навсегда!»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voices. No captions or text on screen at any moment.
+
+Ambient sound only: steady mountain wind over the cliff, a faint distant river far below, soft sticky stretching sounds.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID obryv_p03_02_sweet_anim
+@use obryv_p03_02_sweet
+@duration 6
+# Сцена 2 — Animation. Жужа давит обаянием. 6 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — GUM HEAD, NEVER A HUMAN HEAD: in every frame and after every cut, ZHUZHA's head IS a rounded blob of chewed pink-grey gum with simple cartoon eyes, long lashes and a mouth drawn directly on the gum surface. It never gains hair, a scalp, ears, a human skull shape or a human face. She is entirely made of gum and never has human skin.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZHUZHA: cartoon character from the reference image, glossy pink-grey chewed-gum body, gum-blob head with big shiny eyes and long lashes, wrap of darker pink gum shaped like a short dress, swinging in the CENTRE of frame.
+- Only a forearm in a rolled beige sleeve enters the very top of the frame. No face other than ZHUZHA's is ever visible.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: ZHUZHA stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, gum color and shade, same surface texture and glossiness, same wrap dress. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: a deep mountain gorge at golden hour blurred far below, warm haze, sagging pink gum threads. Nothing new appears during the video. No product appears at any moment.
+
+EMOTIONAL INTENSITY — HIGH: enormous pride, then a small honest confession. Eyes sparkling, lashes fluttering, big expressive cartoon acting. Only expression and pose change, the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: slow push in on ZHUZHA, one small cut to a tighter framing on the last line.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.0s: ZHUZHA presses one gum hand to her chest and lifts her chin with enormous pride. ZHUZHA says in Russian, proudly: «Я сладкая!»
+2.0–3.5s: a beat, her eyes slide sideways, the thread above her sags a little. No dialogue.
+3.5–6.0s: ZHUZHA says in Russian, honestly and matter-of-factly: «Первые пять минут.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. She stays fully in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voice. No captions or text on screen at any moment.
+
+Ambient sound only: steady mountain wind, a faint distant river far below, soft sticky stretching sounds.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID obryv_p03_03_break_anim
+@use obryv_p03_03_break
+@duration 8
+# Сцена 3 — Animation. Слом формата: «Прости» не сработало. 8 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — TOOTH AND GUM HEADS, NEVER HUMAN HEADS: in every frame, in every close-up and after every cut, ZUB's head IS a glossy ivory-white tooth crown and ZHUZHA's head IS a rounded blob of chewed pink-grey gum, with simple cartoon eyes, eyebrows and mouths drawn directly on those surfaces. Neither ever gains hair, a scalp, ears, a human skull shape or a human face. ZHUZHA is entirely made of gum and never has human skin.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, light beige rolled-sleeve shirt, thin brown belt, khaki chinos, white sneakers, standing at the edge, RIGHT of frame.
+- ZHUZHA: cartoon character from the reference image, glossy pink-grey chewed-gum body, gum-blob head with big shiny eyes and long lashes, wrap of darker pink gum shaped like a short dress, hanging from his open palm, LEFT and below.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each character stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, colors and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: a rocky cliff outcrop over a deep mountain gorge at golden hour, a single thick pink gum thread running from his open palm down to ZHUZHA. Nothing new appears during the video. No product appears at any moment.
+
+EMOTIONAL INTENSITY — MEDIUM: ZUB goes from solemn ceremony to flat disbelief, eyes opening slowly. ZHUZHA is tender and completely at ease. Big readable cartoon acting. Only expression and pose change, the models, head shapes, textures and colors stay fixed.
+
+CAMERA STYLE: medium side shot, one quick cut to a close-up of his open spread hand, then back out.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: ZUB closes his eyes with great ceremony and turns his head slightly away. ZUB says in Russian, quiet and solemn: «Прости.»
+2.5–5.0s: he opens his hand and spreads his fingers wide. ZHUZHA does not fall at all, still hanging from his palm on one thick gum thread. He opens one eye, then both, and stares at his hand. No dialogue.
+5.0–8.0s: ZHUZHA smiles up at him fondly. ZHUZHA says in Russian, tenderly: «Не работает, милый.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voices. No captions or text on screen at any moment.
+
+Ambient sound only: steady mountain wind over the cliff, a faint distant river far below, soft sticky stretching sounds.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID obryv_p03_04_decision_anim
+@use obryv_p03_04_decision
+@product rl095
+@duration 4
+# Сцена 4 — Animation. «Тогда по-плохому», Зуб достаёт RL 095. 4 секунды.
+Animate this exact scene. This is a comedic cartoon moment.
+
+TOP PRIORITY RULE — TOOTH AND GUM HEADS, NEVER HUMAN HEADS: in every frame and after every cut, ZUB's head IS a glossy ivory-white tooth crown and ZHUZHA's head IS a rounded blob of chewed pink-grey gum. Neither ever gains hair, a scalp, ears, a human skull shape or a human face. ZHUZHA is entirely made of gum and never has human skin.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, grim narrowed eyes, light beige rolled-sleeve shirt, khaki chinos, white sneakers, RIGHT of frame.
+- ZHUZHA: cartoon character from the reference image, glossy pink-grey chewed-gum body, hanging from his right palm, LEFT and below.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each character stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, colors and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: a rocky cliff outcrop over a deep mountain gorge at golden hour. Nothing new appears during the video besides the device being drawn from his pocket.
+
+EMOTIONAL INTENSITY — MEDIUM: ZUB is grimly decided, jaw set, eyebrows low. ZHUZHA's smile falters. Only expression and pose change, the models, head shapes, textures and colors stay fixed.
+
+CAMERA STYLE: medium shot with a small push in as he raises the device.
+
+ABSOLUTE PRODUCT LOCK — the Revyline RL 095 Cloud Dancer sonic toothbrush stays 100% identical to the attached reference photos, slim cylindrical handle with a soft matte gradient from pale sky-blue at the bottom to clean white at the top, narrow indicator display and a single round power button on the front, "REVYLINE" lettering, slim white detachable brush head on top. Only one product in the whole frame, held only by ZUB, kept large and near-static in frame, the whole device inside the frame, never covered by fingers, no extreme macro zoom on a single detail, zero changes, no morphing, the brush head never detaches, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.0s: ZUB reaches into his trouser pocket with his left hand and slowly draws out the RL 095 Cloud Dancer, holding it up steady. No dialogue.
+2.0–4.0s: he looks at ZHUZHA over the top of the device. ZUB says in Russian, low and grim: «Тогда по-плохому.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Everyone stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voice. No captions or text on screen at any moment.
+
+Ambient sound only: steady mountain wind over the cliff, a faint distant river far below.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+4 seconds, vertical 9:16.
+
+=== VID obryv_p03_05_release_anim
+@use obryv_p03_05_release
+@product rl095
+@duration 8
+# Сцена 5 — Animation. Вибрация отлепляет Жужу, падение. 8 секунд.
+Animate this exact scene. This is a comedic cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — TOOTH AND GUM HEADS, NEVER HUMAN HEADS: in every frame, in every close-up and after every cut, ZUB's head IS a glossy ivory-white tooth crown and ZHUZHA's head IS a rounded blob of chewed pink-grey gum. Neither ever gains hair, a scalp, ears, a human skull shape or a human face. ZHUZHA is entirely made of gum and never has human skin.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, calm focused expression, light beige rolled-sleeve shirt, khaki chinos, white sneakers, RIGHT of frame.
+- ZHUZHA: cartoon character from the reference image, glossy pink-grey chewed-gum body, gum-blob head with big shiny eyes and long lashes, peeling away below and to the LEFT.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each character stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, colors and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. The only shape change allowed is ZHUZHA's gum stretching into threads and then rounding into a soft ball, which is her established gum behaviour.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: a rocky cliff outcrop over a deep mountain gorge at golden hour, thin pink gum threads. Nothing new appears during the video. No toothpaste, no foam, no water.
+
+EMOTIONAL INTENSITY — MEDIUM to HIGH: ZUB is calm and precise. ZHUZHA goes from surprise to comic outrage. Playful cartoon physics, harmless, no injury, not scary. Only expression and pose change, the models, head shapes, textures and colors stay fixed.
+
+CAMERA STYLE: medium close on his forearm and hands, one quick cut wide as ZHUZHA lets go and drops away.
+
+ABSOLUTE PRODUCT LOCK — the Revyline RL 095 Cloud Dancer sonic toothbrush stays 100% identical to the attached reference photos, slim cylindrical handle with a soft matte gradient from pale sky-blue at the bottom to clean white at the top, narrow indicator display and a single round power button on the front, "REVYLINE" lettering, slim white detachable brush head on top. Only one product in the whole frame, held only by ZUB, kept large and steady in frame with only a fine vibration, the whole device inside the frame, never covered by fingers, no extreme macro zoom on a single detail, zero changes, no morphing, the brush head never detaches, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: ZUB presses the vibrating brush head of the RL 095 Cloud Dancer against the sticky gum patch on his forearm. The gum shivers and starts to let go. No dialogue.
+2.5–4.5s: ZHUZHA peels away, stretching into long thin pink threads that snap one by one, her eyes wide with comic alarm. No dialogue.
+4.5–7.0s: she rounds up into a soft pink gum ball and drops away into the gorge. ZHUZHA says in Russian, shouting upward, the voice fading with distance: «Ты ещё пожалее-е-ешь!»
+7.0–8.0s: ZUB lowers the device and looks at his clean forearm. No dialogue.
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Everyone stays fully in frame, not cropped. No morphing of the characters, no new objects, no sudden changes. No reverb or pitch effects on the voice beyond the natural fade with distance. No captions or text on screen at any moment.
+
+Ambient sound only: steady mountain wind over the cliff, a faint distant river far below, a soft high electric hum from the device, sticky snapping sounds.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID obryv_p03_06_rescue_anim
+@use obryv_p03_06_rescue
+@product rl095
+@duration 6
+# Сцена 6 — Animation. Спасение товара, «Я выбираю тебя». 6 секунд.
+Animate this exact scene. This is a warm emotional cartoon moment.
+
+TOP PRIORITY RULE — TOOTH HEAD, NEVER A HUMAN HEAD: in every frame and after every cut, ZUB's head IS a glossy ivory-white tooth crown with simple cartoon eyes, eyebrows and mouth drawn directly on the enamel. It never gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, brown eyes soft with relief, light beige rolled-sleeve shirt, thin brown belt, khaki chinos, white sneakers, kneeling on one knee in the CENTRE of frame.
+- ZHUZHA does not appear at any moment, no gum, no threads, no silhouette.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: ZUB stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: cliff top over a deep mountain gorge at golden hour, golden dust drifting behind him. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: relief and quiet sincerity, a long exhale, soft eyes, a small warm smile. Only expression and pose change, the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: medium shot, slow push in as he brings the device to his chest.
+
+ABSOLUTE PRODUCT LOCK — the Revyline RL 095 Cloud Dancer sonic toothbrush stays 100% identical to the attached reference photos, only one product in the whole frame, held only by ZUB in both hands, the whole device inside the frame with the brush head up and the lettering readable, never covered by fingers, no extreme macro zoom on a single detail, zero changes, no morphing, the brush head never detaches, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: ZUB brings the RL 095 Cloud Dancer up with both hands and presses it to his chest, exhaling. No dialogue.
+2.5–5.0s: he looks down at the device. ZUB says in Russian, relieved and completely serious: «Я выбираю тебя.»
+5.0–6.0s: he lifts his eyes to the horizon, golden dust drifting past. No dialogue.
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. He stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voice. No captions or text on screen at any moment.
+
+Ambient sound only: steady mountain wind over the cliff, a faint distant river far below, occasional soft bird cries.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID obryv_p03_07_hero_anim
+@use obryv_p03_07_hero
+@product rl095
+@duration 10
+# Сцена 7 — Animation. PRODUCT HERO, модель названа вслух. 10 секунд.
+Animate this exact scene. This is a warm confident cartoon moment.
+
+TOP PRIORITY RULE — TOOTH HEAD, NEVER A HUMAN HEAD: in every frame and after every cut, ZUB's head IS a glossy ivory-white tooth crown with simple cartoon eyes, eyebrows and mouth drawn directly on the enamel. It never gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, calm proud expression, light beige rolled-sleeve shirt, thin brown belt, khaki chinos, white sneakers, standing in the CENTRE of frame facing camera in three-quarter view.
+- ZHUZHA does not appear at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: ZUB stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: cliff top with a wide warm sunset sky behind, the gorge blurred, drifting golden dust. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — LOW to MEDIUM: calm, proud, sincere, a small closed-lip smile and one slow nod. Only expression and pose change, the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: locked medium-close shot, an extremely slow push in. The device stays large and near-static in frame throughout, only his hands and face move.
+
+ABSOLUTE PRODUCT LOCK — the Revyline RL 095 Cloud Dancer sonic toothbrush stays 100% identical to the attached reference photos: slim straight cylindrical handle with a soft matte gradient from pale sky-blue at the bottom to clean white at the top, a narrow indicator display area on the front face with a single round power button below it, small uppercase "REVYLINE" lettering on the handle, a slim white detachable brush head on top with a compact rounded field of white bristles. Only one product in the whole frame, held only by ZUB in both hands at chest height, the ENTIRE device visible at a comfortable medium-close distance, never covered by fingers, no extreme macro zoom on a single detail, zero changes, no morphing, the brush head never detaches, extends or transforms, the device never switches on in this shot.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–4.0s: ZUB presents the RL 095 Cloud Dancer toward the camera in both hands, holding it steady. ZUB says in Russian, calm and clear: «Ревилайн Эр Эль ноль девяносто пять, Клауд Дэнсер.»
+4.0–7.5s: he turns the device very slightly so the sunset runs along the sky-blue to white gradient. ZUB says in Russian, unhurried: «Звуковая. Тридцать три тысячи движений в минуту.»
+7.5–8.5s: a short beat, he nods once. No dialogue.
+8.5–10.0s: ZUB says in Russian, with a small dry smile: «На случай особо липких ситуаций.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. He stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voice. No captions or text on screen at any moment.
+
+Ambient sound only: steady mountain wind over the cliff, a faint distant river far below.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+10 seconds, vertical 9:16.
+
+=== VID obryv_p03_08_karamel_anim
+@use obryv_p03_08_karamel
+@product rl410
+@duration 8
+# Сцена 8 — Animation. Крючок на финал: возвращение Карамели, призыв. 8 секунд.
+Animate this exact scene. This is a dramatic but friendly cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — TOOTH AND CANDY HEADS, NEVER HUMAN HEADS: in every frame, in every close-up and after every cut, ZUB's head IS a glossy ivory-white tooth crown and KARAMEL's head IS a translucent amber hard-candy sphere with swirling golden-orange sugar inside, strictly candy-like and never flame-like. Neither ever gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, stunned expression, light beige rolled-sleeve shirt, thin brown belt, khaki chinos, white sneakers, hands empty, LEFT of frame.
+- KARAMEL: cartoon character from the reference image, amber hard-candy sphere head, warm amber-tan skin, gold sequin cocktail dress, gold high heels, walking up the path, RIGHT of frame.
+- ZHUZHA does not appear at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each character stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, colors and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: a rocky plateau above the gorge at the very end of golden hour, the sky deepening to orange and violet, stronger wind, long shadows, a rocky path leading up from the right. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM to HIGH: KARAMEL is unhurried, triumphant and completely in control. ZUB is stunned and still. Big readable cartoon acting. Only expression and pose change, the models, head shapes, textures and colors stay fixed.
+
+CAMERA STYLE: starts medium wide on ZUB turning, one cut to KARAMEL walking up the path, one cut back to ZUB looking into the camera.
+
+ABSOLUTE PRODUCT LOCK — the pink Revyline RL 410 portable irrigator stays 100% identical to the attached reference photos, compact pink body, pale pink ribbed cap, thin transparent nozzle on top, "REVYLINE" lettering at the bottom, in its closed compact configuration. Only one product in the whole frame, held only by KARAMEL in her raised right hand, the whole device inside the frame, never covered by her fingers, no extreme macro zoom on a single detail, zero changes, no morphing, the device never slides open, unfolds, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.0s: the wind picks up, ZUB turns toward the path and freezes. KARAMEL walks unhurriedly up onto the plateau, the pink RL 410 raised casually in her right hand. No dialogue.
+2.0–4.0s: KARAMEL stops and tilts her head with a slow confident half-smile. KARAMEL says in Russian, unhurried and warm: «Ну здравствуй.»
+4.0–6.0s: ZUB turns his head slowly toward the camera, deadpan. ZUB says in Russian, quietly: «Финал в следующей серии.»
+6.0–8.0s: ZUB says in Russian, still deadpan: «Пишите, на чьей вы стороне.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voices. No captions or text on screen at any moment.
+
+Ambient sound only: strong mountain wind over the plateau, a faint distant river far below, the click of heels on rock.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID obryv_p03_09_camp_anim
+@use obryv_p03_09_camp
+@duration 6
+# Сцена 9 — Animation. Пост-титр, опция. Жужа-шарик прилипает к бревну. 6 секунд.
+Animate this exact scene. This is a dry comedic cartoon moment.
+
+TOP PRIORITY RULE — DONUT HEAD AND GUM, NEVER HUMAN HEADS: in every frame and after every cut, PONCHIK's head IS a glazed pink donut ring and ZHUZHA is a ball of chewed pink-grey gum with her eyes and smile on its surface. Neither ever gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- PONCHIK: cartoon character from the reference image, glazed pink donut head with sprinkles, blue and white striped sleeveless sailor shirt, dark blue rolled-up trousers, barefoot, sitting on the log, LEFT of frame.
+- ZHUZHA: compressed into a soft glossy pink-grey gum ball with her big shiny eyes, long lashes and sweet smile on its surface, no arms, no legs and no dress in this shot, stuck to the log at the RIGHT.
+- ZUB does not appear at any moment. KARAMEL does not appear at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: PONCHIK stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, glaze color and shade, same clothes. ZHUZHA's gum keeps exactly the pink-grey color, glossiness and eye design of her reference image. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: the shadowed stony floor of a deep gorge at dusk, a small crackling campfire, a weathered fallen log, cool blue rock walls. Nothing new appears during the video. No product appears at any moment.
+
+EMOTIONAL INTENSITY — LOW: PONCHIK is frozen in flat horror. ZHUZHA is serenely happy. Dry deadpan cartoon acting. Only expression and pose change, the models, shapes, textures and colors stay fixed.
+
+CAMERA STYLE: locked medium wide shot, no camera movement.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.5s: the pink gum ball drops onto the log right beside PONCHIK with a soft sticky splat and settles there, smiling. No dialogue.
+2.5–4.0s: PONCHIK slowly turns his head, sees it, and turns back to stare straight ahead. No dialogue.
+4.0–6.0s: PONCHIK says in Russian, flat and hollow: «Нет.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. PONCHIK stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voice. No captions or text on screen at any moment.
+
+Ambient sound only: a small crackling campfire, a faint hollow wind in the gorge, one soft sticky splat.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+6 seconds, vertical 9:16.

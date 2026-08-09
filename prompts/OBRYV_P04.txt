@@ -1,0 +1,408 @@
+@project OBRYV_P04
+
+=== IMG obryv_p04_01_ultimatum
+@use OBRYV_P02 :: obryv_p02_00_zub
+@use OBRYV_P02 :: obryv_p02_00_karamel
+@product rl410
+# Сцена 1 — Image. Эталонный кадр финала. В кадре: Зуб, Карамель с RL 410 над пропастью.
+3D Pixar style, vertical 9:16. A tall rocky cliff outcrop over a deep mountain gorge at golden hour: warm orange-gold sunset light, a winding river far below, scattered glowing clouds, volumetric light, gentle haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes now still and wary, thick dark eyebrows, a small nose, a tight closed mouth, and no hair of any kind. Fully anthropomorphic body: natural arms with elbows, wrists and five-fingered hands, legs with knees, standing frozen mid-step with empty hands slightly raised. Wears a light beige button-up shirt with sleeves rolled to the elbows, a thin brown belt, khaki chino trousers and white sneakers. KARAMEL is a glamorous female cartoon character whose head is a translucent amber hard-candy sphere, glossy polished caramel with swirling golden-orange sugar patterns inside, strictly candy-like, NOT flame-like, no fire textures, no glow, no hair of any kind; bold long dark lashes, smoky calm eyes, plump lips with a small controlled smile; warm amber-tan skin, elegant anthropomorphic arms and legs; shimmering gold sequin cocktail dress fluttering in the wind, gold high heels.
+TOOTH-HEAD AND CANDY-HEAD RULE, HIGHEST PRIORITY: ZUB's head IS a tooth crown of smooth glossy enamel and KARAMEL's head IS an amber hard-candy sphere, with eyes, eyebrows and mouths drawn directly on those surfaces. Neither ever becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos. The device is the pink Revyline RL 410 portable oral irrigator: a compact pink handheld body with a pale pink ribbed cap, a thin transparent nozzle on top and small uppercase "REVYLINE" lettering at the bottom of the body, in its closed compact configuration exactly as in the reference photos. Do not change its color or shape, do not add extra buttons, displays, hoses or logos. Only one product in the whole frame, held in KARAMEL's outstretched right hand, the whole device visible and never covered by her fingers. Zero changes, no morphing, the device never slides open, unfolds, extends or transforms.
+Composition: mirror of the season opener with the roles reversed. KARAMEL stands calmly at the very edge of the rock on the right, one arm stretched straight out over the void, holding the pink RL 410 above the drop. ZUB stands on the left a few steps away, frozen, hands empty and slightly raised, unable to move. The gorge glows warm and deep behind them.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Dramatic but friendly cartoon look, not scary. Cinematic golden-hour backlight, wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p04_02_threat
+@use obryv_p04_01_ultimatum
+@product rl410
+# Сцена 2 — Image. Крупно Карамель и вытянутая рука с RL 410. Зуб только размытым силуэтом на фоне.
+3D Pixar style, vertical 9:16. Cliff edge over a deep mountain gorge at golden hour, warm orange-gold light, the gorge blurred behind, volumetric haze, very shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: KARAMEL is a glamorous female cartoon character whose head is a translucent amber hard-candy sphere, glossy polished caramel with swirling golden-orange sugar patterns inside, strictly candy-like, NOT flame-like, no fire textures, no glow, no hair of any kind; bold long dark lashes, smoky eyes narrowed with quiet triumph, plump lips with a slow half-smile; warm amber-tan skin, elegant anthropomorphic arms and legs; shimmering gold sequin cocktail dress fluttering in the wind, gold high heels.
+CANDY-HEAD RULE, HIGHEST PRIORITY: her head IS an amber hard-candy sphere with the eyes, lashes and mouth drawn directly on the candy surface. It never becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos: the pink Revyline RL 410 portable oral irrigator, compact pink body, pale pink ribbed cap, thin transparent nozzle on top, small uppercase "REVYLINE" lettering at the bottom, in its closed compact configuration. Do not change its color or shape, do not add extra buttons, displays, hoses or logos. Only one product in the whole frame, held in KARAMEL's outstretched right hand, the whole device visible and never covered by her fingers. Zero changes, no morphing, the device never slides open, unfolds, extends or transforms.
+Composition: medium close shot on KARAMEL in three-quarter view, her outstretched right arm and the pink RL 410 large and clear in the foreground over the void. Far behind her, ZUB is a small soft-focus figure on the rock, his face not readable. Gold sequins catch the sunset.
+KARAMEL full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Dramatic but friendly cartoon look, not scary. Cinematic golden-hour light, medium close shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p04_03_three
+@use obryv_p04_01_ultimatum
+@product rl410
+@product rl095
+@product rl230
+# Сцена 3 — Image. Абсурдный бит: Зуб выкладывает два устройства на камень. Три товара в кадре.
+3D Pixar style, vertical 9:16. A tall rocky cliff outcrop over a deep mountain gorge at golden hour, a flat weathered stone slab in the foreground, warm orange-gold light, volumetric haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes calm and level, thick dark eyebrows, a small nose, a flat unbothered mouth, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands, legs with knees, crouching slightly as he sets objects down on the stone. Light beige button-up shirt with sleeves rolled to the elbows, thin brown belt, khaki chino trousers, white sneakers. KARAMEL is a glamorous female cartoon character whose head is a translucent amber hard-candy sphere, glossy polished caramel with swirling golden-orange sugar patterns inside, strictly candy-like, NOT flame-like, no fire textures, no glow, no hair of any kind; bold long dark lashes, smoky eyes now confused and blinking, plump lips slightly parted; warm amber-tan skin, elegant anthropomorphic arms and legs; gold sequin cocktail dress, gold high heels, right arm still stretched out over the void.
+TOOTH-HEAD AND CANDY-HEAD RULE, HIGHEST PRIORITY: ZUB's head IS a tooth crown of smooth glossy enamel and KARAMEL's head IS an amber hard-candy sphere. Neither ever becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. Exactly three Revyline devices appear in this frame and no other product of any kind ever appears. Each one is strictly 100% identical to its attached reference photos. First: the pink Revyline RL 410 portable oral irrigator, a compact pink handheld body with a pale pink ribbed cap, a thin transparent nozzle on top and small uppercase "REVYLINE" lettering at the bottom, in its closed compact configuration, held in KARAMEL's outstretched right hand over the void. Second: the Revyline RL 095 Cloud Dancer sonic electric toothbrush, a slim straight cylindrical handle with a soft matte gradient from pale sky-blue at the bottom to clean white at the top, a narrow indicator display area on the front face with a single round power button below it, small uppercase "REVYLINE" lettering, a slim white detachable brush head on top, standing upright on the stone slab. Third: the Revyline RL 230 portable oral irrigator, a slim upright bottle-shaped body with a glossy black upper half and a translucent smoky-grey tapering reservoir below, a thin slightly curved black nozzle rising from the top, small uppercase "REVYLINE" lettering near the top of the black body and a narrow front control strip with two small square buttons and four tiny mode indicator dots, standing upright on the stone slab next to the toothbrush. Do not change any of their colors or shapes, do not add extra buttons, displays, hoses or logos, do not mix features between them. All three devices are fully visible with clear space between them, nozzles and lettering never covered by fingers. Zero changes, no morphing, none of the devices ever opens, slides, extends or transforms.
+Composition: medium wide shot. ZUB has just set the RL 095 Cloud Dancer and the RL 230 upright side by side on the flat stone slab in the foreground and is straightening up, looking at KARAMEL with complete calm. KARAMEL stands at the edge on the right, arm still out with the pink RL 410, staring at the stone slab in confusion.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Dry comedic cartoon look, not scary. Cinematic golden-hour light, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the products' own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p04_04_twist
+@use obryv_p04_01_ultimatum
+@product rl410
+# Сцена 4 — Image. Твист: «Но этот первый». Зуб делает шаг. В кадре только RL 410.
+3D Pixar style, vertical 9:16. Cliff edge over a deep mountain gorge at golden hour, warm orange-gold light, the gorge blurred behind, volumetric haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes now warm and steady, thick dark eyebrows, a small nose, a quiet mouth, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands, legs with knees, mid-step forward. Light beige button-up shirt with sleeves rolled to the elbows, thin brown belt, khaki chino trousers, white sneakers. KARAMEL is a glamorous female cartoon character whose head is a translucent amber hard-candy sphere, glossy polished caramel with swirling golden-orange sugar patterns inside, strictly candy-like, NOT flame-like, no fire textures, no glow, no hair of any kind; bold long dark lashes, smoky eyes wide with triumph, plump lips in a delighted open smile; warm amber-tan skin, elegant anthropomorphic arms and legs; gold sequin cocktail dress, gold high heels.
+TOOTH-HEAD AND CANDY-HEAD RULE, HIGHEST PRIORITY: ZUB's head IS a tooth crown of smooth glossy enamel and KARAMEL's head IS an amber hard-candy sphere. Neither ever becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos: the pink Revyline RL 410 portable oral irrigator, compact pink body, pale pink ribbed cap, thin transparent nozzle on top, small uppercase "REVYLINE" lettering at the bottom, in its closed compact configuration. Do not change its color or shape, do not add extra buttons, displays, hoses or logos. Only one product in the whole frame, held in KARAMEL's outstretched right hand, the whole device visible and never covered by her fingers. No other device appears anywhere in this frame. Zero changes, no morphing, the device never slides open, unfolds, extends or transforms.
+Composition: tighter two-shot from a low angle at the cliff edge. ZUB steps forward toward KARAMEL, eyes on the pink RL 410 in her hand rather than on her. KARAMEL leans back slightly, glowing with triumph, sure she has won. The stone slab with the other devices is completely out of frame.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Dramatic but friendly cartoon look, not scary. Cinematic golden-hour rim light, medium shot from a low angle, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p04_05_catch
+@use obryv_p04_01_ultimatum
+@product rl410
+# Сцена 5 — Image. Кульминация: полное зеркало серии 1. В кадре только RL 410.
+3D Pixar style, vertical 9:16. Cliff edge over a deep mountain gorge at golden hour, warm orange-gold light, a winding river far below, volumetric haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes sharp with effort, thick dark eyebrows, a small nose, a strained gritted mouth, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands, legs with knees, in a deep lunge at the very edge, braced and bent forward. Light beige button-up shirt with sleeves rolled to the elbows, thin brown belt, khaki chino trousers, white sneakers. KARAMEL is a glamorous female cartoon character whose head is a translucent amber hard-candy sphere, glossy polished caramel with swirling golden-orange sugar patterns inside, strictly candy-like, NOT flame-like, no fire textures, no glow, no hair of any kind; bold long dark lashes, smoky eyes wide with dawning realisation, plump lips slightly open; warm amber-tan skin, elegant anthropomorphic arms and legs; gold sequin cocktail dress fluttering, gold high heels, dangling full-body over the void.
+TOOTH-HEAD AND CANDY-HEAD RULE, HIGHEST PRIORITY: ZUB's head IS a tooth crown of smooth glossy enamel and KARAMEL's head IS an amber hard-candy sphere. Neither ever becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos: the pink Revyline RL 410 portable oral irrigator, compact pink body, pale pink ribbed cap, thin transparent nozzle on top, small uppercase "REVYLINE" lettering at the bottom, in its closed compact configuration. Do not change its color or shape, do not add extra buttons, displays, hoses or logos. Only one product in the whole frame, caught safely in ZUB's right fist, gripped around the middle of the body so the nozzle and the lettering stay fully uncovered. No other device appears anywhere in this frame. Zero changes, no morphing, the device never slides open, unfolds, extends or transforms.
+Composition: the exact mirror of the season opener. ZUB is in a deep lunge at the edge: his left hand grips KARAMEL's wrist while she dangles full-body over the void, and his right fist holds the rescued pink RL 410 out to the side, safe. She looks up at him with the expression of someone who has just understood everything. The stone slab with the other devices is out of frame.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Dramatic but friendly cartoon look, not scary, comedic rescue tone. Cinematic golden-hour backlight, wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p04_06_fall
+@use obryv_p04_01_ultimatum
+@product rl410
+# Сцена 6 — Image. «Прости. Дежавю» и падение Карамели. В кадре только RL 410.
+3D Pixar style, vertical 9:16. Dramatic angle down past the cliff edge into a deep mountain gorge at golden hour, a winding river far below, warm orange-gold light, volumetric haze, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes calm and a little sorry, thick dark eyebrows, a small nose, a quiet mouth, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands. Light beige button-up shirt with sleeves rolled to the elbows, khaki chino trousers, white sneakers, kneeling at the very edge. KARAMEL is a glamorous female cartoon character whose head is a translucent amber hard-candy sphere, glossy polished caramel with swirling golden-orange sugar patterns inside, strictly candy-like, NOT flame-like, no fire textures, no glow, no hair of any kind; bold long dark lashes, smoky furious eyes, plump lips wide open in a long shout; warm amber-tan skin, elegant anthropomorphic arms and legs reaching up; gold sequin cocktail dress billowing, gold high heels.
+TOOTH-HEAD AND CANDY-HEAD RULE, HIGHEST PRIORITY: ZUB's head IS a tooth crown of smooth glossy enamel and KARAMEL's head IS an amber hard-candy sphere. Neither ever becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. The product is strictly 100% identical to the attached reference photos: the pink Revyline RL 410 portable oral irrigator, compact pink body, pale pink ribbed cap, thin transparent nozzle on top, small uppercase "REVYLINE" lettering at the bottom, in its closed compact configuration. Do not change its color or shape, do not add extra buttons, displays, hoses or logos. Only one product in the whole frame, held in ZUB's right hand at the cliff edge, fully visible, never covered by his fingers. No other device appears anywhere in this frame. Zero changes, no morphing, the device never slides open, unfolds, extends or transforms.
+Composition: ZUB kneels at the top of the frame at the very edge, one hand just opened, the pink RL 410 safe in the other. KARAMEL falls backwards into the gorge below him, arms reaching up, mouth wide open in a long shout, gold sequin dress billowing. Behind and above her trails a double spiral of small glowing amber caramel spheres scattering into the wind as she begins to dissolve into candy droplets, cartoon style. No landing is visible.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Light comedic cartoon fall, playful and harmless, not scary, no injury. Cinematic golden-hour light, wide downward shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the product's own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p04_07_hero
+@use OBRYV_P02 :: obryv_p02_00_zub
+@product rl410
+@product rl095
+@product rl230
+# Сцена 7 — Image. PRODUCT HERO финала. Зуб соло, три устройства на камне. Карамели нет.
+3D Pixar style, vertical 9:16. Cliff top over a deep mountain gorge at golden hour, a flat weathered stone slab in the foreground, wide warm sunset sky behind, volumetric light, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: ZUB is an athletic young cartoon character with a large glossy ivory-white molar-shaped head, a smooth rounded crown with two soft bumps on top, large expressive brown eyes warm and calm, thick dark eyebrows, a small nose, a proud closed-lip smile, and no hair of any kind. Natural arms with elbows, wrists and five-fingered hands, legs with knees, standing behind the stone slab. Light beige button-up shirt with sleeves rolled to the elbows, thin brown belt, khaki chino trousers, white sneakers.
+TOOTH-HEAD RULE, HIGHEST PRIORITY: his head IS a tooth crown of smooth glossy enamel with the eyes, eyebrows and mouth drawn directly on the enamel. It never becomes a human head, never gains hair, a scalp, ears or a human skull shape.
+ABSOLUTE PRODUCT LOCK, HIGHEST PRIORITY RULE. Exactly three Revyline devices appear in this frame and no other product of any kind ever appears. Each one is strictly 100% identical to its attached reference photos. First: the pink Revyline RL 410 portable oral irrigator, a compact pink handheld body with a pale pink ribbed cap, a thin transparent nozzle on top and small uppercase "REVYLINE" lettering at the bottom, in its closed compact configuration, held in ZUB's hands at chest height. Second: the Revyline RL 095 Cloud Dancer sonic electric toothbrush, a slim straight cylindrical handle with a soft matte gradient from pale sky-blue at the bottom to clean white at the top, a narrow indicator display area on the front face with a single round power button below it, small uppercase "REVYLINE" lettering, a slim white detachable brush head on top, standing upright on the stone slab. Third: the Revyline RL 230 portable oral irrigator, a slim upright bottle-shaped body with a glossy black upper half and a translucent smoky-grey tapering reservoir below, a thin slightly curved black nozzle rising from the top, small uppercase "REVYLINE" lettering near the top of the black body and a narrow front control strip with two small square buttons and four tiny mode indicator dots, standing upright on the stone slab beside the toothbrush. Do not change any of their colors or shapes, do not add extra buttons, displays, hoses or logos, do not mix features between them. All three devices are fully visible with clear space between them, nozzles, brush head and lettering never covered by fingers, at a comfortable medium distance with no extreme macro zoom on any detail. Zero changes, no morphing, none of the devices ever opens, slides, extends or transforms.
+Composition: medium shot. The RL 095 Cloud Dancer and the RL 230 stand upright side by side on the stone slab in the foreground, evenly lit by the sunset. ZUB stands just behind the slab, holding the pink RL 410 in both hands at chest height and presenting it toward the camera, looking warmly down at the other two. KARAMEL does not appear anywhere in this shot.
+Full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Warm confident cartoon look. Cinematic golden-hour light, medium shot, vertical 9:16, clean high-detail 3D Pixar/Disney render. The only Latin lettering anywhere in the frame is the products' own branding, reproduced exactly as in the reference photos.
+
+=== IMG obryv_p04_08_camp
+@use OBRYV_P02 :: obryv_p02_00_karamel
+@use OBRYV_P02 :: obryv_p02_05_fall
+@use OBRYV_P03 :: obryv_p03_00_zhuzha
+# Сцена 8 — Image. Финал сезона и мост во второй сезон. В кадре: Карамель, Пончик, Жужа. Зуба и товара нет.
+3D Pixar style, vertical 9:16. The shadowed stony floor of a deep mountain gorge at dusk, cool blue rock walls rising on both sides, a thin strip of deep orange sky far above, a small crackling campfire, a weathered fallen log beside it, soft volumetric haze, shallow depth of field, high detail.
+CRITICAL CHARACTER LOCK: KARAMEL is a glamorous female cartoon character whose head is a translucent amber hard-candy sphere, glossy polished caramel with swirling golden-orange sugar patterns inside, strictly candy-like, NOT flame-like, no fire textures, no glow, no hair of any kind; bold long dark lashes, smoky businesslike eyes, plump lips in a decisive line; warm amber-tan skin, elegant anthropomorphic arms and legs; gold sequin cocktail dress, gold high heels, dress slightly dusty. PONCHIK is a round cartoon character whose head IS a plump glazed ring donut, golden-brown fried dough with thick glossy pink strawberry glaze, scattered multicolored sprinkles, a small hole in the crown, simple round cartoon eyes now attentive, thick eyebrows and a hopeful open mouth drawn directly on the glaze, no hair of any kind; round soft body, short arms and legs, blue and white horizontally striped sleeveless sailor shirt, dark blue rolled-up trousers, barefoot, sticky and glossy. ZHUZHA is a cartoon character made entirely of chewed bubble gum: a soft stretchy glossy pink-grey body, a rounded gum-blob head with big shiny cartoon eyes, long dark lashes and a sweet naive smile drawn directly on the gum surface, no hair of any kind, slim stretchy gum arms and legs, a wrap of darker pink gum shaped like a short dress, stuck to the log by her back.
+HEAD RULE, HIGHEST PRIORITY: KARAMEL's head IS an amber candy sphere, PONCHIK's head IS a glazed donut ring and ZHUZHA's head IS a blob of chewed gum, with eyes, eyebrows and mouths drawn directly on those surfaces. None of them ever becomes a human head, never gains hair, a scalp, ears or a human skull shape. ZHUZHA is entirely made of gum and never has human skin.
+Composition: medium wide three-shot around the campfire. KARAMEL has just landed and stands in the centre, brushing dust off her dress, chin up, all business. PONCHIK sits on the log at the left, raising one short arm eagerly. ZHUZHA is stuck to the log at the right by her back, listening happily. All three look toward KARAMEL. ZUB does not appear anywhere in this shot. No product appears anywhere in the frame.
+Everyone full body, from head to feet, not cropped. No captions or text on screen, no lettering on any rock, sign or surface. Dry comedic cartoon look, not scary. Warm firelight against cool dusk, medium wide shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== VID obryv_p04_01_ultimatum_anim
+@use obryv_p04_01_ultimatum
+@product rl410
+@duration 8
+# Сцена 1 — Animation. Хук-инверсия: «Выбирай. Я или он.» 8 секунд.
+Animate this exact scene. This is a dramatic but friendly cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — TOOTH AND CANDY HEADS, NEVER HUMAN HEADS: in every frame, in every close-up, in every camera angle and after every cut, ZUB's head IS a glossy ivory-white tooth crown and KARAMEL's head IS a translucent amber hard-candy sphere with swirling golden-orange sugar inside, strictly candy-like and never flame-like. Neither ever gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, large glossy ivory-white molar-shaped head with two soft bumps, brown eyes, thick dark eyebrows, small nose, light beige rolled-sleeve shirt, thin brown belt, khaki chinos, white sneakers, frozen mid-step with empty hands, LEFT of frame.
+- KARAMEL: cartoon character from the reference image, amber hard-candy sphere head, warm amber-tan skin, gold sequin cocktail dress, gold high heels, standing at the edge with one arm out over the void, RIGHT of frame.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each character stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, colors and shade, same surface texture and glossiness, same feature placement, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts. ZUB stays ivory-white, KARAMEL stays amber.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: a rocky cliff outcrop over a deep mountain gorge at golden hour, a winding river far below, drifting golden dust, strong wind in her dress. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — HIGH: KARAMEL is calm, cold and completely in control. ZUB is frozen, eyes locked on the device, breathing shallow. Big expressive cartoon acting. Only expression and pose change, the models, head shapes, textures and colors stay fixed.
+
+CAMERA STYLE: starts wide on the cliff, slow push in, one quick cut to a lower angle framing her outstretched hand and the device against the sky.
+
+ABSOLUTE PRODUCT LOCK — the pink Revyline RL 410 portable irrigator stays 100% identical to the attached reference photos, compact pink body, pale pink ribbed cap, thin transparent nozzle on top, "REVYLINE" lettering at the bottom, in its closed compact configuration. Only one product in the whole frame, held only by KARAMEL, kept large and near-static in frame, the whole device inside the frame, never covered by her fingers, no extreme macro zoom on a single detail, zero changes, no morphing, the device never slides open, unfolds, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: the wind rises. KARAMEL extends her arm further out over the void with the pink RL 410 in her hand. ZUB freezes mid-step, hands slightly raised. No dialogue.
+3.0–6.0s: KARAMEL tilts her head with a small controlled smile. KARAMEL says in Russian, calm and unhurried: «Выбирай. Я или он.»
+6.0–8.0s: ZUB's eyes flick to the device and stay there. He does not move. No dialogue.
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Everyone stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voice. No captions or text on screen at any moment.
+
+Ambient sound only: strong mountain wind over the cliff, a faint distant river far below, occasional soft bird cries.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID obryv_p04_02_threat_anim
+@use obryv_p04_02_threat
+@product rl410
+@duration 6
+# Сцена 2 — Animation. Ультиматум. 6 секунд.
+Animate this exact scene. This is a dramatic but friendly cartoon moment.
+
+TOP PRIORITY RULE — CANDY HEAD, NEVER A HUMAN HEAD: in every frame and after every cut, KARAMEL's head IS a translucent amber hard-candy sphere with swirling golden-orange sugar inside, strictly candy-like and never flame-like, with the eyes, lashes and mouth drawn directly on the candy surface. It never gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- KARAMEL: cartoon character from the reference image, amber hard-candy sphere head, bold long lashes, warm amber-tan skin, gold sequin cocktail dress, gold high heels, CENTRE of frame in medium close.
+- ZUB appears only as a small soft-focus figure far behind her, his face never readable and never in focus.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: KARAMEL stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, amber color and shade, same sugar swirl pattern, same skin tone, same dress and heels. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: cliff edge over a deep mountain gorge at golden hour, the gorge blurred behind, gold sequins catching the sunset. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM to HIGH: quiet triumph, narrowed eyes, a slow half-smile, one small tilt of the head. Only expression and pose change, the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: locked medium close shot with a very slow push in, the outstretched hand and the device large in the foreground.
+
+ABSOLUTE PRODUCT LOCK — the pink Revyline RL 410 portable irrigator stays 100% identical to the attached reference photos, compact pink body, pale pink ribbed cap, thin transparent nozzle on top, "REVYLINE" lettering at the bottom, in its closed compact configuration. Only one product in the whole frame, held only by KARAMEL, kept large and near-static in the foreground, the whole device inside the frame, never covered by her fingers, no extreme macro zoom on a single detail, zero changes, no morphing, the device never slides open, unfolds, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.5s: KARAMEL holds the device steady over the void and looks past it at the small figure behind her. KARAMEL says in Russian, calm and precise: «Шаг ко мне и я его отпускаю.»
+3.5–6.0s: her fingers loosen very slightly around the body of the device. The wind pulls at her dress. No dialogue.
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. She stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voice. No captions or text on screen at any moment.
+
+Ambient sound only: strong mountain wind over the cliff, a faint distant river far below.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID obryv_p04_03_three_anim
+@use obryv_p04_03_three
+@product rl410
+@product rl095
+@product rl230
+@duration 8
+# Сцена 3 — Animation. Абсурдный бит: «У меня их три.» 8 секунд.
+Animate this exact scene. This is a dry comedic cartoon moment.
+
+TOP PRIORITY RULE — TOOTH AND CANDY HEADS, NEVER HUMAN HEADS: in every frame, in every close-up and after every cut, ZUB's head IS a glossy ivory-white tooth crown and KARAMEL's head IS a translucent amber hard-candy sphere, strictly candy-like and never flame-like. Neither ever gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, calm level expression, light beige rolled-sleeve shirt, thin brown belt, khaki chinos, white sneakers, at the stone slab, LEFT of frame.
+- KARAMEL: cartoon character from the reference image, amber hard-candy sphere head, gold sequin cocktail dress, gold high heels, at the cliff edge with her arm still out, RIGHT of frame.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each character stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, colors and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: a rocky cliff outcrop over a deep mountain gorge at golden hour, a flat weathered stone slab in the foreground. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — LOW for ZUB, MEDIUM for KARAMEL: ZUB is completely unbothered and matter-of-fact. KARAMEL's control cracks into blinking confusion. Dry deadpan cartoon acting. Only expression and pose change, the models, head shapes, textures and colors stay fixed.
+
+CAMERA STYLE: medium wide shot, one quick cut down to the two devices standing on the stone slab, then back up to KARAMEL's face.
+
+ABSOLUTE PRODUCT LOCK — exactly three Revyline devices appear in this video and no other product of any kind ever appears, each strictly 100% identical to its attached reference photos: the pink RL 410 with pale pink ribbed cap and thin transparent nozzle in its closed compact configuration, held only by KARAMEL; the RL 095 Cloud Dancer sonic toothbrush with a soft matte gradient from pale sky-blue at the bottom to clean white at the top and a slim white brush head, standing upright on the stone slab; the RL 230 portable irrigator with a glossy black upper half, a translucent smoky-grey reservoir and a thin curved black nozzle, standing upright on the stone slab. Do not mix features between them. All three stay fully visible with clear space between them, near-static, nozzles, brush head and lettering never covered by fingers, no extreme macro zoom on a single detail. Zero changes, no morphing, none of the devices ever opens, slides, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: ZUB calmly takes the RL 095 Cloud Dancer and the RL 230 out of his pockets and stands them upright side by side on the stone slab, then straightens up. No dialogue.
+3.0–5.5s: he looks levelly at KARAMEL. ZUB says in Russian, flat and matter-of-fact: «У меня их три.»
+5.5–8.0s: KARAMEL's arm stays out but her whole face falls. KARAMEL says in Russian, quietly and completely thrown: «…Что?»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voices. No captions or text on screen at any moment.
+
+Ambient sound only: strong mountain wind over the cliff, a faint distant river far below, two soft taps of plastic on stone.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID obryv_p04_04_twist_anim
+@use obryv_p04_04_twist
+@product rl410
+@duration 6
+# Сцена 4 — Animation. Твист: «Но этот первый.» 6 секунд.
+Animate this exact scene. This is an emotional cartoon moment with a comedic twist.
+
+TOP PRIORITY RULE — TOOTH AND CANDY HEADS, NEVER HUMAN HEADS: in every frame and after every cut, ZUB's head IS a glossy ivory-white tooth crown and KARAMEL's head IS a translucent amber hard-candy sphere, strictly candy-like and never flame-like. Neither ever gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, warm steady eyes, light beige rolled-sleeve shirt, khaki chinos, white sneakers, stepping forward, LEFT of frame.
+- KARAMEL: cartoon character from the reference image, amber hard-candy sphere head, gold sequin cocktail dress, gold high heels, arm out over the void, RIGHT of frame.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each character stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, colors and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: cliff edge over a deep mountain gorge at golden hour, the stone slab completely out of frame. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: ZUB is quiet and sincere, eyes on the device rather than on her. KARAMEL lights up with certainty that she has won. Only expression and pose change, the models, head shapes, textures and colors stay fixed.
+
+CAMERA STYLE: low-angle medium shot, slow push in as he steps forward.
+
+ABSOLUTE PRODUCT LOCK — the pink Revyline RL 410 portable irrigator stays 100% identical to the attached reference photos, in its closed compact configuration. Only one product in the whole frame, held only by KARAMEL, the whole device inside the frame, never covered by her fingers, no extreme macro zoom on a single detail, no other device appears at any moment, zero changes, no morphing, the device never slides open, unfolds, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.5s: ZUB looks at the pink RL 410 in her hand and takes one slow step forward, seeming to walk toward her. ZUB says in Russian, quietly and warmly: «Но этот первый.»
+3.5–6.0s: KARAMEL's whole face opens with triumph and she leans back. KARAMEL says in Russian, delighted: «Я знала!»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voices. No captions or text on screen at any moment.
+
+Ambient sound only: strong mountain wind over the cliff, a faint distant river far below.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID obryv_p04_05_catch_anim
+@use obryv_p04_05_catch
+@product rl410
+@duration 8
+# Сцена 5 — Animation. Кульминация: зеркало серии 1. 8 секунд.
+Animate this exact scene. This is a dramatic but friendly cartoon moment with fast dynamic editing.
+
+TOP PRIORITY RULE — TOOTH AND CANDY HEADS, NEVER HUMAN HEADS: in every frame, in every close-up and after every cut, ZUB's head IS a glossy ivory-white tooth crown and KARAMEL's head IS a translucent amber hard-candy sphere, strictly candy-like and never flame-like. Neither ever gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, strained gritted mouth, light beige rolled-sleeve shirt, khaki chinos, white sneakers, in a deep lunge at the edge, RIGHT of frame.
+- KARAMEL: cartoon character from the reference image, amber hard-candy sphere head, gold sequin cocktail dress, gold high heels, dangling by her wrist over the void, LEFT of frame.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each character stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, colors and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: cliff edge over a deep mountain gorge at golden hour, a winding river far below, the stone slab out of frame. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — VERY HIGH: a fast comedic reversal. KARAMEL goes from triumph to slipping to complete realisation. ZUB moves once, precisely, then holds. Big expressive cartoon acting, playful physics, harmless, no injury. Only expression and pose change, the models, head shapes, textures and colors stay fixed.
+
+CAMERA STYLE: quick handheld-feeling push in on the slip, one cut to the wide mirror composition, then hold.
+
+ABSOLUTE PRODUCT LOCK — the pink Revyline RL 410 portable irrigator stays 100% identical to the attached reference photos, in its closed compact configuration. Only one product in the whole frame, in KARAMEL's hand at the start and in ZUB's right fist from the catch onward, the whole device inside the frame at all times, never covered by fingers, no extreme macro zoom on a single detail, no other device appears at any moment, zero changes, no morphing, the device never slides open, unfolds, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.0s: in her triumph KARAMEL's grip loosens and the pink RL 410 slips out of her fingers. No dialogue.
+2.0–4.5s: ZUB lunges and catches the device in his right fist right at the edge. KARAMEL steps back, loses her balance and ends up hanging from his left hand by the wrist. No dialogue.
+4.5–8.0s: the composition settles into the exact mirror of the season opener. KARAMEL looks up at him with total realisation. KARAMEL says in Russian, quietly and flatly: «Только не снова…»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Everyone stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voice. No captions or text on screen at any moment.
+
+Ambient sound only: strong mountain wind over the cliff, a faint distant river far below, scattering gravel.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+8 seconds, vertical 9:16.
+
+=== VID obryv_p04_06_fall_anim
+@use obryv_p04_06_fall
+@product rl410
+@duration 6
+# Сцена 6 — Animation. «Прости. Дежавю» и падение. 6 секунд.
+Animate this exact scene. This is a comedic cartoon moment.
+
+TOP PRIORITY RULE — TOOTH AND CANDY HEADS, NEVER HUMAN HEADS: in every frame and after every cut, ZUB's head IS a glossy ivory-white tooth crown and KARAMEL's head IS a translucent amber hard-candy sphere, strictly candy-like and never flame-like. Neither ever gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, calm slightly apologetic expression, light beige rolled-sleeve shirt, khaki chinos, white sneakers, kneeling at the edge at the TOP of frame.
+- KARAMEL: cartoon character from the reference image, amber hard-candy sphere head, gold sequin cocktail dress, gold high heels, falling into the gorge in the CENTRE of frame.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each character stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, colors and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: a deep mountain gorge at golden hour seen from the cliff edge downward, a winding river far below, warm haze. Nothing new appears during the video. No landing is ever shown.
+
+EMOTIONAL INTENSITY — HIGH: ZUB is calm and a little sorry. KARAMEL delivers the longest, most theatrical shout of the season. Playful cartoon physics, harmless, no injury, not scary. Only expression and pose change, the models, head shapes, textures and colors stay fixed.
+
+CAMERA STYLE: starts on a close-up of ZUB's face and open hand, one cut to a wide downward shot following her into the gorge.
+
+ABSOLUTE PRODUCT LOCK — the pink Revyline RL 410 portable irrigator stays 100% identical to the attached reference photos, in its closed compact configuration. Only one product in the whole frame, held only by ZUB, the whole device inside the frame, never covered by his fingers, no extreme macro zoom on a single detail, no other device appears at any moment, zero changes, no morphing, the device never slides open, unfolds, extends or transforms.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–1.5s: ZUB closes his eyes. ZUB says in Russian, quietly: «Прости.»
+1.5–3.0s: a short beat, then he opens one eye. ZUB says in Russian, dryly: «Дежавю.»
+3.0–6.0s: his fingers open and KARAMEL falls backwards into the gorge, arms up, a double spiral of small amber caramel spheres trailing behind her. KARAMEL says in Russian, shouting upward, the longest cry of the season, fading with distance: «ТЫ ЕЩЁ ПОЖАЛЕ-Е-ЕШЬ!»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voices beyond the natural fade with distance. No captions or text on screen at any moment.
+
+Ambient sound only: rushing mountain wind, a faint distant river far below.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+6 seconds, vertical 9:16.
+
+=== VID obryv_p04_07_hero_anim
+@use obryv_p04_07_hero
+@product rl410
+@product rl095
+@product rl230
+@duration 10
+# Сцена 7 — Animation. PRODUCT HERO финала, модель названа вслух. 10 секунд.
+Animate this exact scene. This is a warm sincere cartoon moment.
+
+TOP PRIORITY RULE — TOOTH HEAD, NEVER A HUMAN HEAD: in every frame and after every cut, ZUB's head IS a glossy ivory-white tooth crown with simple cartoon eyes, eyebrows and mouth drawn directly on the enamel. It never gains hair, a scalp, ears, a human skull shape or a human face.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- ZUB: cartoon character from the reference image, ivory-white molar head, warm proud expression, light beige rolled-sleeve shirt, thin brown belt, khaki chinos, white sneakers, standing behind the stone slab in the CENTRE of frame.
+- KARAMEL does not appear at any moment.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: ZUB stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, enamel color and shade, same surface texture and glossiness, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: cliff top with a wide warm sunset sky behind, a flat weathered stone slab in the foreground, drifting golden dust. Nothing new appears during the video.
+
+EMOTIONAL INTENSITY — MEDIUM: calm, warm, sincere, a small closed-lip smile, one slow look down at the other two devices. Only expression and pose change, the model, head shape, texture and color stay fixed.
+
+CAMERA STYLE: locked medium shot, an extremely slow push in. All three devices stay large and near-static in frame throughout, only his hands and face move.
+
+ABSOLUTE PRODUCT LOCK — exactly three Revyline devices appear in this video and no other product of any kind ever appears, each strictly 100% identical to its attached reference photos: the pink RL 410 with pale pink ribbed cap and thin transparent nozzle in its closed compact configuration, held in ZUB's hands at chest height; the RL 095 Cloud Dancer sonic toothbrush with a soft matte gradient from pale sky-blue at the bottom to clean white at the top and a slim white brush head, standing upright on the stone slab; the RL 230 portable irrigator with a glossy black upper half, a translucent smoky-grey reservoir and a thin curved black nozzle, standing upright on the stone slab. Do not mix features between them. All three stay fully visible with clear space between them, nozzles, brush head and lettering never covered by fingers, at a comfortable medium distance with no extreme macro zoom on a single detail. Zero changes, no morphing, none of the devices ever opens, slides, extends or transforms, no water jet is ever emitted and no brush ever switches on.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–3.0s: ZUB lifts the pink RL 410 in both hands and presents it toward the camera, holding it steady. ZUB says in Russian, calm and clear: «Ревилайн Эр Эль четыреста десять.»
+3.0–5.5s: a short beat, he looks down at the device. ZUB says in Russian, quietly: «С него всё началось.»
+5.5–8.0s: ZUB says in Russian, unhurried: «Четыре насадки, хватит на всю семью.»
+8.0–10.0s: he glances warmly at the RL 095 Cloud Dancer and the RL 230 standing on the slab. ZUB says in Russian, sincerely: «Я выбираю вас.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. He stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voice. No captions or text on screen at any moment.
+
+Ambient sound only: steady mountain wind over the cliff, a faint distant river far below.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+10 seconds, vertical 9:16.
+
+=== VID obryv_p04_08_camp_anim
+@use obryv_p04_08_camp
+@duration 8
+# Сцена 8 — Animation. Финал сезона, мост во второй сезон, призыв. 8 секунд.
+Animate this exact scene. This is a dry comedic cartoon moment.
+
+TOP PRIORITY RULE — CANDY, DONUT AND GUM HEADS, NEVER HUMAN HEADS: in every frame and after every cut, KARAMEL's head IS a translucent amber hard-candy sphere strictly candy-like and never flame-like, PONCHIK's head IS a glazed pink donut ring, and ZHUZHA's head IS a rounded blob of chewed pink-grey gum. None of them ever gains hair, a scalp, ears, a human skull shape or a human face. ZHUZHA is entirely made of gum and never has human skin.
+
+CRITICAL CHARACTER LOCK — every character in this scene and no one else ever appears:
+- KARAMEL: cartoon character from the reference image, amber hard-candy sphere head, warm amber-tan skin, gold sequin cocktail dress, gold high heels, standing in the CENTRE of frame.
+- PONCHIK: cartoon character from the reference image, glazed pink donut head with sprinkles, blue and white striped sleeveless sailor shirt, dark blue rolled-up trousers, barefoot, sitting on the log, LEFT of frame.
+- ZHUZHA: cartoon character from the reference image, glossy pink-grey chewed-gum body, gum-blob head with big shiny eyes and long lashes, wrap of darker pink gum shaped like a short dress, stuck to the log by her back, RIGHT of frame.
+- ZUB does not appear at any moment, no hand, no silhouette.
+
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: each character stays 100% IDENTICAL to the reference image in every single frame, same head shape, silhouette, proportions, colors and shade, same surface texture and glossiness, same feature placement, same arms and legs, same clothes. No re-texturing, no re-shading, no re-modeling, no style drift, no morphing, no shape shifting between cuts.
+
+NO HAIR RULE — HIGHEST PRIORITY: absolutely NO hair, no hairstyle, no fringe, no strands and no growth of any kind on any head at any moment, in every single frame.
+
+SET DETAIL: the shadowed stony floor of a deep gorge at dusk, a small crackling campfire, a weathered fallen log, cool blue rock walls, a thin strip of deep orange sky far above. Nothing new appears during the video. No product appears at any moment.
+
+EMOTIONAL INTENSITY — MEDIUM: KARAMEL is brisk and businesslike, already onto the next plan. PONCHIK is eager. ZHUZHA is serenely delighted. Dry deadpan cartoon acting. Only expression and pose change, the models, head shapes, textures and colors stay fixed.
+
+CAMERA STYLE: starts on a medium wide three-shot, one small push in as KARAMEL turns to the camera at the end.
+
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN, one line at a time, never overlapping:
+
+0.0–2.0s: KARAMEL lands beside the fire in a scatter of small amber spheres, reassembles, and brushes the dust off her dress. KARAMEL says in Russian, brisk and businesslike: «Так. План Б.»
+2.0–5.0s: she looks around at PONCHIK and ZHUZHA. PONCHIK raises one short arm eagerly. KARAMEL says in Russian, unhurried: «Кто умеет организовывать свадьбы?»
+5.0–8.0s: KARAMEL turns her head to the camera with a slow confident half-smile. KARAMEL says in Russian, sweetly: «Второй сезон. Пишите, кого звать.»
+
+All dialogue in Russian, delivered at a measured, unhurried pace, clearly articulated, do not rush the line. Characters speak STRICTLY ONE AT A TIME, never overlapping, each line finishes before the next begins, with clear pauses. Everyone stays full body in frame, not cropped. No morphing, no new objects, no sudden changes. No reverb or pitch effects on the voices. No captions or text on screen at any moment.
+
+Ambient sound only: a small crackling campfire, a faint hollow wind in the gorge.
+
+ABSOLUTE RULE: NO MUSIC OF ANY KIND. No score, no background music, no musical stingers, no melodic sound design. Only dialogue and the specified ambient sounds. Music is added separately in post-production, do not generate any music track.
+
+8 seconds, vertical 9:16.
