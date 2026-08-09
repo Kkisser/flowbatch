@@ -501,6 +501,47 @@ class FlowClient:
         """
         return self.page.evaluate(js, name)
 
+    def _scan_projects_for(self, name: str, max_scrolls: int) -> str | None:
+        """Пролистать список проектов в поисках имени.
+
+        Замерено вживую: сразу после перехода на список карточек в DOM НОЛЬ —
+        они дорисовываются лениво и лежат ниже баннера, а листается ОКНО,
+        не virtuoso-контейнер. Поэтому: сначала ждём появления хотя бы одной
+        карточки, потом крутим и окно, и контейнер (на всякий случай).
+        Без этого старые проекты «не находились», и ensure_project плодил
+        дубли с тем же именем.
+        """
+        try:
+            self.page.wait_for_selector(
+                'a[href*="/flow/project/"]', state="attached", timeout=15_000
+            )
+        except Exception:  # noqa: BLE001 — у пустого аккаунта карточек нет вовсе
+            pass
+        href = self._find_project_href(name)
+        if href:
+            return href
+        stable = 0
+        for _ in range(max_scrolls):
+            self.page.evaluate(
+                "(sel) => { const s = document.querySelector(sel);"
+                " if (s) s.scrollTop += s.clientHeight * 0.8;"
+                " window.scrollBy(0, Math.round(window.innerHeight * 0.8)); }",
+                self.cfg.selectors["virtuoso_scroller"],
+            )
+            self.page.wait_for_timeout(450)
+            href = self._find_project_href(name)
+            if href:
+                return href
+            at_end = self.page.evaluate(
+                "() => (window.innerHeight + window.scrollY)"
+                " >= document.documentElement.scrollHeight - 4"
+            )
+            # Конец подтверждаем дважды: хвост списка дорисовывается с лагом.
+            stable = stable + 1 if at_end else 0
+            if stable >= 2:
+                break
+        return self._find_project_href(name)
+
     def ensure_project(self, name: str, max_scrolls: int = 30) -> str:
         """Открыть проект Flow с этим именем; нет такого — создать.
 
@@ -514,20 +555,24 @@ class FlowClient:
             return "current"
 
         self.goto_projects_list()
-        href: str | None = None
-        for _ in range(max_scrolls):
-            href = self._find_project_href(name)
-            if href:
-                break
-            at_end = self.page.evaluate(
-                "(sel) => { const s = document.querySelector(sel); if (!s) return true;"
-                " const end = s.scrollTop + s.clientHeight >= s.scrollHeight - 4;"
-                " s.scrollTop += s.clientHeight * 0.8; return end; }",
-                self.cfg.selectors["virtuoso_scroller"],
-            )
-            self.page.wait_for_timeout(400)
-            if at_end:
-                break
+        href = self._scan_projects_for(name, max_scrolls)
+
+        if href is None:
+            # «Не нашёл» — это либо проекта правда нет, либо список протух
+            # (Flow дорисовывает его лениво и не всегда честно). Прежде чем
+            # СОЗДАВАТЬ, обновляем страницу и ищем ещё раз: создание по
+            # протухшему списку плодит проекты-дубли с одним именем, и
+            # дальше все @use/@lib смотрят то в один, то в другой.
+            create_label = self.cfg.locale.get("create_project", "Создать проект")
+            self.page.reload(wait_until="domcontentloaded", timeout=90_000)
+            try:
+                self.page.wait_for_selector(
+                    f'button:has-text("{create_label}")', timeout=60_000
+                )
+            except Exception:  # noqa: BLE001 — список без кнопки бывает при пустом аккаунте
+                pass
+            self.page.wait_for_timeout(1_500)
+            href = self._scan_projects_for(name, max_scrolls)
 
         if href is None:
             self.create_project(name)
@@ -1183,10 +1228,13 @@ class FlowClient:
         )
         if idx < 0:
             self.page.keyboard.press("Escape")
+            # STALE, а не UNKNOWN: выпадашка проектов грузится вместе со
+            # страницей и новые проекты не подтягивает — раннер перезагрузит
+            # вкладку и повторит задачу, после чего список свежий.
             raise FlowError(
-                ERR_UNKNOWN,
+                ERR_STALE_PICKER,
                 f"В меню пикера нет проекта с точным именем {name!r} (или подстрока неоднозначна)",
-                detail="Проверь имя — список проектов виден в выпадашке «+»-диалога.",
+                detail="Если проект точно есть — список выпадашки протух, лечится перезагрузкой вкладки.",
             )
         self.page.locator(
             '[role=menu] [role=menuitem], [role=menu] [role=menuitemradio]'
@@ -1316,8 +1364,10 @@ class FlowClient:
 
         if not matches:
             self.close_add_dialog()
+            # STALE: пикер не дорисовывает свежезалитое — перезагрузка вкладки
+            # обновляет список, раннер сделает её сам и повторит задачу.
             raise FlowError(
-                ERR_UNKNOWN,
+                ERR_STALE_PICKER,
                 f"@lib: {where} нет картинки с именем содержащим {query!r}",
                 detail=(
                     "Имена видны в «+»-диалоге Flow или через команду library. "
