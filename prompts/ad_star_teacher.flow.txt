@@ -1,0 +1,91 @@
+# Реклама «Звезда vs Училка» — формат «на обрыве». 8 сцен.
+# Зуб-персонажи 3D Pixar, глянец. Продукт RL 066 через @product в сценах 6-8.
+# Русская озвучка (Veo). Плашки/сабы добавляются в монтаже.
+
+=== IMG ad1_01_cliff
+Vertical 9:16, glossy 3D Pixar render, cinematic, dramatic, no text on screen.
+CHARACTER LOCK: ZUB — a big friendly glossy white cartoon tooth character (molar shape) with muscular little arms and legs, big cheerful eyes, shiny enamel, heroic. STAR — a glossy white tooth character styled as a flashy pop star: tiny sparkly stage jacket, sunglasses on forehead, holding a microphone. TEACHER — a glossy white tooth character as a strict schoolteacher: round glasses, neat grey blouse, holding a wooden pointer stick. All original cartoon tooth characters.
+Scene: a dramatic rocky cliff edge over a canyon at golden hour; ZUB stands at the edge straining, holding STAR by one hand and TEACHER by the other as both dangle over the drop; tense action pose. Full body, all three visible.
+
+=== VID ad1_01_anim
+@use ad1_01_cliff
+@duration 8
+Animate: ZUB strains and grunts holding both dangling over the cliff, wind blows, both look up scared. Tense comedic. No speech, only effortful grunting.
+
+=== IMG ad1_02_star
+@use ad1_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: dramatic close-up of STAR the pop-star tooth dangling over the cliff, holding the microphone up to her mouth, bright hopeful pleading expression. Canyon background blurred.
+
+=== VID ad1_02_anim
+@use ad1_02_star
+@duration 8
+Animate: STAR pleads into the microphone with a bright showbiz smile.
+Audio: cheerful Russian female voice says "Спаси меня — возьму тебя на сцену!"; sparkly pop sting.
+
+=== IMG ad1_03_teacher
+@use ad1_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: dramatic close-up of TEACHER the schoolteacher tooth dangling over the cliff, looking sternly up over her round glasses, one finger raised, confident. Canyon background blurred.
+
+=== VID ad1_03_anim
+@use ad1_03_teacher
+@duration 8
+Animate: TEACHER looks sternly over her glasses, raises a finger.
+Audio: strict Russian female voice says "А я научу тебя главному."; single stern note.
+
+=== IMG ad1_04_bait
+@use ad1_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: ZUB the hero tooth leaning toward the camera with an exaggerated excited face, still holding both over the cliff, addressing the viewer directly. Full body.
+
+=== VID ad1_04_anim
+@use ad1_04_bait
+@duration 8
+Animate: ZUB talks straight to camera, energetic, pointing at the viewer.
+Audio: energetic Russian male voice says "Ставь лайк, если ты за звезду! Подписывайся, если за училку! А если за обеих — пиши в комментариях: сикс севен!"; upbeat.
+
+=== IMG ad1_05_pull
+@use ad1_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: ZUB heroically pulling both STAR and TEACHER up onto the safe cliff top, all three triumphant, STAR delighted, TEACHER approving. Full body.
+
+=== VID ad1_05_anim
+@use ad1_05_pull
+@duration 8
+Animate: ZUB yanks both up to safety, all cheer.
+Audio: booming Russian male voice says "Спасаю и сцену, и школу!"; STAR shouts a delighted "воу!", TEACHER an approving "хм"; triumphant sting.
+
+=== IMG ad1_06_lesson
+@product RL066
+Vertical 9:16, glossy 3D Pixar render, no text.
+CHARACTER LOCK: TEACHER — the same glossy white schoolteacher tooth with round glasses and pointer.
+Scene: a bright cartoon classroom; a giant smartphone stands like a whiteboard showing a shopping website; TEACHER taps the giant phone screen with her pointer; the exact black REVYLINE RL 066 sonic toothbrush from the reference photos is displayed large on the phone screen and also standing on the desk. STAR and ZUB sit at school desks taking notes. Full body.
+
+=== VID ad1_06_anim
+@use ad1_06_lesson
+@duration 8
+Animate: TEACHER taps the giant phone screen showing the brush, presents proudly.
+Audio: lively Russian female voice says "Тема урока: сайт Ревилайн точка ру. Вот он — тут есть всё для улыбки!"; classroom ambience.
+
+=== IMG ad1_07_promo
+@product RL066
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: TEACHER the tooth at the giant phone, leaning toward camera over her glasses with a sly savoring smile, pointer tapping the screen that shows the black REVYLINE RL 066 brush and a big discount badge; STAR underlines her notes, ZUB nods eagerly. Full body.
+
+=== VID ad1_07_anim
+@use ad1_07_promo
+@duration 8
+Animate: TEACHER savors each word to camera, taps the pointer twice.
+Audio: sly Russian female voice says "А теперь главное. Скидка двадцать процентов на всю корзину по промокоду КИРКА! Запоминаем: КИРКА. Это будет на контрольной!"
+
+=== IMG ad1_08_song
+@product RL066
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: all three tooth characters — ZUB, STAR, TEACHER — singing together into one microphone, joyful, the black REVYLINE RL 066 brush held up like a trophy, confetti; TEACHER conducts with her pointer. Full body.
+
+=== VID ad1_08_anim
+@use ad1_08_song
+@duration 8
+Animate: all three sing a cappella into the mic, confetti, TEACHER conducts, laughter.
+Audio: three cheerful Russian voices sing together "Промокод КИРКА — минус два-адцать!"; happy jingle, laughter.

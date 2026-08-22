@@ -15,6 +15,7 @@ from .flow_client import (
     ERR_MODERATION,
     ERR_QUOTA,
     ERR_ABORTED,
+    ERR_CONN,
     ERR_SERVER,
     ERR_STALE_PICKER,
     ERR_THROTTLE,
@@ -26,12 +27,24 @@ from .flow_client import (
 from .notify import Notifier
 from .scrub import scrub
 from .soften import DIALOGUE_ONLY_ATTEMPT, moderation_category
-from .queue import STATUS_DRY_RUN, STATUS_FAILED, STATUS_OK, Job, RunLog, now_iso
+from .queue import (
+    STATUS_DRY_RUN, STATUS_FAILED, STATUS_LAUNCHED, STATUS_OK,
+    Job, RunLog, now_iso,
+)
 
-# Ошибки, при которых очередь останавливается целиком. Только квота:
-# с пустым счётом перегенерация — это спин без шансов. Всё остальное
-# лечится повтором (по явному требованию: «любая ошибка — перегенерируй»).
-STOP_QUEUE = {ERR_QUOTA}
+# Ошибки, при которых очередь останавливается целиком.
+#   quota   — с пустым счётом перегенерация это спин без шансов;
+#   unusual — Flow жалуется на АККАУНТ, а не на задачу: если длинные паузы
+#             не помогли, следующая задача получит то же самое, и долбить
+#             дальше — прямой путь к бану (README всегда обещал стоп, но в
+#             коде его не было);
+#   connection_lost — браузер умер и переподключиться не вышло: гнать
+#             очередь некуда.
+STOP_QUEUE = {ERR_QUOTA, ERR_UNUSUAL, ERR_CONN}
+# Подмножество STOP_QUEUE, бьющее по АККАУНТУ целиком: панель по таким глушит
+# и все соседние прогоны. Потеря связи сюда не входит: у других прогонов
+# могут быть свои живые вкладки.
+ACCOUNT_STOP = {ERR_QUOTA, ERR_UNUSUAL}
 # Ошибки, которые лечатся повтором с экспоненциальным бэкоффом.
 # ERR_UNKNOWN здесь сознательно: таймауты ожидания и прочие разовые сбои
 # чаще проходят со второго раза, чем повторяются.
@@ -42,11 +55,23 @@ RETRY_SLOW = {ERR_UNUSUAL}
 # Сколько раз за одну задачу перезагружать вкладку из-за отставшего пикера.
 # Одной перезагрузки хватает: она подтягивает всё, что успело сгенерироваться.
 STALE_RELOAD_MAX = 2
+# Сколько раз за одну задачу пробовать переподключиться после обрыва связи.
+CONN_RECONNECT_MAX = 2
 
 # Признаки сетевого сбоя в тексте исключения Playwright — такие лечатся ретраем.
 _NET_MARKERS = (
     "ETIMEDOUT", "ECONNRESET", "ECONNREFUSED", "ENOTFOUND", "EAI_AGAIN",
     "socket hang up", "net::", "Timeout", "connect ",
+)
+# Признаки того, что умерла сама связь с вкладкой/браузером. Ретраить такие
+# по месту бессмысленно — Playwright-объекты уже мертвы, нужен reconnect().
+_CONN_MARKERS = (
+    "TargetClosedError",
+    "Target page, context or browser has been closed",
+    "browser has been closed",
+    "Browser closed",
+    "Connection closed",
+    "has been closed",
 )
 
 
@@ -57,7 +82,12 @@ def _as_flow_error(exc: BaseException) -> FlowError:
     scrub внутри FlowError не даёт токену дойти до лога или Telegram.
     """
     text = f"{type(exc).__name__}: {exc}"
-    kind = ERR_SERVER if any(m in text for m in _NET_MARKERS) else ERR_UNKNOWN
+    if any(m in text for m in _CONN_MARKERS):
+        kind = ERR_CONN
+    elif any(m in text for m in _NET_MARKERS):
+        kind = ERR_SERVER
+    else:
+        kind = ERR_UNKNOWN
     headline = scrub(text.splitlines()[0])[:200]
     return FlowError(kind, headline, detail=text[:2000])
 
@@ -66,8 +96,13 @@ _ADVICE = {
     ERR_QUOTA: "Кончились кредиты. Очередь остановлена — пополни и запусти заново, резюм подхватит.",
     ERR_UNUSUAL: (
         "Flow жаловался на подозрительную активность. Повторы с длинными паузами "
-        "не помогли — если это повторяется на соседних задачах, дай аккаунту "
-        "отдохнуть час-другой и подними паузы в config.yaml."
+        "не помогли — очередь остановлена: дай аккаунту отдохнуть час-другой "
+        "и подними паузы в config.yaml, потом запусти заново — резюм подхватит."
+    ),
+    ERR_CONN: (
+        "Связь с браузером потеряна, переподключиться не удалось. Очередь "
+        "остановлена. Подними браузер (flowbatch browser или кнопка в панели) "
+        "и запусти заново — резюм подхватит."
     ),
     ERR_MODERATION: "Промпт не прошёл модерацию. Задача помечена FAILED, очередь продолжается.",
     ERR_STALE_PICKER: (
@@ -164,6 +199,13 @@ class Runner:
         out = RunOutcome(total=total if total is not None else len(jobs))
         started = time.time()
         long_every = int(self.cfg.get("antiban.long_pause_every", 10))
+        # Предохранитель: N ОДИНАКОВЫХ провалов подряд — стоп. Одинаковая
+        # ошибка на соседних задачах — это не невезение, а системная поломка
+        # (кончились кредиты без сетевого кода, съехала разметка Flow), и
+        # каждая следующая задача сожжёт по 2–4 минуты ретраев впустую.
+        max_same = int(self.cfg.get("antiban.max_same_errors_in_row", 3))
+        same_streak = 0
+        last_sig: tuple[str, str] | None = None
         i = 0
 
         while True:
@@ -192,6 +234,7 @@ class Runner:
             try:
                 self._run_one(job)
                 out.done += 1
+                same_streak, last_sig = 0, None
             except FlowError as exc:
                 # «Стоп сейчас» — не провал задачи: FAILED не пишем. Статус
                 # STOPPED виден отдельно от нетронутых TODO, но «Старт» без
@@ -208,6 +251,24 @@ class Runner:
                     out.stopped_reason = _ADVICE.get(exc.kind, str(exc))
                     out.stop_kind = exc.kind
                     self.console.print(f"[bold red]Очередь остановлена:[/bold red] {out.stopped_reason}")
+                    out.skipped = max(0, len(jobs) - i - 1)
+                    self.stop_requested = True
+                    break
+                sig = (exc.kind, str(exc)[:120])
+                same_streak = same_streak + 1 if sig == last_sig else 1
+                last_sig = sig
+                if max_same and same_streak >= max_same:
+                    out.stopped_reason = (
+                        f"{same_streak} одинаковых ошибки подряд «{exc}» — "
+                        "это системная поломка, а не невезение. Очередь "
+                        "остановлена. Проверь кредиты и запусти doctor; "
+                        "резюм подхватит с этого места."
+                    )
+                    out.stop_kind = exc.kind
+                    self.console.print(
+                        f"[bold red]Предохранитель:[/bold red] {out.stopped_reason}"
+                    )
+                    self.notifier.send(f"🛑 Очередь остановлена: {out.stopped_reason}")
                     out.skipped = max(0, len(jobs) - i - 1)
                     self.stop_requested = True
                     break
@@ -266,6 +327,7 @@ class Runner:
         # жжёт время и лимиты.
         tried = {job.prompt.strip()}
         reloads = 0
+        reconnects = 0
         # Заходов по лестнице: исчерпали ступени одним бэкендом — берём
         # следующий и идём заново от ИСХОДНОГО промпта.
         passes_max = max(1, int(self.cfg.get("moderation.soften.passes", 2)))
@@ -306,6 +368,35 @@ class Runner:
             # Прерывание не лечится ни ретраем, ни смягчением — выходим сразу.
             if err.kind == ERR_ABORTED:
                 raise err
+
+            # Связь с браузером умерла (вкладку/браузер закрыли, панель
+            # перезапустили). Обычный ретрай тут бесполезен: Playwright-объекты
+            # мертвы. Единственное лекарство — полное переподключение к CDP.
+            if err.kind == ERR_CONN:
+                if self.stop_requested or reconnects >= CONN_RECONNECT_MAX:
+                    raise err
+                reconnects += 1
+                self.console.print(
+                    f"  [yellow]связь с браузером потеряна — переподключаюсь "
+                    f"({reconnects}/{CONN_RECONNECT_MAX})…[/yellow]"
+                )
+                ok = False
+                try:
+                    ok = self.client.reconnect()
+                except Exception:  # noqa: BLE001 — неудача выражается False
+                    ok = False
+                if ok:
+                    self.console.print("  [green]переподключился[/green] — задача заново")
+                    self.notifier.send(
+                        f"🔌 {job.id}: связь с браузером обрывалась, "
+                        "переподключился и продолжаю."
+                    )
+                    continue
+                raise FlowError(
+                    ERR_CONN,
+                    "Связь с браузером потеряна, переподключиться не удалось",
+                    detail=str(err),
+                )
 
             # Пикер не увидел медиа, сгенерированное в этой же сессии: его
             # список грузится вместе со страницей и сам не обновляется.
@@ -494,7 +585,17 @@ class Runner:
             self.console.print("  панель очищена от прошлой задачи")
 
         # 1. Настройки: тип, формат, количество, длительность.
-        gs = self.client.ensure_settings(job.kind, duration=job.duration)
+        if job.batch > 1 and self.arbiter is not None:
+            # Дифф общего списка медиа не разложить по задачам, когда одна
+            # задача рождает несколько файлов, а вкладок несколько.
+            raise FlowError(
+                ERR_UNKNOWN,
+                f"@batch {job.batch} не работает в параллельном режиме — "
+                "прогони эту задачу одиночным run",
+            )
+        gs = self.client.ensure_settings(
+            job.kind, duration=job.duration, batch=job.batch if job.batch > 1 else None
+        )
         self.console.print(f"  настройки: [cyan]{gs.raw}[/cyan]")
 
         # 2. Промпт с обязательной верификацией, что Slate его принял.
@@ -544,10 +645,20 @@ class Runner:
         launch_ts = time.time()
         self.client.click_create()
         self.console.print("  «Создать» нажата, жду результат…")
+        # Строка-предохранитель в журнал СРАЗУ после клика: бонусы уже
+        # тратятся. Если процесс убьют посреди ожидания, по журналу видно,
+        # что генерация была запущена, — а не «задача бесследно исчезла».
+        self.log.write_result(
+            job, STATUS_LAUNCHED, started_at, project=self.project_id,
+        )
 
         # 7. Ожидание нового URL.
         def tick(sec: int) -> None:
             self.console.print(f"    [dim]{sec}с…[/dim]", end="\r")
+
+        if job.batch > 1:
+            self._collect_batch(job, before, mod_base, started_at, t0, tick)
+            return
 
         item = self.client.wait_for_new_media(
             before, job.kind, on_tick=tick, moderation_baseline=mod_base,
@@ -595,6 +706,47 @@ class Runner:
             prompt_used=job.prompt if soften_used else None,
         )
         self._notify_status(job, STATUS_OK, result_path=str(dest))
+
+    def _collect_batch(
+        self, job: Job, before: set, mod_base: int, started_at: str, t0: float, tick: Any
+    ) -> None:
+        """Забрать ВСЕ результаты одной генерации с batch > 1 (варианты кадра).
+
+        Каждый вариант — своя строка журнала с общим id и полем variant;
+        файлы (и целевые имена для fetch) получают суффиксы _v1.._vN.
+        Плитки в Flow не переименовываются: сквозная нумерация проекта
+        рассчитана на «одна задача — один файл».
+        """
+        items = self.client.wait_for_new_media_many(
+            before, job.kind, job.batch, on_tick=tick, moderation_baseline=mod_base,
+            should_abort=lambda: self.abort_requested,
+        )
+        if len(items) < job.batch:
+            self.console.print(
+                f"  [yellow]вариантов приехало {len(items)} из {job.batch} — "
+                "работаем с тем, что есть[/yellow]"
+            )
+        download = bool(self.cfg.get("generation.download_results", True))
+        elapsed = time.time() - t0
+        for n, item in enumerate(items, 1):
+            stem = f"{job.out_stem}_v{n}"
+            dest = None
+            if download:
+                dest = self._download_with_retry(
+                    item, replace(job, output_name=stem)
+                )
+            self.log.write_result(
+                job, STATUS_OK, started_at, url=item.url,
+                file=str(dest) if dest else None,
+                out_stem=str(self.cfg.out_dir() / stem),
+                project=self.project_id,
+                variant=n,
+            )
+        where = "скачаны в out/" if download else "в библиотеке Flow (заберёт fetch)"
+        self.console.print(
+            f"  [green]готово[/green]: {len(items)} вариант(а) за {elapsed:.0f}с — {where}"
+        )
+        self._notify_status(job, STATUS_OK)
 
     def _rename_result(self, item: Any, job: Job) -> None:
         """Дать свежей плитке сквозной номер внутри проекта.

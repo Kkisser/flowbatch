@@ -1,0 +1,4 @@
+=== VID test_hero_anim
+@use test_hero
+@duration 4
+Animate this image. Very slow gentle push-in on the little robot. Its raised hand waves softly hello, the antenna light blinks once, clouds drift slowly across the sky, and the meadow grass sways in a gentle breeze. Warm, cozy, cheerful mood. No cuts, no camera shake, smooth motion.

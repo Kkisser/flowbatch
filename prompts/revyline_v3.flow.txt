@@ -1,0 +1,98 @@
+# ===== REVYLINE Видео 3 — «Жёлтая vs Голубая» (RL 066, силач) =====
+# Тактика лока персонажа: первый кадр — мастер, остальные @use на него.
+
+=== IMG v3_cliff
+3D Pixar style, vertical 9:16. Scenic mountain cliff edge at golden hour, warm cinematic light, soft clouds far below, comedic movie-parody moment.
+CHARACTER LOCK: Tooth Guy — adult cartoon tooth character, PURE SNOW-WHITE flawless glossy enamel tooth-shaped head, small neck, face directly on the enamel, no hair, clean light-blue t-shirt, dark jeans, lying on his chest on the rocky ledge at the TOP of the frame, both enamel arms stretched down, strained comedic expression. Yellow Woman — glamorous adult animated woman, short chic amber-gold glossy cocktail dress, gold heels, long voluminous caramel-brown wavy hair with golden highlights, confident diva smile, hanging on the LEFT, her hand clasped with his hand in a firm friendly teamwork grip. Blue Woman — elegant adult animated woman, sleek crystal sky-blue glossy dress with white accents, silver heels, long platinum-white straight hair, calm cool confident expression, hanging on the RIGHT, her hand clasped with his hand in a firm friendly teamwork grip. All fully original fictional animated characters, fully dressed, elegant.
+Composition: Tooth Guy on top holding both women by their hands below him in a theatrical movie-poster pose, everyone full body, not cropped. Exaggerated Pixar emotions, playful parody tone, nothing scary, everyone safe.
+No captions or text on screen. No music elements. Cinematic warm sunset light, wide vertical shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG v3_byte
+@use v3_cliff
+3D Pixar style, vertical 9:16. Same scenic mountain cliff edge at golden hour, warm cinematic light.
+CHARACTER LOCK: Tooth Guy — the SAME adult cartoon tooth character from the reference image, PURE SNOW-WHITE glossy enamel tooth-shaped head, small neck, face directly on the enamel, no hair, clean light-blue t-shirt, now in the UPPER part of the frame turned to face the camera with a big energetic grin, one enamel hand pointing playfully at the viewer. Yellow Woman (amber-gold dress, caramel-brown wavy hair) in the lower LEFT, calm, mouth closed. Blue Woman (sky-blue dress, platinum-white hair) in the lower RIGHT, calm, mouth closed. All fully original fictional animated characters, fully dressed.
+Composition: Tooth Guy large facing camera, both women smaller below. Everyone full body, not cropped.
+No captions or text on screen. No music elements. Cinematic warm sunset light, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG v3_ad
+@use v3_cliff
+3D Pixar style, vertical 9:16. Rocky mountain summit at golden hour, warm cinematic light, bright advertising moment.
+CHARACTER LOCK: Tooth Guy — the SAME adult cartoon tooth character from the reference image, PURE SNOW-WHITE flawless glossy enamel tooth-shaped head gleaming, small neck, no hair, clean light-blue t-shirt, dark jeans, standing in the CENTER, brushing his enamel with a black electric toothbrush — the BRISTLES pressed flat AGAINST his enamel, the black back of the brush head facing outward to the camera, correct realistic brushing orientation — blissful focused expression, sparkle glints on the fresh enamel.
+PRODUCT DESIGN, HIGHEST PRIORITY — the toothbrush is a Revyline RL 066, designed EXACTLY as specified, one single clean object: glossy piano-black body, slender elongated handle tapering to a rounded bottom, small uppercase "REVYLINE" logo near the lower front, one narrow vertical glossy black display strip, one single round power button with polished chrome ring and matte black center, one thin chrome ring at the neck, slim slightly curved black stem, oval brush head with white bristles and one central sky-blue accent, dense W-shaped wave bristle profile. Only ONE toothbrush in the whole frame, held only in Tooth Guy's hand with the bristles toward his enamel.
+Composition: Tooth Guy brushing in the center, full body, not cropped.
+No captions or text on screen except the tiny REVYLINE logo on the brush itself. No music elements. Cinematic warm sunset light, medium full-body shot, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+=== IMG v3_final
+@use v3_cliff
+3D Pixar style, vertical 9:16. Mountain summit at golden hour, warm romantic light, floating tiny cartoon hearts and sparkles.
+CHARACTER LOCK: Tooth Guy — the SAME adult cartoon tooth character from the reference image, PURE SNOW-WHITE glossy enamel tooth head, clean light-blue t-shirt, standing proud in the center, joyful blush, muscular confident pose. Yellow Woman (amber-gold dress, caramel-brown wavy hair) on his LEFT kissing his left cheek. Blue Woman (sky-blue dress, platinum-white hair) on his RIGHT kissing his right cheek. All fully original fictional animated characters, fully dressed.
+Composition: three characters together, both women kissing his cheeks, hearts floating, everyone full body, not cropped.
+No captions or text on screen. No music elements. Cinematic warm sunset glow, vertical 9:16, clean high-detail 3D Pixar/Disney render.
+
+# ===== ВИДЕО =====
+
+=== VID v3_cliff_anim
+@use v3_cliff
+@duration 10
+Animate this exact scene. This is a lighthearted comedic movie-parody cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: the male character is a TOOTH character, never a human — his head IS a tooth crown shape with a small neck, smooth glossy enamel, cartoon eyes, eyebrows and mouth directly on the enamel, no hair. He must NEVER turn into a human. The two women must NEVER change their faces, hair, dresses or proportions.
+CRITICAL CHARACTER LOCK — EXACTLY THREE characters, exactly as in the reference image: TOOTH GUY (white enamel tooth head, light-blue t-shirt, lying on the ledge at the top); YELLOW WOMAN (amber-gold dress, long caramel-brown wavy hair, hanging on the LEFT, held by his hand); BLUE WOMAN (sky-blue dress, long platinum-white straight hair, hanging on the RIGHT, held by his hand).
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: all three stay 100% IDENTICAL to the reference image in every single frame — same faces, silhouettes, proportions, colors, textures, clothes. No re-texturing, no style drift, no morphing between cuts.
+SET DETAIL: scenic mountain viewpoint at golden hour, warm sunset sky, soft clouds far below. Nothing new appears.
+STRICT DIALOGUE RULES — three lines total, all in RUSSIAN, one at a time, never overlapping: LINE 1 only the LEFT amber-gold woman (bright warm playful female voice); LINE 2 only the RIGHT sky-blue woman (lower cool calm female voice, clearly different); LINE 3 only Tooth Guy at the top (deep comedic male voice). During each line only the speaker's mouth moves, everyone else's mouth closed.
+CAMERA STYLE: opens wide, CUTS to a close single shot of ONLY the amber-gold woman for line 1, CUTS to a close single shot of ONLY the sky-blue woman for line 2, CUTS to a close-up on Tooth Guy's face for line 3.
+ACTION AND DIALOGUE — in this exact order, one line at a time, all spoken in RUSSIAN:
+1) SINGLE SHOT of the LEFT amber-gold woman only: sparkling diva smile, says in Russian, bright playful voice: "Я — Жёлтая!"
+2) SINGLE SHOT of the RIGHT sky-blue woman only: cool regal calm, says in Russian, lower calm voice: "А я — Голубая!"
+3) CLOSE-UP on Tooth Guy's face: eyes darting left and right, comically panicking, cries out in Russian, deep desperate comedic voice: "Кого же спасти-и-и?!"
+Exactly three voices, three lines, no narrator. Everyone stays as in the reference, grips firm and safe. Light comedic mood. No text on screen, no music, natural voices, soft mountain wind ambience. 10 seconds, vertical 9:16.
+
+=== VID v3_byte_anim
+@use v3_byte
+@duration 8
+Animate this exact scene. This is a funny cinematic cartoon moment, the character talks directly to the viewer.
+TOP PRIORITY RULE — NO HUMANS EVER: the tooth character keeps a tooth-crown-shaped head with a small neck, smooth glossy enamel, cartoon features directly on the enamel, no hair; he NEVER turns into a human.
+CRITICAL CHARACTER LOCK — exactly as in the reference image: TOOTH GUY — PURE SNOW-WHITE glossy enamel tooth head, clean light-blue t-shirt, upper part of the frame, face to camera, the ONLY one who speaks. Yellow Woman lower LEFT, calm. Blue Woman lower RIGHT, calm.
+ABSOLUTE APPEARANCE LOCK FOR TOOTH GUY — HIGHEST PRIORITY, every single frame including the push-in: his head stays EXACTLY the same tooth crown shape and size as the reference — same silhouette, proportions, small neck, smooth PURE SNOW-WHITE enamel color and gloss, same eye shape and placement, same eyebrows, same mouth on the enamel, same t-shirt. While he talks ONLY his mouth, eyes and eyebrows move — head shape, enamel surface, color and outline must NOT shift, warp, stretch or drift. No morphing for any character.
+SET DETAIL: cliff edge at golden hour. Nothing new appears.
+STRICT DIALOGUE RULES: both lines ONLY by TOOTH GUY, energetic male voice, all in RUSSIAN. The two women stay silent, mouths closed.
+CAMERA STYLE: steady close-up on his face and shoulders, direct eye contact, one gentle slow push-in on line 2 — no fast cuts, no angle changes, to keep his model perfectly stable.
+ACTION AND DIALOGUE — in this exact order, all in RUSSIAN:
+1) He looks into the camera, eyes huge, shouts in Russian: "Ставь лайк, если ты за Жёлтую! Подписывайся, если за Голубую!"
+2) GENTLE PUSH-IN, says in Russian: "А если за обеих — пиши в комментариях: сикс севен!"
+Only his voice, no narrator. Everyone as in the reference, not cropped, model perfectly stable. No text on screen, no music, natural voice, wind ambience. 8 seconds, vertical 9:16.
+
+=== VID v3_ad_anim
+@use v3_ad
+@duration 8
+Animate this exact scene. This is a bright upbeat advertising cartoon moment.
+TOP PRIORITY RULE — NO HUMANS EVER: the tooth character keeps a tooth-crown head, small neck, smooth PURE SNOW-WHITE glossy enamel, cartoon features on the enamel, no hair; NEVER a human.
+WHITE ENAMEL RULE: the hero enamel stays PURE SNOW-WHITE in every frame, zero stains.
+CRITICAL CHARACTER LOCK — exactly as in the reference image: TOOTH GUY brushing his enamel in the center with the black Revyline RL 066 electric toothbrush.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: 100% IDENTICAL to reference in every frame, no morphing, no style drift.
+ABSOLUTE PRODUCT LOCK: the toothbrush stays EXACTLY the glossy piano-black Revyline RL 066 from the reference — same body, same single chrome-ring power button, same white bristles with one central sky-blue accent — it never morphs, restyles or changes, even in motion. Only ONE toothbrush, only in his hand.
+BRUSHING ORIENTATION RULE: the bristles stay pressed flat AGAINST the enamel, the black back of the head to the camera, never turned outward.
+NO TEXT RULE: no letters anywhere except the tiny REVYLINE logo on the brush.
+SET DETAIL: rocky mountain summit at golden hour. Nothing new appears.
+STRICT DIALOGUE RULES: all lines ONLY by TOOTH GUY, proud energetic male voice, all in RUSSIAN.
+CAMERA STYLE: medium shot of him brushing, one gentle push-in, then a close glint on the clean enamel. Smooth, no fast cuts.
+ACTION AND DIALOGUE — in this exact order, all in RUSSIAN:
+1) He brushes proudly and declares in Russian: "Вся моя сила — от щётки Revyline RL 066!"
+2) Sparkle on the enamel, he adds in Russian: "Звуковая — тридцать тысяч колебаний! И заряд — до шестидесяти дней!"
+Only his voice, no narrator. Everyone as in the reference, not cropped. No text on screen except the brush logo, no music, natural voice, soft wind ambience. 8 seconds, vertical 9:16.
+
+=== VID v3_final_anim
+@use v3_final
+@duration 8
+Animate this exact scene. This is a joyful comedic finale moment.
+TOP PRIORITY RULE — NO HUMANS EVER: tooth character keeps a tooth-crown head, smooth PURE SNOW-WHITE enamel, cartoon features on the enamel, no hair; NEVER a human. The two women never change faces, hair, dresses or proportions.
+CRITICAL CHARACTER LOCK — exactly as in the reference image: TOOTH GUY proud in the center; YELLOW WOMAN (amber-gold dress, caramel hair) kissing his LEFT cheek; BLUE WOMAN (sky-blue dress, platinum hair) kissing his RIGHT cheek.
+ABSOLUTE APPEARANCE LOCK — HIGHEST PRIORITY: everyone stays 100% IDENTICAL to the reference image in every frame. No morphing.
+SET DETAIL: mountain summit at golden hour, tiny floating hearts and sparkles. Nothing new except the end card at the very end.
+STRICT DIALOGUE RULES: one line only, spoken ONLY by TOOTH GUY, happy proud male voice, in RUSSIAN. The two women smile and kiss without words.
+CAMERA STYLE: medium shot with a slow gentle push-in, then static for the end card.
+ACTION AND DIALOGUE — in this exact order, spoken in RUSSIAN:
+1) Both women kiss his cheeks, hearts float up; Tooth Guy beams and declares in Russian: "Вот что значит — правильный выбор!"
+2) All smile warmly, hearts and sparkles rise.
+3) END CARD: a dark overlay fades in, glowing letters in Russian: "Продолжение следует…" and below smaller glowing Russian text: "Пиши «сикс севен», если ждёшь следующую!"
+Only one voice plus warm laughter, no narrator. Everyone as in the reference, not cropped. Wholesome comedic tone. No music, natural voices, soft wind ambience. 8 seconds, vertical 9:16.

@@ -35,9 +35,13 @@ CANDIDATES = [
     r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
     r"C:\Program Files\Google\Chrome\Application\chrome.exe",
     r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+    # macOS
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+    "/Applications/Chromium.app/Contents/MacOS/Chromium",
 ]
 
-DEFAULT_PROFILE = r"C:\edge-flow-profile"
+DEFAULT_PROFILE = r"C:\edge-flow-profile" if os.name == "nt" else "~/chrome-flow-profile"
 DEFAULT_URL = "https://labs.google/fx/ru/tools/flow"
 
 
@@ -85,23 +89,38 @@ def profile_holder(user_data_dir: str | Path) -> int | None:
     Без этой проверки повторный запуск молча уходит в существующее окно, и
     остаётся гадать, почему порт не поднялся.
     """
-    if os.name != "nt":
+    want = str(Path(user_data_dir).expanduser()).lower()
+    if os.name == "nt":
+        ps = (
+            "Get-CimInstance Win32_Process -Filter \"Name='msedge.exe' or Name='chrome.exe'\" | "
+            "ForEach-Object { \"$($_.ProcessId)|$($_.CommandLine)\" }"
+        )
+        try:
+            out = subprocess.run(
+                ["powershell", "-NoProfile", "-Command", ps],
+                capture_output=True, text=True, timeout=20,
+            ).stdout
+        except Exception:  # noqa: BLE001 — проверка необязательная
+            return None
+        for line in out.splitlines():
+            pid, _, cmd = line.partition("|")
+            if want in cmd.lower() and pid.strip().isdigit():
+                return int(pid)
         return None
-    want = str(Path(user_data_dir)).lower()
-    ps = (
-        "Get-CimInstance Win32_Process -Filter \"Name='msedge.exe' or Name='chrome.exe'\" | "
-        "ForEach-Object { \"$($_.ProcessId)|$($_.CommandLine)\" }"
-    )
+    # macOS/Linux: тот же вопрос задаётся ps — у держателя профиля в командной
+    # строке виден его --user-data-dir.
     try:
         out = subprocess.run(
-            ["powershell", "-NoProfile", "-Command", ps],
+            ["ps", "ax", "-o", "pid=,command="],
             capture_output=True, text=True, timeout=20,
         ).stdout
     except Exception:  # noqa: BLE001 — проверка необязательная
         return None
     for line in out.splitlines():
-        pid, _, cmd = line.partition("|")
-        if want in cmd.lower() and pid.strip().isdigit():
+        line = line.strip()
+        pid, _, cmd = line.partition(" ")
+        low = cmd.lower()
+        if f"--user-data-dir={want}" in low and "--type=" not in low and pid.isdigit():
             return int(pid)
     return None
 
@@ -120,7 +139,17 @@ def launch(
     say = on_step or (lambda _s: None)
     endpoint = str(cfg.get("cdp.endpoint", "http://localhost:9222"))
     port = port_of(endpoint)
-    profile = str(cfg.get("cdp.user_data_dir", "") or DEFAULT_PROFILE)
+    # expanduser обязателен: без него "~/chrome-flow-profile" создаёт папку
+    # ./~/chrome-flow-profile ПРЯМО В ПРОЕКТЕ — второй, незалогиненный профиль,
+    # не тот, что поднимает launch-chrome.sh через $HOME.
+    profile = str(Path(str(cfg.get("cdp.user_data_dir", "") or DEFAULT_PROFILE)).expanduser())
+    stray = Path("~") / Path(profile).name
+    if stray.is_dir():
+        say(
+            f"ВНИМАНИЕ: в проекте лежит папка {stray}/ — след старого бага "
+            "с нераскрытой '~'. Профиль теперь берётся из домашней папки; "
+            "старую можно удалить."
+        )
     url = str(cfg.get("cdp.start_url", "") or DEFAULT_URL)
     exe = find_browser(str(cfg.get("cdp.browser_path", "") or ""))
     # Потолок 7 — под режим «до 7 проектов параллельно, по вкладке на каждый».
@@ -154,12 +183,19 @@ def launch(
         url,
     ]
     say(f"запускаю {exe.name} на профиле {profile}")
-    flags = 0
+    # Браузер должен пережить выход из CLI/панели, а не умереть вместе с ними.
+    # На Windows это creationflags, на macOS/Linux — своя сессия процессов:
+    # без start_new_session закрытие панели тянуло за собой Chrome, и все
+    # прогоны падали с TargetClosedError.
+    popen_kw: dict[str, Any] = {"close_fds": True}
     if os.name == "nt":
-        # Браузер должен пережить выход из CLI, а не умереть вместе с ним.
-        flags = subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
+        popen_kw["creationflags"] = (
+            subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
+        )
+    else:
+        popen_kw["start_new_session"] = True
     try:
-        subprocess.Popen(args, creationflags=flags, close_fds=True)
+        subprocess.Popen(args, **popen_kw)
     except Exception as exc:  # noqa: BLE001
         raise BrowserError(f"не смог запустить {exe}: {type(exc).__name__}: {exc}") from exc
 

@@ -1,0 +1,90 @@
+# Реклама «Рэпер vs Стоматолог» — формат «на обрыве». 8 сцен.
+# Зуб-персонажи 3D Pixar. Продукт RL 066 через @product в сценах 6-8. Рус. озвучка.
+
+=== IMG ad2_01_cliff
+Vertical 9:16, glossy 3D Pixar render, cinematic, dramatic, no text on screen.
+CHARACTER LOCK: ZUB — a big friendly glossy white cartoon tooth character (molar shape) with muscular little arms and legs, big cheerful eyes, shiny enamel, heroic. RAPPER — a glossy white tooth character as a hip-hop rapper: gold chain, backwards cap, sunglasses. DENTIST — a glossy white tooth character as a dentist: white coat, small round head mirror, holding a dental mirror tool. All original cartoon tooth characters.
+Scene: a dramatic rocky cliff edge over a canyon at golden hour; ZUB stands at the edge straining, holding RAPPER by one hand and DENTIST by the other as both dangle over the drop. Full body, all three visible.
+
+=== VID ad2_01_anim
+@use ad2_01_cliff
+@duration 8
+Animate: ZUB strains and grunts holding both over the cliff, wind blows, both look up scared. No speech, only effortful grunting.
+
+=== IMG ad2_02_rapper
+@use ad2_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: dramatic close-up of RAPPER the tooth dangling over the cliff, one hand thrown up in a cocky rapper gesture, pleading grin. Canyon blurred.
+
+=== VID ad2_02_anim
+@use ad2_02_rapper
+@duration 8
+Animate: RAPPER pleads with a cocky hip-hop gesture.
+Audio: cool Russian male voice says "Спаси меня — сделаю тебя звездой рэпа!"; hip-hop beat sting.
+
+=== IMG ad2_03_dentist
+@use ad2_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: dramatic close-up of DENTIST the tooth dangling over the cliff, holding up the dental mirror, confident reassuring smile. Canyon blurred.
+
+=== VID ad2_03_anim
+@use ad2_03_dentist
+@duration 8
+Animate: DENTIST holds up the mirror, confident smile.
+Audio: warm confident Russian male voice says "А я сделаю твою улыбку на миллион!"; shiny sparkle sound.
+
+=== IMG ad2_04_bait
+@use ad2_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: ZUB the hero tooth leaning toward camera with an exaggerated excited face, still holding both over the cliff, addressing the viewer. Full body.
+
+=== VID ad2_04_anim
+@use ad2_04_bait
+@duration 8
+Animate: ZUB talks straight to camera, energetic, pointing at viewer.
+Audio: energetic Russian male voice says "Ставь лайк, если за рэпера! Подписывайся, если за стоматолога! А если за обоих — пиши в комментариях: сикс севен!"
+
+=== IMG ad2_05_pull
+@use ad2_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: ZUB heroically pulling both RAPPER and DENTIST up onto the safe cliff top, all three triumphant. Full body.
+
+=== VID ad2_05_anim
+@use ad2_05_pull
+@duration 8
+Animate: ZUB yanks both up to safety, all cheer.
+Audio: booming Russian male voice says "Спасаю и бит, и улыбку!"; triumphant sting.
+
+=== IMG ad2_06_product
+@product RL066
+Vertical 9:16, glossy 3D Pixar render, no text.
+CHARACTER LOCK: DENTIST — the same glossy white dentist tooth in white coat.
+Scene: bright modern bathroom; DENTIST proudly presenting the exact black REVYLINE RL 066 sonic toothbrush from the reference photos, holding it up beside his face; the brush large and clearly visible. Full body.
+
+=== VID ad2_06_anim
+@use ad2_06_product
+@duration 8
+Animate: DENTIST presents the black brush proudly, it glints.
+Audio: warm Russian male voice says "Секрет звёздной улыбки — REVYLINE RL 066: звук, мощь, чистота!"
+
+=== IMG ad2_07_promo
+@product RL066
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: DENTIST the tooth leaning to camera with a big smile, holding the black REVYLINE RL 066 brush beside a large discount badge; bright studio. Full body.
+
+=== VID ad2_07_anim
+@use ad2_07_promo
+@duration 8
+Animate: DENTIST addresses camera holding the brush.
+Audio: warm Russian male voice says "Скидка двадцать процентов на всю корзину по промокоду КИРКА! Сайт Ревилайн точка ру!"
+
+=== IMG ad2_08_song
+@product RL066
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: ZUB, RAPPER and DENTIST tooth characters singing together into one microphone, joyful, the black REVYLINE RL 066 brush held up like a trophy, confetti. Full body.
+
+=== VID ad2_08_anim
+@use ad2_08_song
+@duration 8
+Animate: all three sing into the mic, confetti, laughter.
+Audio: three cheerful Russian voices sing together "Промокод КИРКА — минус два-адцать!"; happy jingle.

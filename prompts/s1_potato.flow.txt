@@ -1,0 +1,60 @@
+# Сценарий 1 — «Волшебная ванна со стейками». 5 сцен × 8с ≈ 40с.
+# Дизайн по референсу dreamcatai: тёмно-фиолетовый лук-качок, жёлтая форма, люкс-мрамор.
+# Озвучка: весёлый русский закадровый голос (Veo native audio).
+# Без @project — текущий открытый проект.
+
+=== IMG s1_01_steaks
+Vertical 9:16, glossy 3D Pixar render, cinematic, no text on screen.
+CHARACTER LOCK: ONION_DAD — huge muscular bodybuilder cartoon character shaped like a glossy dark aubergine-purple onion, shiny deep-purple skin, small onion sprout on top, wide open-mouth laugh, enormous muscular arms, wearing a bright yellow athletic tank top, yellow gym shorts and white sneakers. ONION_SON — small child version, same glossy dark-purple onion body, yellow tank top and shorts, laughing.
+Scene: luxurious white-marble bathroom, big window with green trees, rainfall shower, sleek chrome bathtub full of bubbling brown broth, a black-and-white cow-print faucet hose over it; DAD flexing and pumping a lever, dozens of grilled steaks with char marks flying up out of the tub with steam and sparks; SON beside him laughing. Full body.
+
+=== VID s1_01_anim
+@use s1_01_steaks
+@duration 8
+Animate: DAD pumps the lever, a fountain of steaks launches upward, both laugh hard, steam rises. Comedic, punchy, no camera shake.
+Audio: cheerful funny Russian male voiceover says "Папа-лук нашёл волшебную ванну — и стейки теперь не кончаются!"; upbeat comedic music.
+
+=== IMG s1_02_police
+@use s1_01_steaks
+Vertical 9:16, glossy 3D Pixar render, no text.
+CHARACTER LOCK add: COP — burly cartoon bulldog policeman in a dark-blue uniform and cap, stern. POOR_ONE, POOR_TWO — two skinny scruffy cartoon potato characters in ragged grey clothes.
+Scene: exterior of a luxurious marble villa at dusk, cartoon police car with flashing blue-red lights; COP leading ONION_DAD and ONION_SON away, both shocked with big sweat drops; in the bushes POOR_ONE and POOR_TWO peek out watching enviously. Full body.
+
+=== VID s1_02_anim
+@use s1_02_police
+@duration 8
+Animate: COP walks the two onions toward the car, they look back worried, poor potatoes peek from bushes. Comedic timing.
+Audio: funny Russian male voiceover says "Но завистливые соседи вызвали полицию. Живёшь вкусно — готовься к обыску!"; light comedic sting.
+
+=== IMG s1_03_cophome
+@use s1_02_police
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: COP the bulldog policeman carrying the shiny chrome steak-machine bathtub in his arms, arriving at the door of his own modest house at night, sneaky pleased grin. Full body.
+
+=== VID s1_03_anim
+@use s1_03_cophome
+@duration 8
+Animate: COP sneaks the tub inside, glancing side to side, greedy grin. Comedic tiptoe.
+Audio: funny Russian male voiceover says "Полицейский конфисковал ванну... себе домой. Ну а что, улика же!"; sneaky comedic music.
+
+=== IMG s1_04_swap
+@use s1_02_police
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: inside COP's dark living room at night, POOR_ONE and POOR_TWO now wearing black robber masks, tiptoeing and swapping the shiny chrome steak-tub with an identical-looking one, exaggerated sneaky poses, moonlight through window. Full body.
+
+=== VID s1_04_anim
+@use s1_04_swap
+@duration 8
+Animate: the two masked potatoes swap the tubs and sneak out giggling. Comedic heist timing.
+Audio: funny Russian male voiceover says "А два голодных бедняка надели маски и ночью подменили ванну!"; playful heist music.
+
+=== IMG s1_05_dynamite
+@use s1_03_cophome
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: COP the bulldog policeman in cartoon panic as the bathtub machine comically spits bundles of red cartoon dynamite sticks with lit sparkly fuses instead of steaks; wide eyes, Looney-Tunes style, no gore; in a corner inset POOR_ONE and POOR_TWO happily feasting on a huge pile of steaks, laughing. Full body.
+
+=== VID s1_05_anim
+@use s1_05_dynamite
+@duration 8
+Animate: the tub launches cartoon dynamite, COP panics and runs in a puff of smoke; quick cut to the two poor potatoes cheering over a mountain of steaks. Comedic, no gore.
+Audio: funny Russian male voiceover says "Только теперь ванна выдала не стейки, а динамит! Бах — и ужин достался беднякам!"; triumphant comedic finale music.

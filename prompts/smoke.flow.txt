@@ -1,0 +1,10 @@
+# Смоук-тест: 1 картинка + 1 анимация. Проверка цикла Chrome→Flow→fetch на Mac.
+# Без @project — использует уже открытый проект в текущей вкладке.
+
+=== IMG smoke_hero
+Vertical 9:16 still. A cute round cartoon tooth character with big friendly eyes, smiling, standing in a bright modern bathroom with soft morning light, cinematic 3D render, Pixar-style, pastel colors, no photorealism, no text on screen.
+
+=== VID smoke_anim
+@use smoke_hero
+@duration 8
+Animate this image. Slow gentle push-in on the character, it waves and smiles warmly, soft light gently shifts. Calm, cozy mood, no cuts, no camera shake.

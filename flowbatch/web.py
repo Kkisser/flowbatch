@@ -57,7 +57,7 @@ from .promptfile import SYNTAX_HELP
 from .promptfile import parse as parse_prompts
 from .queue import RunLog, load_jobs
 from .refs import RefCache, RefResolver, parse_lib_spec
-from .runner import STOP_QUEUE
+from .runner import ACCOUNT_STOP
 from .sheet import ST_DONE, ST_ERROR, SheetQueue
 from .soften import backend_status, build_softener, ensure_ollama
 
@@ -1328,7 +1328,7 @@ class RunSlot:
                 self.last_error = outcome.stopped_reason
             # Квота и «подозрительная активность» бьют по всему аккаунту —
             # глушим и остальные прогоны, каждый доработает текущую задачу.
-            if outcome.stop_kind in STOP_QUEUE:
+            if outcome.stop_kind in ACCOUNT_STOP:
                 self.app.stop_all(f"{self.label}: {outcome.stopped_reason}", except_id=self.id)
         except Exception as exc:  # noqa: BLE001 — падение прогона не роняет панель
             self.last_error = str(exc)[:300]

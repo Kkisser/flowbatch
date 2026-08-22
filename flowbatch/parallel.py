@@ -251,6 +251,8 @@ class ParallelRunner:
         self._q: Queue[Job] = Queue()
         self._outcomes: list[RunOutcome] = []
         self._lock = threading.Lock()
+        # target_id -> задача, которую вкладка сейчас держит (см. _take).
+        self._in_flight: dict[str, Job] = {}
 
     # ------------------------------------------------------------------ доступ
 
@@ -314,10 +316,15 @@ class ParallelRunner:
             tab.status = "очередь пуста"
             tab.job_id = ""
             tab.started_at = 0.0
+            self._in_flight.pop(tab.target_id, None)
             return None
         tab.job_id = job.id
         tab.status = "работает"
         tab.started_at = time.time()
+        # Запоминаем, что у вкладки в работе: если воркер упадёт целиком
+        # (не через FlowError, который Runner сам пишет в журнал), задача
+        # вернётся в очередь, а не испарится из подсчёта.
+        self._in_flight[tab.target_id] = job
         return job
 
     def _worker(self, idx: int, tab: TabState, total: int) -> None:
@@ -355,6 +362,7 @@ class ParallelRunner:
                 runner.stop_requested = True
 
             outcome = runner.run(take=lambda: self._take(tab), total=total)
+            self._in_flight.pop(tab.target_id, None)
             tab.done, tab.failed = outcome.done, outcome.failed
             tab.status = "закончил"
             tab.job_id = ""
@@ -368,6 +376,16 @@ class ParallelRunner:
         except Exception as exc:  # noqa: BLE001 — падение одной вкладки не роняет остальные
             tab.status = "упал"
             console.print(f"[red]вкладка отвалилась: {exc}[/red]")
+            # Задача, которую воркер держал в момент падения, возвращается
+            # в общую очередь — её доделает живая вкладка. Runner пишет в
+            # журнал ok/failed сам; сюда мы попадаем только когда он упал
+            # ДО записи, т.е. задача точно не завершена.
+            lost = self._in_flight.pop(tab.target_id, None)
+            if lost is not None and not self.stop_requested:
+                self._q.put(lost)
+                console.print(
+                    f"[yellow]задача {lost.id} возвращена в очередь[/yellow]"
+                )
         finally:
             client.close()
 

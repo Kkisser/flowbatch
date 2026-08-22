@@ -43,6 +43,10 @@ ERR_STALE_PICKER = "stale_picker"
 # Прогон прерван пользователем прямо посреди ожидания результата.
 # Не ошибка задачи: ни ретраев, ни смягчения, ни пометки FAILED.
 ERR_ABORTED = "aborted"
+# Связь с вкладкой/браузером потеряна (TargetClosedError и родня).
+# Runner пробует переподключиться; не вышло — очередь останавливается:
+# молотить задачи без браузера бессмысленно.
+ERR_CONN = "connection_lost"
 ERR_UNKNOWN = "unknown"
 
 _CODE_MAP = {
@@ -330,6 +334,24 @@ class FlowClient:
                 except Exception:  # noqa: BLE001
                     pass
                 self._pw = None
+
+    def reconnect(self, retries: int = 3, delay_sec: float = 3.0) -> bool:
+        """Пересобрать подключение к CDP после обрыва (TargetClosedError).
+
+        Playwright-объекты после обрыва мертвы навсегда — чинится только
+        полным циклом close() + connect(). Для воркера, привязанного к
+        target_id, переподключение возможно лишь пока его вкладка жива:
+        закрытую вкладку не вернуть, и это честный False.
+        """
+        for i in range(1, max(1, retries) + 1):
+            self.close()
+            time.sleep(delay_sec * i)
+            try:
+                self.connect()
+                return True
+            except Exception:  # noqa: BLE001 — итог сообщаем возвратом, не исключением
+                continue
+        return False
 
     def reload_page(self, timeout_ms: int = 90_000) -> None:
         """Перезагрузить вкладку и дождаться готовности редактора.
@@ -811,8 +833,14 @@ class FlowClient:
         if tab.first.get_attribute("aria-selected") != "true":
             raise FlowError(ERR_UNKNOWN, f"Не удалось выбрать таб {what} (-content-{token})")
 
-    def ensure_settings(self, kind: Kind, duration: int | None = None) -> GenSettings:
+    def ensure_settings(
+        self, kind: Kind, duration: int | None = None, batch: int | None = None
+    ) -> GenSettings:
         """Выставить тип/формат/количество (и длительность для видео) и проверить.
+
+        batch — сколько результатов за запуск (x1..x4). None = из config.yaml.
+        Больше единицы имеет смысл для картинок-вариантов (первый кадр на
+        выбор): одна генерация даёт все варианты разом.
 
         Возвращает фактически прочитанные настройки. Бросает FlowError, если
         выставить не удалось.
@@ -820,7 +848,7 @@ class FlowClient:
         gen = self.cfg.get("generation", {})
         kind_token = gen["kind_tabs"][kind]
         aspect_tab = gen["aspect_tab"]
-        batch = int(gen.get("batch", 1))
+        batch = int(batch or gen.get("batch", 1))
 
         self.open_settings()
         # Тип задаём первым: от него зависит состав остальных табов.
@@ -1379,9 +1407,65 @@ class FlowClient:
 
         Кнопка блокируется через aria-disabled, а не через нативный disabled:
         клик по «неактивной» кнопке формально проходит и молча ничего не делает.
+
+        Таймаут здесь — НЕ голый AssertionError Playwright: кнопка, которая
+        не разблокировалась, это типовой вид «кончились кредиты» (сетевой
+        ошибки при этом нет вовсе). Диагноз ставим сами: сканируем страницу
+        на фразы о кредитах и отдаём типизированный FlowError.
         """
         ms = timeout_ms or int(self.cfg.get("generation.ready_timeout_sec", 60)) * 1000
-        expect(self.create_button()).to_have_attribute("aria-disabled", "false", timeout=ms)
+        try:
+            expect(self.create_button()).to_have_attribute(
+                "aria-disabled", "false", timeout=ms
+            )
+            return
+        except Exception:  # noqa: BLE001 — ниже ставим свой диагноз
+            pass
+        quota_phrases = [
+            str(p) for p in (self.cfg.get("moderation.phrases_quota", []) or [])
+            if str(p).strip()
+        ]
+        if quota_phrases:
+            hit = self._page_contains_any(quota_phrases)
+            if hit:
+                raise FlowError(
+                    ERR_QUOTA,
+                    "Кнопка «Создать» заблокирована: на странице сообщение о кредитах",
+                    detail=f"текст на странице: «{hit}»",
+                )
+        try:
+            state = self.create_button().get_attribute("aria-disabled")
+        except Exception:  # noqa: BLE001
+            state = "<кнопка не читается>"
+        raise FlowError(
+            ERR_UNKNOWN,
+            f"Кнопка «Создать» не разблокировалась за {ms // 1000}с "
+            f"(aria-disabled={state})",
+            detail=(
+                "Типовые причины: кончились кредиты (пополни и перезапусти, "
+                "резюм подхватит), не догрузилась страница, изменилась разметка "
+                "Flow (запусти doctor)."
+            ),
+        )
+
+    def _page_contains_any(self, phrases: list[str]) -> str | None:
+        """Найти первую из фраз в innerText страницы. Регистр не важен."""
+        js = r"""
+        (phrases) => {
+          const text = (document.body.innerText || '').toLowerCase();
+          for (const p of phrases) {
+            const idx = text.indexOf(p.toLowerCase());
+            if (idx !== -1)
+              return text.slice(Math.max(0, idx - 60), idx + p.length + 60)
+                .replace(/\s+/g, ' ').trim();
+          }
+          return null;
+        }
+        """
+        try:
+            return self.page.evaluate(js, phrases)
+        except Exception:  # noqa: BLE001 — скан вспомогательный
+            return None
 
     def click_create(self) -> None:
         """Запустить генерацию."""
@@ -1473,6 +1557,83 @@ class FlowClient:
         raise FlowError(
             ERR_UNKNOWN,
             f"Результат не появился за {timeout_sec}с ({kind})",
+        )
+
+    def wait_for_new_media_many(
+        self,
+        before: set[str],
+        kind: Kind,
+        count: int,
+        timeout_sec: int | None = None,
+        on_tick: Any = None,
+        moderation_baseline: int = 0,
+        should_abort: Any = None,
+        settle_sec: int = 45,
+    ) -> list[MediaItem]:
+        """Ждать НЕСКОЛЬКО новых медиа от одной генерации (batch x2..x4).
+
+        Одна кнопка «Создать» при x3 рождает три файла; появляются они не
+        строго одновременно, поэтому после первого найденного даём остальным
+        settle_sec на доезд, а дальше честно возвращаем сколько есть —
+        генерация уже потрачена, терять её из-за недобора нельзя.
+
+        Только для однопоточного режима: с арбитром вкладок batch>1
+        принципиально не дружит (дифф медиа не разложить по задачам).
+        """
+        gen = self.cfg.get("generation", {})
+        if timeout_sec is None:
+            timeout_sec = int(
+                gen.get("video_timeout_sec", 900) if kind == "video" else gen.get("image_timeout_sec", 180)
+            )
+        poll = int(gen.get("poll_interval_sec", 3))
+        started = time.time()
+        first_seen: float | None = None
+        tick = 0
+
+        while True:
+            elapsed = time.time() - started
+            if elapsed > timeout_sec:
+                break
+            if should_abort is not None and should_abort():
+                raise FlowError(ERR_ABORTED, "ожидание результата прервано по «Стоп сейчас»")
+            self.page.wait_for_timeout(poll * 1000)
+            tick += 1
+            if tick % 5 == 0:
+                self.scroll_library_to_fresh()
+
+            snap = self.media_snapshot()
+            new = [item for name, item in snap.items() if name not in before]
+            if new:
+                if len(new) >= count:
+                    return new[:count]
+                if first_seen is None:
+                    first_seen = time.time()
+                elif time.time() - first_seen > settle_sec and not self.is_generating():
+                    # Кнопка разблокировалась, добора нет — приехало меньше.
+                    return new
+
+            if on_tick:
+                on_tick(int(elapsed))
+            self.raise_for_errors(started)
+            mod = self.moderation_state()
+            if mod["count"] > moderation_baseline:
+                if new:
+                    # Часть вариантов готова, часть срезала модерация —
+                    # готовые дороже разбирательств: возвращаем их.
+                    return new
+                raise FlowError(
+                    ERR_MODERATION,
+                    "Flow показал сообщение модерации на странице",
+                    detail=f"текст на странице: «{mod['snippet']}»",
+                )
+
+        snap = self.media_snapshot()
+        new = [item for name, item in snap.items() if name not in before]
+        if new:
+            return new[:count]
+        raise FlowError(
+            ERR_UNKNOWN,
+            f"Ни один из {count} результатов не появился за {timeout_sec}с ({kind})",
         )
 
     def is_generating(self) -> bool:

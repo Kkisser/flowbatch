@@ -23,6 +23,11 @@ STATUS_OK = "ok"
 STATUS_FAILED = "failed"
 STATUS_SKIPPED = "skipped"
 STATUS_DRY_RUN = "dry_run"
+# «Создать» нажата, результат ещё ждём. Строка-предохранитель: если процесс
+# убьют посреди ожидания, по журналу видно, что генерация была запущена и
+# бонусы потрачены — резюм и оператор не будут гадать. Резюм такие строки
+# НЕ считает выполненными (только ok).
+STATUS_LAUNCHED = "launched"
 
 
 @dataclass
@@ -37,6 +42,9 @@ class Job:
     # Имя выходного файла без расширения. Нужно для Excel-очереди, где оно
     # задано отдельной колонкой (19_OUTPUT_NAME) и не совпадает с id.
     output_name: str | None = None
+    # Сколько результатов за один запуск (x1..x4 во Flow). Больше единицы —
+    # только для картинок-вариантов; файлы получают суффиксы _v1.._vN.
+    batch: int = 1
 
     @property
     def out_stem(self) -> str:
@@ -76,7 +84,16 @@ class Job:
                 raise ValueError(f"{job_id}: duration имеет смысл только для kind: video")
             duration = int(duration)
 
-        return cls(id=job_id, kind=kind, prompt=prompt, refs=refs, duration=duration)
+        batch = int(raw.get("batch") or 1)
+        if batch < 1 or batch > 4:
+            raise ValueError(f"{job_id}: batch должен быть 1..4, а не {batch}")
+        if batch > 1 and kind != "image":
+            raise ValueError(f"{job_id}: batch > 1 поддержан только для kind: image")
+
+        return cls(
+            id=job_id, kind=kind, prompt=prompt, refs=refs,
+            duration=duration, batch=batch,
+        )
 
 
 def load_jobs(path: str | Path) -> list[Job]:
@@ -282,11 +299,14 @@ class RunLog:
         soften_attempts: int = 0,
         prompt_used: str | None = None,
         out_stem: str | None = None,
+        variant: int | None = None,
     ) -> dict[str, Any]:
         """Собрать и записать строку результата.
 
         out_stem — целевое имя файла БЕЗ расширения, когда скачивание
         выключено: команда fetch по нему поймёт, куда класть файл.
+        variant — номер варианта при batch > 1 (одна генерация, несколько
+        результатов): у каждого варианта своя строка с одним id.
         """
         # scrub здесь — последний рубеж: даже если ошибка пришла не через
         # FlowError, секрет не должен осесть в runs.jsonl.
@@ -304,6 +324,8 @@ class RunLog:
         }
         if out_stem:
             rec["out_stem"] = out_stem
+        if variant is not None:
+            rec["variant"] = variant
         if soften_attempts:
             # Промпт после смягчения отличается от того, что в очереди, —
             # без записи было бы непонятно, что именно ушло в генерацию.

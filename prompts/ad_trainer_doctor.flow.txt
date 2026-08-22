@@ -1,0 +1,90 @@
+# Реклама «Тренер vs Врач» — формат «на обрыве». 8 сцен.
+# Зуб-персонажи 3D Pixar. Продукт RL 066 через @product в сценах 6-8. Рус. озвучка.
+
+=== IMG ad4_01_cliff
+Vertical 9:16, glossy 3D Pixar render, cinematic, dramatic, no text on screen.
+CHARACTER LOCK: ZUB — a big friendly glossy white cartoon tooth character (molar shape) with muscular little arms and legs, big cheerful eyes, shiny enamel, heroic. TRAINER — a glossy white tooth character as a fitness coach: sporty headband, whistle, muscular, athletic tank top. DOCTOR — a glossy white tooth character as a doctor: white coat, stethoscope, small head mirror. All original cartoon tooth characters.
+Scene: a dramatic rocky cliff edge over a canyon at golden hour; ZUB stands at the edge straining, holding TRAINER by one hand and DOCTOR by the other as both dangle over the drop. Full body, all three visible.
+
+=== VID ad4_01_anim
+@use ad4_01_cliff
+@duration 8
+Animate: ZUB strains and grunts holding both over the cliff, wind blows, both look up scared. No speech, only effortful grunting.
+
+=== IMG ad4_02_trainer
+@use ad4_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: dramatic close-up of TRAINER the tooth dangling over the cliff, flexing one arm, pleading energetic grin. Canyon blurred.
+
+=== VID ad4_02_anim
+@use ad4_02_trainer
+@duration 8
+Animate: TRAINER flexes and pleads energetically.
+Audio: energetic sporty Russian male voice says "Спаси меня — накачаю кубики!"; gym whistle.
+
+=== IMG ad4_03_doctor
+@use ad4_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: dramatic close-up of DOCTOR the tooth dangling over the cliff, calm confident smile, holding the stethoscope. Canyon blurred.
+
+=== VID ad4_03_anim
+@use ad4_03_doctor
+@duration 8
+Animate: DOCTOR smiles confidently, holds stethoscope.
+Audio: calm confident Russian male voice says "А я спасу твоё здоровье — с головы до улыбки!"; gentle chime.
+
+=== IMG ad4_04_bait
+@use ad4_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: ZUB leaning toward camera with an exaggerated excited face, still holding both over the cliff, addressing the viewer. Full body.
+
+=== VID ad4_04_anim
+@use ad4_04_bait
+@duration 8
+Animate: ZUB talks straight to camera, energetic, pointing at viewer.
+Audio: energetic Russian male voice says "Ставь лайк, если за тренера! Подписывайся, если за врача! А если за обоих — пиши в комментариях: сикс севен!"
+
+=== IMG ad4_05_pull
+@use ad4_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: ZUB heroically pulling both TRAINER and DOCTOR up onto the safe cliff top, all three triumphant. Full body.
+
+=== VID ad4_05_anim
+@use ad4_05_pull
+@duration 8
+Animate: ZUB yanks both up to safety, all cheer.
+Audio: booming Russian male voice says "Спасаю и тело, и здоровье!"; triumphant sting.
+
+=== IMG ad4_06_product
+@product RL066
+Vertical 9:16, glossy 3D Pixar render, no text.
+CHARACTER LOCK: DOCTOR — the same glossy white doctor tooth in white coat with stethoscope.
+Scene: a clean bright clinic bathroom; DOCTOR proudly holding up the exact black REVYLINE RL 066 sonic toothbrush from the reference photos beside his face; the brush large and clearly visible. Full body.
+
+=== VID ad4_06_anim
+@use ad4_06_product
+@duration 8
+Animate: DOCTOR presents the black brush proudly, it glints.
+Audio: calm confident Russian male voice says "Здоровье начинается со рта. REVYLINE RL 066 — звуковая, три режима, для всей семьи."
+
+=== IMG ad4_07_promo
+@product RL066
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: DOCTOR the tooth leaning to camera with a friendly smile, holding the black REVYLINE RL 066 brush beside a large discount badge. Full body.
+
+=== VID ad4_07_anim
+@use ad4_07_promo
+@duration 8
+Animate: DOCTOR addresses camera holding the brush.
+Audio: calm confident Russian male voice says "Скидка двадцать процентов по промокоду КИРКА на Ревилайн точка ру!"
+
+=== IMG ad4_08_song
+@product RL066
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: ZUB, TRAINER and DOCTOR tooth characters singing together into one microphone, joyful, the black REVYLINE RL 066 brush held up like a trophy, confetti. Full body.
+
+=== VID ad4_08_anim
+@use ad4_08_song
+@duration 8
+Animate: all three sing into the mic, confetti, laughter.
+Audio: three cheerful Russian voices sing together "Промокод КИРКА — минус два-адцать!"; happy jingle.

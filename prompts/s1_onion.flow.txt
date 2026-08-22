@@ -1,0 +1,39 @@
+# Сценарий 1 — «Луковая машина стейков». Только кадры (IMG), фото сначала.
+# Без @project — использует уже открытый проект в текущей вкладке.
+# Консистентность персонажей: первый кадр задаёт лук-отца и сына, дальше @use.
+
+=== IMG s1_01_intro
+Vertical 9:16 still. 3D Pixar style, cinematic lighting, glossy render, no photorealism, no text on screen.
+CHARACTER LOCK: ONION_DAD — a big muscular glossy yellow cartoon onion character with arms and legs, papery golden skin, wearing a bright green t-shirt, goofy proud grin. ONION_SON — a small round glossy yellow cartoon onion child, same style, wearing a tiny green t-shirt, cheerful. All fully original cartoon food characters.
+Scene: a shiny chrome bathtub-shaped machine in a cozy cartoon kitchen; juicy steaks flying up out of the tub into the air; ONION_DAD pumping a big lever, ONION_SON beside him, both laughing with joy. Full body, not cropped. Bright warm kitchen light.
+
+=== IMG s1_02_police_arrive
+@use s1_01_intro
+Vertical 9:16 still. 3D Pixar style, glossy render, no text.
+Scene: exterior of a small cartoon house at dusk, a cartoon police car with flashing blue-red lights parked in front. ONION_DAD and ONION_SON at the doorway looking shocked and worried, sweating cartoon sweat drops. Full body.
+
+=== IMG s1_03_taken_away
+@use s1_01_intro
+Vertical 9:16 still. 3D Pixar style, glossy render, no text.
+CHARACTER LOCK add: COP — a burly cartoon dog policeman in a blue uniform and cap, stern face. POOR_ONE and POOR_TWO — two skinny scruffy cartoon potato characters in ragged clothes.
+Scene: COP walking ONION_DAD and ONION_SON away from the house toward the police car; in the bushes at the side POOR_ONE and POOR_TWO peek out watching. Evening light. Full body.
+
+=== IMG s1_04_cop_takes_machine
+@use s1_03_taken_away
+Vertical 9:16 still. 3D Pixar style, glossy render, no text.
+Scene: COP the cartoon dog policeman carrying the shiny chrome bathtub steak-machine in his arms, arriving at the front door of his own house at night, sneaky pleased grin. Full body.
+
+=== IMG s1_05_poor_plan
+@use s1_03_taken_away
+Vertical 9:16 still. 3D Pixar style, glossy render, no text.
+Scene: POOR_ONE and POOR_TWO the two scruffy potato characters now wearing black robber masks, leaning toward the camera pointing at it, scheming excited grins, a dim alley background. Full body.
+
+=== IMG s1_06_swap_at_night
+@use s1_05_poor_plan
+Vertical 9:16 still. 3D Pixar style, glossy render, no text.
+Scene: inside COP's dark living room at night, POOR_ONE and POOR_TWO tiptoeing, swapping the shiny chrome steak-machine with an identical-looking one, exaggerated sneaky poses, moonlight through window. Full body.
+
+=== IMG s1_07_dynamite
+@use s1_04_cop_takes_machine
+Vertical 9:16 still. 3D Pixar style, glossy render, no text.
+Scene: COP the cartoon dog policeman staring in cartoon panic as the shiny bathtub machine comically spits out bundles of red cartoon dynamite sticks with lit sparkly fuses instead of steaks; wide eyes, comedic Looney-Tunes style, no gore. Full body.

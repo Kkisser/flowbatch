@@ -805,13 +805,18 @@ def cmd_fetch(args: argparse.Namespace) -> int:
     cfg = Config.load(args.config)
     log = RunLog(cfg.runs_log())
 
-    # Свежайшая успешная запись на задачу+проект; уже скачанные — мимо.
-    latest: dict[tuple[str, str], dict[str, Any]] = {}
-    have: set[tuple[str, str]] = set()
+    # Свежайшая успешная запись на задачу+проект(+вариант при batch);
+    # уже скачанные — мимо.
+    latest: dict[tuple[str, str, str], dict[str, Any]] = {}
+    have: set[tuple[str, str, str]] = set()
     for rec in log.records():
         if rec.get("status") != STATUS_OK or not rec.get("id"):
             continue
-        key = (str(rec["id"]), str(rec.get("project") or ""))
+        key = (
+            str(rec["id"]),
+            str(rec.get("project") or ""),
+            str(rec.get("variant") or ""),
+        )
         f = rec.get("file")
         if f and Path(str(f)).exists():
             have.add(key)
@@ -840,7 +845,7 @@ def cmd_fetch(args: argparse.Namespace) -> int:
         console.print("запусти его кнопкой в панели или: flowbatch browser")
         return 1
     try:
-        for (job_id, project), rec in todo:
+        for (job_id, project, _variant), rec in todo:
             stem = rec.get("out_stem") or str(cfg.out_dir() / job_id)
             m = _re.search(r"[?&]name=([^&]+)", str(rec["url"]))
             if not m:
@@ -871,6 +876,7 @@ def cmd_fetch(args: argparse.Namespace) -> int:
                 "finished_at": now_iso(), "url": rec.get("url"),
                 "file": str(dest), "error": None, "error_kind": None,
                 "fetched": True,
+                **({"variant": rec["variant"]} if rec.get("variant") else {}),
             })
     finally:
         client.close()

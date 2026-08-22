@@ -876,13 +876,18 @@ def ensure_ollama(cfg: Config, wait_sec: int = 30, on_step: Any = None) -> dict[
     host = o.host.removeprefix("http://").removeprefix("https://")
     if host not in ("localhost:11434", "127.0.0.1:11434"):
         env["OLLAMA_HOST"] = host  # нестандартный порт — сервер должен слушать там же
-    flags = 0
+    # Сервер должен пережить закрытие панели: на Windows — creationflags,
+    # на macOS/Linux — собственная сессия процессов.
+    popen_kw: dict = {"close_fds": True, "stdout": subprocess.DEVNULL,
+                      "stderr": subprocess.DEVNULL, "env": env}
     if os.name == "nt":
-        # Сервер должен пережить закрытие панели.
-        flags = subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
+        popen_kw["creationflags"] = (
+            subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
+        )
+    else:
+        popen_kw["start_new_session"] = True
     try:
-        subprocess.Popen([exe, "serve"], creationflags=flags, close_fds=True,
-                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, env=env)
+        subprocess.Popen([exe, "serve"], **popen_kw)
     except Exception as exc:  # noqa: BLE001
         return {"running": False, "started": False, "model": o.model, "model_present": False,
                 "note": f"не смог запустить ollama serve: {type(exc).__name__}"}

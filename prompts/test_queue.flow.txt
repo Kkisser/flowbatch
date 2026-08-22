@@ -1,0 +1,7 @@
+=== IMG robo_scene_a
+Vertical 9:16 still. The same cute round pastel-blue cartoon robot, now sitting on a wooden bench in a cozy little town square at golden hour, warm lantern light, cinematic 3D render, Pixar-style, soft pastel colors.
+
+=== IMG robo_scene_b
+@ref refs/product_ext.jpg
+@use robo_scene_a
+Vertical 9:16 still. The same cartoon robot from the reference, now holding a small glowing gift box, standing in front of a candy shop window, evening city lights bokeh, cinematic 3D render, Pixar-style.

@@ -111,6 +111,7 @@ class _Block:
     products: list[tuple[int, str]] = field(default_factory=list)  # (строка, спека)
     duration: int | None = None
     out: str | None = None
+    batch: int = 1
     prompt_lines: list[str] = field(default_factory=list)
 
 
@@ -264,10 +265,24 @@ def _parse_directive(block: _Block, line: str, n: int, errors: list[str]) -> Non
             errors.append(f"строка {n}: @out без имени")
         else:
             block.out = rest
+    elif keyword == "@batch":
+        # Несколько вариантов одной генерацией (настройка x1..x4 во Flow).
+        # Только для картинок: у видео дифф медиа не разложить по вариантам.
+        try:
+            batch = int(rest)
+        except ValueError:
+            errors.append(f"строка {n}: @batch ждёт число 1..4, получено {rest!r}")
+            return
+        if batch < 1 or batch > 4:
+            errors.append(f"строка {n}: @batch {batch} — допустимы 1..4")
+        elif block.kind != "image":
+            errors.append(f"строка {n}: @batch поддержан только в блоке IMG")
+        else:
+            block.batch = batch
     else:
         errors.append(
             f"строка {n}: неизвестная директива {keyword!r} "
-            "(знаю @project, @ref, @product, @lib, @use, @duration, @out)"
+            "(знаю @project, @ref, @product, @lib, @use, @duration, @out, @batch)"
         )
 
 
@@ -357,6 +372,14 @@ def _blocks_to_jobs(
                         "генерится позже него — поставь её выше в файле"
                     )
                     continue
+                if blocks[pos].batch > 1:
+                    errors.append(
+                        f"блок {b.id!r}: @use {use} указывает на блок с @batch "
+                        f"{blocks[pos].batch} — вариантов несколько, и какой из них "
+                        "референс, неизвестно. Выбери вариант и укажи его явно "
+                        "(отдельной задачей или @ref на скачанный файл)."
+                    )
+                    continue
             # Резолв — на прогоне, по журналу (uuid медиа). Задачи, которых
             # нет в этом файле, тоже законны: результат прошлого прогона в
             # этом же или другом проекте. Файл на диске не нужен совсем.
@@ -379,6 +402,7 @@ def _blocks_to_jobs(
                 refs=dedup,
                 duration=b.duration,
                 output_name=b.out,
+                batch=b.batch,
             )
         )
     return jobs

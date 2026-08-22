@@ -1,0 +1,90 @@
+# Реклама «Миллионер vs Бабушка» — формат «на обрыве». 8 сцен.
+# Зуб-персонажи 3D Pixar. Продукт RL 066 через @product в сценах 6-8. Рус. озвучка.
+
+=== IMG ad3_01_cliff
+Vertical 9:16, glossy 3D Pixar render, cinematic, dramatic, no text on screen.
+CHARACTER LOCK: ZUB — a big friendly glossy white cartoon tooth character (molar shape) with muscular little arms and legs, big cheerful eyes, shiny enamel, heroic. MILLIONAIRE — a glossy white tooth character as a rich tycoon: black top hat, monocle, fancy suit, holding fanned dollar bills. GRANDMA — a glossy white tooth character as a kind granny: floral headscarf, small round glasses, apron, warm smile. All original cartoon tooth characters.
+Scene: a dramatic rocky cliff edge over a canyon at golden hour; ZUB stands at the edge straining, holding MILLIONAIRE by one hand and GRANDMA by the other as both dangle over the drop. Full body, all three visible.
+
+=== VID ad3_01_anim
+@use ad3_01_cliff
+@duration 8
+Animate: ZUB strains and grunts holding both over the cliff, wind blows, both look up scared. No speech, only effortful grunting.
+
+=== IMG ad3_02_millionaire
+@use ad3_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: dramatic close-up of MILLIONAIRE the tooth dangling over the cliff, waving dollar bills, pleading greedy grin. Canyon blurred.
+
+=== VID ad3_02_anim
+@use ad3_02_millionaire
+@duration 8
+Animate: MILLIONAIRE waves cash, pleads.
+Audio: pompous Russian male voice says "Спаси меня — озолочу!"; cash-register ding.
+
+=== IMG ad3_03_grandma
+@use ad3_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: dramatic close-up of GRANDMA the tooth dangling over the cliff, calm kind smile, one finger raised knowingly. Canyon blurred.
+
+=== VID ad3_03_anim
+@use ad3_03_grandma
+@duration 8
+Animate: GRANDMA smiles kindly, raises a finger.
+Audio: warm elderly Russian female voice says "А я открою тебе главный секрет, внучек."; cozy note.
+
+=== IMG ad3_04_bait
+@use ad3_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: ZUB leaning toward camera with an exaggerated excited face, still holding both over the cliff, addressing the viewer. Full body.
+
+=== VID ad3_04_anim
+@use ad3_04_bait
+@duration 8
+Animate: ZUB talks straight to camera, energetic, pointing at viewer.
+Audio: energetic Russian male voice says "Ставь лайк, если за миллионера! Подписывайся, если за бабушку! А если за обоих — пиши в комментариях: сикс севен!"
+
+=== IMG ad3_05_pull
+@use ad3_01_cliff
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: ZUB heroically pulling both MILLIONAIRE and GRANDMA up onto the safe cliff top, all three triumphant. Full body.
+
+=== VID ad3_05_anim
+@use ad3_05_pull
+@duration 8
+Animate: ZUB yanks both up to safety, all cheer.
+Audio: booming Russian male voice says "Спасаю и богатство, и мудрость!"; triumphant sting.
+
+=== IMG ad3_06_product
+@product RL066
+Vertical 9:16, glossy 3D Pixar render, no text.
+CHARACTER LOCK: GRANDMA — the same glossy white granny tooth with headscarf and round glasses.
+Scene: a cozy bright bathroom; GRANDMA proudly holding up the exact black REVYLINE RL 066 sonic toothbrush from the reference photos beside her face, warm proud smile; the brush large and clearly visible. Full body.
+
+=== VID ad3_06_anim
+@use ad3_06_product
+@duration 8
+Animate: GRANDMA proudly presents the black brush, it glints.
+Audio: warm elderly Russian female voice says "Вот на что бабушка тратит пенсию — и улыбка как в двадцать! REVYLINE RL 066!"
+
+=== IMG ad3_07_promo
+@product RL066
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: GRANDMA the tooth leaning to camera with a sly warm smile, holding the black REVYLINE RL 066 brush beside a large discount badge. Full body.
+
+=== VID ad3_07_anim
+@use ad3_07_promo
+@duration 8
+Animate: GRANDMA addresses camera holding the brush, savoring.
+Audio: warm elderly Russian female voice says "Скидка двадцать процентов по промокоду КИРКА. Запоминай, внучек: КИРКА!"
+
+=== IMG ad3_08_song
+@product RL066
+Vertical 9:16, glossy 3D Pixar render, no text.
+Scene: ZUB, MILLIONAIRE and GRANDMA tooth characters singing together into one microphone, joyful, the black REVYLINE RL 066 brush held up like a trophy, confetti. Full body.
+
+=== VID ad3_08_anim
+@use ad3_08_song
+@duration 8
+Animate: all three sing into the mic, confetti, laughter.
+Audio: three cheerful Russian voices sing together "Промокод КИРКА — минус два-адцать!"; happy jingle.
