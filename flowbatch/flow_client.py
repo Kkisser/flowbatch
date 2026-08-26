@@ -564,7 +564,7 @@ class FlowClient:
                 current = (field.inner_text() or "").strip()
             new_name = new_name.replace("{name}", current) if "{name}" in new_name else new_name
             field.click()
-            self.page.keyboard.press("Control+A")
+            self.page.keyboard.press("ControlOrMeta+A")
             self.page.keyboard.press("Delete")
             field.type(new_name, delay=15)
             self.page.keyboard.press("Enter")
@@ -579,7 +579,7 @@ class FlowClient:
             raise FlowError(ERR_UNKNOWN, "Поле имени проекта не найдено в шапке")
         field = loc.first
         field.click()
-        self.page.keyboard.press("Control+A")
+        self.page.keyboard.press("ControlOrMeta+A")
         self.page.keyboard.press("Delete")
         field.type(name, delay=20)
         self.page.keyboard.press("Enter")
@@ -922,7 +922,7 @@ class FlowClient:
         return actual
 
     def _clear_editor(self) -> None:
-        self.page.keyboard.press("Control+A")
+        self.page.keyboard.press("ControlOrMeta+A")
         self.page.keyboard.press("Delete")
         self.page.wait_for_timeout(100)
 
@@ -1076,7 +1076,7 @@ class FlowClient:
         """Ввести запрос в поиск пикера (контролируемый React-инпут — посимвольно)."""
         inp = self.page.locator(self.cfg.selectors["add_search"]).first
         inp.click()
-        self.page.keyboard.press("Control+A")
+        self.page.keyboard.press("ControlOrMeta+A")
         self.page.keyboard.press("Delete")
         if query:
             inp.type(query, delay=30)
