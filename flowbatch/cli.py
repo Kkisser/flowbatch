@@ -809,8 +809,10 @@ def cmd_fetch(args: argparse.Namespace) -> int:
     # уже скачанные — мимо. Помеченные мёртвыми (fetch_dead: uuid протух,
     # элемент удалён во Flow) — тоже мимо, иначе каждая докачка вечно
     # спотыкается об одни и те же старые записи.
+    # Побеждает СВЕЖАЙШАЯ запись ключа: если задачу перегенерировали, файл
+    # старой генерации на диске не должен блокировать скачивание новой
+    # (раньше блокировал — «всё уже на диске», хотя в библиотеке новый файл).
     latest: dict[tuple[str, str, str], dict[str, Any]] = {}
-    have: set[tuple[str, str, str]] = set()
     dead: set[tuple[str, str, str]] = set()
     for rec in log.records():
         if not rec.get("id"):
@@ -823,15 +825,15 @@ def cmd_fetch(args: argparse.Namespace) -> int:
         if rec.get("status") == "fetch_dead":
             dead.add(key)
             continue
-        if rec.get("status") != STATUS_OK:
+        if rec.get("status") != STATUS_OK or not rec.get("url"):
             continue
-        f = rec.get("file")
-        if f and Path(str(f)).exists():
-            have.add(key)
-            continue
-        if rec.get("url"):
+        old = latest.get(key)
+        if old is None or str(rec.get("finished_at") or "") >= str(old.get("finished_at") or ""):
             latest[key] = rec
-    have |= dead
+    have: set[tuple[str, str, str]] = {
+        k for k, r in latest.items()
+        if r.get("file") and Path(str(r["file"])).exists()
+    } | dead
 
     todo = [(k, r) for k, r in latest.items() if k not in have]
     if args.limit:
