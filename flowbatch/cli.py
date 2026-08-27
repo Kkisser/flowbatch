@@ -806,23 +806,32 @@ def cmd_fetch(args: argparse.Namespace) -> int:
     log = RunLog(cfg.runs_log())
 
     # Свежайшая успешная запись на задачу+проект(+вариант при batch);
-    # уже скачанные — мимо.
+    # уже скачанные — мимо. Помеченные мёртвыми (fetch_dead: uuid протух,
+    # элемент удалён во Flow) — тоже мимо, иначе каждая докачка вечно
+    # спотыкается об одни и те же старые записи.
     latest: dict[tuple[str, str, str], dict[str, Any]] = {}
     have: set[tuple[str, str, str]] = set()
+    dead: set[tuple[str, str, str]] = set()
     for rec in log.records():
-        if rec.get("status") != STATUS_OK or not rec.get("id"):
+        if not rec.get("id"):
             continue
         key = (
             str(rec["id"]),
             str(rec.get("project") or ""),
             str(rec.get("variant") or ""),
         )
+        if rec.get("status") == "fetch_dead":
+            dead.add(key)
+            continue
+        if rec.get("status") != STATUS_OK:
+            continue
         f = rec.get("file")
         if f and Path(str(f)).exists():
             have.add(key)
             continue
         if rec.get("url"):
             latest[key] = rec
+    have |= dead
 
     todo = [(k, r) for k, r in latest.items() if k not in have]
     if args.limit:
@@ -862,6 +871,17 @@ def cmd_fetch(args: argparse.Namespace) -> int:
             except Exception as exc:  # noqa: BLE001 — одна ошибка не должна валить пачку
                 bad += 1
                 console.print(f"  [red]мимо[/red] {job_id}: {escape(str(exc)[:160])}")
+                # 4xx = uuid протух навсегда (элемент удалён/недоступен) —
+                # помечаем, чтобы следующие fetch его не трогали. Сетевые
+                # и 5xx не помечаем: они лечатся повтором.
+                if "HTTP 4" in str(exc):
+                    log.append({
+                        "id": job_id, "project": project or None,
+                        "status": "fetch_dead", "started_at": rec.get("started_at"),
+                        "finished_at": now_iso(), "url": rec.get("url"),
+                        "file": None, "error": str(exc)[:200], "error_kind": "dead",
+                        **({"variant": rec["variant"]} if rec.get("variant") else {}),
+                    })
                 continue
             ok += 1
             console.print(
